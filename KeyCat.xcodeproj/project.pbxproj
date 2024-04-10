@@ -19,6 +19,9 @@
 		6E567E472BC67C6E00250C56 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E462BC67C6E00250C56 /* Toast */; };
 		6E567E4A2BC67CD400250C56 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E492BC67CD400250C56 /* RxAlamofire */; };
 		6E567E4D2BC67D6900250C56 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E4C2BC67D6900250C56 /* PinLayout */; };
+		6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */; };
+		6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E502BC67DFC00250C56 /* RxBaseCollectionViewCell.swift */; };
+		6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		6E567E3B2BC66FC500250C56 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		6E567E3E2BC6750200250C56 /* KCAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCAsset.swift; sourceTree = "<group>"; };
 		6E567E402BC6752800250C56 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxBaseViewController.swift; sourceTree = "<group>"; };
+		6E567E502BC67DFC00250C56 /* RxBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxBaseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,9 @@
 		6E567E2F2BC5787C00250C56 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				6E567E502BC67DFC00250C56 /* RxBaseCollectionViewCell.swift */,
+				6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */,
+				6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -322,8 +331,11 @@
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
+				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
 				6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
+				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
+				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
