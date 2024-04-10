@@ -34,6 +34,8 @@
 		6E567E6B2BC67F2800250C56 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E672BC67F2800250C56 /* UIViewController+.swift */; };
 		6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E6D2BC67F5700250C56 /* LogManager.swift */; };
 		6E567E702BC67F7900250C56 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E6F2BC67F7900250C56 /* AppError.swift */; };
+		6E567E732BC684C000250C56 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E722BC684C000250C56 /* DTO.swift */; };
+		6E567E772BC685AF00250C56 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E762BC685AF00250C56 /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		6E567E672BC67F2800250C56 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		6E567E6D2BC67F5700250C56 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		6E567E6F2BC67F7900250C56 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		6E567E722BC684C000250C56 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
+		6E567E762BC685AF00250C56 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 		6E567E292BC5783F00250C56 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6E567E742BC685A600250C56 /* Entity */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 		6E567E362BC66DBA00250C56 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				6E567E712BC684BC00250C56 /* Protocol */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -296,6 +302,30 @@
 				6E567E6D2BC67F5700250C56 /* LogManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		6E567E712BC684BC00250C56 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E722BC684C000250C56 /* DTO.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		6E567E742BC685A600250C56 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E752BC685AA00250C56 /* Protocol */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		6E567E752BC685AA00250C56 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E762BC685AF00250C56 /* Entity.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +420,7 @@
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
+				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
 				6E567E692BC67F2800250C56 /* UIView+.swift in Sources */,
 				6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
@@ -401,6 +432,7 @@
 				6E567E6B2BC67F2800250C56 /* UIViewController+.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
+				6E567E732BC684C000250C56 /* DTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
