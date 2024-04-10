@@ -12,6 +12,7 @@
 		6E567E172BC56D2800250C56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E162BC56D2800250C56 /* ViewController.swift */; };
 		6E567E1C2BC56D2B00250C56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E567E1B2BC56D2B00250C56 /* Assets.xcassets */; };
 		6E567E1F2BC56D2B00250C56 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6E567E1E2BC56D2B00250C56 /* Base */; };
+		6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E382BC66DCC00250C56 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		6E567E1B2BC56D2B00250C56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E567E1E2BC56D2B00250C56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E567E202BC56D2B00250C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E567E382BC66DCC00250C56 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,151 @@
 		6E567E112BC56D2800250C56 /* KeyCat */ = {
 			isa = PBXGroup;
 			children = (
-				6E567E122BC56D2800250C56 /* AppDelegate.swift */,
-				6E567E142BC56D2800250C56 /* SceneDelegate.swift */,
-				6E567E162BC56D2800250C56 /* ViewController.swift */,
-				6E567E1B2BC56D2B00250C56 /* Assets.xcassets */,
-				6E567E1D2BC56D2B00250C56 /* LaunchScreen.storyboard */,
-				6E567E202BC56D2B00250C56 /* Info.plist */,
+				6E567E342BC66D7000250C56 /* Resource */,
+				6E567E2B2BC5784E00250C56 /* Utility */,
+				6E567E2A2BC5784200250C56 /* Presentation */,
+				6E567E292BC5783F00250C56 /* Domain */,
+				6E567E282BC5783D00250C56 /* Data */,
+				6E567E272BC5783B00250C56 /* Config */,
+				6E567E262BC5783700250C56 /* App */,
 			);
 			path = KeyCat;
+			sourceTree = "<group>";
+		};
+		6E567E262BC5783700250C56 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E122BC56D2800250C56 /* AppDelegate.swift */,
+				6E567E142BC56D2800250C56 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6E567E272BC5783B00250C56 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E202BC56D2B00250C56 /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		6E567E282BC5783D00250C56 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E372BC66DC100250C56 /* Repository */,
+				6E567E362BC66DBA00250C56 /* DTO */,
+				6E567E352BC66DB800250C56 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6E567E292BC5783F00250C56 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6E567E2A2BC5784200250C56 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E162BC56D2800250C56 /* ViewController.swift */,
+				6E567E2E2BC5787800250C56 /* Common */,
+				6E567E322BC66D3D00250C56 /* Main */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		6E567E2B2BC5784E00250C56 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E312BC5788B00250C56 /* Extension */,
+				6E567E302BC5788700250C56 /* Constant */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		6E567E2D2BC5787300250C56 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		6E567E2E2BC5787800250C56 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E332BC66D4600250C56 /* Protocol */,
+				6E567E2D2BC5787300250C56 /* DesignSystem */,
+				6E567E2F2BC5787C00250C56 /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6E567E2F2BC5787C00250C56 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6E567E302BC5788700250C56 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		6E567E312BC5788B00250C56 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6E567E322BC66D3D00250C56 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6E567E332BC66D4600250C56 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		6E567E342BC66D7000250C56 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E1D2BC56D2B00250C56 /* LaunchScreen.storyboard */,
+				6E567E1B2BC56D2B00250C56 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6E567E352BC66DB800250C56 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6E567E382BC66DCC00250C56 /* APIKey.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6E567E362BC66DBA00250C56 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		6E567E372BC66DC100250C56 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +275,7 @@
 			files = (
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
+				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
 				6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +422,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75QZ7682T2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KeyCat/Info.plist;
+				INFOPLIST_FILE = KeyCat/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -314,7 +454,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75QZ7682T2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KeyCat/Info.plist;
+				INFOPLIST_FILE = KeyCat/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
