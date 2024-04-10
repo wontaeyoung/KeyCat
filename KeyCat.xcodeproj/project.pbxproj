@@ -15,6 +15,10 @@
 		6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E382BC66DCC00250C56 /* APIKey.swift */; };
 		6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E3E2BC6750200250C56 /* KCAsset.swift */; };
 		6E567E412BC6752800250C56 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E402BC6752800250C56 /* UIColor+.swift */; };
+		6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E432BC67C5A00250C56 /* Kingfisher */; };
+		6E567E472BC67C6E00250C56 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E462BC67C6E00250C56 /* Toast */; };
+		6E567E4A2BC67CD400250C56 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E492BC67CD400250C56 /* RxAlamofire */; };
+		6E567E4D2BC67D6900250C56 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E4C2BC67D6900250C56 /* PinLayout */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E567E4A2BC67CD400250C56 /* RxAlamofire in Frameworks */,
+				6E567E472BC67C6E00250C56 /* Toast in Frameworks */,
+				6E567E4D2BC67D6900250C56 /* PinLayout in Frameworks */,
+				6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +253,12 @@
 			dependencies = (
 			);
 			name = KeyCat;
+			packageProductDependencies = (
+				6E567E432BC67C5A00250C56 /* Kingfisher */,
+				6E567E462BC67C6E00250C56 /* Toast */,
+				6E567E492BC67CD400250C56 /* RxAlamofire */,
+				6E567E4C2BC67D6900250C56 /* PinLayout */,
+			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
 			productType = "com.apple.product-type.application";
@@ -273,6 +287,12 @@
 				Base,
 			);
 			mainGroup = 6E567E062BC56D2800250C56;
+			packageReferences = (
+				6E567E422BC67C5A00250C56 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6E567E452BC67C6E00250C56 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -527,6 +547,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E567E422BC67C5A00250C56 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		6E567E452BC67C6E00250C56 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.2;
+			};
+		};
+		6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E567E432BC67C5A00250C56 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E567E422BC67C5A00250C56 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		6E567E462BC67C6E00250C56 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E567E452BC67C6E00250C56 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		6E567E492BC67CD400250C56 /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
+		};
+		6E567E4C2BC67D6900250C56 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E567E072BC56D2800250C56 /* Project object */;
 }
