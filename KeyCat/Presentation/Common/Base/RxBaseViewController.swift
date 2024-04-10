@@ -37,7 +37,7 @@ class RxBaseViewController: UIViewController {
     
     super.viewDidLoad()
     
-    view.backgroundColor = KSAsset.Color.background
+    view.backgroundColor = KCAsset.Color.background
     
     setHierarchy()
     setConstraint()
