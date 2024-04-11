@@ -18,7 +18,6 @@
 		6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E432BC67C5A00250C56 /* Kingfisher */; };
 		6E567E472BC67C6E00250C56 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E462BC67C6E00250C56 /* Toast */; };
 		6E567E4A2BC67CD400250C56 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E492BC67CD400250C56 /* RxAlamofire */; };
-		6E567E4D2BC67D6900250C56 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E4C2BC67D6900250C56 /* PinLayout */; };
 		6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */; };
 		6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E502BC67DFC00250C56 /* RxBaseCollectionViewCell.swift */; };
 		6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */; };
@@ -36,6 +35,12 @@
 		6E567E702BC67F7900250C56 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E6F2BC67F7900250C56 /* AppError.swift */; };
 		6E567E732BC684C000250C56 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E722BC684C000250C56 /* DTO.swift */; };
 		6E567E772BC685AF00250C56 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E762BC685AF00250C56 /* Entity.swift */; };
+		6E567E792BC6894500250C56 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E782BC6894500250C56 /* UserDTO.swift */; };
+		6E567E802BC68F0900250C56 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E567E7F2BC68F0900250C56 /* SnapKit */; };
+		6E8C9E662BC8149D0086F913 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E652BC8149D0086F913 /* Response.swift */; };
+		6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */; };
+		6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E692BC820C30086F913 /* HTTPQuery.swift */; };
+		6E8C9E6C2BC820D00086F913 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +73,11 @@
 		6E567E6F2BC67F7900250C56 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		6E567E722BC684C000250C56 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		6E567E762BC685AF00250C56 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		6E567E782BC6894500250C56 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		6E8C9E652BC8149D0086F913 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestBody.swift; sourceTree = "<group>"; };
+		6E8C9E692BC820C30086F913 /* HTTPQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPQuery.swift; sourceTree = "<group>"; };
+		6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E567E4A2BC67CD400250C56 /* RxAlamofire in Frameworks */,
+				6E567E802BC68F0900250C56 /* SnapKit in Frameworks */,
 				6E567E472BC67C6E00250C56 /* Toast in Frameworks */,
-				6E567E4D2BC67D6900250C56 /* PinLayout in Frameworks */,
 				6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				6E567E712BC684BC00250C56 /* Protocol */,
+				6E567E782BC6894500250C56 /* UserDTO.swift */,
+				6E8C9E652BC8149D0086F913 /* Response.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -308,6 +320,9 @@
 			isa = PBXGroup;
 			children = (
 				6E567E722BC684C000250C56 /* DTO.swift */,
+				6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */,
+				6E8C9E692BC820C30086F913 /* HTTPQuery.swift */,
+				6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -348,7 +363,7 @@
 				6E567E432BC67C5A00250C56 /* Kingfisher */,
 				6E567E462BC67C6E00250C56 /* Toast */,
 				6E567E492BC67CD400250C56 /* RxAlamofire */,
-				6E567E4C2BC67D6900250C56 /* PinLayout */,
+				6E567E7F2BC68F0900250C56 /* SnapKit */,
 			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
@@ -382,7 +397,7 @@
 				6E567E422BC67C5A00250C56 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6E567E452BC67C6E00250C56 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
-				6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
@@ -411,11 +426,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
+				6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */,
 				6E567E5F2BC67EC700250C56 /* GCD.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E567E5A2BC67E8900250C56 /* ViewModel.swift in Sources */,
+				6E8C9E662BC8149D0086F913 /* Response.swift in Sources */,
+				6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */,
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
+				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
@@ -426,6 +445,7 @@
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
 				6E567E5B2BC67E8900250C56 /* ViewModelController.swift in Sources */,
 				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
+				6E8C9E6C2BC820D00086F913 /* HTTPResponse.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
 				6E567E612BC67EEA00250C56 /* Configurator.swift in Sources */,
@@ -681,12 +701,12 @@
 				minimumVersion = 6.1.2;
 			};
 		};
-		6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+		6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.10.5;
+				minimumVersion = 5.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -707,10 +727,10 @@
 			package = 6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
 			productName = RxAlamofire;
 		};
-		6E567E4C2BC67D6900250C56 /* PinLayout */ = {
+		6E567E7F2BC68F0900250C56 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6E567E4B2BC67D6900250C56 /* XCRemoteSwiftPackageReference "PinLayout" */;
-			productName = PinLayout;
+			package = 6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
