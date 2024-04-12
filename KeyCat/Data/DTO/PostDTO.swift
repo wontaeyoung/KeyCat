@@ -25,5 +25,5 @@ struct PostDTO: DTO {
   let likes: [String]
   let likes2: [String]
   let hashTags: [String]
-  let comments: [UserDTO]
+  let comments: [CommentDTO]
 }
