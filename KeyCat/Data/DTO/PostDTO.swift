@@ -26,4 +26,25 @@ struct PostDTO: DTO {
   let likes2: [String]
   let hashTags: [String]
   let comments: [CommentDTO]
+  
+  static var defaultValue: PostDTO {
+    return PostDTO(
+      post_id: .defaultValue,
+      product_id: .defaultValue,
+      title: .defaultValue,
+      content: .defaultValue,
+      content1: .defaultValue,
+      content2: .defaultValue,
+      content3: .defaultValue,
+      content4: .defaultValue,
+      content5: .defaultValue,
+      createdAt: .defaultValue,
+      creator: .defaultValue,
+      files: .defaultValue,
+      likes: .defaultValue,
+      likes2: .defaultValue,
+      hashTags: .defaultValue,
+      comments: .defaultValue
+    )
+  }
 }

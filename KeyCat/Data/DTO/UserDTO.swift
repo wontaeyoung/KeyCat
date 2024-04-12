@@ -10,4 +10,12 @@ struct UserDTO: DTO {
   let user_id: String
   let nick: String
   let profileImage: String?
+  
+  static var defaultValue: UserDTO {
+    return UserDTO(
+      user_id: .defaultValue,
+      nick: .defaultValue,
+      profileImage: .defaultValue
+    )
+  }
 }

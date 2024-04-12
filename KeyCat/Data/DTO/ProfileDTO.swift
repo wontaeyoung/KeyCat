@@ -17,4 +17,18 @@ struct ProfileDTO: DTO {
   let followers: [UserDTO]
   let folllowing: [UserDTO]
   let posts: [String]
+  
+  static var defaultValue: ProfileDTO {
+    return ProfileDTO(
+      user_id: .defaultValue,
+      email: .defaultValue,
+      nick: .defaultValue,
+      phoneNum: .defaultValue,
+      birthDay: .defaultValue,
+      profileImage: .defaultValue,
+      followers: .defaultValue,
+      folllowing: .defaultValue,
+      posts: .defaultValue
+    )
+  }
 }

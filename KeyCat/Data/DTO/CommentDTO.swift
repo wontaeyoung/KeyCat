@@ -10,4 +10,13 @@ struct CommentDTO: DTO {
   let content: String
   let createdAt: String
   let creator: UserDTO
+  
+  static var defaultValue: CommentDTO {
+    return CommentDTO(
+      comment_id: .defaultValue,
+      content: .defaultValue,
+      createdAt: .defaultValue,
+      creator:  .defaultValue
+    )
+  }
 }

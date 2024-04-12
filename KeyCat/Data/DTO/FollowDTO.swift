@@ -9,4 +9,12 @@ struct FollowDTO: DTO {
   let nick: String
   let opponent_nick: String
   let following_status: Bool
+  
+  static var defaultValue: FollowDTO {
+    return FollowDTO(
+      nick: .defaultValue,
+      opponent_nick: .defaultValue, 
+      following_status: .defaultValue
+    )
+  }
 }
