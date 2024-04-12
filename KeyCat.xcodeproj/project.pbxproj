@@ -64,6 +64,9 @@
 		6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */; };
 		6E8C9E9C2BC8BD0A0086F913 /* FetchLikePostsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E9B2BC8BD0A0086F913 /* FetchLikePostsQuery.swift */; };
 		6E8C9E9E2BC8BD310086F913 /* FetchSearchHashtagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E9D2BC8BD310086F913 /* FetchSearchHashtagQuery.swift */; };
+		6E8C9EA32BC94A340086F913 /* DefaultValueProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA22BC94A340086F913 /* DefaultValueProvidable.swift */; };
+		6E8C9EA52BC955480086F913 /* JsonCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA42BC955480086F913 /* JsonCoder.swift */; };
+		6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,9 @@
 		6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsQuery.swift; sourceTree = "<group>"; };
 		6E8C9E9B2BC8BD0A0086F913 /* FetchLikePostsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLikePostsQuery.swift; sourceTree = "<group>"; };
 		6E8C9E9D2BC8BD310086F913 /* FetchSearchHashtagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSearchHashtagQuery.swift; sourceTree = "<group>"; };
+		6E8C9EA22BC94A340086F913 /* DefaultValueProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueProvidable.swift; sourceTree = "<group>"; };
+		6E8C9EA42BC955480086F913 /* JsonCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCoder.swift; sourceTree = "<group>"; };
+		6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +279,7 @@
 				6E567E642BC67F2800250C56 /* UINavigationController+.swift */,
 				6E567E652BC67F2800250C56 /* UIView+.swift */,
 				6E567E672BC67F2800250C56 /* UIViewController+.swift */,
+				6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -353,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				6E567E602BC67EEA00250C56 /* Configurator.swift */,
+				6E8C9EA22BC94A340086F913 /* DefaultValueProvidable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 			children = (
 				6E567E5E2BC67EC700250C56 /* GCD.swift */,
 				6E567E6D2BC67F5700250C56 /* LogManager.swift */,
+				6E8C9EA42BC955480086F913 /* JsonCoder.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -561,6 +570,7 @@
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
+				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
 				6E567E692BC67F2800250C56 /* UIView+.swift in Sources */,
@@ -570,7 +580,9 @@
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
 				6E567E5B2BC67E8900250C56 /* ViewModelController.swift in Sources */,
 				6E8C9E8F2BC8BA990086F913 /* UpdatePostRequest.swift in Sources */,
+				6E8C9EA52BC955480086F913 /* JsonCoder.swift in Sources */,
 				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
+				6E8C9EA32BC94A340086F913 /* DefaultValueProvidable.swift in Sources */,
 				6E8C9E6C2BC820D00086F913 /* HTTPResponse.swift in Sources */,
 				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
