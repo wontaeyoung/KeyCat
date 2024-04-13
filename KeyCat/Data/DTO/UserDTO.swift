@@ -11,6 +11,25 @@ struct UserDTO: DTO {
   let nick: String
   let profileImage: String?
   
+  enum CodingKeys: CodingKey {
+    case user_id
+    case nick
+    case profileImage
+  }
+  
+  init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.user_id = try container.decodeWithDefaultValue(String.self, forKey: .user_id)
+    self.nick = try container.decodeWithDefaultValue(String.self, forKey: .nick)
+    self.profileImage = try container.decodeWithDefaultValue(String.self, forKey: .profileImage)
+  }
+  
+  init(user_id: String, nick: String, profileImage: String?) {
+    self.user_id = user_id
+    self.nick = nick
+    self.profileImage = profileImage
+  }
+  
   static var defaultValue: UserDTO {
     return UserDTO(
       user_id: .defaultValue,
