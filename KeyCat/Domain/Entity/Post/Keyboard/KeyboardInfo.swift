@@ -1,0 +1,170 @@
+//
+//  KeyboardInfo.swift
+//  KeyCat
+//
+//  Created by 원태영 on 4/13/24.
+//
+
+// MARK: - 키보드 기능 정보
+struct KeyboardInfo {
+  let purpose: Purpose
+  let inputMechanism: InputMechanism
+  let connectionType: ConnectionType
+  let powerSource: PowerSource
+  let backlight: Backlight
+  let mechanicalSwitch: MechanicalSwitch
+  let capacitiveSwitch: CapacitiveSwitch
+  let pcbType: PCBType
+  
+  enum Purpose: Int, SelectionExpressible {
+    case office
+    case gaming
+    
+    var name: String {
+      switch self {
+        case .office: "사무용"
+        case .gaming: "게이밍"
+      }
+    }
+    
+    static var title: String {
+      return "사용목적"
+    }
+  }
+
+  enum InputMechanism: Int, SelectionExpressible {
+    case membrane
+    case mechanical
+    case scissorSwitch
+    case capacitiveNonContact
+    case optical
+    case other
+    
+    var name: String {
+      switch self {
+        case .membrane: "멤브레인"
+        case .mechanical: "기계식"
+        case .scissorSwitch: "펜타그래프"
+        case .capacitiveNonContact: "무접점-정전용량"
+        case .optical: "무접점-광축"
+        case .other: "기타"
+      }
+    }
+    
+    static var title: String {
+      return "접점방식"
+    }
+  }
+
+  enum ConnectionType: Int, SelectionExpressible {
+    case wired
+    case wireless
+    case bluetooth
+    
+    var name: String {
+      switch self {
+        case .wired: "유선"
+        case .wireless: "무선 2.4"
+        case .bluetooth: "블루투스"
+      }
+    }
+    
+    static var title: String {
+      return "연결방식"
+    }
+  }
+
+  enum PowerSource: Int, SelectionExpressible {
+    case powerCord
+    case battery
+    case batteryCell
+    
+    var name: String {
+      switch self {
+        case .powerCord: "연결"
+        case .battery: "배터리"
+        case .batteryCell: "건전지"
+      }
+    }
+    
+    static var title: String {
+      return "전원"
+    }
+  }
+
+  enum Backlight: Int, SelectionExpressible {
+    case noBacklight
+    case withBacklight
+    
+    var name: String {
+      switch self {
+        case .noBacklight: "없음"
+        case .withBacklight: "있음"
+      }
+    }
+    
+    static var title: String {
+      return "백라이트"
+    }
+  }
+  
+  enum MechanicalSwitch: Int, SelectionExpressible {
+    case none
+    case clicky
+    case tactile
+    case linear
+    case silentTactile
+    case silentLinear
+    
+    var name: String {
+      switch self {
+        case .none: "해당없음"
+        case .clicky: "클릭키"
+        case .tactile: "택타일"
+        case .linear: "리니어"
+        case .silentTactile: "저소음 택타일"
+        case .silentLinear: "저소음 리니어"
+      }
+    }
+    
+    static var title: String {
+      return "스위치"
+    }
+  }
+
+  enum CapacitiveSwitch: Int, SelectionExpressible {
+    case none
+    case noppoo
+    case topre
+    
+    var name: String {
+      switch self {
+        case .none: "해당없음"
+        case .noppoo: "노뿌"
+        case .topre: "노프레"
+      }
+    }
+    
+    static var title: String {
+      return "스위치"
+    }
+  }
+  
+  enum PCBType: Int, SelectionExpressible {
+    case none
+    case soldering
+    case hotSwap
+    
+    var name: String {
+      switch self {
+        case .none: "해당없음"
+        case .soldering: "솔더링"
+        case .hotSwap: "핫스왑"
+      }
+    }
+    
+    static var title: String {
+      return "기판"
+    }
+  }
+}
