@@ -65,6 +65,7 @@
 		6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */; };
 		6E8C9EA92BCA32050086F913 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA82BCA32050086F913 /* PostRequest.swift */; };
 		6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */; };
+		6E8C9EAD2BCA41570086F913 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EAC2BCA41570086F913 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+.swift"; sourceTree = "<group>"; };
 		6E8C9EA82BCA32050086F913 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRequest.swift; sourceTree = "<group>"; };
+		6E8C9EAC2BCA41570086F913 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				6E567E752BC685AA00250C56 /* Protocol */,
+				6E8C9EAC2BCA41570086F913 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				6E8C9E792BC8B7EB0086F913 /* AuthResponse.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
 				6E567E5B2BC67E8900250C56 /* ViewModelController.swift in Sources */,
+				6E8C9EAD2BCA41570086F913 /* User.swift in Sources */,
 				6E8C9EA52BC955480086F913 /* JsonCoder.swift in Sources */,
 				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
 				6E8C9EA32BC94A340086F913 /* DefaultValueProvidable.swift in Sources */,
