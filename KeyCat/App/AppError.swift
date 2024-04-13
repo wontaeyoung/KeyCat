@@ -12,6 +12,8 @@ protocol AppError: Error {
 
 enum CommonError: AppError {
   
+  static let contactDeveloperInfoText: String = "문제가 다시 생기면 개발자에게 문의해주세요."
+  
   case unknownError(error: Error?)
   case unExceptedNil
   
