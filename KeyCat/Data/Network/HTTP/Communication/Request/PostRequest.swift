@@ -1,11 +1,11 @@
 //
-//  CreatePostRequest.swift
+//  PostRequest.swift
 //  KeyCat
 //
-//  Created by 원태영 on 4/12/24.
+//  Created by 원태영 on 4/13/24.
 //
 
-struct CreatePostRequest: HTTPRequestBody {
+struct PostRequest: HTTPRequestBody {
   let title: String?
   let content: String?
   let content1: String?
