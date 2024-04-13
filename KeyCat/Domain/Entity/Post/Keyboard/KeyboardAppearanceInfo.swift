@@ -12,6 +12,18 @@ struct KeyboardAppearanceInfo {
   let material: Material
   let size: Size
   
+  var raws: [Int] {
+    return [
+      ratio.rawValue,
+      design.rawValue,
+      material.rawValue,
+      size.width,
+      size.height,
+      size.depth,
+      size.weight,
+    ]
+  }
+  
   enum LayoutRatio: Int, SelectionExpressible {
     case twenty
     case forty
@@ -83,9 +95,9 @@ struct KeyboardAppearanceInfo {
   }
 
   struct Size {
-    let width: Double
-    let height: Double
-    let depth: Double
-    let weight: Double
+    let width: Int
+    let height: Int
+    let depth: Int
+    let weight: Int
   }
 }

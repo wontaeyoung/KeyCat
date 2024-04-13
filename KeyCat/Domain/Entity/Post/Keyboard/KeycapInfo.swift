@@ -12,6 +12,15 @@ struct KeycapInfo {
   let process: PrintingProcess
   let language: PrintingLanguage
   
+  var raws: [Int] {
+    return [
+      profile.rawValue,
+      direction.rawValue,
+      process.rawValue,
+      language.rawValue,
+    ]
+  }
+  
   enum KeycapProfile: Int, SelectionExpressible {
     case cherry
     case oem

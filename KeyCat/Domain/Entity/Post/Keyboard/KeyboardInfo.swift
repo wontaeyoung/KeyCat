@@ -16,6 +16,19 @@ struct KeyboardInfo {
   let capacitiveSwitch: CapacitiveSwitch
   let pcbType: PCBType
   
+  var raws: [Int] {
+    return [
+      purpose.rawValue,
+      inputMechanism.rawValue,
+      connectionType.rawValue,
+      powerSource.rawValue,
+      backlight.rawValue,
+      mechanicalSwitch.rawValue,
+      capacitiveSwitch.rawValue,
+      pcbType.rawValue,
+    ]
+  }
+  
   enum Purpose: Int, SelectionExpressible {
     case office
     case gaming
