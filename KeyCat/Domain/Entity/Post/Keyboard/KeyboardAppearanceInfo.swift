@@ -7,6 +7,7 @@
 
 // MARK: - 키보드 외관
 struct KeyboardAppearanceInfo {
+  
   let ratio: LayoutRatio
   let design: KeyboardDesign
   let material: Material

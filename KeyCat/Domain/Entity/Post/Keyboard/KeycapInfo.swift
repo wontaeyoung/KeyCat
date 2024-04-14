@@ -7,6 +7,7 @@
 
 // MARK: - 키캡 정보
 struct KeycapInfo {
+  
   let profile: KeycapProfile
   let direction: PrintingDirection
   let process: PrintingProcess

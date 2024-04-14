@@ -6,6 +6,7 @@
 //
 
 struct Keyboard {
+  
   let keyboardInfo: KeyboardInfo
   let keycapInfo: KeycapInfo
   let keyboardAppearanceInfo: KeyboardAppearanceInfo

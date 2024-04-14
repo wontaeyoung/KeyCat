@@ -7,6 +7,7 @@
 
 // MARK: - 키보드 기능 정보
 struct KeyboardInfo {
+  
   let purpose: Purpose
   let inputMechanism: InputMechanism
   let connectionType: ConnectionType
