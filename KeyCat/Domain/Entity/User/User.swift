@@ -8,9 +8,10 @@
 import Foundation
 
 struct User: Entity {
-  let userID: String
+  
+  let userID: UserID
   let nickname: String
-  let profileImageURLString: String
+  let profileImageURLString: URLString
   
   var profileImageURL: URL? {
     return URL(string: profileImageURLString)
