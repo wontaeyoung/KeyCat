@@ -66,6 +66,18 @@
 		6E8C9EA92BCA32050086F913 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EA82BCA32050086F913 /* PostRequest.swift */; };
 		6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */; };
 		6E8C9EAD2BCA41570086F913 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EAC2BCA41570086F913 /* User.swift */; };
+		6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EAF2BCA9E820086F913 /* Keyboard.swift */; };
+		6E8C9EB22BCA9EA40086F913 /* KeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EB12BCA9EA40086F913 /* KeyboardInfo.swift */; };
+		6E8C9EBA2BCA9F9B0086F913 /* KeycapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EB92BCA9F9B0086F913 /* KeycapInfo.swift */; };
+		6E8C9EBC2BCA9FCF0086F913 /* SelectionExpressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EBB2BCA9FCF0086F913 /* SelectionExpressible.swift */; };
+		6E8C9EBE2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EBD2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift */; };
+		6E8C9EC52BCB8FBA0086F913 /* CommercialPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EC42BCB8FBA0086F913 /* CommercialPrice.swift */; };
+		6E8C9EC72BCB90130086F913 /* DeliveryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EC62BCB90130086F913 /* DeliveryInfo.swift */; };
+		6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9EC82BCBF8E40086F913 /* CommercialPost.swift */; };
+		6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9ECA2BCBF9360086F913 /* PostType.swift */; };
+		6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9ECC2BCBFA190086F913 /* SecondhandPost.swift */; };
+		6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9ECE2BCBFA260086F913 /* GroupBuyPost.swift */; };
+		6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9ED22BCBFD070086F913 /* CommercialReview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +140,18 @@
 		6E8C9EA82BCA32050086F913 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRequest.swift; sourceTree = "<group>"; };
 		6E8C9EAC2BCA41570086F913 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6E8C9EAF2BCA9E820086F913 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		6E8C9EB12BCA9EA40086F913 /* KeyboardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfo.swift; sourceTree = "<group>"; };
+		6E8C9EB92BCA9F9B0086F913 /* KeycapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeycapInfo.swift; sourceTree = "<group>"; };
+		6E8C9EBB2BCA9FCF0086F913 /* SelectionExpressible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionExpressible.swift; sourceTree = "<group>"; };
+		6E8C9EBD2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearanceInfo.swift; sourceTree = "<group>"; };
+		6E8C9EC42BCB8FBA0086F913 /* CommercialPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPrice.swift; sourceTree = "<group>"; };
+		6E8C9EC62BCB90130086F913 /* DeliveryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfo.swift; sourceTree = "<group>"; };
+		6E8C9EC82BCBF8E40086F913 /* CommercialPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPost.swift; sourceTree = "<group>"; };
+		6E8C9ECA2BCBF9360086F913 /* PostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
+		6E8C9ECC2BCBFA190086F913 /* SecondhandPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondhandPost.swift; sourceTree = "<group>"; };
+		6E8C9ECE2BCBFA260086F913 /* GroupBuyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBuyPost.swift; sourceTree = "<group>"; };
+		6E8C9ED22BCBFD070086F913 /* CommercialReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialReview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,8 +408,9 @@
 		6E567E742BC685A600250C56 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				6E8C9EB42BCA9EB90086F913 /* Post */,
+				6E8C9EB32BCA9EB70086F913 /* User */,
 				6E567E752BC685AA00250C56 /* Protocol */,
-				6E8C9EAC2BCA41570086F913 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -394,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				6E567E762BC685AF00250C56 /* Entity.swift */,
+				6E8C9EBB2BCA9FCF0086F913 /* SelectionExpressible.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -464,6 +490,48 @@
 				6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		6E8C9EAE2BCA9E600086F913 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				6E8C9EAF2BCA9E820086F913 /* Keyboard.swift */,
+				6E8C9EB12BCA9EA40086F913 /* KeyboardInfo.swift */,
+				6E8C9EB92BCA9F9B0086F913 /* KeycapInfo.swift */,
+				6E8C9EBD2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		6E8C9EB32BCA9EB70086F913 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6E8C9EAC2BCA41570086F913 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6E8C9EB42BCA9EB90086F913 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6E8C9ECA2BCBF9360086F913 /* PostType.swift */,
+				6E8C9EC32BCB8F4C0086F913 /* Commerce */,
+				6E8C9EAE2BCA9E600086F913 /* Keyboard */,
+				6E8C9ECC2BCBFA190086F913 /* SecondhandPost.swift */,
+				6E8C9ECE2BCBFA260086F913 /* GroupBuyPost.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		6E8C9EC32BCB8F4C0086F913 /* Commerce */ = {
+			isa = PBXGroup;
+			children = (
+				6E8C9EC82BCBF8E40086F913 /* CommercialPost.swift */,
+				6E8C9EC42BCB8FBA0086F913 /* CommercialPrice.swift */,
+				6E8C9EC62BCB90130086F913 /* DeliveryInfo.swift */,
+				6E8C9ED22BCBFD070086F913 /* CommercialReview.swift */,
+			);
+			path = Commerce;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,16 +623,22 @@
 				6E8C9E772BC8B6A80086F913 /* FollowDTO.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
+				6E8C9EC52BCB8FBA0086F913 /* CommercialPrice.swift in Sources */,
 				6E567E5A2BC67E8900250C56 /* ViewModel.swift in Sources */,
+				6E8C9EC72BCB90130086F913 /* DeliveryInfo.swift in Sources */,
 				6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */,
+				6E8C9EB22BCA9EA40086F913 /* KeyboardInfo.swift in Sources */,
 				6E8C9E662BC8149D0086F913 /* Response.swift in Sources */,
 				6E8C9E892BC8B9F70086F913 /* LoginRequest.swift in Sources */,
 				6E8C9E972BC8BB560086F913 /* UpdateMyProfileRequest.swift in Sources */,
 				6E8C9EA92BCA32050086F913 /* PostRequest.swift in Sources */,
+				6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */,
+				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
 				6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */,
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
+				6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */,
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
 				6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */,
@@ -583,21 +657,27 @@
 				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
 				6E8C9EA32BC94A340086F913 /* DefaultValueProvidable.swift in Sources */,
 				6E8C9E6C2BC820D00086F913 /* HTTPResponse.swift in Sources */,
+				6E8C9EBC2BCA9FCF0086F913 /* SelectionExpressible.swift in Sources */,
 				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
 				6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */,
 				6E8C9E9E2BC8BD310086F913 /* FetchSearchHashtagQuery.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
+				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
 				6E8C9E752BC8B67C0086F913 /* ProfileDTO.swift in Sources */,
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
+				6E8C9EBA2BCA9F9B0086F913 /* KeycapInfo.swift in Sources */,
 				6E8C9E812BC8B9290086F913 /* LikePostResonse.swift in Sources */,
 				6E567E612BC67EEA00250C56 /* Configurator.swift in Sources */,
 				6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */,
 				6E567E6B2BC67F2800250C56 /* UIViewController+.swift in Sources */,
+				6E8C9EBE2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
+				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
+				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E567E732BC684C000250C56 /* DTO.swift in Sources */,
 				6E8C9E7D2BC8B8A10086F913 /* LoginResponse.swift in Sources */,
