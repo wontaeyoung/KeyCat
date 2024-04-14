@@ -10,7 +10,10 @@ struct DeliveryInfo {
   let schedule: Schedule
   
   var raws: [Int] {
-    return [price.rawValue, schedule.rawValue]
+    return [
+      price.rawValue,
+      schedule.rawValue
+    ]
   }
   
   enum Price: Int, SelectionExpressible {
