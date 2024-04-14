@@ -6,6 +6,7 @@
 //
 
 struct DeliveryInfo {
+  
   let price: Price
   let schedule: Schedule
   

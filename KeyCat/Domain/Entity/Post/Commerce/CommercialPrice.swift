@@ -8,6 +8,7 @@
 import Foundation
 
 struct CommercialPrice {
+  
   let regularPrice: Int
   let couponPrice: Int
   let discountPrice: Int
