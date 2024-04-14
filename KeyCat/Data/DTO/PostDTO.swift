@@ -14,9 +14,9 @@ struct PostDTO: DTO {
   let product_id: String
   let title: String
   let content: String
-  let content1: String
-  let content2: String
-  let content3: String
+  let content1: String // 키보드 정보
+  let content2: String // [정가, 쿠폰가, 할인가, 할인종료일]
+  let content3: String // [무료배송, 도착정보]
   let content4: String
   let content5: String
   let createdAt: String
