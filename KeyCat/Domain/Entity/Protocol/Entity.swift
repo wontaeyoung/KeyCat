@@ -9,4 +9,5 @@ protocol Entity {
   typealias URLString = String
   typealias UserID = String
   typealias Hashtag = String
+  typealias PostID = String
 }
