@@ -11,3 +11,8 @@ struct CommentDTO: DTO {
   let createdAt: String
   let creator: UserDTO
 }
+
+struct CommentContentDTO: DTO, Encodable {
+  let content: String
+  let rating: Int
+}
