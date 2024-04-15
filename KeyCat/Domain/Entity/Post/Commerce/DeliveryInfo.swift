@@ -21,6 +21,8 @@ struct DeliveryInfo {
     case paid
     case free
     
+    static let coalesce: Price = .paid
+    
     static var title: String {
       return "배송비"
     }
@@ -38,6 +40,8 @@ struct DeliveryInfo {
     case today
     case nextDawn
     case nextDay
+    
+    static let coalesce: Schedule = .standard
     
     static var title: String {
       return "도착 예정"

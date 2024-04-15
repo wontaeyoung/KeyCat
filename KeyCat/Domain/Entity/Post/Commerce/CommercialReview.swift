@@ -22,12 +22,14 @@ struct CommercialReview: Entity {
     case four
     case five
     
+    static let coalesce: Rating = .one
+    
     var value: Int {
       return self.rawValue
     }
     
     init(_ rawValue: Int) {
-      self = Rating(rawValue: rawValue) ?? .one
+      self = Rating(rawValue: rawValue) ?? Self.coalesce
     }
   }
 }
