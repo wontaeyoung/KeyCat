@@ -23,13 +23,27 @@ struct Profile: Entity {
     return URL(string: profileImageURLString)
   }
   
-  enum UserType: Int {
+  enum UserType: Int, SelectionExpressible {
     case none
     case standard
     case seller
     
     var userForOtherProfile: UserType {
       return .none
+    }
+    
+    static let coalesce: Profile.UserType = .none
+    
+    var name: String {
+      switch self {
+        case .none: "확인불가"
+        case .standard: "일반"
+        case .seller: "판매자"
+      }
+    }
+    
+    static var title: String {
+      return "사용자 유형"
     }
   }
   

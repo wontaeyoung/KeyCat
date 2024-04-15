@@ -14,4 +14,35 @@ struct UserMapper {
       profileImageURLString: dto.profileImage
     )
   }
+  
+  func toEntity(_ dtos: [UserDTO]) -> [User] {
+    return dtos.map { toEntity($0) }
+  }
+  
+  func toEntity(_ dto: ProfileDTO) -> Profile {
+    
+    return Profile(
+      userID: dto.user_id,
+      email: dto.email,
+      nickname: dto.nick, 
+      userType: getUsetType(userTypeID: dto.phoneNum),
+      profileImageURLString: dto.profileImage,
+      followers: toEntity(dto.followers),
+      folllowing: toEntity(dto.folllowing),
+      postIDs: dto.posts,
+      profileType: getProfileType(email: dto.email)
+    )
+  }
+  
+  private func getUsetType(userTypeID: String) -> Profile.UserType {
+    guard let id = Int(userTypeID) else {
+      return .none
+    }
+    
+    return .init(id)
+  }
+  
+  private func getProfileType(email: String) -> Profile.ProfileType {
+    return email.isEmpty ? .other : .mine
+  }
 }
