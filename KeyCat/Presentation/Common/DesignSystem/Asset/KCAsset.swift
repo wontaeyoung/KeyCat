@@ -10,7 +10,7 @@ import UIKit
 enum KCAsset {
   
   enum Color {
-    static let brand: UIColor = .init(hex: "#BF94E4")
+    static let brand: UIColor = .init(hex: "#A896FF")
     static let primary: UIColor = .init(hex: "#C2A3C6")
     static let secondary: UIColor = .init(hex: "#F8E2F4")
     static let lightGrayBackground: UIColor = .init(hex: "#F2F2F6")

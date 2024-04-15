@@ -1,5 +1,5 @@
 {
-  "originHash" : "1b3ea9614586abd0b0c7e6913c1b9234fba77a773d39c64adfae6625af5ceb31",
+  "originHash" : "ace9e9d14a5882d4b0533b64aae660a8b20b32226901e6c0cddac1b163ca76b7",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -29,15 +29,6 @@
       }
     },
     {
-      "identity" : "pinlayout",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/layoutBox/PinLayout",
-      "state" : {
-        "revision" : "8eaa3a15e4dcabaca4c95aea4c0ff0c9b4a67213",
-        "version" : "1.10.5"
-      }
-    },
-    {
       "identity" : "rxalamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxAlamofire",
@@ -53,6 +44,15 @@
       "state" : {
         "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
         "version" : "6.6.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
       }
     },
     {
