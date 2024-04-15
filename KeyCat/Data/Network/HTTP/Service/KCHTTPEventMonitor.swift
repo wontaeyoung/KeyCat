@@ -15,11 +15,26 @@ final class KCHTTPEventMonitor: EventMonitor {
   
   // 요청이 시작될 때
   func requestDidResume(_ request: Request) {
+    guard let request = request.request?.urlRequest else { return }
+    var body: String = "body 없음"
+    if let httpBody = request.httpBody,
+        let bodyString = String(data: httpBody, encoding: .utf8) { body = bodyString }
+    
     let message =  """
 요청시작
 
-요청
-\(request.request?.urlRequest?.description ?? .defaultValue)
+요청 URL
+\(request.url?.absoluteString ?? "URL 확인 불가")
+
+요청 메서드
+\(request.method?.rawValue ?? "HTTP 메서드 확인 불가")
+
+요청 헤더
+\(request.headers.dictionary.description)
+
+요청 바디
+\(body)
+
 ---
 """
     LogManager.shared.log(with: message, to: .network, level: .info)
@@ -38,10 +53,7 @@ final class KCHTTPEventMonitor: EventMonitor {
   // 요청 후 응답 완료
   // 성공 여부에 상관없이 호출
   func request(_ request: Request, didCompleteTask task: URLSessionTask, with error: Error?) {
-    guard 
-      let httpResponse = task.response as? HTTPURLResponse,
-      let url = task.originalRequest?.url
-    else {
+    guard let httpResponse = task.response as? HTTPURLResponse else {
       return
     }
     
@@ -56,6 +68,7 @@ final class KCHTTPEventMonitor: EventMonitor {
 
 에러 메세지
 \(error?.localizedDescription ?? "에러 없음")
+
 ---
 """
     LogManager.shared.log(with: message, to: .network, level: .info)
@@ -79,6 +92,7 @@ final class KCHTTPEventMonitor: EventMonitor {
         let message = """
 응답 에러 발생
 \(error.localizedDescription)
+
 ---
 """
         LogManager.shared.log(with: message, to: .network, level: .error)
@@ -92,6 +106,7 @@ final class KCHTTPEventMonitor: EventMonitor {
 
 응답 데이터
 \(prettyJsonString)
+
 ---
 """
     LogManager.shared.log(with: message, to: .network, level: .info)
