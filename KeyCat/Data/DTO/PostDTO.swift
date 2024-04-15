@@ -10,6 +10,7 @@
 /// 특정 게시글 조회
 /// 게시글 수정
 struct PostDTO: DTO {
+  
   let post_id: String
   let product_id: String
   let title: String
