@@ -26,26 +26,29 @@ struct KeyboardAppearanceInfo {
   }
   
   enum LayoutRatio: Int, SelectionExpressible {
-    case twenty
-    case forty
-    case sixty
-    case sixtyFive
-    case seventyFive
-    case eighty
-    case ninetySix
+    
     case hundred
+    case ninetySix
+    case eighty
+    case seventyFive
+    case sixtyFive
+    case sixty
+    case forty
+    case twenty
     case other
+    
+    static let coalesce: LayoutRatio = .hundred
     
     var name: String {
       switch self {
-        case .twenty: "20%"
-        case .forty: "40%"
-        case .sixty: "60%"
-        case .sixtyFive: "65%"
-        case .seventyFive: "75%"
-        case .eighty: "80%"
-        case .ninetySix: "96%"
         case .hundred: "100%"
+        case .ninetySix: "96%"
+        case .eighty: "80%"
+        case .seventyFive: "75%"
+        case .sixtyFive: "65%"
+        case .sixty: "60%"
+        case .forty: "40%"
+        case .twenty: "20%"
         case .other: "기타"
       }
     }
@@ -56,10 +59,13 @@ struct KeyboardAppearanceInfo {
   }
 
   enum KeyboardDesign: Int, SelectionExpressible {
+    
     case standard
     case alice
     case split
     case oneHanded
+    
+    static let coalesce: KeyboardDesign = .standard
     
     var name: String {
       switch self {
@@ -76,10 +82,13 @@ struct KeyboardAppearanceInfo {
   }
 
   enum Material: Int, SelectionExpressible {
+    
     case plastic
     case aluminum
     case plasticAluminum
     case other
+    
+    static let coalesce: Material = .plastic
     
     var name: String {
       switch self {
@@ -96,6 +105,7 @@ struct KeyboardAppearanceInfo {
   }
 
   struct Size {
+    
     let width: Int
     let height: Int
     let depth: Int

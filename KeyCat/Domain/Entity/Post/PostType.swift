@@ -14,4 +14,8 @@ enum PostType: String {
   var productID: String {
     return self.rawValue
   }
+  
+  init(productID: String) {
+    self = PostType(rawValue: productID) ?? .keycat_commercialProduct
+  }
 }

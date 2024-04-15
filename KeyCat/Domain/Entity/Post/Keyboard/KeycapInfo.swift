@@ -23,6 +23,7 @@ struct KeycapInfo {
   }
   
   enum KeycapProfile: Int, SelectionExpressible {
+    
     case cherry
     case oem
     case sa
@@ -31,6 +32,8 @@ struct KeycapInfo {
     case dsa
     case xda
     case mda
+    
+    static let coalesce: KeycapProfile = .cherry
     
     var name: String {
       switch self {
@@ -51,9 +54,12 @@ struct KeycapInfo {
   }
 
   enum PrintingDirection: Int, SelectionExpressible {
+    
     case top
     case side
     case blank
+    
+    static let coalesce: PrintingDirection = .top
     
     var name: String {
       switch self {
@@ -69,9 +75,12 @@ struct KeycapInfo {
   }
 
   enum PrintingProcess: Int, SelectionExpressible {
+    
     case laser
     case dyeSublimation
     case doubleShot
+    
+    static let coalesce: PrintingProcess = laser
     
     var name: String {
       switch self {
@@ -87,10 +96,13 @@ struct KeycapInfo {
   }
 
   enum PrintingLanguage: Int, SelectionExpressible {
+    
     case koreanEnglish
     case english
     case japanese
     case chinese
+    
+    static let coalesce: PrintingLanguage = .koreanEnglish
     
     var name: String {
       switch self {

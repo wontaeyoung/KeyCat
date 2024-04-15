@@ -31,8 +31,11 @@ struct KeyboardInfo {
   }
   
   enum Purpose: Int, SelectionExpressible {
+    
     case office
     case gaming
+    
+    static let coalesce: Purpose = .gaming
     
     var name: String {
       switch self {
@@ -47,12 +50,15 @@ struct KeyboardInfo {
   }
 
   enum InputMechanism: Int, SelectionExpressible {
+    
     case membrane
     case mechanical
     case scissorSwitch
     case capacitiveNonContact
     case optical
     case other
+    
+    static let coalesce: InputMechanism = .membrane
     
     var name: String {
       switch self {
@@ -71,9 +77,12 @@ struct KeyboardInfo {
   }
 
   enum ConnectionType: Int, SelectionExpressible {
+    
     case wired
     case wireless
     case bluetooth
+    
+    static let coalesce: ConnectionType = .wired
     
     var name: String {
       switch self {
@@ -89,9 +98,12 @@ struct KeyboardInfo {
   }
 
   enum PowerSource: Int, SelectionExpressible {
+    
     case powerCord
     case battery
     case batteryCell
+    
+    static let coalesce: PowerSource = .powerCord
     
     var name: String {
       switch self {
@@ -107,8 +119,11 @@ struct KeyboardInfo {
   }
 
   enum Backlight: Int, SelectionExpressible {
+    
     case noBacklight
     case withBacklight
+    
+    static let coalesce: Backlight = .noBacklight
     
     var name: String {
       switch self {
@@ -123,12 +138,15 @@ struct KeyboardInfo {
   }
   
   enum MechanicalSwitch: Int, SelectionExpressible {
+    
     case none
     case clicky
     case tactile
     case linear
     case silentTactile
     case silentLinear
+    
+    static let coalesce: MechanicalSwitch = .none
     
     var name: String {
       switch self {
@@ -147,9 +165,12 @@ struct KeyboardInfo {
   }
 
   enum CapacitiveSwitch: Int, SelectionExpressible {
+    
     case none
     case noppoo
     case topre
+    
+    static let coalesce: CapacitiveSwitch = .none
     
     var name: String {
       switch self {
@@ -165,9 +186,12 @@ struct KeyboardInfo {
   }
   
   enum PCBType: Int, SelectionExpressible {
+    
     case none
     case soldering
     case hotSwap
+    
+    static let coalesce: PCBType = .none
     
     var name: String {
       switch self {
