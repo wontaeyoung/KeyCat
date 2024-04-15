@@ -20,7 +20,6 @@ struct UserMapper {
   }
   
   func toEntity(_ dto: ProfileDTO) -> Profile {
-    
     return Profile(
       userID: dto.user_id,
       email: dto.email,
@@ -31,6 +30,14 @@ struct UserMapper {
       folllowing: toEntity(dto.folllowing),
       postIDs: dto.posts,
       profileType: getProfileType(email: dto.email)
+    )
+  }
+  
+  func toEntity(_ dto: FollowDTO) -> Follow {
+    return Follow(
+      myNickname: dto.nick,
+      followingNickname: dto.opponent_nick,
+      isFollowing: dto.following_status
     )
   }
   
