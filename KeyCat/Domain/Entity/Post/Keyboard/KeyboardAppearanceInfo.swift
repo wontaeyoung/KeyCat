@@ -94,7 +94,7 @@ struct KeyboardAppearanceInfo {
       switch self {
         case .plastic: "플라스틱"
         case .aluminum: "알루미늄"
-        case .plasticAluminum: "플라스틱/알루미늄"
+        case .plasticAluminum: "플라스틱 / 알루미늄"
         case .other: "기타"
       }
     }

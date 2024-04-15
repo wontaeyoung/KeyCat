@@ -176,7 +176,7 @@ struct KeyboardInfo {
       switch self {
         case .none: "해당없음"
         case .noppoo: "노뿌"
-        case .topre: "노프레"
+        case .topre: "토프레"
       }
     }
     
