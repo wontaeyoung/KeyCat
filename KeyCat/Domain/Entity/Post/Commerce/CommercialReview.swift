@@ -25,6 +25,10 @@ struct CommercialReview: Entity {
     var value: Int {
       return self.rawValue
     }
+    
+    init(_ rawValue: Int) {
+      self = Rating(rawValue: rawValue) ?? .one
+    }
   }
 }
 
