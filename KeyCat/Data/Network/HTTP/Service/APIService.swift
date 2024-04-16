@@ -14,7 +14,7 @@ struct APIService {
   
   private let session = Session(eventMonitors: [APIEventMonitor.shared])
   
-  func callRequest<T: HTTPResponse>(with router: Router, of type: T.Type) -> Single<T> {
+  func callRequest<T: Decodable>(with router: Router, of type: T.Type) -> Single<T> {
     return session
       .request(router)
       .rx
