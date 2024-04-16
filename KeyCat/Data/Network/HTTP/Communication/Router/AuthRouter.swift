@@ -14,12 +14,13 @@ enum AuthRouter: Router {
   case emailValidation(request: EmailValidationRequest)
   case login(request: LoginRequest)
   case tokenRefresh
+  case withdraw
   
   var method: HTTPMethod {
     switch self {
       case .join, .emailValidation, .login:
         return .post
-      case .tokenRefresh:
+      case .tokenRefresh, .withdraw:
         return .get
     }
   }
@@ -34,6 +35,8 @@ enum AuthRouter: Router {
         return "/users/login"
       case .tokenRefresh:
         return "/auth/refresh"
+      case .withdraw:
+        return "/users/withdraw"
     }
   }
   
@@ -43,17 +46,23 @@ enum AuthRouter: Router {
         return [
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
+      
       case .tokenRefresh:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.refresh, value: KCHeader.Value.refreshToken)
+        ]
+        
+      case .withdraw:
+        return [
+          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
     }
   }
   
   var parameters: Parameters? {
     switch self {
-      case .join, .emailValidation, .login, .tokenRefresh:
+      case .join, .emailValidation, .login, .tokenRefresh, .withdraw:
         return nil
     }
   }
@@ -66,7 +75,7 @@ enum AuthRouter: Router {
         return requestToBody(request)
       case .login(let request):
         return requestToBody(request)
-      case .tokenRefresh:
+      case .tokenRefresh, .withdraw:
         return nil
     }
   }
