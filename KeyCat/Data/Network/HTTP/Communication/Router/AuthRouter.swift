@@ -12,10 +12,11 @@ enum AuthRouter: Router {
   
   case join(request: JoinRequest)
   case login(request: LoginRequest)
+  case emailValidation(request: EmailValidationRequest)
   
   var method: HTTPMethod {
     switch self {
-      case .join, .login:
+      case .join, .login, .emailValidation:
         return .post
     }
   }
@@ -26,12 +27,14 @@ enum AuthRouter: Router {
         return "/users/join"
       case .login:
         return "/users/login"
+      case .emailValidation:
+        return "/validation/email"
     }
   }
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .join, .login:
+      case .join, .login, .emailValidation:
         return [
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
@@ -40,7 +43,7 @@ enum AuthRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .join, .login:
+      case .join, .login, .emailValidation:
         return nil
     }
   }
@@ -50,6 +53,8 @@ enum AuthRouter: Router {
       case .join(let request):
         return requestToBody(request)
       case .login(let request):
+        return requestToBody(request)
+      case .emailValidation(let request):
         return requestToBody(request)
     }
   }
