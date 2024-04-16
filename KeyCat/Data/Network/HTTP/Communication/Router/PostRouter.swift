@@ -11,10 +11,11 @@ import Alamofire
 enum PostRouter: Router {
   
   case postImageUpload
+  case postCreate(request: PostRequest)
   
   var method: HTTPMethod {
     switch self {
-      case .postImageUpload:
+      case .postImageUpload, .postCreate:
         return .post
     }
   }
@@ -23,6 +24,8 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload:
         return "/posts/files"
+      case .postCreate:
+        return "/posts"
     }
   }
   
@@ -33,12 +36,18 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.multipartFormData)
         ]
+        
+      case .postCreate:
+        return [
+          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
+          HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
+        ]
     }
   }
   
   var parameters: Parameters? {
     switch self {
-      case .postImageUpload:
+      case .postImageUpload, .postCreate:
         return nil
     }
   }
@@ -47,6 +56,8 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload:
         return nil
+      case .postCreate(let request):
+        return requestToBody(request)
     }
   }
 }
