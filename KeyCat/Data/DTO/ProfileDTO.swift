@@ -8,6 +8,7 @@
 /// 내 프로필
 /// 다른 유저 프로필
 struct ProfileDTO: DTO {
+  
   let user_id: String
   let email: String
   let nick: String
