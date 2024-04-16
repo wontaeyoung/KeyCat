@@ -10,19 +10,14 @@ import Alamofire
 import RxSwift
 
 extension Reactive where Base: DataRequest {
-  func call<T: Decodable>(of type: T.Type) -> Single<(HTTPURLResponse, T)> {
+  func call<T: Decodable>(of type: T.Type) -> Single<T> {
     
     return Single.create { single in
       let request = base.responseDecodable(of: T.self) { response in
         switch response.result {
           case .success(let value):
-            if let httpResponse = response.response {
-              log(base, responseData: response.data, error: response.error)
-              single(.success((httpResponse, value)))
-            } else {
-              single(.failure(HTTPError.invalidResponse))
-            }
-            
+            log(base, responseData: response.data, error: response.error)
+            single(.success(value))
           case .failure(let error):
             single(.failure(error))
         }
