@@ -45,9 +45,7 @@ extension Router {
       $0.httpBody = body
     }
     
-    guard let parameters else {
-      return request
-    }
+    guard let parameters else { return request }
     
     return try URLEncoding.default.encode(request, with: parameters)
   }
