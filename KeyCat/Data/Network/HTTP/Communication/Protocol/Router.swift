@@ -51,4 +51,8 @@ extension Router {
     
     return try URLEncoding.default.encode(request, with: parameters)
   }
+  
+  func requestToBody(_ request: HTTPRequestBody) -> Data? {
+    return try? JsonCoder.shared.encode(from: request)
+  }
 }

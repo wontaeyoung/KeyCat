@@ -10,17 +10,20 @@ import Alamofire
 
 enum AuthRouter: Router {
   
+  case join(request: JoinRequest)
   case login(request: LoginRequest)
   
   var method: HTTPMethod {
     switch self {
-      case .login:
+      case .join, .login:
         return .post
     }
   }
   
   var path: String {
     switch self {
+      case .join:
+        return "/users/join"
       case .login:
         return "/users/login"
     }
@@ -28,7 +31,7 @@ enum AuthRouter: Router {
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .login:
+      case .join, .login:
         return [
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
@@ -37,15 +40,17 @@ enum AuthRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .login:
+      case .join, .login:
         return nil
     }
   }
   
   var body: Data? {
     switch self {
+      case .join(let request):
+        return requestToBody(request)
       case .login(let request):
-        return try? JsonCoder.shared.encode(from: request)
+        return requestToBody(request)
     }
   }
 }
