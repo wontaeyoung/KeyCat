@@ -5,6 +5,7 @@
 //  Created by 원태영 on 4/16/24.
 //
 
+import Foundation
 import Alamofire
 import RxAlamofire
 import RxSwift
@@ -18,5 +19,23 @@ struct APIService {
       .request(router)
       .rx
       .call(of: T.self)
+  }
+  
+  func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
+    let router = PostRouter.postImageUpload
+    
+    return session
+      .upload(multipartFormData: { multipartFormData in
+        data.forEach {
+          multipartFormData.append(
+            $0,
+            withName: KCBody.Key.imageFiles,
+            fileName: KCBody.Value.fileName,
+            mimeType: KCBody.Value.mimeTypePNG
+          )
+        }
+      }, to: router, headers: router.headers)
+      .rx
+      .call(of: UploadPostImageResponse.self)
   }
 }
