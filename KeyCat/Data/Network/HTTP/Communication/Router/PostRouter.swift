@@ -16,7 +16,7 @@ enum PostRouter: Router {
   case specificPostFetch(id: Entity.PostID)
   case postUpdate(id: Entity.PostID, request: PostRequest)
   case postDelete(id: Entity.PostID)
-  case postsFromUserFetch(id: Entity.UserID, query: FetchPostsQuery)
+  case postsFromUserFetch(userID: Entity.UserID, query: FetchPostsQuery)
   
   var method: HTTPMethod {
     switch self {
