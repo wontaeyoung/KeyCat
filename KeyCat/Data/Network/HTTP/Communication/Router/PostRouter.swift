@@ -15,6 +15,7 @@ enum PostRouter: Router {
   case postFetch(query: FetchPostsQuery)
   case specificPostFetch(id: Entity.PostID)
   case postUpdate(id: Entity.PostID, request: PostRequest)
+  case postDelete(id: Entity.PostID)
   
   var method: HTTPMethod {
     switch self {
@@ -26,6 +27,9 @@ enum PostRouter: Router {
       
       case .postUpdate:
         return .put
+        
+      case .postDelete:
+        return .delete
     }
   }
   
@@ -41,6 +45,9 @@ enum PostRouter: Router {
         return "/posts/\(postID)"
       
       case let .postUpdate(postID, _):
+        return "/posts/\(postID)"
+        
+      case .postDelete(let postID):
         return "/posts/\(postID)"
     }
   }
@@ -59,7 +66,7 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
-      case .postFetch, .specificPostFetch:
+      case .postFetch, .specificPostFetch, .postDelete:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -68,7 +75,7 @@ enum PostRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .postImageUpload, .postCreate, .specificPostFetch, .postUpdate:
+      case .postImageUpload, .postCreate, .specificPostFetch, .postUpdate, .postDelete:
         return nil
       
       case .postFetch(let query):
@@ -82,7 +89,7 @@ enum PostRouter: Router {
   
   var body: Data? {
     switch self {
-      case .postImageUpload, .postFetch, .specificPostFetch:
+      case .postImageUpload, .postFetch, .specificPostFetch, .postDelete:
         return nil
       
       case .postCreate(let request):
