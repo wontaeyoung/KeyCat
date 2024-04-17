@@ -43,7 +43,13 @@ enum LikeRouter: Router {
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .like, .likePostsFetch, .like2, .like2PostsFetch:
+      case .like, .like2:
+        return [
+          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
+          HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
+        ]
+        
+      case .likePostsFetch, .like2PostsFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
