@@ -12,17 +12,18 @@ enum PostRouter: Router {
   
   case postImageUpload
   case postCreate(request: PostRequest)
-  case postFetch(query: FetchPostsQuery)
+  case postsFetch(query: FetchPostsQuery)
   case specificPostFetch(id: Entity.PostID)
   case postUpdate(id: Entity.PostID, request: PostRequest)
   case postDelete(id: Entity.PostID)
+  case postsFromUserFetch(id: Entity.UserID, query: FetchPostsQuery)
   
   var method: HTTPMethod {
     switch self {
       case .postImageUpload, .postCreate:
         return .post
       
-      case .postFetch, .specificPostFetch:
+      case .postsFetch, .specificPostFetch, .postsFromUserFetch:
         return .get
       
       case .postUpdate:
@@ -38,7 +39,7 @@ enum PostRouter: Router {
       case .postImageUpload:
         return "/posts/files"
       
-      case .postCreate, .postFetch:
+      case .postCreate, .postsFetch:
         return "/posts"
       
       case .specificPostFetch(let postID):
@@ -49,6 +50,9 @@ enum PostRouter: Router {
         
       case .postDelete(let postID):
         return "/posts/\(postID)"
+        
+      case let .postsFromUserFetch(userID, _):
+        return "/posts/users/\(userID)"
     }
   }
   
@@ -66,7 +70,7 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
-      case .postFetch, .specificPostFetch, .postDelete:
+      case .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -78,18 +82,17 @@ enum PostRouter: Router {
       case .postImageUpload, .postCreate, .specificPostFetch, .postUpdate, .postDelete:
         return nil
       
-      case .postFetch(let query):
-        return [
-          KCParameter.Key.next: query.next,
-          KCParameter.Key.limit: query.limit,
-          KCParameter.Key.productID: query.postType.productID
-        ]
+      case .postsFetch(let query):
+        return makeFetchPostsParameters(query: query)
+        
+      case let .postsFromUserFetch(_, query):
+        return makeFetchPostsParameters(query: query)
     }
   }
   
   var body: Data? {
     switch self {
-      case .postImageUpload, .postFetch, .specificPostFetch, .postDelete:
+      case .postImageUpload, .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch:
         return nil
       
       case .postCreate(let request):
@@ -108,5 +111,15 @@ extension PostRouter: URLConvertible {
     }
     
     return url
+  }
+}
+
+extension PostRouter {
+  private func makeFetchPostsParameters(query: FetchPostsQuery) -> Parameters {
+    return [
+      KCParameter.Key.next: query.next,
+      KCParameter.Key.limit: query.limit,
+      KCParameter.Key.productID: query.postType.productID
+    ]
   }
 }
