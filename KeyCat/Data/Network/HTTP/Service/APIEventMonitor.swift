@@ -58,7 +58,6 @@ final class APIEventMonitor: EventMonitor {
       return
     }
     
-    let errorMessage = error?.localizedDescription ?? "에러 없음"
     let message = """
 {응답 완료}
 
