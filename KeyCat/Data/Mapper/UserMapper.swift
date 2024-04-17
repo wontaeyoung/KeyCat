@@ -27,7 +27,7 @@ struct UserMapper {
       userType: getUsetType(userTypeID: dto.phoneNum),
       profileImageURLString: dto.profileImage,
       followers: toEntity(dto.followers),
-      folllowing: toEntity(dto.folllowing),
+      folllowing: toEntity(dto.following),
       postIDs: dto.posts,
       profileType: getProfileType(email: dto.email)
     )
