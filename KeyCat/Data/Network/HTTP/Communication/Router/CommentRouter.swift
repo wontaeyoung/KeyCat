@@ -12,6 +12,7 @@ enum CommentRouter: Router {
   
   case commentCreate(postID: Entity.PostID, request: CommentRequest)
   case commentUpdate(postID: Entity.PostID, commentID: Entity.CommentID, request: CommentRequest)
+  case commentDelete(postID: Entity.PostID, commentID: Entity.CommentID)
   
   var method: HTTPMethod {
     switch self {
@@ -20,6 +21,9 @@ enum CommentRouter: Router {
         
       case .commentUpdate:
         return .put
+        
+      case .commentDelete:
+        return .delete
     }
   }
   
@@ -29,6 +33,9 @@ enum CommentRouter: Router {
         return "/posts/\(postID)/comments"
         
       case let .commentUpdate(postID, commentID, _):
+        return "/posts/\(postID)/comments/\(commentID)"
+        
+      case let .commentDelete(postID, commentID):
         return "/posts/\(postID)/comments/\(commentID)"
     }
   }
@@ -40,12 +47,17 @@ enum CommentRouter: Router {
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
+        
+      case .commentDelete:
+        return [
+          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
+        ]
     }
   }
   
   var parameters: Parameters? {
     switch self {
-      case .commentCreate, .commentUpdate:
+      case .commentCreate, .commentUpdate, .commentDelete:
         return nil
     }
   }
@@ -57,6 +69,9 @@ enum CommentRouter: Router {
         
       case let .commentUpdate(_, _, request):
         return requestToBody(request)
+        
+      case .commentDelete:
+        return nil
     }
   }
 }
