@@ -11,11 +11,15 @@ import Alamofire
 enum CommentRouter: Router {
   
   case commentCreate(postID: Entity.PostID, request: CommentRequest)
+  case commentUpdate(postID: Entity.PostID, commentID: Entity.CommentID, request: CommentRequest)
   
   var method: HTTPMethod {
     switch self {
       case .commentCreate:
         return .post
+        
+      case .commentUpdate:
+        return .put
     }
   }
   
@@ -23,12 +27,15 @@ enum CommentRouter: Router {
     switch self {
       case let .commentCreate(postID, _):
         return "/posts/\(postID)/comments"
+        
+      case let .commentUpdate(postID, commentID, _):
+        return "/posts/\(postID)/comments/\(commentID)"
     }
   }
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .commentCreate:
+      case .commentCreate, .commentUpdate:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
@@ -38,7 +45,7 @@ enum CommentRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .commentCreate:
+      case .commentCreate, .commentUpdate:
         return nil
     }
   }
@@ -46,6 +53,9 @@ enum CommentRouter: Router {
   var body: Data? {
     switch self {
       case let .commentCreate(_, request):
+        return requestToBody(request)
+        
+      case let .commentUpdate(_, _, request):
         return requestToBody(request)
     }
   }
