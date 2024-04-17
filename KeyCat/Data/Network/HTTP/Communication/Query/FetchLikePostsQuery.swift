@@ -6,6 +6,6 @@
 //
 
 struct FetchLikePostsQuery: HTTPQuery {
-  let next: String?
-  let limit: String?
+  let next: String
+  let limit: String
 }
