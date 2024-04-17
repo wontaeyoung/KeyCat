@@ -21,6 +21,13 @@ struct APIService {
       .call(of: T.self)
   }
   
+  func callReqeust(with router: Router) -> Single<Bool> {
+    return session
+      .request(router)
+      .rx
+      .call()
+  }
+  
   func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
     let router = PostRouter.postImageUpload
     
