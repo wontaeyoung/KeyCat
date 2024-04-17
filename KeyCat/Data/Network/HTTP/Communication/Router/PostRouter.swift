@@ -12,11 +12,14 @@ enum PostRouter: Router {
   
   case postImageUpload
   case postCreate(request: PostRequest)
+  case postFetch(query: FetchPostsQuery)
   
   var method: HTTPMethod {
     switch self {
       case .postImageUpload, .postCreate:
         return .post
+      case .postFetch:
+        return .get
     }
   }
   
@@ -24,7 +27,7 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload:
         return "/posts/files"
-      case .postCreate:
+      case .postCreate, .postFetch:
         return "/posts"
     }
   }
@@ -42,6 +45,11 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
+        
+      case .postFetch:
+        return [
+          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
+        ]
     }
   }
   
@@ -49,12 +57,18 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload, .postCreate:
         return nil
+      case .postFetch(let query):
+        return [
+          KCParameter.Key.next: query.next,
+          KCParameter.Key.limit: query.limit,
+          KCParameter.Key.productID: query.postType.productID
+        ]
     }
   }
   
   var body: Data? {
     switch self {
-      case .postImageUpload:
+      case .postImageUpload, .postFetch:
         return nil
       case .postCreate(let request):
         return requestToBody(request)
