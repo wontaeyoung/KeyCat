@@ -13,13 +13,19 @@ enum PostRouter: Router {
   case postImageUpload
   case postCreate(request: PostRequest)
   case postFetch(query: FetchPostsQuery)
+  case specificPostFetch(id: Entity.PostID)
+  case postUpdate(id: Entity.PostID, request: PostRequest)
   
   var method: HTTPMethod {
     switch self {
       case .postImageUpload, .postCreate:
         return .post
-      case .postFetch:
+      
+      case .postFetch, .specificPostFetch:
         return .get
+      
+      case .postUpdate:
+        return .put
     }
   }
   
@@ -27,8 +33,15 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload:
         return "/posts/files"
+      
       case .postCreate, .postFetch:
         return "/posts"
+      
+      case .specificPostFetch(let postID):
+        return "/posts/\(postID)"
+      
+      case let .postUpdate(postID, _):
+        return "/posts/\(postID)"
     }
   }
   
@@ -40,13 +53,13 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.multipartFormData)
         ]
         
-      case .postCreate:
+      case .postCreate, .postUpdate:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
-      case .postFetch:
+      case .postFetch, .specificPostFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -55,8 +68,9 @@ enum PostRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .postImageUpload, .postCreate:
+      case .postImageUpload, .postCreate, .specificPostFetch, .postUpdate:
         return nil
+      
       case .postFetch(let query):
         return [
           KCParameter.Key.next: query.next,
@@ -68,9 +82,13 @@ enum PostRouter: Router {
   
   var body: Data? {
     switch self {
-      case .postImageUpload, .postFetch:
+      case .postImageUpload, .postFetch, .specificPostFetch:
         return nil
+      
       case .postCreate(let request):
+        return requestToBody(request)
+      
+      case let .postUpdate(_, request):
         return requestToBody(request)
     }
   }
