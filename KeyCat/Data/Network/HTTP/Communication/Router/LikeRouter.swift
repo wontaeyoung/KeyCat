@@ -12,13 +12,15 @@ enum LikeRouter: Router {
   
   case like(postID: Entity.PostID, request: LikePostRequest)
   case likePostsFetch(query: FetchLikePostsQuery)
+  case like2(postID: Entity.PostID, request: LikePostRequest)
+  case like2PostsFetch(query: FetchLikePostsQuery)
   
   var method: HTTPMethod {
     switch self {
-      case .like:
+      case .like, .like2:
         return .post
       
-      case .likePostsFetch:
+      case .likePostsFetch, .like2PostsFetch:
         return .get
     }
   }
@@ -30,12 +32,18 @@ enum LikeRouter: Router {
         
       case .likePostsFetch:
         return "/posts/likes/me"
+        
+      case let .like2(postID, _):
+        return "/posts/\(postID)/like-2"
+      
+      case .like2PostsFetch:
+        return "/posts/likes-2/me"
     }
   }
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .like, .likePostsFetch:
+      case .like, .likePostsFetch, .like2, .like2PostsFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -44,14 +52,14 @@ enum LikeRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .like:
+      case .like, .like2:
         return nil
         
       case .likePostsFetch(let query):
-        return [
-          KCParameter.Key.next: query.next,
-          KCParameter.Key.limit: query.limit,
-        ]
+        return makeFetchPostsParameters(query: query)
+        
+      case .like2PostsFetch(let query):
+        return makeFetchPostsParameters(query: query)
     }
   }
   
@@ -60,8 +68,20 @@ enum LikeRouter: Router {
       case let .like(_, request):
         return requestToBody(request)
         
-      case .likePostsFetch:
+      case let .like2(_, request):
+        return requestToBody(request)
+        
+      case .likePostsFetch, .like2PostsFetch:
         return nil
     }
+  }
+}
+
+extension LikeRouter {
+  private func makeFetchPostsParameters(query: FetchLikePostsQuery) -> Parameters {
+    return [
+      KCParameter.Key.next: query.next,
+      KCParameter.Key.limit: query.limit
+    ]
   }
 }
