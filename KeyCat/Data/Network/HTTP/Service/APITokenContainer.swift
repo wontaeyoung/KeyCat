@@ -8,8 +8,12 @@
 struct APITokenContainer {
   
   @UserDefault(key: .accessToken, defaultValue: "")
-  var accessToken: String
+  static var accessToken: String
   
   @UserDefault(key: .refreshToken, defaultValue: "")
-  var refreshToken: String
+  static var refreshToken: String
+  
+  static var hasSignInLog: Bool {
+    return !accessToken.isEmpty && !refreshToken.isEmpty
+  }
 }
