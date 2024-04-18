@@ -19,6 +19,18 @@ struct UserMapper {
     return dtos.map { toEntity($0) }
   }
   
+  func toDTO(_ entity: User) -> UserDTO {
+    return UserDTO(
+      user_id: entity.userID,
+      nick: entity.nickname,
+      profileImage: entity.profileImageURLString
+    )
+  }
+  
+  func toDTO(_ entities: [User]) -> [UserDTO] {
+    return entities.map { toDTO($0) }
+  }
+  
   func toEntity(_ dto: ProfileDTO) -> Profile {
     return Profile(
       userID: dto.user_id,
