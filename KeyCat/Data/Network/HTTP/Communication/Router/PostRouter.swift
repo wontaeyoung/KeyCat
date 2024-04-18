@@ -64,19 +64,19 @@ enum PostRouter: Router {
     switch self {
       case .postImageUpload:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.multipartFormData)
         ]
         
       case .postCreate, .postUpdate:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
       case .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch, .postsWithHashtagFetch:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken)
         ]
     }
   }

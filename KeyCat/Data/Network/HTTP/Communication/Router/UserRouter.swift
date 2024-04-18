@@ -52,12 +52,12 @@ enum UserRouter: Router {
     switch self {
       case .follow, .unfollow, .myProfileFetch, .otherProfileFetch:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken)
         ]
         
       case .myProfileUpdate:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.multipartFormData),
         ]
     }

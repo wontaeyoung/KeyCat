@@ -49,13 +49,13 @@ enum AuthRouter: Router {
       
       case .tokenRefresh:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken),
-          HTTPHeader(name: KCHeader.Key.refresh, value: KCHeader.Value.refreshToken)
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken),
+          HTTPHeader(name: KCHeader.Key.refresh, value: APITokenContainer.refreshToken)
         ]
         
       case .withdraw:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
+          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken)
         ]
     }
   }
