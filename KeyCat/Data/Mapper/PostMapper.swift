@@ -43,7 +43,9 @@ struct PostMapper: Mapper {
 extension PostMapper {
   private func mapKeyboard(from dto: PostDTO) -> Keyboard? {
     
-    let keyboardDTO: KeyboardDTO = try! JsonCoder.shared.decodeString(from: dto.content1)
+    guard let keyboardDTO: KeyboardDTO = try? JsonCoder.shared.decodeString(from: dto.content1) else {
+      return nil
+    }
     
     guard
       keyboardDTO.keyboardInfo.count == BusinessValue.OptionLength.keyboardInfo,
@@ -92,7 +94,9 @@ extension PostMapper {
   
   private func mapCommercialPrice(from dto: PostDTO) -> CommercialPrice? {
     
-    let priceDTO: CommercialPriceDTO = try! JsonCoder.shared.decodeString(from: dto.content2)
+    guard let priceDTO: CommercialPriceDTO = try? JsonCoder.shared.decodeString(from: dto.content2) else {
+      return nil
+    }
     
     return CommercialPrice(
       regularPrice: priceDTO.regularPrice,
@@ -106,13 +110,13 @@ extension PostMapper {
   
   private func mapDeliveryInfo(from dto: PostDTO) -> DeliveryInfo? {
     
-    let deliveryInfoRaws: [Int] = try! JsonCoder.shared.decodeString(from: dto.content3)
-    
-    guard deliveryInfoRaws.count == BusinessValue.OptionLength.deliveryInfo else { return nil }
+    guard let deliveryInfoDTO: DeliveryInfoDTO = try? JsonCoder.shared.decodeString(from: dto.content3) else {
+      return nil
+    }
     
     return DeliveryInfo(
-      price: .init(deliveryInfoRaws[0]),
-      schedule: .init(deliveryInfoRaws[1])
+      price: .init(deliveryInfoDTO.price),
+      schedule: .init(deliveryInfoDTO.schedule)
     )
   }
 }
