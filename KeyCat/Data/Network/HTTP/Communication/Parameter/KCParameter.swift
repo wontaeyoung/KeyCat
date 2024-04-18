@@ -10,5 +10,6 @@ enum KCParameter {
     static let next: String = "next"
     static let limit: String = "limit"
     static let productID: String = "product_id"
+    static let hashtag: String = "hashTag"
   }
 }
