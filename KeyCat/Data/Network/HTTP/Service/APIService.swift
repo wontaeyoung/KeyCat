@@ -45,4 +45,35 @@ struct APIService {
       .rx
       .call(of: UploadPostImageResponse.self)
   }
+  
+  func callUpdateProfileRequest(request: UpdateMyProfileRequest) -> Single<ProfileDTO> {
+    let router = UserRouter.myProfileUpdate(request: request)
+    
+    return session
+      .upload(multipartFormData: { multipartFormData in
+        
+        if let nick = request.nick?.data(using: .utf8) {
+          multipartFormData.append(nick, withName: "nick")
+        }
+        
+        if let phoneNum = request.phoneNum?.data(using: .utf8) {
+          multipartFormData.append(phoneNum, withName: "phoneNum")
+        }
+        
+        if let birthDay = request.birthDay?.data(using: .utf8) {
+          multipartFormData.append(birthDay, withName: "birthDay")
+        }
+        
+        if let profile = request.profile {
+          multipartFormData.append(
+            profile,
+            withName: KCBody.Key.imageFiles,
+            fileName: KCBody.Value.fileName,
+            mimeType: KCBody.Value.mimeTypePNG
+          )
+        }
+      }, to: router, method: router.method, headers: router.headers)
+      .rx
+      .call(of: ProfileDTO.self)
+  }
 }
