@@ -11,7 +11,7 @@ struct CommentMapper: Mapper {
   
   func toEntity(_ dto: CommentDTO) -> CommercialReview? {
     
-    guard let contentDTO: CommentContentDTO = try? JsonCoder.shared.decodeString(from: dto.content) else { return nil}
+    guard let contentDTO: CommentContentDTO = try? JsonCoder.shared.decodeString(from: dto.content) else { return nil }
     
     return CommercialReview(
       reviewID: dto.comment_id,
@@ -27,8 +27,8 @@ struct CommentMapper: Mapper {
   }
   
   func toDTO(_ entity: CommercialReview) -> CommentDTO? {
-    let contentDTO: CommentContentDTO = CommentContentDTO(content: entity.content, rating: entity.rating.rawValue)
     
+    let contentDTO: CommentContentDTO = CommentContentDTO(content: entity.content, rating: entity.rating.rawValue)
     guard let commentContentString = try? JsonCoder.shared.encodeString(from: contentDTO) else { return nil }
     
     return CommentDTO(
@@ -41,5 +41,13 @@ struct CommentMapper: Mapper {
   
   func toDTO(_ entities: [CommercialReview]) -> [CommentDTO] {
     return entities.compactMap { toDTO($0) }
+  }
+  
+  func toRequest(_ entity: CommercialReview) -> CommentRequest? {
+    
+    let contentDTO: CommentContentDTO = CommentContentDTO(content: entity.content, rating: entity.rating.rawValue)
+    guard let commentContentString = try? JsonCoder.shared.encodeString(from: contentDTO) else { return nil }
+    
+    return CommentRequest(content: commentContentString)
   }
 }

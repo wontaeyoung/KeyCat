@@ -72,6 +72,31 @@ struct PostMapper: Mapper {
       comments: commentMapper.toDTO(entity.reviews)
     )
   }
+  
+  func toRequest(_ entity: CommercialPost, isUpdateImages: Bool) -> PostRequest? {
+    
+    let keyboardDTO = mapKeyboardDTO(from: entity.keyboard)
+    let commercialPriceDTO = mapCommercialPriceDTO(from: entity.price)
+    let deliveryInfoDTO = mapDeliveryInfoDTO(from: entity.delivery)
+    
+    guard
+      let keyboardString = try? JsonCoder.shared.encodeString(from: keyboardDTO),
+      let commercialPriceString = try? JsonCoder.shared.encodeString(from: commercialPriceDTO),
+      let deliveryInfoString = try? JsonCoder.shared.encodeString(from: deliveryInfoDTO)
+    else {
+      return nil
+    }
+    
+    return PostRequest(
+      title: entity.title,
+      content: entity.content,
+      content1: keyboardString,
+      content2: commercialPriceString,
+      content3: deliveryInfoString,
+      product_id: entity.postType.productID,
+      files: isUpdateImages ? entity.files : nil
+    )
+  }
 }
 
 extension PostMapper {
