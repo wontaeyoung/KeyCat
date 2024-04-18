@@ -8,6 +8,7 @@
 /// 내 프로필
 /// 다른 유저 프로필
 struct ProfileDTO: DTO {
+  
   let user_id: String
   let email: String
   let nick: String
@@ -15,7 +16,7 @@ struct ProfileDTO: DTO {
   let birthDay: String
   let profileImage: String
   let followers: [UserDTO]
-  let folllowing: [UserDTO]
+  let following: [UserDTO]
   let posts: [String]
   
   enum CodingKeys: CodingKey {
@@ -26,7 +27,7 @@ struct ProfileDTO: DTO {
     case birthDay
     case profileImage
     case followers
-    case folllowing
+    case following
     case posts
   }
   
@@ -39,7 +40,7 @@ struct ProfileDTO: DTO {
     self.birthDay = try container.decodeWithDefaultValue(String.self, forKey: .birthDay)
     self.profileImage = try container.decodeWithDefaultValue(String.self, forKey: .profileImage)
     self.followers = try container.decode([UserDTO].self, forKey: .followers)
-    self.folllowing = try container.decode([UserDTO].self, forKey: .folllowing)
+    self.following = try container.decode([UserDTO].self, forKey: .following)
     self.posts = try container.decode([String].self, forKey: .posts)
   }
 }

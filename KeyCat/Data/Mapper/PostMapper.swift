@@ -35,7 +35,66 @@ struct PostMapper: Mapper {
       files: dto.files,
       likes: dto.likes,
       hashTags: dto.hashTags,
-      reviews: dto.comments.map { commentMapper.toEntity($0) }
+      reviews: commentMapper.toEntity(dto.comments)
+    )
+  }
+  
+  func toDTO(_ entity: CommercialPost) -> PostDTO? {
+    
+    let keyboardDTO = mapKeyboardDTO(from: entity.keyboard)
+    let commercialPriceDTO = mapCommercialPriceDTO(from: entity.price)
+    let deliveryInfoDTO = mapDeliveryInfoDTO(from: entity.delivery)
+    
+    guard
+      let keyboardString = try? JsonCoder.shared.encodeString(from: keyboardDTO),
+      let commercialPriceString = try? JsonCoder.shared.encodeString(from: commercialPriceDTO),
+      let deliveryInfoString = try? JsonCoder.shared.encodeString(from: deliveryInfoDTO)
+    else {
+      return nil
+    }
+    
+    return PostDTO(
+      post_id: entity.postID,
+      product_id: entity.postType.productID,
+      title: entity.title,
+      content: entity.content,
+      content1: keyboardString,
+      content2: commercialPriceString,
+      content3: deliveryInfoString,
+      content4: "",
+      content5: "",
+      createdAt: entity.createdAt.toISOString,
+      creator: userMapper.toDTO(entity.creator),
+      files: entity.files,
+      likes: entity.likes,
+      likes2: [],
+      hashTags: entity.hashTags,
+      comments: commentMapper.toDTO(entity.reviews)
+    )
+  }
+  
+  func toRequest(_ entity: CommercialPost, isUpdateImages: Bool) -> PostRequest? {
+    
+    let keyboardDTO = mapKeyboardDTO(from: entity.keyboard)
+    let commercialPriceDTO = mapCommercialPriceDTO(from: entity.price)
+    let deliveryInfoDTO = mapDeliveryInfoDTO(from: entity.delivery)
+    
+    guard
+      let keyboardString = try? JsonCoder.shared.encodeString(from: keyboardDTO),
+      let commercialPriceString = try? JsonCoder.shared.encodeString(from: commercialPriceDTO),
+      let deliveryInfoString = try? JsonCoder.shared.encodeString(from: deliveryInfoDTO)
+    else {
+      return nil
+    }
+    
+    return PostRequest(
+      title: entity.title,
+      content: entity.content,
+      content1: keyboardString,
+      content2: commercialPriceString,
+      content3: deliveryInfoString,
+      product_id: entity.postType.productID,
+      files: isUpdateImages ? entity.files : nil
     )
   }
 }
@@ -43,9 +102,8 @@ struct PostMapper: Mapper {
 extension PostMapper {
   private func mapKeyboard(from dto: PostDTO) -> Keyboard? {
     
-    let keyboardDTO: KeyboardDTO = try! JsonCoder.shared.decodeString(from: dto.content1)
-    
     guard
+      let keyboardDTO: KeyboardDTO = try? JsonCoder.shared.decodeString(from: dto.content1),
       keyboardDTO.keyboardInfo.count == BusinessValue.OptionLength.keyboardInfo,
       keyboardDTO.keycapInfo.count == BusinessValue.OptionLength.keycapInfo,
       keyboardDTO.appearanceInfo.count == BusinessValue.OptionLength.keyboardAppearance
@@ -90,9 +148,19 @@ extension PostMapper {
     )
   }
   
+  private func mapKeyboardDTO(from entity: Keyboard) -> KeyboardDTO {
+    return KeyboardDTO(
+      keyboardInfo: entity.keyboardInfo.raws,
+      keycapInfo: entity.keycapInfo.raws,
+      appearanceInfo: entity.keyboardAppearanceInfo.raws
+    )
+  }
+  
   private func mapCommercialPrice(from dto: PostDTO) -> CommercialPrice? {
     
-    let priceDTO: CommercialPriceDTO = try! JsonCoder.shared.decodeString(from: dto.content2)
+    guard let priceDTO: CommercialPriceDTO = try? JsonCoder.shared.decodeString(from: dto.content2) else {
+      return nil
+    }
     
     return CommercialPrice(
       regularPrice: priceDTO.regularPrice,
@@ -104,15 +172,31 @@ extension PostMapper {
     )
   }
   
+  private func mapCommercialPriceDTO(from entity: CommercialPrice) -> CommercialPriceDTO {
+    return CommercialPriceDTO(
+      regularPrice: entity.regularPrice,
+      couponPrice: entity.couponPrice,
+      discountPrice: entity.discountPrice,
+      discountExpiryDate: DateManager.shared.dateToIsoString(with: entity.discountExpiryDate)
+    )
+  }
+  
   private func mapDeliveryInfo(from dto: PostDTO) -> DeliveryInfo? {
     
-    let deliveryInfoRaws: [Int] = try! JsonCoder.shared.decodeString(from: dto.content3)
-    
-    guard deliveryInfoRaws.count == BusinessValue.OptionLength.deliveryInfo else { return nil }
+    guard let deliveryInfoDTO: DeliveryInfoDTO = try? JsonCoder.shared.decodeString(from: dto.content3) else {
+      return nil
+    }
     
     return DeliveryInfo(
-      price: .init(deliveryInfoRaws[0]),
-      schedule: .init(deliveryInfoRaws[1])
+      price: .init(deliveryInfoDTO.price),
+      schedule: .init(deliveryInfoDTO.schedule)
+    )
+  }
+  
+  private func mapDeliveryInfoDTO(from entity: DeliveryInfo) -> DeliveryInfoDTO {
+    return DeliveryInfoDTO(
+      price: entity.price.rawValue,
+      schedule: entity.schedule.rawValue
     )
   }
 }

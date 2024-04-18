@@ -6,6 +6,7 @@
 //
 
 struct FollowDTO: DTO {
+  
   let nick: String
   let opponent_nick: String
   let following_status: Bool

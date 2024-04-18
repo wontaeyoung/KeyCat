@@ -6,7 +6,7 @@
 //
 
 struct FetchPostsQuery: HTTPQuery {
-  let next: String?
-  let limit: String?
-  let product_id: String?
+  let next: String
+  let limit: String
+  let postType: PostType
 }

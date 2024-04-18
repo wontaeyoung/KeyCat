@@ -66,6 +66,12 @@ extension DateManager {
     return date
   }
   
+  func dateToIsoString(with date: Date?) -> String {
+    guard let date else { return .defaultValue }
+    
+    return isoDateFormaater.string(from: date)
+  }
+  
   func toString(with date: Date, format: Format) -> String {
     dateFormatter.dateFormat = format.format
     

@@ -6,6 +6,7 @@
 //
 
 struct CommentDTO: DTO {
+  
   let comment_id: String
   let content: String
   let createdAt: String
