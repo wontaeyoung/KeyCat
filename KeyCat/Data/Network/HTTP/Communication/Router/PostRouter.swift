@@ -17,13 +17,14 @@ enum PostRouter: Router {
   case postUpdate(id: Entity.PostID, request: PostRequest)
   case postDelete(id: Entity.PostID)
   case postsFromUserFetch(userID: Entity.UserID, query: FetchPostsQuery)
+  case postsWithHashtagFetch(query: SearchHashtagQuery)
   
   var method: HTTPMethod {
     switch self {
       case .postImageUpload, .postCreate:
         return .post
       
-      case .postsFetch, .specificPostFetch, .postsFromUserFetch:
+      case .postsFetch, .specificPostFetch, .postsFromUserFetch, .postsWithHashtagFetch:
         return .get
       
       case .postUpdate:
@@ -53,6 +54,9 @@ enum PostRouter: Router {
         
       case let .postsFromUserFetch(userID, _):
         return "/posts/users/\(userID)"
+        
+      case .postsWithHashtagFetch:
+        return "/posts/hashtags"
     }
   }
   
@@ -70,7 +74,7 @@ enum PostRouter: Router {
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
-      case .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch:
+      case .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch, .postsWithHashtagFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -87,12 +91,15 @@ enum PostRouter: Router {
         
       case let .postsFromUserFetch(_, query):
         return makeFetchPostsParameters(query: query)
+        
+      case .postsWithHashtagFetch(let query):
+        return makeFetchHastagPostsParameters(query: query)
     }
   }
   
   var body: Data? {
     switch self {
-      case .postImageUpload, .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch:
+      case .postImageUpload, .postsFetch, .specificPostFetch, .postDelete, .postsFromUserFetch, .postsWithHashtagFetch:
         return nil
       
       case .postCreate(let request):
@@ -120,6 +127,15 @@ extension PostRouter {
       KCParameter.Key.next: query.next,
       KCParameter.Key.limit: query.limit,
       KCParameter.Key.productID: query.postType.productID
+    ]
+  }
+  
+  private func makeFetchHastagPostsParameters(query: SearchHashtagQuery) -> Parameters {
+    return [
+      KCParameter.Key.next: query.next,
+      KCParameter.Key.limit: query.limit,
+      KCParameter.Key.productID: query.postType.productID,
+      KCParameter.Key.hashtag: query.hashTag
     ]
   }
 }
