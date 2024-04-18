@@ -12,7 +12,7 @@ import RxSwift
 
 struct APIService {
   
-  private let session = Session(eventMonitors: [APIEventMonitor.shared])
+  private let session = Session(interceptor: APIRequestInterceptor(), eventMonitors: [APIEventMonitor.shared])
   
   func callRequest<T: Decodable>(with router: Router, of type: T.Type) -> Single<T> {
     return session
