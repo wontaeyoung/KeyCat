@@ -14,6 +14,7 @@ enum UserRouter: Router {
   case unfollow(userID: Entity.UserID)
   case myProfileFetch
   case myProfileUpdate(request: UpdateMyProfileRequest)
+  case otherProfileFetch(userID: Entity.UserID)
   
   var method: HTTPMethod {
     switch self {
@@ -23,7 +24,7 @@ enum UserRouter: Router {
       case .unfollow:
         return .delete
         
-      case .myProfileFetch:
+      case .myProfileFetch, .otherProfileFetch:
         return .get
         
       case .myProfileUpdate:
@@ -41,12 +42,15 @@ enum UserRouter: Router {
         
       case .myProfileFetch, .myProfileUpdate:
         return "/users/me/profile"
+        
+      case .otherProfileFetch(let userID):
+        return "/users/\(userID)/profile"
     }
   }
   
   var optionalHeaders: HTTPHeaders {
     switch self {
-      case .follow, .unfollow, .myProfileFetch:
+      case .follow, .unfollow, .myProfileFetch, .otherProfileFetch:
         return [
           HTTPHeader(name: KCHeader.Key.authorization, value: KCHeader.Value.accessToken)
         ]
@@ -61,14 +65,14 @@ enum UserRouter: Router {
   
   var parameters: Parameters? {
     switch self {
-      case .follow, .unfollow, .myProfileFetch, .myProfileUpdate:
+      case .follow, .unfollow, .myProfileFetch, .myProfileUpdate, .otherProfileFetch:
         return nil
     }
   }
   
   var body: Data? {
     switch self {
-      case .follow, .unfollow, .myProfileFetch:
+      case .follow, .unfollow, .myProfileFetch, .otherProfileFetch:
         return nil
         
       case .myProfileUpdate(let request):
