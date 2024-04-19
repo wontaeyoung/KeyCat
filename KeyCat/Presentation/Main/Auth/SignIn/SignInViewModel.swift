@@ -47,4 +47,3 @@ final class SignInViewModel: ViewModel {
     return Output(loginEnable: loginButtonEnable)
   }
 }
-
