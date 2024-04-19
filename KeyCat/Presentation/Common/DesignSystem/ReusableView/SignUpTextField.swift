@@ -12,10 +12,7 @@ import RxCocoa
 
 final class SignUpInputField: KCTextField {
   
-  private let validationResultLabel = UILabel().configured {
-    $0.font = KCAsset.Font.inputFieldInfoLabel
-    $0.numberOfLines = 2
-  }
+  let validationResultLabel = KCLabel(style: .caption)
   
   let inputValidation = PublishRelay<Bool>()
   
