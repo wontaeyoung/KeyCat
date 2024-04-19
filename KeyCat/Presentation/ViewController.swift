@@ -234,7 +234,7 @@ final class ViewController: RxBaseViewController {
   
   private func updateMyProfile() {
     
-    let imageData = UIImage(named: "고양이")?.jpegData(compressionQuality: 0.5)
+    let imageData = UIImage(named: "KeyCat_Opacity")?.jpegData(compressionQuality: 0.5)
     let request = UpdateMyProfileRequest(nick: nil, phoneNum: "1", birthDay: nil, profile: imageData)
     
     service.callUpdateProfileRequest(request: request)
