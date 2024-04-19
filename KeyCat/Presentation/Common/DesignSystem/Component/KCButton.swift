@@ -54,6 +54,7 @@ extension KCButton {
     private static let plainConfig: UIButton.Configuration = .plain().applied {
       
       $0.baseForegroundColor = KCAsset.Color.brand
+      $0.buttonSize = .mini
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
         return $0.applied { $0.font = KCAsset.Font.captionLabel }
