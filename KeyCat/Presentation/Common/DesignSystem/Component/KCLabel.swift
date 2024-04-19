@@ -32,6 +32,13 @@ class KCLabel: UILabel {
           $0.textColor = KCAsset.Color.lightGrayForeground
           $0.numberOfLines = 1
         }
+        
+      case .logo:
+        self.configure {
+          $0.font = KCAsset.Font.appLogoLabel
+          $0.textColor = KCAsset.Color.brand
+          $0.numberOfLines = 1
+        }
     }
   }
   
@@ -45,6 +52,7 @@ extension KCLabel {
   
   enum Style {
     case caption
+    case logo
   }
   
   func applyLineSpacing() {
