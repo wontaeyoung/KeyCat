@@ -25,11 +25,22 @@ final class AuthCoordinator: SubCoordinator {
 
 extension AuthCoordinator {
   
-  private func showSignInView() {
+  func showSignInView() {
     let vm = SignInViewModel()
       .coordinator(self)
     
     let vc = SignInViewController(viewModel: vm)
+    
+    push(vc)
+  }
+  
+  func showSignUpView() {
+    let vm = SignUpViewModel()
+      .coordinator(self)
+    
+    let vc = SignUpEmailViewController(viewModel: vm)
+      .navigationTitle(with: "이메일을 입력해주세요", displayMode: .always)
+      .hideBackTitle()
     
     push(vc)
   }

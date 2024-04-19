@@ -44,6 +44,12 @@ final class SignInViewModel: ViewModel {
       .map { $0 && $1 }
       .asDriver(onErrorJustReturn: false)
     
+    input.signUpButtonTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpView()
+      }
+      .disposed(by: disposeBag)
+    
     return Output(loginEnable: loginButtonEnable)
   }
 }
