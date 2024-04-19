@@ -17,5 +17,7 @@ enum Constant {
     
     static let signIn: String = "로그인"
     static let signUp: String = "회원가입"
+    static let duplicateCheck: String = "중복 확인"
+    static let next: String = "다음으로"
   }
 }
