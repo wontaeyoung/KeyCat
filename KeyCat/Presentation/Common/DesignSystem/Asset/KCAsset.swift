@@ -18,6 +18,8 @@ enum KCAsset {
     static let darkGray: UIColor = .init(hex: "#686868")
     static let background: UIColor = .background
     static let label: UIColor = .label
+    static let correct: UIColor = .systemGreen
+    static let incorrect: UIColor = .systemRed
   }
   
   enum Font {
@@ -44,6 +46,9 @@ enum KCAsset {
     }
     
     static let inputField: UIFont = font(.medium, size: 21)
+    static let inputFieldInfoLabel: UIFont = font(.medium, size: 13)
+    static let appLogoLabel: UIFont = font(.bold, size: 50)
+    static let buttonTitle: UIFont = font(.bold, size: 19)
   }
   
   enum Symbol {
