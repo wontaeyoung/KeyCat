@@ -26,6 +26,8 @@
 		6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FCB2BD26A3D005A529F /* KCLabel.swift */; };
 		6E0A4FCE2BD286B8005A529F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FCD2BD286B8005A529F /* Constant.swift */; };
 		6E0A4FD02BD2880C005A529F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FCF2BD2880C005A529F /* AppCoordinator.swift */; };
+		6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */; };
+		6E0A4FD42BD28DB7005A529F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FD32BD28DB7005A529F /* SignUpViewController.swift */; };
 		6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */; };
 		6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E122BC56D2800250C56 /* AppDelegate.swift */; };
 		6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E142BC56D2800250C56 /* SceneDelegate.swift */; };
@@ -144,6 +146,8 @@
 		6E0A4FCB2BD26A3D005A529F /* KCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLabel.swift; sourceTree = "<group>"; };
 		6E0A4FCD2BD286B8005A529F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6E0A4FCF2BD2880C005A529F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		6E0A4FD32BD28DB7005A529F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventMonitor.swift; sourceTree = "<group>"; };
 		6E567E0F2BC56D2800250C56 /* KeyCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E567E122BC56D2800250C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -280,6 +284,8 @@
 		6E0A4F972BD14F63005A529F /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */,
+				6E0A4FD32BD28DB7005A529F /* SignUpViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -900,12 +906,14 @@
 				6E77ED0C2BCE6A9500ACDA3B /* APIService.swift in Sources */,
 				6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */,
 				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
+				6E0A4FD42BD28DB7005A529F /* SignUpViewController.swift in Sources */,
 				6E8C9EE22BCBFFA20086F913 /* Profile.swift in Sources */,
 				6E8C9F042BCCF2A70086F913 /* BusinessValue.swift in Sources */,
 				6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */,
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
+				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
 				6E0A4FA02BD150E0005A529F /* SignUpTextField.swift in Sources */,
