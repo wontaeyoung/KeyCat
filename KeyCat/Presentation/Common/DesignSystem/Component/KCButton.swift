@@ -36,6 +36,7 @@ extension KCButton {
   
   enum Style {
     case primary
+    case plain
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
@@ -50,10 +51,22 @@ extension KCButton {
       }
     }
     
+    private static let plainConfig: UIButton.Configuration = .plain().applied {
+      
+      $0.baseForegroundColor = KCAsset.Color.brand
+      
+      $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
+        return $0.applied { $0.font = KCAsset.Font.captionLabel }
+      }
+    }
+    
     var configuration: UIButton.Configuration {
       switch self {
         case .primary:
           return Style.primaryConfig
+          
+        case .plain:
+          return Style.plainConfig
       }
     }
   }
