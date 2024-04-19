@@ -16,4 +16,9 @@ struct APITokenContainer {
   static var hasSignInLog: Bool {
     return !accessToken.isEmpty && !refreshToken.isEmpty
   }
+  
+  static func clearTokens() {
+    accessToken = ""
+    refreshToken = ""
+  }
 }
