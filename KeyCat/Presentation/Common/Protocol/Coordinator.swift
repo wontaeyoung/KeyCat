@@ -13,17 +13,21 @@ protocol CoordinatorDelegate: AnyObject {
 }
 
 protocol Coordinator: AnyObject {
+  var delegate: CoordinatorDelegate? { get set }
+  var childCoordinators: [Coordinator] { get set }
+  
+  func start()
+}
+
+protocol SubCoordinator: Coordinator {
   
   // MARK: - Property
   var navigationController: UINavigationController { get set }
-  var delegate: CoordinatorDelegate? { get set }
-  var childCoordinators: [Coordinator] { get set }
   
   // MARK: - Initialzier
   init(_ navigationController: UINavigationController)
   
   // MARK: - Method
-  func start()
   func end()
   func push(_ viewController: UIViewController, animation: Bool)
   func pop(animation: Bool)
@@ -41,8 +45,15 @@ protocol Coordinator: AnyObject {
   )
 }
 
+extension Coordinator {
+  
+  func addChild(_ childCoordinator: Coordinator) {
+    self.childCoordinators.append(childCoordinator)
+  }
+}
+
 // MARK: - View Navigation
-internal extension Coordinator {
+extension SubCoordinator {
   
   func end() {
     self.emptyOut()
@@ -123,9 +134,5 @@ internal extension Coordinator {
     GCD.main {
       self.present(alertController)
     }
-  }
-  
-  func addChild(_ childCoordinator: Coordinator) {
-    self.childCoordinators.append(childCoordinator)
   }
 }
