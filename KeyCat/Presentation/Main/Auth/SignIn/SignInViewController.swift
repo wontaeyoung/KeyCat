@@ -66,9 +66,9 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
   
   override func setConstraint() {
     appLogoImageView.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+      make.top.equalTo(view.safeAreaLayoutGuide)
       make.horizontalEdges.equalTo(view)
-      make.size.equalTo(100)
+      make.size.equalTo(200)
     }
     
     appLogoLabel.snp.makeConstraints { make in
@@ -140,10 +140,17 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       .bind(to: input.loginButtonTapEvent)
       .disposed(by: disposeBag)
     
+    /// 회원가입 버튼 이벤트 전달
+    signUpButton.rx.tap
+      .throttle(.seconds(1), scheduler: MainScheduler.instance)
+      .bind(to: input.signUpButtonTapEvent)
+      .disposed(by: disposeBag)
+    
     /// Responder 해제 이벤트
     endEditEvnet
       .bind(with: self) { owner, _ in
         owner.view.endEditing(true)
+        owner.updateLogoSize(editing: false)
       }
       .disposed(by: disposeBag)
     
@@ -164,6 +171,38 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       .map { _ in () }
       .bind(to: endEditEvnet)
       .disposed(by: disposeBag)
+    
+    emailField.rx.controlEvent(.editingDidBegin)
+      .bind(with: self) { owner, _ in
+        owner.updateLogoSize(editing: true)
+      }
+      .disposed(by: disposeBag)
+    
+    passwordField.rx.controlEvent(.editingDidBegin)
+      .bind(with: self) { owner, _ in
+        owner.updateLogoSize(editing: true)
+      }
+      .disposed(by: disposeBag)
+  }
+  
+  private func updateLogoSize(editing: Bool) {
+    
+    UIView.animate(withDuration: 0.5) { [weak self] in
+      guard let self else { return }
+      
+      appLogoImageView.snp.updateConstraints { make in
+        make.size.equalTo(editing ? 80 : 200)
+      }
+      
+      appLogoLabel.snp.updateConstraints { make in
+        make.top.equalTo(self.appLogoImageView.snp.bottom).offset(editing ? 0 : 20)
+      }
+      
+      let scale: CGFloat = editing ? 0.6 : 1.0
+      appLogoLabel.transform = CGAffineTransform(scaleX: scale, y: scale)
+      
+      view.layoutIfNeeded()
+    }
   }
 }
 
