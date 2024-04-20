@@ -12,13 +12,11 @@ class SignUpBaseViewController: RxBaseViewController {
   
   let inputInfoTitleLabel = KCLabel(style: .mainInfoTitle)
   private let nextButton = KCButton(style: .primary, title: Constant.Button.duplicateCheck)
-  
   private let bottomBufferHeight: CGFloat = 20
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    setLayout()
     bindKeyboard()
     bindEndEditing()
   }
@@ -29,11 +27,13 @@ class SignUpBaseViewController: RxBaseViewController {
     inputInfoTitleLabel.text = inputInfoTitle
   }
   
-  private func setLayout() {
+  override func setHierarchy() {
     view.addSubviews(inputInfoTitleLabel, nextButton)
-    
+  }
+  
+  override func setConstraint() {
     inputInfoTitleLabel.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
       make.horizontalEdges.equalTo(view).inset(20)
     }
     
