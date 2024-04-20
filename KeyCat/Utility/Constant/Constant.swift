@@ -11,7 +11,7 @@ enum Constant {
     
     static let appName: String = "KeyCat"
     static let signUpInfo: String = "아직 계정이 없으신가요?"
-    static let inputEmailInfo: String = "이메일을 알려주세요"
+    static let inputEmailInfo: String = "이메일을 알려주세요!"
   }
   
   enum Button {
