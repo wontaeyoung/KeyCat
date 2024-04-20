@@ -43,7 +43,7 @@ class KCLabel: UILabel {
       case .mainInfoTitle:
         self.configure {
           $0.font = KCAsset.Font.mainInfoTitle
-          $0.textColor = KCAsset.Color.darkGray
+          $0.textColor = KCAsset.Color.primary
           $0.numberOfLines = 2
         }
     }

@@ -48,7 +48,7 @@ enum KCAsset {
     static let inputField: UIFont = font(.medium, size: 19)
     static let inputFieldInfoLabel: UIFont = font(.medium, size: 13)
     static let appLogoLabel: UIFont = font(.bold, size: 50)
-    static let mainInfoTitle: UIFont = font(.bold, size: 30)
+    static let mainInfoTitle: UIFont = font(.bold, size: 24)
     static let buttonTitle: UIFont = font(.bold, size: 19)
     static let captionLabel: UIFont = font(.medium, size: 15)
   }
