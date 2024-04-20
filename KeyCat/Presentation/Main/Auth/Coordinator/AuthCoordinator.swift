@@ -30,6 +30,7 @@ extension AuthCoordinator {
       .coordinator(self)
     
     let vc = SignInViewController(viewModel: vm)
+      .hideBackTitle()
     
     push(vc)
   }
@@ -39,7 +40,6 @@ extension AuthCoordinator {
       .coordinator(self)
     
     let vc = SignUpEmailViewController(viewModel: vm)
-      .navigationTitle(with: "이메일을 입력해주세요", displayMode: .always)
       .hideBackTitle()
     
     push(vc)
