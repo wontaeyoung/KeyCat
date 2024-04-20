@@ -29,6 +29,8 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
   
   // MARK: - Life Cycle
   override func setHierarchy() {
+    super.setHierarchy()
+    
     view.addSubviews(
       emailField,
       duplicateCheckButton
@@ -36,8 +38,10 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
   }
   
   override func setConstraint() {
+    super.setConstraint()
+    
     emailField.snp.makeConstraints { make in
-      make.top.equalTo(inputInfoTitleLabel.snp.bottom).offset(20)
+      make.top.equalTo(inputInfoTitleLabel.snp.bottom)
       make.leading.equalTo(view).inset(20)
     }
     
