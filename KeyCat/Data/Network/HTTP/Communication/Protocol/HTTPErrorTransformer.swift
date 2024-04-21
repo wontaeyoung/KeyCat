@@ -8,7 +8,7 @@
 /// Repository에 에러 핸들링 기능을 주입하기 위한 프로토콜
 protocol HTTPErrorTransformer {
   
-  func httpErrorToDomain(from error: HTTPError, style: HTTPRequestDomain) -> KCError
+  func httpErrorToDomain(from error: any Error, style: HTTPRequestDomain) -> KCError
 }
 
 extension HTTPErrorTransformer {
