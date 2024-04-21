@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 extension UIViewController {
   
@@ -33,5 +34,9 @@ extension UIViewController {
   func hideBackButton() -> Self {
     self.navigationItem.setHidesBackButton(true, animated: false)
     return self
+  }
+  
+  func toast(_ message: String, position: ToastPosition = .center) {
+    view.makeToast(message, position: position)
   }
 }
