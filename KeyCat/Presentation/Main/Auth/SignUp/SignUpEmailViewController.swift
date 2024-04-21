@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import TextFieldEffects
-import Toast
 
 final class SignUpEmailViewController: SignUpBaseViewController, ViewModelController {
   
