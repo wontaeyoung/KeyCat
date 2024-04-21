@@ -14,7 +14,7 @@ final class SignUpInputField: KCTextField {
   
   let validationResultLabel = KCLabel(style: .caption)
   
-  let inputValidation = PublishRelay<Bool>()
+  let inputValidation = BehaviorRelay<Bool>(value: false)
   
   private let inputInformation: InputInformation
   
