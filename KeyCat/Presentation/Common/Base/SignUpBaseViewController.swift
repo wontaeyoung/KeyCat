@@ -11,7 +11,7 @@ import RxSwift
 class SignUpBaseViewController: RxBaseViewController {
   
   let inputInfoTitleLabel = KCLabel(style: .mainInfoTitle)
-  private let nextButton = KCButton(style: .primary, title: Constant.Button.duplicateCheck)
+  let nextButton = KCButton(style: .primary)
   private let bottomBufferHeight: CGFloat = 20
   
   override func viewDidLoad() {
