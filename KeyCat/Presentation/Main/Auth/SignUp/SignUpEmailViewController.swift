@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import TextFieldEffects
+import Toast
 
 final class SignUpEmailViewController: SignUpBaseViewController, ViewModelController {
   
@@ -17,8 +18,6 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
   private let emailField = SignUpInputField(inputInformation: .email)
   
   private let duplicateCheckButton = KCButton(style: .plain, title: Constant.Button.duplicateCheck)
-  
-  private let duplicateCheckResultInfoLabel = KCLabel(style: .caption, alignment: .center)
   
   // MARK: - Property
   let viewModel: SignUpViewModel
@@ -36,7 +35,6 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
     
     view.addSubviews(
       emailField,
-      duplicateCheckResultInfoLabel,
       duplicateCheckButton
     )
   }
@@ -47,12 +45,6 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
     emailField.snp.makeConstraints { make in
       make.top.equalTo(inputInfoTitleLabel.snp.bottom)
       make.leading.equalTo(view).inset(20)
-    }
-    
-    duplicateCheckResultInfoLabel.snp.makeConstraints { make in
-      make.horizontalEdges.equalTo(view).inset(20)
-      make.bottom.equalTo(nextButton.snp.top).offset(-10)
-      make.height.equalTo(20)
     }
     
     duplicateCheckButton.snp.makeConstraints { make in
@@ -68,6 +60,7 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
   }
   
   override func bind() {
+    
     let input = SignUpViewModel.Input(
       email: .init(),
       duplicateCheckEvent: .init()
@@ -75,7 +68,7 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
     
     let output = viewModel.transform(input: input)
     
-    /// 중복체크 결과 > 다음으로 버튼 활성화 여부
+    /// 중복체크 결과 > 다음 버튼 활성화 여부
     output.duplicateCheckResult
       .drive(nextButton.rx.isEnabled)
       .disposed(by: disposeBag)
@@ -86,25 +79,11 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
       .drive(nextButton.rx.title())
       .disposed(by: disposeBag)
     
-    /// 중복체크 결과 라벨 업데이트
-    output.duplicateCheckResult
-      .do(onNext: { _ in
-        self.duplicateCheckResultInfoLabel.isHidden = false
-      })
-      .debug()
+    /// 중복체크 결과 > 사용자 안내
+    output.showDuplicationCheckResultToast
+      .withLatestFrom(output.duplicateCheckResult)
       .map { $0 ? Constant.Label.avaliableEmailInfo : Constant.Label.duplicatedEmailInfo }
-      .drive(duplicateCheckResultInfoLabel.rx.text)
-      .disposed(by: disposeBag)
-    
-//    output.duplicateCheckResult
-//      .map { _ in false }
-//      .drive(duplicateCheckResultInfoLabel.rx.isHidden)
-//      .disposed(by: disposeBag)
-    
-    /// 이메일이 수정되면 중복체크 결과 라벨 숨기기
-    output.emailChanged
-      .map { true }
-      .drive(duplicateCheckResultInfoLabel.rx.isHidden)
+      .drive(with: self) { owner, message in owner.toast(message) }
       .disposed(by: disposeBag)
     
     /// 이메일 필드 유효성 검사 > 중복 확인 버튼 활성화 여부
