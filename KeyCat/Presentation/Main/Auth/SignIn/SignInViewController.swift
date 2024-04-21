@@ -67,7 +67,7 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
   override func setConstraint() {
     appLogoImageView.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide)
-      make.horizontalEdges.equalTo(view)
+      make.centerX.equalTo(view)
       make.size.equalTo(200)
     }
     
