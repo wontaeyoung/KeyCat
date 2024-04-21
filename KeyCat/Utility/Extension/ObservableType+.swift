@@ -23,4 +23,9 @@ extension ObservableType {
         return self.observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
     }
   }
+  
+  func buttonThrottle()
+  -> Observable<Element> {
+    return self.throttle(.seconds(2), scheduler: MainScheduler.instance)
+  }
 }
