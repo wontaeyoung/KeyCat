@@ -63,7 +63,9 @@ enum KCError: AppError {
 
 extension KCError {
   
-  enum Domain: String {
+  /// 도메인 모델을 식별하기 위한 케이스
+  enum DomainModel: String {
+    
     case post = "게시물"
     case review = "리뷰"
     case comment = "댓글"
@@ -73,6 +75,7 @@ extension KCError {
     }
   }
   
+  /// 401 응답을 식별하기 위한 요청 케이스
   enum AccessCase {
     
     case login
@@ -89,6 +92,7 @@ extension KCError {
     }
   }
   
+  /// 409 응답을 식별하기 위한 요청 케이스
   enum ConflictCase {
     
     case emailDuplicated
@@ -101,20 +105,21 @@ extension KCError {
     }
   }
   
+  /// 410 응답을 식별하기 위한 요청 케이스
   enum RequestCase {
     
-    case create(domain: Domain)
-    case update(domain: Domain)
-    case delete(domain: Domain)
+    case create(model: DomainModel)
+    case update(model: DomainModel)
+    case delete(model: DomainModel)
     
     var alertDescription: String {
       switch self {
-        case .create(let domain):
-          return "\(domain.name)을 작성하는데 실패했어요. 잠시 후에 다시 시도해주세요."
-        case .update(let domain):
-          return "수정할 \(domain.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
-        case .delete(let domain):
-          return "삭제할 \(domain.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
+        case .create(let model):
+          return "\(model.name)을 작성하는데 실패했어요. 잠시 후에 다시 시도해주세요."
+        case .update(let model):
+          return "수정할 \(model.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
+        case .delete(let model):
+          return "삭제할 \(model.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
       }
     }
   }
