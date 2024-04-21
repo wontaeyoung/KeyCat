@@ -17,8 +17,8 @@ final class SignUpViewModel: ViewModel {
   }
   
   struct Output {
-    let emailChanged: Driver<Void>
     let duplicateCheckResult: Driver<Bool>
+    let showDuplicationCheckResultToast: Driver<Void>
   }
   
   // MARK: - Property
@@ -37,6 +37,7 @@ final class SignUpViewModel: ViewModel {
     
     let emailChanged = BehaviorRelay(value: ())
     let duplicateCheckResult = BehaviorRelay<Bool>(value: false)
+    let showDuplicationCheckResultToast = PublishRelay<Void>()
     
     /// 이메일이 변경되면 중복체크 결과 초기화
     emailChanged
@@ -57,21 +58,19 @@ final class SignUpViewModel: ViewModel {
       .flatMap { owner, email in
         return owner.checkEmailValidationUsecase.execute(email: email)
           .catch { error in
-            owner.coordinator?.showErrorAlert(error: error)
             return Single.just(false)
           }
       }
-      .bind(to: duplicateCheckResult)
+      .bind {
+        duplicateCheckResult.accept($0)
+        showDuplicationCheckResultToast.accept(())
+      }
       .disposed(by: disposeBag)
 
     
     return Output(
-      emailChanged: emailChanged.asDriver(),
-      duplicateCheckResult: duplicateCheckResult.asDriver()
+      duplicateCheckResult: duplicateCheckResult.asDriver(),
+      showDuplicationCheckResultToast: showDuplicationCheckResultToast.asDriver(onErrorJustReturn: ())
     )
   }
-}
-
-extension Reactive where Base == any ViewModel {
-  
 }
