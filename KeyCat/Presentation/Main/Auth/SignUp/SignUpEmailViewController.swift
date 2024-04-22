@@ -61,7 +61,11 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
     
     let input = SignUpViewModel.Input(
       email: .init(),
-      duplicateCheckEvent: .init()
+      duplicateCheckEvent: .init(),
+      emailNextEvent: .init(), 
+      password: .init(),
+      passwordCheck: .init(),
+      passwordNextEvent: .init()
     )
     
     let output = viewModel.transform(input: input)
@@ -98,6 +102,12 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
     /// 이메일 필드 값 전달
     emailField.rx.text.orEmpty
       .bind(to: input.email)
+      .disposed(by: disposeBag)
+    
+    /// 다음 버튼 탭 이벤트 전달
+    nextButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.emailNextEvent)
       .disposed(by: disposeBag)
   }
 }
