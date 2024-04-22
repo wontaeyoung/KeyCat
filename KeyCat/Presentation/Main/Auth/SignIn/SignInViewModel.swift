@@ -34,16 +34,20 @@ final class SignInViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
+    /// 이메일 필드 비어있는지 검사
     let emailValidation = input.email
       .map { !$0.isEmpty }
     
+    /// 비밀번호 필드 비어있는지 검사
     let passwordValidation = input.password
       .map { !$0.isEmpty }
     
+    /// 두 필드가 모두 비어있지 않을 때 로그인 버튼 활성화
     let loginButtonEnable = Observable.combineLatest(emailValidation, passwordValidation)
       .map { $0 && $1 }
       .asDriver(onErrorJustReturn: false)
     
+    /// 회원가입 버튼 탭 이벤트 회원가입 플로우 연결
     input.signUpButtonTapEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.showSignUpView()
