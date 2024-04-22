@@ -52,16 +52,19 @@ final class SignUpInputField: KCTextField {
       .bind(to: validationResultLabel.rx.text)
       .disposed(by: disposeBag)
     
-    /// 정규식 일치 여부를 유효성 검사 결과 옵저버블에 전달
-    currentInput
-      .map { $0.isMatch(pattern: self.inputInformation.pattern) }
-      .bind(to: inputValidation)
-      .disposed(by: disposeBag)
-    
     /// 입력 내용이 비어있으면 안내 라벨 숨기기
     currentInput
       .map { $0.isEmpty }
       .bind(to: validationResultLabel.rx.isHidden)
       .disposed(by: disposeBag)
+    
+    /// 정규식 일치 여부를 유효성 검사 결과 옵저버블에 전달
+    /// 비밀번호 확인 필드는 정규식을 사용하지 않기 때문에 제외
+    if inputInformation != .passwordCheck {
+      currentInput
+        .map { $0.isMatch(pattern: self.inputInformation.pattern) }
+        .bind(to: inputValidation)
+        .disposed(by: disposeBag)
+    }
   }
 }
