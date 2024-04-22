@@ -13,6 +13,9 @@ final class AuthCoordinator: SubCoordinator {
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
   
+  private lazy var signUpVM = SignUpViewModel()
+    .coordinator(self)
+  
   init(_ navigationController: UINavigationController) {
     self.navigationController = navigationController
     self.childCoordinators = []
@@ -36,11 +39,14 @@ extension AuthCoordinator {
   }
   
   func showSignUpView() {
-    let vm = SignUpViewModel()
-      .coordinator(self)
-    
-    let vc = SignUpEmailViewController(viewModel: vm)
+    let vc = SignUpEmailViewController(viewModel: signUpVM)
       .hideBackTitle()
+    
+    push(vc)
+  }
+  
+  func showSignUpPasswordView() {
+    let vc = SignUpPasswordViewController(viewModel: signUpVM)
     
     push(vc)
   }
