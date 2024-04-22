@@ -37,6 +37,7 @@
 		6E0A4FEB2BD447A2005A529F /* HTTPStatus+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FEA2BD447A2005A529F /* HTTPStatus+.swift */; };
 		6E0A4FED2BD4ECC4005A529F /* HTTPErrorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */; };
 		6E0A4FEF2BD55FE1005A529F /* HTTPRequestDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FEE2BD55FE1005A529F /* HTTPRequestDomain.swift */; };
+		6E0A4FF22BD58966005A529F /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */; };
 		6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */; };
 		6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E122BC56D2800250C56 /* AppDelegate.swift */; };
 		6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E142BC56D2800250C56 /* SceneDelegate.swift */; };
@@ -166,6 +167,7 @@
 		6E0A4FEA2BD447A2005A529F /* HTTPStatus+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPStatus+.swift"; sourceTree = "<group>"; };
 		6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErrorTransformer.swift; sourceTree = "<group>"; };
 		6E0A4FEE2BD55FE1005A529F /* HTTPRequestDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestDomain.swift; sourceTree = "<group>"; };
+		6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
 		6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventMonitor.swift; sourceTree = "<group>"; };
 		6E567E0F2BC56D2800250C56 /* KeyCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E567E122BC56D2800250C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */,
 				6E0A4FD32BD28DB7005A529F /* SignUpEmailViewController.swift */,
+				6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1004,6 +1007,7 @@
 				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
 				6E0A4FD42BD28DB7005A529F /* SignUpEmailViewController.swift in Sources */,
 				6E8C9EE22BCBFFA20086F913 /* Profile.swift in Sources */,
+				6E0A4FF22BD58966005A529F /* SignUpPasswordViewController.swift in Sources */,
 				6E8C9F042BCCF2A70086F913 /* BusinessValue.swift in Sources */,
 				6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */,
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
