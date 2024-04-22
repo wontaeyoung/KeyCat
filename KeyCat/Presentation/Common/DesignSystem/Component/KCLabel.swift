@@ -30,7 +30,7 @@ class KCLabel: UILabel {
         self.configure {
           $0.font = KCAsset.Font.captionLabel
           $0.textColor = KCAsset.Color.lightGrayForeground
-          $0.numberOfLines = 1
+          $0.numberOfLines = 2
         }
         
       case .logo:
