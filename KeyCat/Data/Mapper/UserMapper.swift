@@ -53,6 +53,13 @@ struct UserMapper {
     )
   }
   
+  func toEntity(_ dto: BusinessInfoDTO) -> BusinessInfo {
+    return BusinessInfo(
+      businessNumber: dto.b_no,
+      businessStatus: .init(dto.b_stt_cd)
+    )
+  }
+  
   private func getUsetType(userTypeID: String) -> Profile.UserType {
     guard let id = Int(userTypeID) else {
       return .none
