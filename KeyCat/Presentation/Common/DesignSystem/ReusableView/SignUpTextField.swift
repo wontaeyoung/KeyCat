@@ -12,12 +12,14 @@ import RxCocoa
 
 final class SignUpInputField: KCTextField {
   
+  // MARK: - UI
   let validationResultLabel = KCLabel(style: .caption)
   
+  // MARK: - Property
+  private let inputInformation: InputInformation
   let inputValidation = BehaviorRelay<Bool>(value: false)
   
-  private let inputInformation: InputInformation
-  
+  // MARK: - Initializer
   init(inputInformation: InputInformation) {
     self.inputInformation = inputInformation
     super.init(style: .input, placeholder: inputInformation.title)
@@ -26,6 +28,7 @@ final class SignUpInputField: KCTextField {
     bind()
   }
   
+  // MARK: - Method
   private func setLayout() {
     self.addSubviews(validationResultLabel)
     
