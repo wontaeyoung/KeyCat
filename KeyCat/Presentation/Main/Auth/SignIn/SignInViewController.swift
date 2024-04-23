@@ -24,7 +24,9 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
   private let emailField =
   KCTextField(style: .input, placeholder: InputInformation.email.title)
   
-  private let passwordField = PasswordField(placeholder: InputInformation.password.title)
+  private let passwordField = KCTextField(style: .input, placeholder: InputInformation.password.title, clearable: false)
+  
+  private lazy var secureButton = SecureButton(field: passwordField)
   
   private let signInButton = KCButton(style: .primary, title: Constant.Button.signIn
   )
@@ -54,6 +56,7 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       appLogoLabel,
       emailField,
       passwordField,
+      secureButton,
       signInButton,
       signUpView
     )
@@ -84,6 +87,11 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
     passwordField.snp.makeConstraints { make in
       make.top.equalTo(emailField.snp.bottom).offset(20)
       make.horizontalEdges.equalTo(view).inset(40)
+    }
+    
+    secureButton.snp.makeConstraints { make in
+      make.trailing.equalTo(passwordField).offset(-5)
+      make.bottom.equalTo(passwordField).offset(-5)
     }
     
     signInButton.snp.makeConstraints { make in

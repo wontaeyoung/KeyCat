@@ -9,15 +9,14 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import TextFieldEffects
-import Toast
 
 final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let passwordField = SignUpInputField(inputInformation: .password)
-  
   private let passwordCheckField = SignUpInputField(inputInformation: .passwordCheck)
+  private lazy var passwordSecureButton = SecureButton(field: passwordField)
+  private lazy var passwordCheckSecureButton = SecureButton(field: passwordCheckField)
   
   // MARK: - Property
   let viewModel: SignUpViewModel
@@ -35,7 +34,9 @@ final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelCon
     
     view.addSubviews(
       passwordField,
-      passwordCheckField
+      passwordCheckField,
+      passwordSecureButton,
+      passwordCheckSecureButton
     )
   }
   
@@ -50,6 +51,16 @@ final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelCon
     passwordCheckField.snp.makeConstraints { make in
       make.top.equalTo(passwordField.snp.bottom).offset(40)
       make.horizontalEdges.equalTo(view).inset(20)
+    }
+    
+    passwordSecureButton.snp.makeConstraints { make in
+      make.trailing.equalTo(passwordField).offset(-5)
+      make.bottom.equalTo(passwordField).offset(-5)
+    }
+    
+    passwordCheckSecureButton.snp.makeConstraints { make in
+      make.trailing.equalTo(passwordCheckField).offset(-5)
+      make.bottom.equalTo(passwordCheckField).offset(-5)
     }
   }
   
