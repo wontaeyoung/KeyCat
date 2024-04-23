@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E0778042BD7944D00B3A6EC /* SignUpNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */; };
+		6E0778062BD7995A00B3A6EC /* SecureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778052BD7995A00B3A6EC /* SecureButton.swift */; };
+		6E0778082BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */; };
+		6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */; };
+		6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */; };
+		6E07780E2BD7DCF000B3A6EC /* BusinessInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */; };
+		6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780F2BD7DD1800B3A6EC /* BusinessInfo.swift */; };
+		6E0778122BD7DEC900B3A6EC /* BusinessInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */; };
 		6E0A4F892BD108FD005A529F /* DeliveryInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */; };
 		6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8A2BD11416005A529F /* Date+.swift */; };
 		6E0A4F8D2BD1304D005A529F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */; };
@@ -19,7 +27,6 @@
 		6E0A4FA02BD150E0005A529F /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */; };
 		6E0A4FA32BD16538005A529F /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FA22BD16538005A529F /* KCTextField.swift */; };
 		6E0A4FA62BD1F2A0005A529F /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 6E0A4FA52BD1F2A0005A529F /* TextFieldEffects */; };
-		6E0A4FC42BD23E85005A529F /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FC32BD23E85005A529F /* PasswordField.swift */; };
 		6E0A4FC62BD24153005A529F /* InputInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FC52BD24153005A529F /* InputInformation.swift */; };
 		6E0A4FC82BD24164005A529F /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FC72BD24164005A529F /* String+.swift */; };
 		6E0A4FCA2BD241D3005A529F /* KCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4FC92BD241D3005A529F /* KCButton.swift */; };
@@ -138,6 +145,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameViewController.swift; sourceTree = "<group>"; };
+		6E0778052BD7995A00B3A6EC /* SecureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureButton.swift; sourceTree = "<group>"; };
+		6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSellerInfoViewController.swift; sourceTree = "<group>"; };
+		6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoRequest.swift; sourceTree = "<group>"; };
+		6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuniessInfoResponse.swift; sourceTree = "<group>"; };
+		6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoDTO.swift; sourceTree = "<group>"; };
+		6E07780F2BD7DD1800B3A6EC /* BusinessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfo.swift; sourceTree = "<group>"; };
+		6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoRouter.swift; sourceTree = "<group>"; };
 		6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoDTO.swift; sourceTree = "<group>"; };
 		6E0A4F8A2BD11416005A529F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
@@ -149,7 +164,6 @@
 		6E0A4F9D2BD14FE8005A529F /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
 		6E0A4FA22BD16538005A529F /* KCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextField.swift; sourceTree = "<group>"; };
-		6E0A4FC32BD23E85005A529F /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		6E0A4FC52BD24153005A529F /* InputInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputInformation.swift; sourceTree = "<group>"; };
 		6E0A4FC72BD24164005A529F /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		6E0A4FC92BD241D3005A529F /* KCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCButton.swift; sourceTree = "<group>"; };
@@ -305,8 +319,10 @@
 			isa = PBXGroup;
 			children = (
 				6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */,
+				6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */,
 				6E0A4FD32BD28DB7005A529F /* SignUpEmailViewController.swift */,
 				6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */,
+				6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -324,8 +340,8 @@
 			isa = PBXGroup;
 			children = (
 				6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */,
-				6E0A4FC32BD23E85005A529F /* PasswordField.swift */,
 				6E0A4FC52BD24153005A529F /* InputInformation.swift */,
+				6E0778052BD7995A00B3A6EC /* SecureButton.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -607,6 +623,7 @@
 				6E8C9F292BCD21790086F913 /* KeyboardDTO.swift */,
 				6E8C9F2B2BCD21930086F913 /* CommercialPriceDTO.swift */,
 				6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */,
+				6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -718,6 +735,7 @@
 				6E9829182BCFDFD200105910 /* CommentRouter.swift */,
 				6E98291A2BCFF0C900105910 /* LikeRouter.swift */,
 				6E98291C2BD0915000105910 /* UserRouter.swift */,
+				6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -733,6 +751,7 @@
 				6E8C9E802BC8B9290086F913 /* LikePostResonse.swift */,
 				6E8C9E822BC8B9410086F913 /* FetchPostsResponse.swift */,
 				6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */,
+				6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -748,6 +767,7 @@
 				6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */,
 				6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */,
 				6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */,
+				6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -818,6 +838,7 @@
 				6E8C9EAC2BCA41570086F913 /* User.swift */,
 				6E8C9EE12BCBFFA20086F913 /* Profile.swift */,
 				6E8C9EE32BCC04430086F913 /* Follow.swift */,
+				6E07780F2BD7DD1800B3A6EC /* BusinessInfo.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -976,6 +997,7 @@
 				6E0A4FD62BD299F8005A529F /* SignUpBaseViewController.swift in Sources */,
 				6E567E5F2BC67EC700250C56 /* GCD.swift in Sources */,
 				6E8C9E732BC8B6460086F913 /* CommentDTO.swift in Sources */,
+				6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */,
 				6E8C9E772BC8B6A80086F913 /* FollowDTO.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */,
@@ -1006,6 +1028,7 @@
 				6E0A4FE72BD3ECFD005A529F /* AuthRepository.swift in Sources */,
 				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
 				6E0A4FD42BD28DB7005A529F /* SignUpEmailViewController.swift in Sources */,
+				6E0778062BD7995A00B3A6EC /* SecureButton.swift in Sources */,
 				6E8C9EE22BCBFFA20086F913 /* Profile.swift in Sources */,
 				6E0A4FF22BD58966005A529F /* SignUpPasswordViewController.swift in Sources */,
 				6E8C9F042BCCF2A70086F913 /* BusinessValue.swift in Sources */,
@@ -1013,6 +1036,7 @@
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
+				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
@@ -1025,6 +1049,7 @@
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
+				6E0778082BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
 				6E567E692BC67F2800250C56 /* UIView+.swift in Sources */,
 				6E8C9E9C2BC8BD0A0086F913 /* FetchLikePostsQuery.swift in Sources */,
@@ -1036,6 +1061,8 @@
 				6E77ED0A2BCE65F900ACDA3B /* AuthRouter.swift in Sources */,
 				6E0A4FD92BD3E955005A529F /* KCError.swift in Sources */,
 				6E8C9EDD2BCBFF580086F913 /* Mapper.swift in Sources */,
+				6E0778122BD7DEC900B3A6EC /* BusinessInfoRouter.swift in Sources */,
+				6E07780E2BD7DCF000B3A6EC /* BusinessInfoDTO.swift in Sources */,
 				6E0A4F942BD13885005A529F /* HTTPStatusError.swift in Sources */,
 				6E8C9EAD2BCA41570086F913 /* User.swift in Sources */,
 				6E0A4FCA2BD241D3005A529F /* KCButton.swift in Sources */,
@@ -1046,6 +1073,7 @@
 				6E0A4F9E2BD14FE8005A529F /* SignInViewModel.swift in Sources */,
 				6E8C9E6C2BC820D00086F913 /* HTTPResponse.swift in Sources */,
 				6E8C9EBC2BCA9FCF0086F913 /* SelectionExpressible.swift in Sources */,
+				6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */,
 				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
 				6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */,
@@ -1073,13 +1101,13 @@
 				6E0A4FEB2BD447A2005A529F /* HTTPStatus+.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
-				6E0A4FC42BD23E85005A529F /* PasswordField.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
 				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
+				6E0778042BD7944D00B3A6EC /* SignUpNicknameViewController.swift in Sources */,
 				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
