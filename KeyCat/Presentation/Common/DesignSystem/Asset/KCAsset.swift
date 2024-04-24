@@ -10,9 +10,9 @@ import UIKit
 enum KCAsset {
   
   enum Color {
-    static let brand: UIColor = .init(hex: "#A896FF")
-    static let primary: UIColor = .init(hex: "#C2A3C6")
-    static let secondary: UIColor = .init(hex: "#F8E2F4")
+    static let brand: UIColor = .init(hex: "#7E63FF")
+    static let primary: UIColor = .init(hex: "#A896FF")
+    static let secondary: UIColor = .init(hex: "#C1CFFF")
     static let lightGrayBackground: UIColor = .init(hex: "#F2F2F6")
     static let lightGrayForeground: UIColor = .init(hex: "#BCBCBC")
     static let darkGray: UIColor = .init(hex: "#686868")
@@ -52,6 +52,7 @@ enum KCAsset {
     static let inputFieldInfoLabel: UIFont = font(.medium, size: 13)
     static let appLogoLabel: UIFont = font(.bold, size: 50)
     static let mainInfoTitle: UIFont = font(.bold, size: 24)
+    static let standardTitle: UIFont = font(.medium, size: 16)
     static let buttonTitle: UIFont = font(.bold, size: 19)
     static let captionLabel: UIFont = font(.medium, size: 15)
     
