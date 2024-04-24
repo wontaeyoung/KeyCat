@@ -20,9 +20,11 @@ final class SignUpInputField: KCTextField {
   let inputValidation = BehaviorRelay<Bool>(value: false)
   
   // MARK: - Initializer
-  init(inputInformation: InputInformation) {
+  init(inputInformation: InputInformation, type: UIKeyboardType = .default) {
     self.inputInformation = inputInformation
-    super.init(style: .input, placeholder: inputInformation.title)
+    
+    super.init(style: .input, placeholder: inputInformation.title, clearable: false)
+    self.keyboardType = type
     
     setLayout()
     bind()

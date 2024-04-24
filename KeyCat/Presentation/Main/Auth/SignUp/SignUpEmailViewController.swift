@@ -13,7 +13,7 @@ import RxCocoa
 final class SignUpEmailViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private let emailField = SignUpInputField(inputInformation: .email)
+  private let emailField = SignUpInputField(inputInformation: .email, type: .emailAddress)
   
   private let duplicateCheckButton = KCButton(style: .plain, title: Constant.Button.duplicateCheck)
   
