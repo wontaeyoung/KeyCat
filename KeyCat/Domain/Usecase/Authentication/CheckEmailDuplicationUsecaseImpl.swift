@@ -9,7 +9,11 @@ import RxSwift
 
 final class CheckEmailDuplicationUsecaseImpl: CheckEmailDuplicationUsecase {
   
-  private let authRepository: AuthRepository = AuthRepositoryImpl()
+  private let authRepository: AuthRepository
+  
+  init(authRepository: AuthRepository = AuthRepositoryImpl()) {
+    self.authRepository = authRepository
+  }
   
   func execute(email: String) -> Single<Bool> {
     

@@ -9,8 +9,16 @@ import RxSwift
 
 final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
   
-  private let service = APIService()
-  private let userMapper = UserMapper()
+  private let service: APIService
+  private let userMapper: UserMapper
+  
+  init(
+    service: APIService = APIService(),
+    userMapper: UserMapper = UserMapper()
+  ) {
+    self.service = service
+    self.userMapper = userMapper
+  }
   
   func checkEmailDuplication(email: String) -> Single<Bool> {
     let request = EmailValidationRequest(email: email)
