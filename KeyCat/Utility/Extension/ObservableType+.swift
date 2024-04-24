@@ -24,8 +24,8 @@ extension ObservableType {
     }
   }
   
-  func buttonThrottle()
+  func buttonThrottle(seconds: Int = 2)
   -> Observable<Element> {
-    return self.throttle(.seconds(2), scheduler: MainScheduler.instance)
+    return self.throttle(.seconds(seconds), scheduler: MainScheduler.instance)
   }
 }
