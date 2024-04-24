@@ -5,6 +5,7 @@
 //  Created by 원태영 on 4/19/24.
 //
 
+import Foundation
 import RxSwift
 import RxCocoa
 
@@ -26,6 +27,9 @@ final class SignUpViewModel: ViewModel {
     let passwordCheck: PublishRelay<String>
     let passwordNextEvent: PublishRelay<Void>
     
+    let nickname: PublishRelay<String>
+    let profileNextEvent: PublishRelay<Data?>
+    
     init(
       sellerAuthorityNextEvent: PublishRelay<Void> = .init(),
       onlyCustomerAuthorityNextEvent: PublishRelay<Void> = .init(),
@@ -36,7 +40,9 @@ final class SignUpViewModel: ViewModel {
       emailNextEvent: PublishRelay<Void> = .init(),
       password: PublishRelay<String> = .init(),
       passwordCheck: PublishRelay<String> = .init(),
-      passwordNextEvent: PublishRelay<Void> = .init()
+      passwordNextEvent: PublishRelay<Void> = .init(),
+      nickname: PublishRelay<String> = .init(),
+      profileNextEvent: PublishRelay<Data?> = .init()
     ) {
       self.sellerAuthorityNextEvent = sellerAuthorityNextEvent
       self.onlyCustomerAuthorityNextEvent = onlyCustomerAuthorityNextEvent
@@ -48,6 +54,8 @@ final class SignUpViewModel: ViewModel {
       self.password = password
       self.passwordCheck = passwordCheck
       self.passwordNextEvent = passwordNextEvent
+      self.nickname = nickname
+      self.profileNextEvent = profileNextEvent
     }
   }
   
