@@ -19,6 +19,30 @@ final class SignUpViewModel: ViewModel {
     let password: PublishRelay<String>
     let passwordCheck: PublishRelay<String>
     let passwordNextEvent: PublishRelay<Void>
+    
+    init(
+      sellerAuthorityNextEvent: PublishRelay<Void> = .init(),
+      onlyCustomerAuthorityNextEvent: PublishRelay<Void> = .init(),
+      businessInfoAuthenticationEvent: PublishRelay<String> = .init(),
+      businessInfoAuthenticationNextEvent: PublishRelay<Void> = .init(),
+      email: PublishRelay<String> = .init(),
+      duplicateCheckEvent: PublishRelay<Void> = .init(),
+      emailNextEvent: PublishRelay<Void> = .init(),
+      password: PublishRelay<String> = .init(),
+      passwordCheck: PublishRelay<String> = .init(),
+      passwordNextEvent: PublishRelay<Void> = .init()
+    ) {
+      self.sellerAuthorityNextEvent = sellerAuthorityNextEvent
+      self.onlyCustomerAuthorityNextEvent = onlyCustomerAuthorityNextEvent
+      self.businessInfoAuthenticationEvent = businessInfoAuthenticationEvent
+      self.businessInfoAuthenticationNextEvent = businessInfoAuthenticationNextEvent
+      self.email = email
+      self.duplicateCheckEvent = duplicateCheckEvent
+      self.emailNextEvent = emailNextEvent
+      self.password = password
+      self.passwordCheck = passwordCheck
+      self.passwordNextEvent = passwordNextEvent
+    }
   }
   
   struct Output {

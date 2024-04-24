@@ -59,15 +59,7 @@ final class SignUpEmailViewController: SignUpBaseViewController, ViewModelContro
   
   override func bind() {
     
-    let input = SignUpViewModel.Input(
-      email: .init(),
-      duplicateCheckEvent: .init(),
-      emailNextEvent: .init(), 
-      password: .init(),
-      passwordCheck: .init(),
-      passwordNextEvent: .init()
-    )
-    
+    let input = SignUpViewModel.Input()
     let output = viewModel.transform(input: input)
     
     /// 중복체크 결과 > 다음 버튼 활성화 여부

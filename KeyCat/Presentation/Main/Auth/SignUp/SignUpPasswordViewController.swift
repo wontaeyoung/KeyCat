@@ -70,15 +70,7 @@ final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelCon
   
   override func bind() {
     
-    let input = SignUpViewModel.Input(
-      email: .init(),
-      duplicateCheckEvent: .init(), 
-      emailNextEvent: .init(),
-      password: .init(), 
-      passwordCheck: .init(),
-      passwordNextEvent: .init()
-    )
-    
+    let input = SignUpViewModel.Input()
     let output = viewModel.transform(input: input)
     
     /// 비밀번호 일치 결과를 비밀번호 필드 유효성 옵저버블에 전달
