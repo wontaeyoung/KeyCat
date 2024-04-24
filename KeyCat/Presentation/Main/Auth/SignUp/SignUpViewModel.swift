@@ -125,6 +125,8 @@ final class SignUpViewModel: ViewModel {
     /// 판매자 권한이 필요하지 않으면 바로 이메일 화면으로 전환
     input.onlyCustomerAuthorityNextEvent
       .bind(with: self) { owner, _ in
+        // 사업자 인증 -> 뒤로가기 -> 고객 플로우로 돌아오는 케이스에 대한 예외처리
+        owner.businessInfoAuthenticated.accept(false)
         owner.coordinator?.showSignUpEmailView()
       }
       .disposed(by: disposeBag)
@@ -183,6 +185,13 @@ final class SignUpViewModel: ViewModel {
     .map { $0 == $1 && !$0.isEmpty && !$1.isEmpty }
     .bind(to: passwordEqualValidationResult)
     .disposed(by: disposeBag)
+    
+    /// 비밀번호 다음 버튼 이벤트 화면 연결
+    input.passwordNextEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpProfileView()
+      }
+      .disposed(by: disposeBag)
     
     return Output(
       businessInfoAuthenticationResult: businessInfoAuthenticated.asDriver(),

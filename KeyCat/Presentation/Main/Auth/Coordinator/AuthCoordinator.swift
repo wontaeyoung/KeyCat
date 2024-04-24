@@ -61,6 +61,14 @@ extension AuthCoordinator {
   
   func showSignUpPasswordView() {
     let vc = SignUpPasswordViewController(viewModel: signUpVM)
+      .hideBackTitle()
+    
+    push(vc)
+  }
+  
+  func showSignUpProfileView() {
+    let vc = SignUpProfileViewController(viewModel: signUpVM)
+      .hideBackTitle()
     
     push(vc)
   }

@@ -64,10 +64,6 @@ final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelCon
     }
   }
   
-  override func setAttribute() {
-    
-  }
-  
   override func bind() {
     
     let input = SignUpViewModel.Input()
@@ -95,6 +91,12 @@ final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelCon
     /// 비밀번호 확인 입력값 전달
     passwordCheckField.rx.text.orEmpty
       .bind(to: input.passwordCheck)
+      .disposed(by: disposeBag)
+    
+    /// 다음 버튼 탭 이벤트 전달
+    nextButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.passwordNextEvent)
       .disposed(by: disposeBag)
   }
 }
