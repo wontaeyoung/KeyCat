@@ -13,7 +13,7 @@ import RxCocoa
 final class SignUpProfileViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private lazy var profileImageButton = UIImageView(image: profileImage.value).configured {
+  private lazy var tappableProfileImageView = UIImageView(image: profileImage.value).configured {
     $0.contentMode = .scaleAspectFit
     $0.clipsToBounds = true
     $0.isUserInteractionEnabled = true
@@ -34,7 +34,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   
   // MARK: - Property
   let viewModel: SignUpViewModel
-  private let profileImage = BehaviorRelay<UIImage>(value: .keyCatOpacity)
+  private let profileImage = BehaviorRelay<UIImage>(value: .catWithKeycap1)
   
   // MARK: - Initializer
   init(viewModel: SignUpViewModel) {
@@ -48,7 +48,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     super.setHierarchy()
     
     view.addSubviews(
-      profileImageButton,
+      tappableProfileImageView,
       nicknameField,
       updateProfileImageAvailableLabel
     )
@@ -57,14 +57,14 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   override func setConstraint() {
     super.setConstraint()
     
-    profileImageButton.snp.makeConstraints { make in
+    tappableProfileImageView.snp.makeConstraints { make in
       make.top.equalTo(inputInfoTitleLabel.snp.bottom).offset(20)
       make.centerX.equalTo(view)
       make.size.equalTo(100)
     }
     
     nicknameField.snp.makeConstraints { make in
-      make.top.equalTo(profileImageButton.snp.bottom)
+      make.top.equalTo(tappableProfileImageView.snp.bottom)
       make.horizontalEdges.equalTo(view).inset(20)
     }
     
@@ -80,11 +80,16 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     let output = viewModel.transform(input: input)
     
     let tap = UITapGestureRecognizer()
-    profileImageButton.addGestureRecognizer(tap)
+    tappableProfileImageView.addGestureRecognizer(tap)
     tap.rx.event
       .bind(with: self) { owner, _ in
         print("TAP")
       }
+      .disposed(by: disposeBag)
+    
+    /// 닉네임 유효성 검사 -> 다음 버튼 활성화
+    nicknameField.inputValidation
+      .bind(to: nextButton.rx.isEnabled)
       .disposed(by: disposeBag)
     
     /// 다음 버튼 탭 이벤트 전달
