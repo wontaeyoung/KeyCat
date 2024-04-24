@@ -43,7 +43,7 @@ enum InputInformation {
       case .nickname:
         return isValid
         ? "사용 가능한 닉네임입니다."
-        : "닉네임은 2 ~ 6자 사이로 입력해주세요."
+        : "닉네임은 2 ~ 6자 사이로 특수문자 없이 입력해주세요."
         
       case .businessNumber:
         return isValid
