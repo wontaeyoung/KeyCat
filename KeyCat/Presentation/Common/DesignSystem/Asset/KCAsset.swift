@@ -63,7 +63,8 @@ enum KCAsset {
   enum Symbol {
     
     private enum SF: String {
-      case house = "house"
+      
+      case xmarkCircleFill = "xmark.circle.fill"
       case checkmarkCircle = "checkmark.circle"
       case checkmarkCircleFill = "checkmark.circle.fill"
     }
@@ -72,6 +73,7 @@ enum KCAsset {
       return UIImage(systemName: sf.rawValue)
     }
     
+    static let closeButton: UIImage? = image(.xmarkCircleFill)
     static let checkboxOff: UIImage? = image(.checkmarkCircle)
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
   }
