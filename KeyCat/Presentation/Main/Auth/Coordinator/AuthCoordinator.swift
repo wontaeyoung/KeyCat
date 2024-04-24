@@ -39,6 +39,20 @@ extension AuthCoordinator {
   }
   
   func showSignUpView() {
+    let vc = SignUpSellerAuthorityViewController(viewModel: signUpVM)
+      .hideBackTitle()
+    
+    push(vc)
+  }
+  
+  func showSignUpBusinessInfoAuthenticationView() {
+    let vc = SignUpBusinessInfoAuthenticationViewController(viewModel: signUpVM)
+      .hideBackTitle()
+    
+    push(vc)
+  }
+  
+  func showSignUpEmailView() {
     let vc = SignUpEmailViewController(viewModel: signUpVM)
       .hideBackTitle()
     

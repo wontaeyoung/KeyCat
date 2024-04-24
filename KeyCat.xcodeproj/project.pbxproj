@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		6E0778042BD7944D00B3A6EC /* SignUpNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */; };
 		6E0778062BD7995A00B3A6EC /* SecureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778052BD7995A00B3A6EC /* SecureButton.swift */; };
-		6E0778082BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */; };
+		6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778072BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift */; };
 		6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */; };
 		6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */; };
 		6E07780E2BD7DCF000B3A6EC /* BusinessInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */; };
 		6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07780F2BD7DD1800B3A6EC /* BusinessInfo.swift */; };
 		6E0778122BD7DEC900B3A6EC /* BusinessInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */; };
+		6E0778142BD88EA800B3A6EC /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */; };
+		6E07782C2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07782B2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift */; };
+		6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07782D2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift */; };
+		6E0778302BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07782F2BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift */; };
+		6E0778322BD8EC8D00B3A6EC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778312BD8EC8D00B3A6EC /* TestViewController.swift */; };
 		6E0A4F892BD108FD005A529F /* DeliveryInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */; };
 		6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8A2BD11416005A529F /* Date+.swift */; };
 		6E0A4F8D2BD1304D005A529F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */; };
@@ -147,12 +152,17 @@
 /* Begin PBXFileReference section */
 		6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameViewController.swift; sourceTree = "<group>"; };
 		6E0778052BD7995A00B3A6EC /* SecureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureButton.swift; sourceTree = "<group>"; };
-		6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSellerInfoViewController.swift; sourceTree = "<group>"; };
+		6E0778072BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSellerAuthorityViewController.swift; sourceTree = "<group>"; };
 		6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoRequest.swift; sourceTree = "<group>"; };
 		6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuniessInfoResponse.swift; sourceTree = "<group>"; };
 		6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoDTO.swift; sourceTree = "<group>"; };
 		6E07780F2BD7DD1800B3A6EC /* BusinessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfo.swift; sourceTree = "<group>"; };
 		6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoRouter.swift; sourceTree = "<group>"; };
+		6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
+		6E07782B2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateBusinessInfoUsecase.swift; sourceTree = "<group>"; };
+		6E07782D2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateBusinessInfoUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E07782F2BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessInfoAuthenticationViewController.swift; sourceTree = "<group>"; };
+		6E0778312BD8EC8D00B3A6EC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoDTO.swift; sourceTree = "<group>"; };
 		6E0A4F8A2BD11416005A529F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
@@ -319,7 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				6E0A4FD12BD28DAC005A529F /* SignUpViewModel.swift */,
-				6E0778072BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift */,
+				6E0778072BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift */,
+				6E07782F2BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift */,
 				6E0A4FD32BD28DB7005A529F /* SignUpEmailViewController.swift */,
 				6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */,
 				6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */,
@@ -342,6 +353,7 @@
 				6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */,
 				6E0A4FC52BD24153005A529F /* InputInformation.swift */,
 				6E0778052BD7995A00B3A6EC /* SecureButton.swift */,
+				6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -367,6 +379,7 @@
 			children = (
 				6E0A4FDE2BD3EAF1005A529F /* Interface */,
 				6E0A4FE82BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift */,
+				6E07782D2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -375,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				6E0A4FDB2BD3EA7C005A529F /* CheckEmailDuplicationUsecase.swift */,
+				6E07782B2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -497,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				6E567E162BC56D2800250C56 /* ViewController.swift */,
+				6E0778312BD8EC8D00B3A6EC /* TestViewController.swift */,
 				6E567E2E2BC5787800250C56 /* Common */,
 				6E567E322BC66D3D00250C56 /* Main */,
 			);
@@ -989,6 +1004,7 @@
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
 				6E8C9F2A2BCD21790086F913 /* KeyboardDTO.swift in Sources */,
 				6E9829022BCEA78F00105910 /* KCBody.swift in Sources */,
+				6E0778302BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift in Sources */,
 				6E98291D2BD0915000105910 /* UserRouter.swift in Sources */,
 				6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */,
 				6E98291B2BCFF0C900105910 /* LikeRouter.swift in Sources */,
@@ -1049,7 +1065,7 @@
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
-				6E0778082BD7AF4A00B3A6EC /* SignUpSellerInfoViewController.swift in Sources */,
+				6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
 				6E567E692BC67F2800250C56 /* UIView+.swift in Sources */,
 				6E8C9E9C2BC8BD0A0086F913 /* FetchLikePostsQuery.swift in Sources */,
@@ -1061,6 +1077,7 @@
 				6E77ED0A2BCE65F900ACDA3B /* AuthRouter.swift in Sources */,
 				6E0A4FD92BD3E955005A529F /* KCError.swift in Sources */,
 				6E8C9EDD2BCBFF580086F913 /* Mapper.swift in Sources */,
+				6E0778322BD8EC8D00B3A6EC /* TestViewController.swift in Sources */,
 				6E0778122BD7DEC900B3A6EC /* BusinessInfoRouter.swift in Sources */,
 				6E07780E2BD7DCF000B3A6EC /* BusinessInfoDTO.swift in Sources */,
 				6E0A4F942BD13885005A529F /* HTTPStatusError.swift in Sources */,
@@ -1078,11 +1095,13 @@
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
 				6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */,
 				6E8C9E9E2BC8BD310086F913 /* FetchSearchHashtagQuery.swift in Sources */,
+				6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */,
 				6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */,
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
 				6E8C9E752BC8B67C0086F913 /* ProfileDTO.swift in Sources */,
+				6E07782C2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift in Sources */,
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
 				6E0A4FC62BD24153005A529F /* InputInformation.swift in Sources */,
 				6E8C9EBA2BCA9F9B0086F913 /* KeycapInfo.swift in Sources */,
@@ -1112,6 +1131,7 @@
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
 				6E567E732BC684C000250C56 /* DTO.swift in Sources */,
+				6E0778142BD88EA800B3A6EC /* CheckboxButton.swift in Sources */,
 				6E8C9E7D2BC8B8A10086F913 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
