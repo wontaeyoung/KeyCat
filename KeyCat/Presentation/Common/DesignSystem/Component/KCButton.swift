@@ -35,9 +35,11 @@ final class KCButton: UIButton {
 extension KCButton {
   
   enum Style {
+    
     case primary
     case secondary
     case plain
+    case icon
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
@@ -75,6 +77,16 @@ extension KCButton {
       }
     }
     
+    private static let iconConfig: UIButton.Configuration = .plain().applied {
+      
+      $0.cornerStyle = .capsule
+      $0.buttonSize = .mini
+      
+      $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
+        return $0.applied { $0.font = KCAsset.Font.captionLabel }
+      }
+    }
+    
     var configuration: UIButton.Configuration {
       switch self {
         case .primary:
@@ -85,6 +97,9 @@ extension KCButton {
           
         case .plain:
           return Style.plainConfig
+          
+        case .icon:
+          return Style.iconConfig
       }
     }
   }
