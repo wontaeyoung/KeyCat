@@ -64,10 +64,15 @@ enum KCAsset {
     
     private enum SF: String {
       case house = "house"
+      case checkmarkCircle = "checkmark.circle"
+      case checkmarkCircleFill = "checkmark.circle.fill"
     }
     
     private static func image(_ sf: SF) -> UIImage? {
       return UIImage(systemName: sf.rawValue)
     }
+    
+    static let checkboxOff: UIImage? = image(.checkmarkCircle)
+    static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
   }
 }
