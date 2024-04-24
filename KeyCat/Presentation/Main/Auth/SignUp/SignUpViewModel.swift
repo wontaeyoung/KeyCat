@@ -12,6 +12,12 @@ final class SignUpViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
+    let sellerAuthorityNextEvent: PublishRelay<Void>
+    let onlyCustomerAuthorityNextEvent: PublishRelay<Void>
+    
+    let businessInfoAuthenticationEvent: PublishRelay<String>
+    let businessInfoAuthenticationNextEvent: PublishRelay<Void>
+    
     let email: PublishRelay<String>
     let duplicateCheckEvent: PublishRelay<Void>
     let emailNextEvent: PublishRelay<Void>
@@ -46,6 +52,9 @@ final class SignUpViewModel: ViewModel {
   }
   
   struct Output {
+    let businessInfoAuthenticationResult: Driver<Bool>
+    let showAuthenticationResultToast: Driver<String>
+    
     let duplicateCheckResult: Driver<Bool>
     let showDuplicationCheckResultToast: Driver<Void>
     
@@ -55,25 +64,77 @@ final class SignUpViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: AuthCoordinator?
+  private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase
+  private let authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase
   
   private let email = BehaviorRelay<String>(value: "")
   private let password = BehaviorRelay<String>(value: "")
   private let nickname = BehaviorRelay<String>(value: "")
-  private let sellingAuthority = BehaviorRelay<Bool>(value: false)
+  private let businessInfoAuthenticated = BehaviorRelay<Bool>(value: false)
   
   // MARK: - Initializer
-  init() {
-    
+  init(
+    checkEmailValidationUsecase: CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
+    authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl()
+  ) {
+    self.checkEmailValidationUsecase = checkEmailValidationUsecase
+    self.authenticateBusinessInfoUsecase = authenticateBusinessInfoUsecase
   }
   
-  private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl()
-  
   // MARK: - Method
+  @discardableResult 
   func transform(input: Input) -> Output {
+    
+    let showAuthenticationResultToast = PublishRelay<String>()
     
     let duplicateCheckResult = BehaviorRelay<Bool>(value: false)
     let showDuplicationCheckResultToast = PublishRelay<Void>()
-    let passwrodEqualValidationResult = BehaviorRelay<Bool>(value: false)
+    
+    let passwordEqualValidationResult = BehaviorRelay<Bool>(value: false)
+    
+    /// 사업자 번호 등록여부 응답 결과
+    let businessInfoAuthentication = input.businessInfoAuthenticationEvent
+      .withUnretained(self)
+      .flatMap { owner, businessNumber in
+        return owner.authenticateBusinessInfoUsecase.execute(businessNumber: businessNumber)
+          .catch { error in
+            owner.coordinator?.showErrorAlert(error: error)
+            return .just(.unregistered)
+          }
+      }
+    
+    /// 사업자 등록 확인 결과 전달
+    businessInfoAuthentication
+      .map { $0.businessStatus == .active }
+      .bind(to: businessInfoAuthenticated)
+      .disposed(by: disposeBag)
+    
+    /// 사업자 등록 여부 체크 결과를 토스트 메세지로 전달
+    businessInfoAuthentication
+      .map { $0.businessStatus.statusMessage }
+      .bind(to: showAuthenticationResultToast)
+      .disposed(by: disposeBag)
+    
+    /// 판매자 권한이 필요하면 사업자 인증 화면으로 전환
+    input.sellerAuthorityNextEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpBusinessInfoAuthenticationView()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 판매자 권한이 필요하지 않으면 바로 이메일 화면으로 전환
+    input.onlyCustomerAuthorityNextEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpEmailView()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 사업자 정보 다음 버튼 이벤트 화면 연결
+    input.businessInfoAuthenticationNextEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpEmailView()
+      }
+      .disposed(by: disposeBag)
     
     /// 이메일 입력내용 전달
     input.email
@@ -120,13 +181,15 @@ final class SignUpViewModel: ViewModel {
       input.passwordCheck
     )
     .map { $0 == $1 && !$0.isEmpty && !$1.isEmpty }
-    .bind(to: passwrodEqualValidationResult)
+    .bind(to: passwordEqualValidationResult)
     .disposed(by: disposeBag)
     
     return Output(
+      businessInfoAuthenticationResult: businessInfoAuthenticated.asDriver(),
+      showAuthenticationResultToast: showAuthenticationResultToast.asDriver(onErrorJustReturn: "-"),
       duplicateCheckResult: duplicateCheckResult.asDriver(),
       showDuplicationCheckResultToast: showDuplicationCheckResultToast.asDriver(onErrorJustReturn: ()),
-      passwordEqualValidationResult: passwrodEqualValidationResult.asDriver()
+      passwordEqualValidationResult: passwordEqualValidationResult.asDriver()
     )
   }
 }
