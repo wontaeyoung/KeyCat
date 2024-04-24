@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E0778042BD7944D00B3A6EC /* SignUpNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */; };
+		6E0778042BD7944D00B3A6EC /* SignUpProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778032BD7944C00B3A6EC /* SignUpProfileViewController.swift */; };
 		6E0778062BD7995A00B3A6EC /* SecureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778052BD7995A00B3A6EC /* SecureButton.swift */; };
 		6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778072BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift */; };
 		6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */; };
@@ -150,7 +150,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNicknameViewController.swift; sourceTree = "<group>"; };
+		6E0778032BD7944C00B3A6EC /* SignUpProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpProfileViewController.swift; sourceTree = "<group>"; };
 		6E0778052BD7995A00B3A6EC /* SecureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureButton.swift; sourceTree = "<group>"; };
 		6E0778072BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSellerAuthorityViewController.swift; sourceTree = "<group>"; };
 		6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInfoRequest.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 				6E07782F2BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift */,
 				6E0A4FD32BD28DB7005A529F /* SignUpEmailViewController.swift */,
 				6E0A4FF12BD58966005A529F /* SignUpPasswordViewController.swift */,
-				6E0778032BD7944C00B3A6EC /* SignUpNicknameViewController.swift */,
+				6E0778032BD7944C00B3A6EC /* SignUpProfileViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1126,7 +1126,7 @@
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
 				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
-				6E0778042BD7944D00B3A6EC /* SignUpNicknameViewController.swift in Sources */,
+				6E0778042BD7944D00B3A6EC /* SignUpProfileViewController.swift in Sources */,
 				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
