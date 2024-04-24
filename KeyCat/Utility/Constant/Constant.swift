@@ -11,6 +11,9 @@ enum Constant {
     
     static let appName: String = "KeyCat"
     static let signUpInfo: String = "아직 계정이 없으신가요?"
+    static let inputSellerAuthority: String = "판매자 권한이 필요하신가요?"
+    static let inputBusinessInfo: String = "사업자 정보를 인증해주세요!"
+    static let updateSellerAuthorityAvailable: String = "판매자 인증은 프로필에서 다시 할 수 있어요."
     static let inputEmailInfo: String = "이메일을 알려주세요!"
     static let inputPasswordInfo: String = "안전하게 사용할 수 있는 비밀번호를 알려주세요!"
     static let inputNicknameInfo: String = "닉네임을 알려주세요!"
@@ -25,5 +28,8 @@ enum Constant {
     static let duplicateCheck: String = "중복 확인"
     static let duplicateCheckInfo: String = "중복 확인이 필요해요!"
     static let next: String = "다음으로"
+    static let sellerAuthority: String = "네, 필요해요"
+    static let onlyCustomerAuthority: String = "아니요, 필요하지 않아요"
+    static let businessInfoAuthentication: String = "사업자 인증"
   }
 }
