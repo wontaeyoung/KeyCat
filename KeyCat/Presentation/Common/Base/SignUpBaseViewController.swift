@@ -33,7 +33,7 @@ class SignUpBaseViewController: RxBaseViewController {
   
   override func setConstraint() {
     inputInfoTitleLabel.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+      make.top.equalTo(view.safeAreaLayoutGuide)
       make.horizontalEdges.equalTo(view).inset(20)
     }
     
