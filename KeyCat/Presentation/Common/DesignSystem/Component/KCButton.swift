@@ -36,12 +36,26 @@ extension KCButton {
   
   enum Style {
     case primary
+    case secondary
     case plain
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
       $0.baseForegroundColor = .white
       $0.baseBackgroundColor = KCAsset.Color.brand
+      $0.buttonSize = .large
+      $0.cornerStyle = .capsule
+      $0.imagePadding = 6
+      
+      $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
+        return $0.applied { $0.font = KCAsset.Font.buttonTitle }
+      }
+    }
+    
+    private static let secondaryConfig: UIButton.Configuration = .tinted().applied {
+      
+      $0.baseForegroundColor = KCAsset.Color.brand
+      $0.baseBackgroundColor = KCAsset.Color.secondary
       $0.buttonSize = .large
       $0.cornerStyle = .capsule
       $0.imagePadding = 6
@@ -65,6 +79,9 @@ extension KCButton {
       switch self {
         case .primary:
           return Style.primaryConfig
+          
+        case .secondary:
+          return Style.secondaryConfig
           
         case .plain:
           return Style.plainConfig
