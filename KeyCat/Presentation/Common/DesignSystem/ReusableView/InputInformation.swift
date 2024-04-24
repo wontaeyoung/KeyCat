@@ -6,10 +6,12 @@
 //
 
 enum InputInformation {
+  
   case email
   case password
   case passwordCheck
   case nickname
+  case businessNumber
   
   var title: String {
     switch self {
@@ -17,6 +19,7 @@ enum InputInformation {
       case .password: "비밀번호"
       case .passwordCheck: "비밀번호 확인"
       case .nickname: "닉네임"
+      case .businessNumber: "사업자 번호"
     }
   }
   
@@ -41,6 +44,11 @@ enum InputInformation {
         return isValid
         ? "사용 가능한 닉네임입니다."
         : "닉네임은 2 ~ 6자 사이로 입력해주세요."
+        
+      case .businessNumber:
+        return isValid
+        ? ""
+        : "10자리의 숫자로 입력해주세요."
     }
   }
   
@@ -50,6 +58,7 @@ enum InputInformation {
       case .password: #"^(?=.*[!@#$])[a-zA-Z0-9!@#$]{4,12}$"#
       case .passwordCheck: #"^.{1,}$"#
       case .nickname: #"^[\w가-힣]{2,6}$"#
+      case .businessNumber: #"^\d{10}$"#
     }
   }
 }
