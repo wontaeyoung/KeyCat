@@ -37,4 +37,11 @@ enum Constant {
     static let onlyCustomerAuthority: String = "아니요, 필요하지 않아요"
     static let businessInfoAuthentication: String = "사업자 인증"
   }
+  
+  enum FileExtension {
+    
+    static let jpg: String = "jpg"
+    static let jpeg: String = "jpeg"
+    static let png: String = "png"
+  }
 }

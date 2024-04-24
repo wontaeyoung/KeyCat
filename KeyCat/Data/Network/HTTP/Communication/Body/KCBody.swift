@@ -12,8 +12,8 @@ enum KCBody {
   }
   
   enum Value {
-    static let fileName: String = "Keycat.png"
-    static let mimeTypePNG: String = "image/png"
-    static let mimeTypeJPEG: String = "image/jpeg"
+    static let fileName: String = "Keycat.\(Constant.FileExtension.jpg)"
+    static let mimeTypePNG: String = "image/\(Constant.FileExtension.png)"
+    static let mimeTypeJPEG: String = "image/\(Constant.FileExtension.jpeg)"
   }
 }

@@ -69,7 +69,7 @@ struct APIService {
             profile,
             withName: KCBody.Key.profileImageFile,
             fileName: KCBody.Value.fileName,
-            mimeType: KCBody.Value.mimeTypePNG
+            mimeType: KCBody.Value.mimeTypeJPEG
           )
         }
       }, to: router, method: router.method, headers: router.headers)
