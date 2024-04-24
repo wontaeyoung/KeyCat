@@ -9,4 +9,5 @@
 enum HTTPRequestDomain {
   
   case emailValidation
+  case none
 }
