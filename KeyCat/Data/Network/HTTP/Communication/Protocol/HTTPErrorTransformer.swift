@@ -42,6 +42,9 @@ extension HTTPErrorTransformer {
             switch style {
               case .emailValidation:
                 return .conflict(detail: .emailDuplicated)
+                
+              case .none:
+                return httpStatusError.toDomain
             }
             
             /// 도메인에 대해 분기처리가 필요 없는 에러는 미리 정의한 매핑 에러로 변환
