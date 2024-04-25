@@ -10,6 +10,7 @@ enum HTTPRequestDomain {
   
   // 401
   case signIn
+  case accessToken
   
   // 409
   case emailValidation
