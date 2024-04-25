@@ -17,6 +17,15 @@ struct APITokenContainer {
     return !accessToken.isEmpty && !refreshToken.isEmpty
   }
   
+  static func login(accessToken: String, refreshToken: String) {
+    self.accessToken = accessToken
+    self.refreshToken = refreshToken
+  }
+  
+  static func renewAccessToken(with accessToken: String) {
+    self.accessToken = accessToken
+  }
+  
   static func clearTokens() {
     accessToken = ""
     refreshToken = ""
