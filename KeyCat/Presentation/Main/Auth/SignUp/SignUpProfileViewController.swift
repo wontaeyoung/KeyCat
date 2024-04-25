@@ -74,6 +74,10 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     )
   }
   
+  override func setAttribute() {
+    nextButton.title(Constant.Button.signingUp)
+  }
+  
   override func setConstraint() {
     super.setConstraint()
     
@@ -137,6 +141,11 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
       .bind(to: profileImage)
       .disposed(by: disposeBag)
     
+    /// 이메일 입력 전달
+    nicknameField.rx.text.orEmpty
+      .bind(to: input.nickname)
+      .disposed(by: disposeBag)
+    
     /// 닉네임 유효성 검사 -> 다음 버튼 활성화
     nicknameField.inputValidation
       .bind(to: nextButton.rx.isEnabled)
@@ -145,9 +154,22 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     /// 다음 버튼 탭 이벤트 + 현재 프로필 이미지 데이터 전달
     nextButton.rx.tap
       .buttonThrottle()
+      .withUnretained(self)
+      .do { owner, _ in
+        owner.nextButton.showIndicator()
+      }
       .withLatestFrom(profileImage)
       .map { $0?.compressedJPEGData }
       .bind(to: input.profileNextEvent)
+      .disposed(by: disposeBag)
+    
+    /// 회원가입 완료 토스트 표시 -> 토스트 종료 이벤트 전달
+    output.signUpCompleted
+      .drive(with: self) { owner, _ in
+        owner.toast("회원가입이 완료되었어요!") { 
+          input.signUpToastCompletedEvent.accept(())
+        }
+      }
       .disposed(by: disposeBag)
   }
 }

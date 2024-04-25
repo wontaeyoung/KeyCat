@@ -29,6 +29,7 @@ final class SignUpViewModel: ViewModel {
     
     let nickname: PublishRelay<String>
     let profileNextEvent: PublishRelay<Data?>
+    let signUpToastCompletedEvent: PublishRelay<Void>
     
     init(
       sellerAuthorityNextEvent: PublishRelay<Void> = .init(),
@@ -42,7 +43,8 @@ final class SignUpViewModel: ViewModel {
       passwordCheck: PublishRelay<String> = .init(),
       passwordNextEvent: PublishRelay<Void> = .init(),
       nickname: PublishRelay<String> = .init(),
-      profileNextEvent: PublishRelay<Data?> = .init()
+      profileNextEvent: PublishRelay<Data?> = .init(),
+      signUpToastCompletedEvent: PublishRelay<Void> = .init()
     ) {
       self.sellerAuthorityNextEvent = sellerAuthorityNextEvent
       self.onlyCustomerAuthorityNextEvent = onlyCustomerAuthorityNextEvent
@@ -56,6 +58,7 @@ final class SignUpViewModel: ViewModel {
       self.passwordNextEvent = passwordNextEvent
       self.nickname = nickname
       self.profileNextEvent = profileNextEvent
+      self.signUpToastCompletedEvent = signUpToastCompletedEvent
     }
   }
   
@@ -67,6 +70,8 @@ final class SignUpViewModel: ViewModel {
     let showDuplicationCheckResultToast: Driver<Void>
     
     let passwordEqualValidationResult: Driver<Bool>
+    
+    let signUpCompleted: Driver<Void>
   }
   
   // MARK: - Property
@@ -74,6 +79,7 @@ final class SignUpViewModel: ViewModel {
   weak var coordinator: AuthCoordinator?
   private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase
   private let authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase
+  private let signUpUsecase: SignUpUsecase
   
   private let email = BehaviorRelay<String>(value: "")
   private let password = BehaviorRelay<String>(value: "")
@@ -82,11 +88,13 @@ final class SignUpViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
-    checkEmailValidationUsecase: CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
-    authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl()
+    checkEmailValidationUsecase: any CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
+    authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl(),
+    signUpUsecase: any SignUpUsecase = SignUpUsecaseImpl()
   ) {
     self.checkEmailValidationUsecase = checkEmailValidationUsecase
     self.authenticateBusinessInfoUsecase = authenticateBusinessInfoUsecase
+    self.signUpUsecase = signUpUsecase
   }
   
   // MARK: - Method
@@ -99,6 +107,7 @@ final class SignUpViewModel: ViewModel {
     let showDuplicationCheckResultToast = PublishRelay<Void>()
     
     let passwordEqualValidationResult = BehaviorRelay<Bool>(value: false)
+    let signUpCompleted = PublishRelay<Void>()
     
     /// 사업자 번호 등록여부 응답 결과
     let businessInfoAuthentication = input.businessInfoAuthenticationEvent
@@ -201,12 +210,47 @@ final class SignUpViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 닉네임 입력내용 전달
+    input.nickname
+      .bind(to: nickname)
+      .disposed(by: disposeBag)
+    
+    /// 회원가입 -> 로그인 -> 프로필 이미지 적용
+    input.profileNextEvent
+      .withUnretained(self)
+      .flatMap { owner, imageData in
+        return owner.signUpUsecase.execute(
+          email: owner.email.value,
+          password: owner.password.value,
+          nickname: owner.nickname.value,
+          profileData: imageData,
+          userType: owner.businessInfoAuthenticated.value ? .seller : .standard
+        )
+        .catch {
+          owner.coordinator?.showErrorAlert(error: $0)
+          return .just(false)
+        }
+      }
+      .filter { $0 }
+      .map { _ in () }
+      .bind(to: signUpCompleted)
+      .disposed(by: disposeBag)
+    
+    /// 토스트 표시가 완료되면 시작 화면으로 이동
+    input.signUpToastCompletedEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.popToRoot()
+      }
+      .disposed(by: disposeBag)
+      
+    
     return Output(
       businessInfoAuthenticationResult: businessInfoAuthenticated.asDriver(),
       showAuthenticationResultToast: showAuthenticationResultToast.asDriver(onErrorJustReturn: "-"),
       duplicateCheckResult: duplicateCheckResult.asDriver(),
       showDuplicationCheckResultToast: showDuplicationCheckResultToast.asDriver(onErrorJustReturn: ()),
-      passwordEqualValidationResult: passwordEqualValidationResult.asDriver()
+      passwordEqualValidationResult: passwordEqualValidationResult.asDriver(),
+      signUpCompleted: signUpCompleted.asDriver(onErrorJustReturn: ())
     )
   }
 }
