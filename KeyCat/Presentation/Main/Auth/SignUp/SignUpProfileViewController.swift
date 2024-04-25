@@ -171,6 +171,13 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
         }
       }
       .disposed(by: disposeBag)
+    
+    /// 회원가입 실패 시 인디케이터 중지
+    output.signUpFailed
+      .drive(with: self) { owner, _ in
+        owner.nextButton.stopIndicator()
+      }
+      .disposed(by: disposeBag)
   }
 }
 

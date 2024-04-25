@@ -72,6 +72,7 @@ final class SignUpViewModel: ViewModel {
     let passwordEqualValidationResult: Driver<Bool>
     
     let signUpCompleted: Driver<Void>
+    let signUpFailed: Driver<Void>
   }
   
   // MARK: - Property
@@ -108,6 +109,7 @@ final class SignUpViewModel: ViewModel {
     
     let passwordEqualValidationResult = BehaviorRelay<Bool>(value: false)
     let signUpCompleted = PublishRelay<Void>()
+    let signUpFailed = PublishRelay<Void>()
     
     /// 사업자 번호 등록여부 응답 결과
     let businessInfoAuthentication = input.businessInfoAuthenticationEvent
@@ -216,6 +218,7 @@ final class SignUpViewModel: ViewModel {
       .disposed(by: disposeBag)
     
     /// 회원가입 -> 로그인 -> 프로필 이미지 적용
+    /// 성공하면 토스트 안내 후 coordinator end, 실패하면 인디케이터 중지 output
     input.profileNextEvent
       .withUnretained(self)
       .flatMap { owner, imageData in
@@ -231,18 +234,21 @@ final class SignUpViewModel: ViewModel {
           return .just(false)
         }
       }
-      .filter { $0 }
-      .map { _ in () }
-      .bind(to: signUpCompleted)
+      .bind { success in
+        if success {
+          signUpCompleted.accept(())
+        } else {
+          signUpFailed.accept(())
+        }
+      }
       .disposed(by: disposeBag)
     
     /// 토스트 표시가 완료되면 시작 화면으로 이동
     input.signUpToastCompletedEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.popToRoot()
+        owner.coordinator?.end()
       }
       .disposed(by: disposeBag)
-      
     
     return Output(
       businessInfoAuthenticationResult: businessInfoAuthenticated.asDriver(),
@@ -250,7 +256,8 @@ final class SignUpViewModel: ViewModel {
       duplicateCheckResult: duplicateCheckResult.asDriver(),
       showDuplicationCheckResultToast: showDuplicationCheckResultToast.asDriver(onErrorJustReturn: ()),
       passwordEqualValidationResult: passwordEqualValidationResult.asDriver(),
-      signUpCompleted: signUpCompleted.asDriver(onErrorJustReturn: ())
+      signUpCompleted: signUpCompleted.asDriver(onErrorJustReturn: ()),
+      signUpFailed: signUpFailed.asDriver(onErrorJustReturn: ())
     )
   }
 }
