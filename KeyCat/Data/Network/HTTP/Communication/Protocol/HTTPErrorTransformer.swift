@@ -44,6 +44,9 @@ extension HTTPErrorTransformer {
               case .signIn:
                 return .accessFailed(detail: .login)
                 
+              case .accessToken:
+                return .accessFailed(detail: .accessToken)
+                
               default:
                 return httpStatusError.toDomain
             }
