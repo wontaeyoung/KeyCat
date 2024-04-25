@@ -30,6 +30,14 @@ final class KCButton: UIButton {
   func image(_ image: UIImage) {
     self.configuration?.image = image
   }
+  
+  func showIndicator() {
+    self.configuration?.showsActivityIndicator = true
+  }
+  
+  func stopIndicator() {
+    self.configuration?.showsActivityIndicator = false
+  }
 }
 
 extension KCButton {
