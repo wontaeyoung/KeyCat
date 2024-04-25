@@ -96,11 +96,15 @@ extension KCError {
   enum ConflictCase {
     
     case emailDuplicated
+    case registeredUser
     
     var alertDescription: String {
       switch self {
         case .emailDuplicated:
           return "이미 가입된 이메일이에요."
+          
+        case .registeredUser:
+          return "이미 가입된 사용자입니다."
       }
     }
   }
