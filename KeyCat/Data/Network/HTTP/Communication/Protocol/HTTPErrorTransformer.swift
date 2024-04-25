@@ -35,6 +35,19 @@ extension HTTPErrorTransformer {
         
         /// 상태코드 에러 체크
         switch httpStatusError {
+            
+            /// 401 케이스 분석
+          case .accessFailed:
+            
+            /// API 요청 도메인에 따라 다른 accessFailed 케이스로 리턴
+            switch style {
+              case .signIn:
+                return .accessFailed(detail: .login)
+                
+              default:
+                return httpStatusError.toDomain
+            }
+            
             /// 409 케이스 분석
           case .conflict:
             
@@ -43,7 +56,10 @@ extension HTTPErrorTransformer {
               case .emailValidation:
                 return .conflict(detail: .emailDuplicated)
                 
-              case .none:
+              case .signUp:
+                return .conflict(detail: .registeredUser)
+                
+              default:
                 return httpStatusError.toDomain
             }
             
