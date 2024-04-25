@@ -36,6 +36,7 @@ enum Constant {
     static let sellerAuthority: String = "네, 필요해요"
     static let onlyCustomerAuthority: String = "아니요, 필요하지 않아요"
     static let businessInfoAuthentication: String = "사업자 인증"
+    static let signingUp: String = "가입하기"
   }
   
   enum FileExtension {
