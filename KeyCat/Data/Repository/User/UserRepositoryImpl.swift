@@ -23,9 +23,8 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
   
   func updateProfileImage(with imageData: Data?) -> Single<Profile> {
     let request = UpdateMyProfileRequest(profile: imageData)
-    let router = UserRouter.myProfileUpdate(request: request)
     
-    return service.callRequest(with: router, of: ProfileDTO.self)
+    return service.callUpdateProfileRequest(request: request)
       .catch {
         let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
         return .error(domainError)
