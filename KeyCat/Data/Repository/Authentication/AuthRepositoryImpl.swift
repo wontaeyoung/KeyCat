@@ -49,4 +49,36 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
       }
       .map { self.userMapper.toEntity($0) }
   }
+  
+  func signUp(
+    email: String,
+    password: String,
+    nickname: String,
+    userType: Profile.UserType
+  ) -> Single<User> {
+    let request = JoinRequest(email: email, password: password, nick: nickname, phoneNum: userType.rawValue.description, birthDay: nil)
+    let router = AuthRouter.join(request: request)
+    
+    return service.callRequest(with: router, of: AuthResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .signUp)
+        return .error(domainError)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
+  
+  func signIn(email: String, password: String) -> Single<User> {
+    let request = LoginRequest(email: email, password: password)
+    let router = AuthRouter.login(request: request)
+    
+    return service.callRequest(with: router, of: LoginResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .signIn)
+        return .error(domainError)
+      }
+      .do { response in
+        APITokenContainer.login(accessToken: response.accessToken, refreshToken: response.refreshToken)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
 }
