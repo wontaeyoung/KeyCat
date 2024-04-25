@@ -24,7 +24,7 @@ extension UIImage {
   
   var compressedJPEGData: Data? {
     let maxQuality: CGFloat = 1.0
-    let minQuality: CGFloat = 0.0
+    let minQuality: CGFloat = 0.1
     let maxSizeInBytes = BusinessValue.maxImageFileVolumeMB * 1024 * 1024
     
     // 최대 품질(무압축)에서 시작
