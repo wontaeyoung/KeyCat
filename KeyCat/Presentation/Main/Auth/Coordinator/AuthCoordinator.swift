@@ -72,4 +72,8 @@ extension AuthCoordinator {
     
     push(vc)
   }
+  
+  func login() {
+    end()
+  }
 }
