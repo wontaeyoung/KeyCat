@@ -22,17 +22,31 @@ final class SignInViewModel: ViewModel {
     let loginEnable: Driver<Bool>
   }
   
+  private let email = BehaviorRelay<String>(value: "")
+  private let password = BehaviorRelay<String>(value: "")
+  
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: AuthCoordinator?
+  private let signInUsecase: SignInUsecase
   
   // MARK: - Initializer
-  init() {
-    
+  init(signInUsecase: SignInUsecase = SignInUsecaseImpl()) {
+    self.signInUsecase = signInUsecase
   }
   
   // MARK: - Method
   func transform(input: Input) -> Output {
+    
+    /// 이메일 입력 전달
+    input.email
+      .bind(to: email)
+      .disposed(by: disposeBag)
+    
+    /// 비밀번호 입력 전달
+    input.password
+      .bind(to: password)
+      .disposed(by: disposeBag)
     
     /// 이메일 필드 비어있는지 검사
     let emailValidation = input.email
