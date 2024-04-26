@@ -20,10 +20,18 @@ final class ShoppingCoordinator: SubCoordinator {
   }
   
   func start() {
-    
+    showShoppoingView()
   }
 }
 
 extension ShoppingCoordinator {
   
+  func showShoppoingView() {
+    let vm = ShoppingViewModel()
+      .coordinator(self)
+    let vc = ShoppingViewController(viewModel: vm)
+      .kcNavigationTitle(with: MainTabBarPage.shopping.title)
+    
+    push(vc)
+  }
 }
