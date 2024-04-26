@@ -34,6 +34,7 @@ struct PostMapper: Mapper {
       creator: userMapper.toEntity(dto.creator),
       files: dto.files,
       likes: dto.likes,
+      shoppingCarts: dto.likes2,
       hashTags: dto.hashTags,
       reviews: commentMapper.toEntity(dto.comments)
     )

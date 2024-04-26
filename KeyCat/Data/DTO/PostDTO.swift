@@ -23,8 +23,8 @@ struct PostDTO: DTO {
   let createdAt: String
   let creator: UserDTO
   let files: [String]
-  let likes: [String]
-  let likes2: [String]
+  let likes: [String] // 좋아요
+  let likes2: [String] // 장바구니
   let hashTags: [String]
   let comments: [CommentDTO]
   
