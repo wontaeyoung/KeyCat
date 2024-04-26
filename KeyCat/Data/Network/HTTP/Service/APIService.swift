@@ -36,7 +36,7 @@ struct APIService {
         data.forEach {
           multipartFormData.append(
             $0,
-            withName: KCBody.Key.imageFiles,
+            withName: KCBody.Key.postImageFiles,
             fileName: KCBody.Value.fileName,
             mimeType: KCBody.Value.mimeTypePNG
           )
@@ -67,9 +67,9 @@ struct APIService {
         if let profile = request.profile {
           multipartFormData.append(
             profile,
-            withName: KCBody.Key.imageFiles,
+            withName: KCBody.Key.profileImageFile,
             fileName: KCBody.Value.fileName,
-            mimeType: KCBody.Value.mimeTypePNG
+            mimeType: KCBody.Value.mimeTypeJPEG
           )
         }
       }, to: router, method: router.method, headers: router.headers)

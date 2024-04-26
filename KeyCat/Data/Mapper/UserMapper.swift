@@ -15,6 +15,22 @@ struct UserMapper {
     )
   }
   
+  func toEntity(_ response: AuthResponse) -> User {
+    return User(
+      userID: response.user_id,
+      nickname: response.nick,
+      profileImageURLString: .defaultValue
+    )
+  }
+  
+  func toEntity(_ response: LoginResponse) -> User {
+    return User(
+      userID: response.user_id,
+      nickname: response.nick,
+      profileImageURLString: response.profileImage
+    )
+  }
+  
   func toEntity(_ dtos: [UserDTO]) -> [User] {
     return dtos.map { toEntity($0) }
   }
@@ -50,6 +66,13 @@ struct UserMapper {
       myNickname: dto.nick,
       followingNickname: dto.opponent_nick,
       isFollowing: dto.following_status
+    )
+  }
+  
+  func toEntity(_ dto: BusinessInfoDTO) -> BusinessInfo {
+    return BusinessInfo(
+      businessNumber: dto.b_no,
+      businessStatus: .init(dto.b_stt_cd)
     )
   }
   

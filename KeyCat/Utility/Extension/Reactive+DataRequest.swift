@@ -13,15 +13,21 @@ extension Reactive where Base: DataRequest {
   func call<T: Decodable>(of type: T.Type) -> Single<T> {
     
     return Single.create { single in
-      let request = base.responseDecodable(of: T.self) { response in
-        switch response.result {
-          case .success(let value):
-            log(base, responseData: response.data, error: response.error)
-            single(.success(value))
-          case .failure(let error):
-            single(.failure(error))
+      let request = base
+        .validate()
+        .responseDecodable(of: T.self) { response in
+          
+          log(base, responseData: response.data, error: response.error)
+          
+          switch response.result {
+            case .success(let value):
+              single(.success(value))
+              
+            case .failure(let error):
+              let httpError = mapError(error)
+              single(.failure(httpError))
+          }
         }
-      }
       
       return Disposables.create {
         request.cancel()
@@ -32,24 +38,21 @@ extension Reactive where Base: DataRequest {
   func call() -> Single<Bool> {
     
     return Single.create { single in
-      let request = base.response { response in
-        switch response.result {
-          case .success:
-            guard let statusCode = response.response?.statusCode else {
-              let error = HTTPError.invalidResponse
-              log(base, responseData: response.data, error: error)
-              single(.failure(error))
-              return
-            }
-            
-            log(base, responseData: response.data, error: nil)
-            single(.success(true))
-            
-          case .failure(let error):
-            self.log(self.base, responseData: nil, error: error.asAFError)
-            single(.failure(error))
+      let request = base
+        .validate()
+        .response { response in
+          
+          log(base, responseData: response.data, error: response.error)
+          
+          switch response.result {
+            case .success:
+              single(.success(true))
+              
+            case .failure(let error):
+              let httpError = mapError(error)
+              single(.failure(httpError))
+          }
         }
-      }
       
       return Disposables.create {
         request.cancel()
@@ -76,5 +79,14 @@ extension Reactive where Base: DataRequest {
 ---
 """
     LogManager.shared.log(with: message, to: .network, level: .info)
+  }
+  
+  private func mapError(_ error: AFError) -> HTTPError {
+    
+    guard let status = error.responseCode else {
+      return .requestFailed
+    }
+    
+    return .unexceptedResponse(status: status)
   }
 }

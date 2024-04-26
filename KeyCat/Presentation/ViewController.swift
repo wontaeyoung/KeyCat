@@ -25,8 +25,16 @@ final class ViewController: RxBaseViewController {
     $0.spacing = 5
     $0.alignment = .center
     
-    for i in [프로필이미지, 포스트생성버튼, 특정포스트조회버튼, 로그인버튼, 댓글삭제버튼, 좋아요버튼, 팔로우버튼, 프로필조회버튼, 프로필수정버튼] {
+    for i in [사업자번호조회버튼, 프로필이미지, 포스트생성버튼, 특정포스트조회버튼, 로그인버튼, 댓글삭제버튼, 좋아요버튼, 팔로우버튼, 프로필조회버튼, 회원가입버튼] {
       $0.addArrangedSubview(i)
+    }
+  }
+  
+  private let 사업자번호조회버튼 = UIButton().configured {
+    $0.configuration = .filled().applied {
+      $0.title = "사업자번호조회버튼"
+      $0.buttonSize = .large
+      $0.cornerStyle = .large
     }
   }
   
@@ -86,9 +94,9 @@ final class ViewController: RxBaseViewController {
     }
   }
   
-  private let 프로필수정버튼 = UIButton().configured {
+  private let 회원가입버튼 = UIButton().configured {
     $0.configuration = .filled().applied {
-      $0.title = "프로필수정버튼"
+      $0.title = "회원가입버튼"
       $0.buttonSize = .large
       $0.cornerStyle = .large
     }
@@ -125,6 +133,12 @@ final class ViewController: RxBaseViewController {
   }
   
   override func bind() {
+    사업자번호조회버튼.rx.tap
+      .bind(with: self) { owner, _ in
+        owner.fetchBusinessInfo()
+      }
+      .disposed(by: disposeBag)
+    
     포스트생성버튼.rx.tap
       .bind(with: self) { owner, _ in
         owner.createPost()
@@ -163,13 +177,13 @@ final class ViewController: RxBaseViewController {
     
     프로필조회버튼.rx.tap
       .bind(with: self) { owner, _ in
-        owner.fetchOtherProfile()
+        owner.fetchMyProfile()
       }
       .disposed(by: disposeBag)
     
-    프로필수정버튼.rx.tap
+    회원가입버튼.rx.tap
       .bind(with: self) { owner, _ in
-        owner.updateMyProfile()
+        owner.signUp()
       }
       .disposed(by: disposeBag)
   }
@@ -181,8 +195,40 @@ final class ViewController: RxBaseViewController {
   var commentID = ""
   
   // MARK: - Method
+  private func fetchBusinessInfo() {
+    let request = BusinessInfoRequest(b_no: "3749500872")
+    let router = BusinessInfoRouter.fetchStatus(request: request)
+    
+    service.callRequest(with: router, of: BusinessInfoResponse.self)
+      .subscribe(with: self) { owner, response in
+        let businessInfo = UserMapper().toEntity(response.data.first!)
+        
+        owner.결과라벨.text = "요청 성공"
+        owner.내용라벨.text = businessInfo.businessNumber + "\n" + businessInfo.businessStatus.rawValue
+      } onFailure: { owner, error in
+        owner.결과라벨.text = "요청 실패"
+        owner.내용라벨.text = error.localizedDescription
+      }
+      .disposed(by: disposeBag)
+  }
+  
+  private func signUp() {
+    let request = JoinRequest(email: "kez@gmail.com", password: "1", nick: "케즈", phoneNum: "010", birthDay: "1234")
+    let router = AuthRouter.join(request: request)
+    
+    service.callRequest(with: router, of: AuthResponse.self)
+      .subscribe(with: self) { owner, response in
+        owner.결과라벨.text = "요청 성공"
+        owner.내용라벨.text = response.email
+      } onFailure: { owner, error in
+        owner.결과라벨.text = "요청 실패"
+        owner.내용라벨.text = error.localizedDescription
+      }
+      .disposed(by: disposeBag)
+  }
+  
   private func login() {
-    let request = LoginRequest(email: "kaz12@gmail.com", password: "12")
+    let request = LoginRequest(email: "kez@gmail.com", password: "1")
     let router = AuthRouter.login(request: request)
     
     service.callRequest(with: router, of: LoginResponse.self)
@@ -234,7 +280,7 @@ final class ViewController: RxBaseViewController {
   
   private func updateMyProfile() {
     
-    let imageData = UIImage(named: "고양이")?.jpegData(compressionQuality: 0.5)
+    let imageData = UIImage(named: "KeyCat_Opacity")?.jpegData(compressionQuality: 0.5)
     let request = UpdateMyProfileRequest(nick: nil, phoneNum: "1", birthDay: nil, profile: imageData)
     
     service.callUpdateProfileRequest(request: request)
@@ -299,7 +345,7 @@ final class ViewController: RxBaseViewController {
   
   private func likePost() {
     let request = LikePostRequest(like_status: true)
-    let router = LikeRouter.like2(postID: postID, request: request)
+    let router = LikeRouter.like(postID: fetchedPostID, request: request)
     
     service.callRequest(with: router, of: LikePostResponse.self)
       .subscribe(with: self) { owner, response in
@@ -432,6 +478,8 @@ final class ViewController: RxBaseViewController {
   
   let mapper = PostMapper()
   
+  var fetchedPostID: String = ""
+  
   private func fetchSpecificPost() {
     let postRouter = PostRouter.specificPostFetch(id: postID)
     
@@ -441,7 +489,7 @@ final class ViewController: RxBaseViewController {
         
         owner.결과라벨.text = "요청 성공"
         owner.내용라벨.text = entity!.content
-        dump(entity!)
+        self.fetchedPostID = entity!.postID
       } onFailure: { owner, error in
         owner.결과라벨.text = "요청 실패"
         owner.내용라벨.text = "리프레시 토큰이 만료되었습니다"

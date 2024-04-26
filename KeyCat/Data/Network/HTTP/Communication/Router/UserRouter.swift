@@ -84,7 +84,7 @@ enum UserRouter: Router {
 extension UserRouter: URLConvertible {
   func asURL() throws -> URL {
     guard let url = try asURLRequest().url else {
-      throw HTTPError.invalidURL
+      throw HTTPError.requestFailed
     }
     
     return url

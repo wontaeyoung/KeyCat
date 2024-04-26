@@ -7,6 +7,8 @@
 
 enum BusinessValue {
   
+  static let maxImageFileVolumeMB: Double = 2.0
+  
   enum OptionLength {
     static let keyboardInfo: Int = 8
     static let keycapInfo: Int = 4

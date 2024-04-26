@@ -39,19 +39,18 @@ final class APIRequestInterceptor: RequestInterceptor {
     dueTo error: any Error,
     completion: @escaping (RetryResult) -> Void
   ) {
-    let router = AuthRouter.tokenRefresh
     
-    AF.request(router)
+    /// 에러 케이스가 419면 토큰 리프레시, 아니면 함수 종료
+    guard 
+      let statusCode = request.response?.statusCode,
+      statusCode == HTTPStatusError.accessTokenExpired.statusCode
+    else {
+      return completion(.doNotRetry)
+    }
+    
+    AF.request(AuthRouter.tokenRefresh)
+      .validate()
       .responseDecodable(of: RefreshTokenResponse.self) { response in
-        
-        let passStatusCode = [200, 418, 419]
-        
-        guard
-          let statusCode = response.response?.statusCode,
-          passStatusCode.contains(statusCode)
-        else {
-          return completion(.doNotRetry)
-        }
         
         switch response.result {
           case .success(let tokenResponse):

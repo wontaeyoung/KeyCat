@@ -37,7 +37,7 @@ extension Router {
   }
   
   func asURLRequest() throws -> URLRequest {
-    guard let url = URL(string: baseURL + path) else { throw HTTPError.invalidURL }
+    guard let url = URL(string: baseURL + path) else { throw HTTPError.requestFailed }
     
     let request = URLRequest(url: url).applied {
       $0.httpMethod = method.rawValue

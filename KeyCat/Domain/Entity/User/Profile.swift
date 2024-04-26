@@ -52,4 +52,3 @@ struct Profile: Entity {
     case other
   }
 }
-
