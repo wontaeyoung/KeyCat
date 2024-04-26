@@ -61,6 +61,21 @@ final class SignInViewModel: ViewModel {
       .map { $0 && $1 }
       .asDriver(onErrorJustReturn: false)
     
+    /// 로그인 이벤트 > 로그인 로직 호출
+    input.loginButtonTapEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.signInUsecase.execute(email: owner.email.value, password: owner.password.value)
+          .catch { error in
+            owner.coordinator?.showErrorAlert(error: error)
+            return .never()
+          }
+      }
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.end()
+      }
+      .disposed(by: disposeBag)
+    
     /// 회원가입 버튼 탭 이벤트 회원가입 플로우 연결
     input.signUpButtonTapEvent
       .bind(with: self) { owner, _ in
