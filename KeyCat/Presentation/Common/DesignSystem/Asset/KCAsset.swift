@@ -67,6 +67,13 @@ enum KCAsset {
       case xmarkCircleFill = "xmark.circle.fill"
       case checkmarkCircle = "checkmark.circle"
       case checkmarkCircleFill = "checkmark.circle.fill"
+      
+      case house = "house"
+      case houseFill = "house.fill"
+      case bag = "bag"
+      case bagFill = "bag.fill"
+      case person = "person"
+      case personFill = "person.fill"
     }
     
     private static func image(_ sf: SF) -> UIImage? {
@@ -76,5 +83,12 @@ enum KCAsset {
     static let closeButton: UIImage? = image(.xmarkCircleFill)
     static let checkboxOff: UIImage? = image(.checkmarkCircle)
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
+    
+    static let homeTab: UIImage? = image(.house)
+    static let homeSelectedTab: UIImage? = image(.houseFill)
+    static let shoppingTab: UIImage? = image(.bag)
+    static let shoppingSelectedTab: UIImage? = image(.bagFill)
+    static let profileTab: UIImage? = image(.person)
+    static let profileSelectedTab: UIImage? = image(.personFill)
   }
 }
