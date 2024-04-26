@@ -26,6 +26,12 @@ extension UIViewController {
     return self
   }
   
+  func kcNavigationTitle(with title: String) -> Self {
+    let titleLabel = KCLabel(style: .mainInfoTitle, title: title)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+    return self
+  }
+  
   func hideTabBar() -> Self {
     self.hidesBottomBarWhenPushed = true
     return self
