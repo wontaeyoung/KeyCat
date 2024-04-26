@@ -36,7 +36,14 @@ extension AppCoordinator {
   }
   
   private func connectMainTabBarFlow() {
+    let rootTabBarController = UITabBarController()
+    let mainTabBarCoordinator = MainTabBarCoordinator(tabBarController: rootTabBarController)
+    mainTabBarCoordinator.delegate = self
+    mainTabBarCoordinator.start()
+    addChild(mainTabBarCoordinator)
     
+    window?.rootViewController = rootTabBarController
+    window?.makeKeyAndVisible()
   }
 }
 
