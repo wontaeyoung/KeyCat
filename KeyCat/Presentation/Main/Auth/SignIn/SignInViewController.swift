@@ -22,9 +22,9 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
   private let appLogoLabel = KCLabel(style: .logo, title: Constant.Label.appName, alignment: .center)
   
   private let emailField =
-  KCTextField(style: .sign, placeholder: InputInformation.email.title)
+  SignField(placeholder: InputInformation.email.title)
   
-  private let passwordField = KCTextField(style: .sign, placeholder: InputInformation.password.title, clearable: false)
+  private let passwordField = SignField(placeholder: InputInformation.password.title, clearable: false)
   
   private lazy var secureButton = SecureButton(field: passwordField)
   

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class SignUpInputField: KCTextField {
+final class SignUpInputField: SignField {
   
   // MARK: - UI
   let validationResultLabel = KCLabel(style: .caption)
@@ -23,7 +23,7 @@ final class SignUpInputField: KCTextField {
   init(inputInformation: InputInformation, type: UIKeyboardType = .default) {
     self.inputInformation = inputInformation
     
-    super.init(style: .sign, placeholder: inputInformation.title, clearable: false)
+    super.init(placeholder: inputInformation.title, clearable: false)
     self.keyboardType = type
     
     setLayout()

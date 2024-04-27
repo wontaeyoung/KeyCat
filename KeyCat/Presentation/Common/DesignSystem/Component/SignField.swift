@@ -1,5 +1,5 @@
 //
-//  KCTextField.swift
+//  SignField.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/18/24.
@@ -11,13 +11,14 @@ import TextFieldEffects
 import RxSwift
 import RxCocoa
 
-class KCTextField: HoshiTextField {
+class SignField: HoshiTextField {
   
   let disposeBag = DisposeBag()
   
-  init(style: Style, placeholder: String? = nil, clearable: Bool = true) {
+  init(placeholder: String? = nil, clearable: Bool = true) {
     super.init(frame: .zero)
     
+    self.font = KCAsset.Font.signField
     self.placeholder = placeholder
     self.autocapitalizationType = .none
     self.autocorrectionType = .no
@@ -31,21 +32,10 @@ class KCTextField: HoshiTextField {
     self.snp.makeConstraints { make in
       make.height.equalTo(60)
     }
-    
-    switch style {
-      case .sign:
-        self.font = KCAsset.Font.signField
-    }
   }
   
   @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-}
-
-extension KCTextField {
-  enum Style {
-    case sign
   }
 }
