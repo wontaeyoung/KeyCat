@@ -48,7 +48,7 @@ enum KCAsset {
       return UIFont(name: fontName.name, size: size) ?? .systemFont(ofSize: size, weight: coalesceWeight)
     }
     
-    static let inputField: UIFont = font(.medium, size: 19)
+    static let signField: UIFont = font(.medium, size: 19)
     static let inputFieldInfoLabel: UIFont = font(.medium, size: 13)
     static let appLogoLabel: UIFont = font(.bold, size: 50)
     static let mainInfoTitle: UIFont = font(.bold, size: 24)

@@ -34,7 +34,7 @@ class KCTextField: HoshiTextField {
     
     switch style {
       case .sign:
-        self.font = KCAsset.Font.inputField
+        self.font = KCAsset.Font.signField
     }
   }
   

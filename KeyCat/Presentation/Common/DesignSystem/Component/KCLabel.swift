@@ -82,7 +82,7 @@ extension KCLabel {
       let range = NSRange(location: 0, length: $0.length)
       
       $0.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: range)
-      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.inputField, range: range)
+      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.signField, range: range)
     }
   }
 }
