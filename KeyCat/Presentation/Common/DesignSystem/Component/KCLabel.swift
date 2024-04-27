@@ -33,6 +33,13 @@ class KCLabel: UILabel {
           $0.numberOfLines = 2
         }
         
+      case .placeholder:
+        self.configure {
+          $0.font = KCAsset.Font.inputFieldPlaceholder
+          $0.textColor = KCAsset.Color.darkGray
+          $0.numberOfLines = 1
+        }
+        
       case .logo:
         self.configure {
           $0.font = KCAsset.Font.appLogoLabel
@@ -66,6 +73,7 @@ extension KCLabel {
   
   enum Style {
     case caption
+    case placeholder
     case logo
     case mainInfoTitle
     case standardTitle
