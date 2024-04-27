@@ -33,7 +33,7 @@ class KCTextField: HoshiTextField {
     }
     
     switch style {
-      case .input:
+      case .sign:
         self.font = KCAsset.Font.inputField
     }
   }
@@ -46,6 +46,6 @@ class KCTextField: HoshiTextField {
 
 extension KCTextField {
   enum Style {
-    case input
+    case sign
   }
 }

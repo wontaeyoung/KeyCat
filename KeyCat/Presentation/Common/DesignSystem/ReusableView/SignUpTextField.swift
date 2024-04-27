@@ -23,7 +23,7 @@ final class SignUpInputField: KCTextField {
   init(inputInformation: InputInformation, type: UIKeyboardType = .default) {
     self.inputInformation = inputInformation
     
-    super.init(style: .input, placeholder: inputInformation.title, clearable: false)
+    super.init(style: .sign, placeholder: inputInformation.title, clearable: false)
     self.keyboardType = type
     
     setLayout()
