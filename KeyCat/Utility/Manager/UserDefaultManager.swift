@@ -7,15 +7,20 @@
 
 import Foundation
 
+protocol UserDefaultKey where Self: RawRepresentable, Self.RawValue == String {
+  
+  var name: String { get }
+}
+
 @propertyWrapper
 struct UserDefault<T: Codable> {
   
-  private let key: Key
+  private let key: any UserDefaultKey
   private let defaultValue: T
   private let userDefault: UserDefaults
   
   init(
-    key: Key,
+    key: any UserDefaultKey,
     defaultValue: T,
     userDefault: UserDefaults = .standard
   ) {
@@ -38,20 +43,7 @@ struct UserDefault<T: Codable> {
     set {
       let data: Data? = try? JsonCoder.shared.encode(from: newValue)
       
-      userDefault.setValue(data, forKey: key.name)
-    }
-  }
-}
-
-extension UserDefault {
-  
-  enum Key: String {
-    
-    case accessToken
-    case refreshToken
-    
-    var name: String {
-      return self.rawValue
+      userDefault.set(data, forKey: key.name)
     }
   }
 }

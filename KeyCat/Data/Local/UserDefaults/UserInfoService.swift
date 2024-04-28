@@ -7,10 +7,10 @@
 
 struct UserInfoService {
   
-  @UserDefault(key: .accessToken, defaultValue: "")
+  @UserDefault(key: UserInfoKey.accessToken, defaultValue: .defaultValue)
   static var accessToken: String
   
-  @UserDefault(key: .refreshToken, defaultValue: "")
+  @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
   static var refreshToken: String
   
   static var hasSignInLog: Bool {
@@ -26,7 +26,21 @@ struct UserInfoService {
     self.accessToken = accessToken
   }
   
+  static func logout() {
     accessToken = ""
     refreshToken = ""
+  }
+}
+
+extension UserInfoService {
+  
+  enum UserInfoKey: String, UserDefaultKey {
+    
+    case accessToken
+    case refreshToken
+    
+    var name: String {
+      return self.rawValue
+    }
   }
 }
