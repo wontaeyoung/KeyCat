@@ -159,6 +159,9 @@
 		6EC801EF2BDD42A000FE2B69 /* ProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801EE2BDD42A000FE2B69 /* ProductField.swift */; };
 		6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */; };
 		6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */; };
+		6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */; };
+		6EC802042BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */; };
+		6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */; };
 		6EFB92152BDBFB1200AA8D09 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */; };
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
@@ -317,6 +320,9 @@
 		6EC801EE2BDD42A000FE2B69 /* ProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductField.swift; sourceTree = "<group>"; };
 		6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewController.swift; sourceTree = "<group>"; };
 		6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewModel.swift; sourceTree = "<group>"; };
+		6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoSegmentView.swift; sourceTree = "<group>"; };
+		6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoSelectView.swift; sourceTree = "<group>"; };
+		6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBaseView.swift; sourceTree = "<group>"; };
 		6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
@@ -423,6 +429,8 @@
 				6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */,
 				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
 				6EC801EE2BDD42A000FE2B69 /* ProductField.swift */,
+				6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */,
+				6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -629,6 +637,7 @@
 				6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */,
 				6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */,
 				6E0A4FD52BD299F8005A529F /* SignUpBaseViewController.swift */,
+				6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1176,6 +1185,7 @@
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
+				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
 				6E07783A2BD9D70D00B3A6EC /* SignUpUsecaseImpl.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
@@ -1198,6 +1208,7 @@
 				6E567E692BC67F2800250C56 /* UIView+.swift in Sources */,
 				6E8C9E9C2BC8BD0A0086F913 /* FetchLikePostsQuery.swift in Sources */,
 				6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */,
+				6EC802042BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift in Sources */,
 				6E8C9E792BC8B7EB0086F913 /* AuthResponse.swift in Sources */,
 				6E9829192BCFDFD200105910 /* CommentRouter.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
@@ -1257,6 +1268,7 @@
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
+				6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */,
 				6E07783D2BD9E30900B3A6EC /* UserRepository.swift in Sources */,
 				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
 				6E0778042BD7944D00B3A6EC /* SignUpProfileViewController.swift in Sources */,
