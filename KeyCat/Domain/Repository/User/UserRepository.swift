@@ -10,5 +10,6 @@ import RxSwift
 
 protocol UserRepository {
   
+  func fetchMyProfile() -> Single<Profile>
   func updateProfileImage(with profileData: Data?) -> Single<Profile>
 }
