@@ -21,6 +21,10 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     self.userMapper = userMapper
   }
   
+  func fetchSellerAuthority() -> Single<Bool> {
+    return .just(UserInfoService.hasSellerAuthority)
+  }
+  
   func fetchMyProfile() -> Single<Profile> {
     let router = UserRouter.myProfileFetch
     
