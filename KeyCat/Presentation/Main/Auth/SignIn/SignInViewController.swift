@@ -144,13 +144,13 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
     
     /// 로그인 버튼 이벤트 전달
     signInButton.rx.tap
-      .throttle(.seconds(1), scheduler: MainScheduler.instance)
+      .buttonThrottle()
       .bind(to: input.loginButtonTapEvent)
       .disposed(by: disposeBag)
     
     /// 회원가입 버튼 이벤트 전달
     signUpButton.rx.tap
-      .throttle(.seconds(1), scheduler: MainScheduler.instance)
+      .buttonThrottle()
       .bind(to: input.signUpButtonTapEvent)
       .disposed(by: disposeBag)
     
@@ -180,12 +180,14 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       .bind(to: endEditEvnet)
       .disposed(by: disposeBag)
     
+    /// 이메일 필드 활성화 > 로고 사이즈 조정
     emailField.rx.controlEvent(.editingDidBegin)
       .bind(with: self) { owner, _ in
         owner.updateLogoSize(editing: true)
       }
       .disposed(by: disposeBag)
     
+    /// 비밀번호 필드 활성화 > 로고 사이즈 조정
     passwordField.rx.controlEvent(.editingDidBegin)
       .bind(with: self) { owner, _ in
         owner.updateLogoSize(editing: true)
