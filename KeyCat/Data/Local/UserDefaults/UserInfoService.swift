@@ -13,7 +13,7 @@ struct UserInfoService {
   @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
   static var refreshToken: String
   
-  @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
+  @UserDefault(key: UserInfoKey.hasSellerAuthority, defaultValue: .defaultValue)
   static var hasSellerAuthority: Bool
   
   static var hasSignInLog: Bool {
