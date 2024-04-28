@@ -26,7 +26,6 @@ struct UserInfoService {
     self.accessToken = accessToken
   }
   
-  static func clearTokens() {
     accessToken = ""
     refreshToken = ""
   }
