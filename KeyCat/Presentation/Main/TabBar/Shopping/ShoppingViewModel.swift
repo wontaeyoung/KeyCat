@@ -12,11 +12,17 @@ final class ShoppingViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
+    let viewDidLoadEvent: PublishRelay<Void>
     
+    init(
+      viewDidLoadEvent: PublishRelay<Void> = .init()
+    ) {
+      self.viewDidLoadEvent = viewDidLoadEvent
+    }
   }
   
   struct Output {
-    
+    let hasSellerAuthority: Driver<Bool>
   }
   
   // MARK: - Property
@@ -31,6 +37,13 @@ final class ShoppingViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    return Output()
+    let hasSellerAuthority = PublishRelay<Bool>()
+    
+    input.viewDidLoadEvent
+      .map { UserInfoService.hasSellerAuthority }
+      .bind(to: hasSellerAuthority)
+      .disposed(by: disposeBag)
+    
+    return Output(hasSellerAuthority: hasSellerAuthority.asDriver(onErrorJustReturn: false))
   }
 }

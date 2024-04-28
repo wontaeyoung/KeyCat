@@ -54,6 +54,15 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
   
   override func bind() {
     
+    let input = ShoppingViewModel.Input()
+    let output = viewModel.transform(input: input)
+    
+    output.hasSellerAuthority
+      .map { !$0 }
+      .drive(createPostFloatingButton.rx.isHidden)
+      .disposed(by: disposeBag)
+    
+    input.viewDidLoadEvent.accept(())
   }
   
   // MARK: - Method
