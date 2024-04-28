@@ -54,7 +54,7 @@ extension AppCoordinator: CoordinatorDelegate {
   }
   
   private func connectFlow() {
-    if APITokenContainer.hasSignInLog {
+    if UserInfoService.hasSignInLog {
       connectMainTabBarFlow()
     } else {
       connectSignFlow()

@@ -1,11 +1,11 @@
 //
-//  APITokenContainer.swift
+//  UserInfoService.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/18/24.
 //
 
-struct APITokenContainer {
+struct UserInfoService {
   
   @UserDefault(key: .accessToken, defaultValue: "")
   static var accessToken: String

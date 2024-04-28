@@ -33,7 +33,7 @@
 		6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8A2BD11416005A529F /* Date+.swift */; };
 		6E0A4F8D2BD1304D005A529F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */; };
 		6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8E2BD13314005A529F /* UserDefaultManager.swift */; };
-		6E0A4F922BD13353005A529F /* APITokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F912BD13353005A529F /* APITokenContainer.swift */; };
+		6E0A4F922BD13353005A529F /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F912BD13353005A529F /* UserInfoService.swift */; };
 		6E0A4F942BD13885005A529F /* HTTPStatusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F932BD13885005A529F /* HTTPStatusError.swift */; };
 		6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F992BD14F79005A529F /* AuthCoordinator.swift */; };
 		6E0A4F9C2BD14F98005A529F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F9B2BD14F98005A529F /* SignInViewController.swift */; };
@@ -190,7 +190,7 @@
 		6E0A4F8A2BD11416005A529F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		6E0A4F8E2BD13314005A529F /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		6E0A4F912BD13353005A529F /* APITokenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokenContainer.swift; sourceTree = "<group>"; };
+		6E0A4F912BD13353005A529F /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		6E0A4F932BD13885005A529F /* HTTPStatusError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusError.swift; sourceTree = "<group>"; };
 		6E0A4F992BD14F79005A529F /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		6E0A4F9B2BD14F98005A529F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -501,7 +501,6 @@
 				6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */,
 				6E77ED0B2BCE6A9500ACDA3B /* APIService.swift */,
 				6E0A4F8C2BD1304D005A529F /* APIRequestInterceptor.swift */,
-				6E0A4F912BD13353005A529F /* APITokenContainer.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -558,6 +557,7 @@
 		6E567E282BC5783D00250C56 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6EC801F22BDE613F00FE2B69 /* Local */,
 				6E567E372BC66DC100250C56 /* Repository */,
 				6E567E362BC66DBA00250C56 /* DTO */,
 				6E567E352BC66DB800250C56 /* Network */,
@@ -988,6 +988,22 @@
 			path = Parameter;
 			sourceTree = "<group>";
 		};
+		6EC801F22BDE613F00FE2B69 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				6EC801F32BDE614600FE2B69 /* UserDefaults */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		6EC801F32BDE614600FE2B69 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				6E0A4F912BD13353005A529F /* UserInfoService.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		6EFB92162BDBFB5A00AA8D09 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
@@ -1111,7 +1127,7 @@
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
 				6E0778522BDBEF6A00B3A6EC /* MainTabBarPage.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
-				6E0A4F922BD13353005A529F /* APITokenContainer.swift in Sources */,
+				6E0A4F922BD13353005A529F /* UserInfoService.swift in Sources */,
 				6E0A4FE92BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift in Sources */,
 				6E77ECFF2BCE63FF00ACDA3B /* HTTPError.swift in Sources */,
 				6E77ECFA2BCE585100ACDA3B /* Data+.swift in Sources */,

@@ -19,15 +19,15 @@ final class APIRequestInterceptor: RequestInterceptor {
     guard
       let urlString = urlRequest.url?.absoluteString,
       urlString.hasPrefix(APIKey.baseURL),
-      APITokenContainer.hasSignInLog
+      UserInfoService.hasSignInLog
     else {
       completion(.success(urlRequest))
       return
     }
     
     let urlRequest = urlRequest.applied {
-      $0.setValue(APITokenContainer.accessToken, forHTTPHeaderField: KCHeader.Key.authorization)
-      $0.setValue(APITokenContainer.refreshToken, forHTTPHeaderField: KCHeader.Key.refresh)
+      $0.setValue(UserInfoService.accessToken, forHTTPHeaderField: KCHeader.Key.authorization)
+      $0.setValue(UserInfoService.refreshToken, forHTTPHeaderField: KCHeader.Key.refresh)
     }
     
     completion(.success(urlRequest))
@@ -54,7 +54,7 @@ final class APIRequestInterceptor: RequestInterceptor {
         
         switch response.result {
           case .success(let tokenResponse):
-            APITokenContainer.accessToken = tokenResponse.accessToken
+            UserInfoService.accessToken = tokenResponse.accessToken
             completion(.retry)
             
           case .failure:

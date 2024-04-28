@@ -77,7 +77,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
         return .error(domainError)
       }
       .do { response in
-        APITokenContainer.login(accessToken: response.accessToken, refreshToken: response.refreshToken)
+        UserInfoService.login(accessToken: response.accessToken, refreshToken: response.refreshToken)
       }
       .map { self.userMapper.toEntity($0) }
   }
