@@ -27,8 +27,9 @@ struct UserInfoService {
   }
   
   static func logout() {
-    accessToken = ""
-    refreshToken = ""
+    accessToken = .defaultValue
+    refreshToken = .defaultValue
+    hasSellerAuthority = .defaultValue
   }
 }
 
