@@ -15,7 +15,7 @@ class ProductField: YoshikoTextField {
   
   let disposeBag = DisposeBag()
   
-  init(placeholder: String? = nil, clearable: Bool = true) {
+  init(placeholder: String? = nil, clearable: Bool = false) {
     super.init(frame: .zero)
     
     self.font = KCAsset.Font.signField
@@ -25,7 +25,10 @@ class ProductField: YoshikoTextField {
     self.spellCheckingType = .no
     self.tintColor = KCAsset.Color.brand
     self.clearButtonMode = clearable ? .whileEditing : .never
-    self.placeholderColor = KCAsset.Color.brand
+    self.placeholderColor = KCAsset.Color.darkGray
+    
+    self.activeBorderColor = .accent
+    self.inactiveBorderColor = KCAsset.Color.lightGrayBackground
     
     self.snp.makeConstraints { make in
       make.height.equalTo(60)
