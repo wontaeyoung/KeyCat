@@ -157,6 +157,8 @@
 		6E98291B2BCFF0C900105910 /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E98291A2BCFF0C900105910 /* LikeRouter.swift */; };
 		6E98291D2BD0915000105910 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E98291C2BD0915000105910 /* UserRouter.swift */; };
 		6EC801EF2BDD42A000FE2B69 /* ProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801EE2BDD42A000FE2B69 /* ProductField.swift */; };
+		6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */; };
+		6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */; };
 		6EFB92152BDBFB1200AA8D09 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */; };
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
@@ -313,6 +315,8 @@
 		6E98291A2BCFF0C900105910 /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		6E98291C2BD0915000105910 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		6EC801EE2BDD42A000FE2B69 /* ProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductField.swift; sourceTree = "<group>"; };
+		6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewController.swift; sourceTree = "<group>"; };
+		6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewModel.swift; sourceTree = "<group>"; };
 		6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
@@ -1004,9 +1008,19 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */ = {
+			isa = PBXGroup;
+			children = (
+				6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */,
+				6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */,
+			);
+			path = CreateCommercialPost;
+			sourceTree = "<group>";
+		};
 		6EFB92162BDBFB5A00AA8D09 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
+				6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */,
 				6EFB92172BDBFC6600AA8D09 /* Coordinator */,
 				6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */,
 				6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */,
@@ -1126,6 +1140,7 @@
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
 				6E0778522BDBEF6A00B3A6EC /* MainTabBarPage.swift in Sources */,
+				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
 				6E0A4F922BD13353005A529F /* UserInfoService.swift in Sources */,
 				6E0A4FE92BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift in Sources */,
@@ -1176,6 +1191,7 @@
 				6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */,
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
+				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
 				6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
