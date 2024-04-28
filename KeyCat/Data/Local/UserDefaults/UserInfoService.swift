@@ -13,6 +13,9 @@ struct UserInfoService {
   @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
   static var refreshToken: String
   
+  @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
+  static var hasSellerAuthority: Bool
+  
   static var hasSignInLog: Bool {
     return !accessToken.isEmpty && !refreshToken.isEmpty
   }
@@ -39,6 +42,7 @@ extension UserInfoService {
     
     case accessToken
     case refreshToken
+    case hasSellerAuthority
     
     var name: String {
       return self.rawValue
