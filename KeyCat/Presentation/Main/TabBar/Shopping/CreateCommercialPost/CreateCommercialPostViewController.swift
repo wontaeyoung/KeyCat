@@ -13,20 +13,44 @@ import RxCocoa
 final class CreateCommercialPostViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private let scrollView = UIScrollView().configured {
+  // MARK: 뷰 컨테이너
+  private let scrollView = UIScrollView().configured { $0.keyboardDismissMode = .onDrag }
+  private let contentView = UIView()
+  
+  // MARK: 상품 이미지 컬렉션
+  private lazy var productImageCollectionView = UICollectionView(
+    frame: .zero,
+    collectionViewLayout: layout
+  ).configured {
+    $0.register(
+      CommercialPostImageCollectionCell.self,
+      forCellWithReuseIdentifier: CommercialPostImageCollectionCell.identifier
+    )
+    $0.showsHorizontalScrollIndicator = false
     $0.keyboardDismissMode = .onDrag
   }
-  private let contentView = UIView()
+  
+  private var layout: UICollectionViewFlowLayout {
+    let cellCount: CGFloat = 3
+    let cellSpacing: CGFloat = 20
+    let cellWidth: CGFloat = (UIScreen.main.bounds.width - (cellSpacing * (2 + cellCount - 1))) / cellCount
+    
+    return UICollectionViewFlowLayout().configured {
+      $0.itemSize = CGSize(width: cellWidth, height: cellWidth)
+      $0.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
+      $0.minimumInteritemSpacing = cellSpacing
+      $0.scrollDirection = .horizontal
+    }
+  }
+  
+  // MARK: Product Name
   private let titleField = ProductField(placeholder: "상품명")
   
+  // MARK: 키보드 정보
   private let keyboardSectionLabel = KCLabel(style: .mainInfoTitle, title: "키보드")
-  private let keyboardInfoSectionLabel = KCLabel(style: .sectionTitle, title: "스펙")
-  private let keyboardInfoDivider = Divider()
-  private let keycapInfoSectionLabel = KCLabel(style: .sectionTitle, title: "키캡")
-  private let keycapInfoDivider = Divider()
-  private let keyboardAppearanceInfoSectionLabel = KCLabel(style: .sectionTitle, title: "디자인")
-  private let keyboardAppearanceInfoDivider = Divider()
   
+  // MARK: 키보드 스펙 섹션
+  private let keyboardInfoSectionLabel = KCLabel(style: .sectionTitle, title: "스펙")
   private lazy var keyboardInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 15
@@ -41,7 +65,19 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       selectPCBTypeView
     )
   }
+  private let keyboardInfoDivider = Divider()
+  private let selectPurposeView = KeyboardInfoSelectView(type: KeyboardInfo.Purpose.self)
+  private let selectInputMechanismView = KeyboardInfoSelectView(type: KeyboardInfo.InputMechanism.self)
+  private let selectConnectionTypeView = KeyboardInfoSelectView(type: KeyboardInfo.ConnectionType.self)
+  private let selectPowerSourceView = KeyboardInfoSelectView(type: KeyboardInfo.PowerSource.self)
+  private let selectBacklightView = KeyboardInfoSelectView(type: KeyboardInfo.Backlight.self)
+  private let selectMechnicalSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.MechanicalSwitch.self)
+  private let selectCapacitiveSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.CapacitiveSwitch.self)
+  private let selectPCBTypeView = KeyboardInfoSelectView(type: KeyboardInfo.PCBType.self)
   
+  // MARK: 키캡 정보 섹션
+  private let keycapInfoSectionLabel = KCLabel(style: .sectionTitle, title: "키캡")
+  private let keycapInfoDivider = Divider()
   private lazy var keycapInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 15
@@ -52,7 +88,14 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       selectPrintingLanguageView
     )
   }
+  private let selectKeycapProfileView = KeyboardInfoSelectView(type: KeycapInfo.KeycapProfile.self)
+  private let selectPrintingDirectionView = KeyboardInfoSelectView(type: KeycapInfo.PrintingDirection.self)
+  private let selectPrintingProcessView = KeyboardInfoSelectView(type: KeycapInfo.PrintingProcess.self)
+  private let selectPrintingLanguageView = KeyboardInfoSelectView(type: KeycapInfo.PrintingLanguage.self)
   
+  // MARK: 키보드 디자인 섹션
+  private let keyboardAppearanceInfoSectionLabel = KCLabel(style: .sectionTitle, title: "디자인")
+  private let keyboardAppearanceInfoDivider = Divider()
   private lazy var keyboardAppearanceInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 15
@@ -62,24 +105,6 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       selectMaterialView
     )
   }
-  
-  /// 키보드 스펙
-  private let selectPurposeView = KeyboardInfoSelectView(type: KeyboardInfo.Purpose.self)
-  private let selectInputMechanismView = KeyboardInfoSelectView(type: KeyboardInfo.InputMechanism.self)
-  private let selectConnectionTypeView = KeyboardInfoSelectView(type: KeyboardInfo.ConnectionType.self)
-  private let selectPowerSourceView = KeyboardInfoSelectView(type: KeyboardInfo.PowerSource.self)
-  private let selectBacklightView = KeyboardInfoSelectView(type: KeyboardInfo.Backlight.self)
-  private let selectMechnicalSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.MechanicalSwitch.self)
-  private let selectCapacitiveSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.CapacitiveSwitch.self)
-  private let selectPCBTypeView = KeyboardInfoSelectView(type: KeyboardInfo.PCBType.self)
-  
-  /// 키캡 정보
-  private let selectKeycapProfileView = KeyboardInfoSelectView(type: KeycapInfo.KeycapProfile.self)
-  private let selectPrintingDirectionView = KeyboardInfoSelectView(type: KeycapInfo.PrintingDirection.self)
-  private let selectPrintingProcessView = KeyboardInfoSelectView(type: KeycapInfo.PrintingProcess.self)
-  private let selectPrintingLanguageView = KeyboardInfoSelectView(type: KeycapInfo.PrintingLanguage.self)
-  
-  /// 키보드 디자인
   private let selectLayoutRatioView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.LayoutRatio.self)
   private let selectKeyboardDesignView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.KeyboardDesign.self)
   private let selectMaterialView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.Material.self)
@@ -99,6 +124,8 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     view.addSubviews(scrollView)
     scrollView.addSubviews(contentView)
     contentView.addSubviews(
+      productImageCollectionView,
+      
       titleField,
       
       keyboardSectionLabel,
@@ -127,8 +154,14 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.verticalEdges.equalTo(scrollView)
     }
     
+    productImageCollectionView.snp.makeConstraints { make in
+      make.top.equalToSuperview()
+      make.horizontalEdges.equalToSuperview()
+      make.height.equalTo(150)
+    }
+    
     titleField.snp.makeConstraints { make in
-      make.top.equalTo(contentView)
+      make.top.equalTo(productImageCollectionView.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
@@ -182,11 +215,6 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
     }
-  }
-  
-  override func setAttribute() {
-    scrollView.isUserInteractionEnabled = true
-    contentView.isUserInteractionEnabled = true
   }
   
   override func bind() {
