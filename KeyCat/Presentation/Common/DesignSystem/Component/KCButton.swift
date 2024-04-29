@@ -88,11 +88,7 @@ extension KCButton {
     private static let iconConfig: UIButton.Configuration = .plain().applied {
       
       $0.cornerStyle = .capsule
-      $0.buttonSize = .mini
-      
-      $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.captionLabel }
-      }
+      $0.buttonSize = .small
     }
     
     var configuration: UIButton.Configuration {
