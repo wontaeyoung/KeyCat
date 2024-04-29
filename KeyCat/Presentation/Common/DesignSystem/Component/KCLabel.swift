@@ -54,6 +54,13 @@ class KCLabel: UILabel {
           $0.numberOfLines = 2
         }
         
+      case .sectionTitle:
+        self.configure {
+          $0.font = KCAsset.Font.sectionTitle
+          $0.textColor = KCAsset.Color.darkGray
+          $0.numberOfLines = 1
+        }
+        
       case .standardTitle:
         self.configure {
           $0.font = KCAsset.Font.standardTitle
@@ -76,6 +83,7 @@ extension KCLabel {
     case placeholder
     case logo
     case mainInfoTitle
+    case sectionTitle
     case standardTitle
   }
   
