@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class RxBaseViewController: UIViewController {
   
@@ -16,10 +17,20 @@ class RxBaseViewController: UIViewController {
   
   // MARK: - Property
   var disposeBag = DisposeBag()
+  let tap = PublishRelay<Void>()
   
   // MARK: - Initializer
   init() {
     super.init(nibName: nil, bundle: nil)
+    
+    let tapGesture = UITapGestureRecognizer()
+    view.addGestureRecognizer(tapGesture)
+    
+    tapGesture.rx.event
+      .buttonThrottle(seconds: 1)
+      .map { _ in () }
+      .bind(to: tap)
+      .disposed(by: disposeBag)
   }
   
   @available(*, unavailable)

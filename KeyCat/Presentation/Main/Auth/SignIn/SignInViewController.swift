@@ -173,10 +173,7 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     /// 뷰 탭 제스처 EndEditEvent 연결
-    let tap = UITapGestureRecognizer()
-    view.addGestureRecognizer(tap)
-    tap.rx.event
-      .map { _ in () }
+    tap
       .bind(to: endEditEvnet)
       .disposed(by: disposeBag)
     

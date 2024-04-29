@@ -67,10 +67,7 @@ class SignUpBaseViewController: RxBaseViewController {
   }
   
   private func bindEndEditing() {
-    let tap = UITapGestureRecognizer()
-    view.addGestureRecognizer(tap)
-    
-    tap.rx.event
+    tap
       .bind(with: self) { owner, _ in
         owner.view.endEditing(true)
       }
