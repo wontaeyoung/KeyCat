@@ -11,7 +11,7 @@ import TextFieldEffects
 import RxSwift
 import RxCocoa
 
-class ProductField: YoshikoTextField {
+final class ProductField: YoshikoTextField {
   
   let disposeBag = DisposeBag()
   

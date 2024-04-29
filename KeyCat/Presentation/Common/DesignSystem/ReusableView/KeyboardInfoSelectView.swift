@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class KeyboardInfoSelectView<T: SelectionExpressible>: RxBaseView {
+final class KeyboardInfoSelectView<T: SelectionExpressible>: RxBaseView {
   
   private let titleLabel = KCLabel(style: .standardTitle)
   private let popUpButton = KCButton(style: .plain)
@@ -19,7 +19,7 @@ class KeyboardInfoSelectView<T: SelectionExpressible>: RxBaseView {
   
   init(type: T.Type) {
     
-    selectedOption = BehaviorRelay<T>(value: type.coalesce)
+    self.selectedOption = BehaviorRelay<T>(value: type.coalesce)
     super.init()
     
     titleLabel.text = type.title

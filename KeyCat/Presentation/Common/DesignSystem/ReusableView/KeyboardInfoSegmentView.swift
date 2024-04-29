@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class KeyboardInfoSegmentView<T: SelectionExpressible>: UIView {
+final class KeyboardInfoSegmentView<T: SelectionExpressible>: UIView {
   
   private let scrollView = UIScrollView().configured {
     $0.showsHorizontalScrollIndicator = false

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SecureButton: UIButton {
+final class SecureButton: UIButton {
   
   private let disposeBag = DisposeBag()
   private let field: UITextField
