@@ -13,6 +13,7 @@ enum BusinessValue {
     
     static let maxContentLength: Int = 300
     static let maxProductImage: Int = 5
+    static let deliveryCharge: Int = 3000
   }
   
   enum OptionLength {
