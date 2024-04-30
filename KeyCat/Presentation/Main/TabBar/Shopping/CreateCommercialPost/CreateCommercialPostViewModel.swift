@@ -5,6 +5,7 @@
 //  Created by 원태영 on 4/28/24.
 //
 
+import Foundation
 import RxSwift
 import RxCocoa
 
@@ -12,7 +13,94 @@ final class CreateCommercialPostViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
+    let title: PublishRelay<String>
+    let content: PublishRelay<String>
+    let images: PublishRelay<[Data]>
     
+    let regularPrice: PublishRelay<Int>
+    let couponPrice: PublishRelay<Int>
+    let discountPrice: PublishRelay<Int>
+    let discountExpiry: PublishRelay<Date>
+    
+    let deliveryPrice: PublishRelay<DeliveryInfo.Price>
+    let deliverySchedule: PublishRelay<DeliveryInfo.Schedule>
+    
+    let purpose: PublishRelay<KeyboardInfo.Purpose>
+    let inputMechanism: PublishRelay<KeyboardInfo.InputMechanism>
+    let connectionType: PublishRelay<KeyboardInfo.ConnectionType>
+    let powerSource: PublishRelay<KeyboardInfo.PowerSource>
+    let backlight: PublishRelay<KeyboardInfo.Backlight>
+    let mechnicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch>
+    let capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch>
+    let pcbType: PublishRelay<KeyboardInfo.PCBType>
+    
+    let keycapProfile: PublishRelay<KeycapInfo.KeycapProfile>
+    let printingDirection: PublishRelay<KeycapInfo.PrintingDirection>
+    let printingProcess: PublishRelay<KeycapInfo.PrintingProcess>
+    let printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage>
+    
+    let layoutRatio: PublishRelay<KeyboardAppearanceInfo>
+    let keyboardDesign: PublishRelay<KeyboardAppearanceInfo>
+    let material: PublishRelay<KeyboardAppearanceInfo>
+    
+    let createPostTapEvent: PublishRelay<Void>
+    let leaveTapEvent: PublishRelay<Void>
+    
+    init(
+      title: PublishRelay<String> = .init(),
+      content: PublishRelay<String> = .init(),
+      images: PublishRelay<[Data]> = .init(),
+      regularPrice: PublishRelay<Int> = .init(),
+      couponPrice: PublishRelay<Int> = .init(),
+      discountPrice: PublishRelay<Int> = .init(),
+      discountExpiry: PublishRelay<Date> = .init(),
+      deliveryPrice: PublishRelay<DeliveryInfo.Price> = .init(),
+      deliverySchedule: PublishRelay<DeliveryInfo.Schedule> = .init(),
+      purpose: PublishRelay<KeyboardInfo.Purpose> = .init(),
+      inputMechanism: PublishRelay<KeyboardInfo.InputMechanism> = .init(),
+      connectionType: PublishRelay<KeyboardInfo.ConnectionType> = .init(),
+      powerSource: PublishRelay<KeyboardInfo.PowerSource> = .init(),
+      backlight: PublishRelay<KeyboardInfo.Backlight> = .init(),
+      mechnicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch> = .init(),
+      capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch> = .init(),
+      pcbType: PublishRelay<KeyboardInfo.PCBType> = .init(),
+      keycapProfile: PublishRelay<KeycapInfo.KeycapProfile> = .init(),
+      printingDirection: PublishRelay<KeycapInfo.PrintingDirection> = .init(),
+      printingProcess: PublishRelay<KeycapInfo.PrintingProcess> = .init(),
+      printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage> = .init(),
+      layoutRatio: PublishRelay<KeyboardAppearanceInfo> = .init(),
+      keyboardDesign: PublishRelay<KeyboardAppearanceInfo> = .init(),
+      material: PublishRelay<KeyboardAppearanceInfo> = .init(),
+      createPostTapEvent: PublishRelay<Void> = .init(),
+      leaveTapEvent: PublishRelay<Void> = .init()
+    ) {
+      self.title = title
+      self.content = content
+      self.images = images
+      self.regularPrice = regularPrice
+      self.couponPrice = couponPrice
+      self.discountPrice = discountPrice
+      self.discountExpiry = discountExpiry
+      self.deliveryPrice = deliveryPrice
+      self.deliverySchedule = deliverySchedule
+      self.purpose = purpose
+      self.inputMechanism = inputMechanism
+      self.connectionType = connectionType
+      self.powerSource = powerSource
+      self.backlight = backlight
+      self.mechnicalSwitch = mechnicalSwitch
+      self.capacitiveSwitch = capacitiveSwitch
+      self.pcbType = pcbType
+      self.keycapProfile = keycapProfile
+      self.printingDirection = printingDirection
+      self.printingProcess = printingProcess
+      self.printingLanguage = printingLanguage
+      self.layoutRatio = layoutRatio
+      self.keyboardDesign = keyboardDesign
+      self.material = material
+      self.createPostTapEvent = createPostTapEvent
+      self.leaveTapEvent = leaveTapEvent
+    }
   }
   
   struct Output {
