@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import PhotosUI
 
 final class CreateCommercialPostViewController: RxBaseViewController, ViewModelController {
   
@@ -46,6 +47,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     )
     $0.showsHorizontalScrollIndicator = false
     $0.keyboardDismissMode = .onDrag
+    $0.allowsSelection = true
   }
   
   private var compositionalLayout = UICollectionViewCompositionalLayout(
@@ -194,6 +196,24 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Property
   let viewModel: CreateCommercialPostViewModel
+  
+  private var imageContainer: [UIImage] = [] {
+    willSet {
+      images.accept(newValue)
+    }
+  }
+  
+  private let images = BehaviorRelay<[UIImage]>(value: [])
+  
+  private let phPickerConfiguration = PHPickerConfiguration().applied {
+    $0.selectionLimit = BusinessValue.Product.maxProductImage
+    $0.filter = .images
+    $0.selection = .ordered
+  }
+  
+  private lazy var phPicker = PHPickerViewController(configuration: phPickerConfiguration).configured {
+    $0.delegate = self
+  }
   
   // MARK: - Initializer
   init(viewModel: CreateCommercialPostViewModel) {
@@ -371,15 +391,39 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   
   override func bind() {
     
-    selectInputMechanismView.selectedOption
-      .bind {
-        print($0.name)
+    /// 이미지 추가 버튼 > 이미지 선택 뷰 표시
+    addImageButton.rx.tap
+      .buttonThrottle()
+      .bind(with: self) { owner, _ in
+        owner.present(owner.phPicker, animated: true)
       }
       .disposed(by: disposeBag)
+    
+    /// 현재 이미지 갯수를 이미지 추가 버튼 라벨에 반영
+    images
+      .map { "\($0.count) / \(BusinessValue.Product.maxProductImage)" }
+      .bind(to: addImageButton.rx.title())
+      .disposed(by: disposeBag)
+    
+    /// 현재 이미지로 이미지 컬렉션 뷰 그리기
+    images
+      .bind(to: productImageCollectionView.rx.items(
+        cellIdentifier: CommercialPostImageCollectionCell.identifier,
+        cellType: CommercialPostImageCollectionCell.self)
+      ) { row, item, cell in
+        cell.updateImage(with: item)
+      }
+      .disposed(by: disposeBag)
+    
+    productImageCollectionView.rx.modelSelected(UIImage.self)
+      .bind(with: self) { owner, image in
+        owner.present(PostImageDetailSheetViewController(image: image), animated: true)
+      }
+      .disposed(by: disposeBag)
+    
   }
   
   // MARK: - Method
-  
 }
 
 @available(iOS 17.0, *)
@@ -389,4 +433,26 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       viewModel: CreateCommercialPostViewModel()
     )
   )
+}
+
+extension CreateCommercialPostViewController: PHPickerViewControllerDelegate {
+  func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    
+    imageContainer.removeAll()
+    
+    results.forEach { result in
+      let itemProvider = result.itemProvider
+      guard itemProvider.canLoadObject(ofClass: UIImage.self) else { return }
+      
+      itemProvider.loadObject(ofClass: UIImage.self) { item, error in
+        guard let image = item as? UIImage else { return }
+        
+        GCD.main { [weak self] in
+          self?.imageContainer.append(image)
+        }
+      }
+    }
+    
+    dismiss(animated: true)
+  }
 }
