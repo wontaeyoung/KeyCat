@@ -29,7 +29,7 @@ struct DeliveryInfo {
     
     var name: String {
       switch self {
-        case .paid: "\(BusinessValue.Product.deliveryCharge.formatted())원"
+        case .paid: "\(BusinessValue.Product.defaultDeliveryCharge.formatted())원"
         case .free: "무료배송"
       }
     }
