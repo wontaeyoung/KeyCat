@@ -47,4 +47,18 @@ extension UIViewController {
       completion?()
     }
   }
+  
+  func setBarItem(at position: NavigationBarPosition, item: UIBarButtonItem) {
+    switch position {
+      case .left:
+        navigationItem.setLeftBarButton(item, animated: false)
+      case .right:
+        navigationItem.setRightBarButton(item, animated: false)
+    }
+  }
+  
+  enum NavigationBarPosition {
+    case left
+    case right
+  }
 }
