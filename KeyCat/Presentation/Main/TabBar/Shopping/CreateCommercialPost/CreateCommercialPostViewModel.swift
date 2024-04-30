@@ -119,6 +119,27 @@ final class CreateCommercialPostViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
+    /// 나가기 이벤트 > 작성 중단 안내 팝업 표시
+    input.leaveTapEvent
+      .bind(with: self) { owner, _ in
+        owner.showLeaveAlert()
+      }
+      .disposed(by: disposeBag)
+    
     return Output()
+  }
+}
+
+extension CreateCommercialPostViewModel {
+  
+  private func showLeaveAlert() {
+    coordinator?.showAlert(
+      title: "작성 중단",
+      message: "작성하신 내용이 모두 사라져요. 정말 중단하시겠어요?",
+      okStyle: .destructive,
+      isCancelable: true
+    ) {
+      self.coordinator?.pop()
+    }
   }
 }

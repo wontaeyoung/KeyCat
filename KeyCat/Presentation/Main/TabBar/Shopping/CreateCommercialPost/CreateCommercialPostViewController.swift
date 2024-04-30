@@ -394,6 +394,14 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   
   override func bind() {
     
+    let input = CreateCommercialPostViewModel.Input()
+    let output = viewModel.transform(input: input)
+    
+    leaveBarButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.leaveTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 이미지 추가 버튼 > 이미지 선택 뷰 표시
     addImageButton.rx.tap
       .buttonThrottle()
