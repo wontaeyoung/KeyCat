@@ -55,27 +55,63 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     )
   )
   
-  private var layout: UICollectionViewFlowLayout {
-    let cellCount: CGFloat = 3
-    let cellSpacing: CGFloat = 20
-    let cellWidth: CGFloat = (UIScreen.main.bounds.width - (cellSpacing * (2 + cellCount - 1))) / cellCount
-    
-    return UICollectionViewFlowLayout().configured {
-      $0.itemSize = CGSize(width: cellWidth, height: cellWidth)
-      $0.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
-      $0.minimumInteritemSpacing = cellSpacing
-      $0.scrollDirection = .horizontal
-    }
-  }
-  
   // MARK: 상품 텍스트 정보
-  private let titleField = ProductField(placeholder: "상품명")
+  private let titleLabel = KCLabel(style: .placeholder, title: "상품명")
+  private let titleField = UITextField().configured {
+    $0.borderStyle = .roundedRect
+  }
+  private let contentTextTitleLabel = KCLabel(style: .placeholder, title: "상품 설명")
   private let contentTextView = KCTextView(
     placeholder: "상품의 간단한 설명을 작성해주세요",
     maxLength: BusinessValue.Product.maxContentLength
   )
   private let lengthLabel = KCLabel(style: .placeholder, alignment: .right).configured {
     $0.textColor = KCAsset.Color.lightGrayForeground
+  }
+  
+  // MARK: 가격 정보
+  private let priceSectionLabel = KCLabel(style: .mainInfoTitle, title: "상품가")
+  private lazy var priceInfoStack = UIStackView().configured {
+    $0.axis = .vertical
+    $0.spacing = 20
+    $0.addArrangedSubviews(
+      regularPriceField,
+      couponPriceField,
+      discountPriceField,
+      discountExpiryDateView
+    )
+  }
+  private let regularPriceField = ValidationField(inputInformation: .regularPrice, type: .numberPad)
+  private let discountPriceField = ValidationField(inputInformation: .discountPrice, type: .numberPad)
+  private let couponPriceField = ValidationField(inputInformation: .coupon, type: .numberPad)
+  private lazy var discountExpiryDateView = UIView().configured { view in
+    view.addSubviews(
+      discountExpiryDateTitleLabel,
+      discountExpiryDatePicker
+    )
+    
+    view.snp.makeConstraints { make in
+      make.height.equalTo(discountExpiryDatePicker)
+    }
+    
+    discountExpiryDateTitleLabel.snp.makeConstraints { make in
+      make.leading.equalTo(view)
+      make.centerY.equalTo(view)
+      make.trailing.greaterThanOrEqualTo(discountExpiryDatePicker.snp.leading).offset(-20)
+    }
+    
+    discountExpiryDatePicker.snp.makeConstraints { make in
+      make.centerY.equalTo(view)
+      make.trailing.equalTo(view)
+    }
+  }
+  private let discountExpiryDateTitleLabel = KCLabel(style: .standardTitle, title: "할인 마감일")
+  private let discountExpiryDatePicker = UIDatePicker().configured {
+    $0.preferredDatePickerStyle = .compact
+    $0.datePickerMode = .date
+    $0.minimumDate = .now
+    $0.locale = Constant.Config.koreaLocale
+    $0.timeZone = Constant.Config.koreaTimeZone
   }
   
   // MARK: 키보드 정보
@@ -160,9 +196,14 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       addImageButton,
       productImageCollectionView,
       
+      titleLabel,
       titleField,
+      contentTextTitleLabel,
       contentTextView,
       lengthLabel,
+      
+      priceSectionLabel,
+      priceInfoStack,
       
       keyboardSectionLabel,
       
@@ -203,13 +244,23 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.height.equalTo(120)
     }
     
-    titleField.snp.makeConstraints { make in
+    titleLabel.snp.makeConstraints { make in
       make.top.equalTo(productImageCollectionView.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
-    contentTextView.snp.makeConstraints { make in
+    titleField.snp.makeConstraints { make in
+      make.top.equalTo(titleLabel.snp.bottom).offset(10)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    contentTextTitleLabel.snp.makeConstraints { make in
       make.top.equalTo(titleField.snp.bottom).offset(20)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    contentTextView.snp.makeConstraints { make in
+      make.top.equalTo(contentTextTitleLabel.snp.bottom).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.height.equalTo(300)
     }
@@ -219,8 +270,18 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.trailing.equalTo(contentTextView.snp.trailing)
     }
     
-    keyboardSectionLabel.snp.makeConstraints { make in
+    priceSectionLabel.snp.makeConstraints { make in
       make.top.equalTo(lengthLabel.snp.bottom).offset(30)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    priceInfoStack.snp.makeConstraints { make in
+      make.top.equalTo(priceSectionLabel.snp.bottom).offset(10)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    keyboardSectionLabel.snp.makeConstraints { make in
+      make.top.equalTo(priceInfoStack.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
