@@ -62,6 +62,11 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .drive(createPostFloatingButton.rx.isHidden)
       .disposed(by: disposeBag)
     
+    createPostFloatingButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.createPostTapEvent)
+      .disposed(by: disposeBag)
+    
     input.viewDidLoadEvent.accept(())
   }
   

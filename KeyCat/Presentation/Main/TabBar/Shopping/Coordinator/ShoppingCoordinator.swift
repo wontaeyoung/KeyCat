@@ -34,4 +34,15 @@ extension ShoppingCoordinator {
     
     push(vc)
   }
+  
+  func showCreatePostView() {
+    let vm = CreateCommercialPostViewModel()
+      .coordinator(self)
+    
+    let vc = CreateCommercialPostViewController(viewModel: vm)
+      .hideBackButton()
+      .navigationTitle(with: "상품 판매", displayMode: .never)
+    
+    push(vc)
+  }
 }
