@@ -39,3 +39,11 @@ class KCField: HoshiTextField {
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+extension KCField: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    guard !string.isEmpty else { return true }
+    
+    return Character(string).isNumber
+  }
+}

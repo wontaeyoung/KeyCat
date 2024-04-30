@@ -1,5 +1,5 @@
 //
-//  InputField.swift
+//  ValidationField.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/18/24.
@@ -26,6 +26,10 @@ final class ValidationField: KCField {
     super.init(placeholder: inputInformation.title, clearable: false)
     self.keyboardType = type
     
+    if type == .numberPad {
+      self.delegate = self
+    }
+    
     setLayout()
     bind()
   }
@@ -35,7 +39,7 @@ final class ValidationField: KCField {
     self.addSubviews(validationResultLabel)
     
     validationResultLabel.snp.makeConstraints { make in
-      make.top.equalTo(self.snp.bottom).offset(5)
+      make.top.equalTo(self.snp.bottom).offset(-5)
       make.horizontalEdges.equalTo(self)
       make.height.equalTo(40)
     }
