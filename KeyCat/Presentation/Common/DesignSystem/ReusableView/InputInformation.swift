@@ -23,9 +23,9 @@ enum InputInformation {
       case .passwordCheck: "비밀번호 확인"
       case .nickname: "닉네임"
       case .businessNumber: "사업자 번호"
-      case .regularPrice: "가격"
-      case .discountPrice: "할인가"
-      case .coupon: "쿠폰"
+      case .regularPrice: "가격(₩)"
+      case .discountPrice: "할인가(₩)"
+      case .coupon: "쿠폰(₩)"
     }
   }
   
