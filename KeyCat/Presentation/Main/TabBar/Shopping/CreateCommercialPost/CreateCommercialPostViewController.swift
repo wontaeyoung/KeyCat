@@ -112,6 +112,11 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     $0.preferredDatePickerStyle = .compact
     $0.datePickerMode = .date
     $0.minimumDate = .now
+    $0.maximumDate = DateManager.shared.date(
+      from: .now,
+      as: .month,
+      by: BusinessValue.Product.maxDiscountExpiryMonthFromNow
+    )
     $0.locale = Constant.Config.koreaLocale
     $0.timeZone = Constant.Config.koreaTimeZone
   }
@@ -143,8 +148,6 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       selectConnectionTypeView,
       selectPowerSourceView,
       selectBacklightView,
-      selectMechnicalSwitchView,
-      selectCapacitiveSwitchView,
       selectPCBTypeView
     )
   }
@@ -415,15 +418,41 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 셀 선택 > 이미지 디테일 시트뷰 표시
     productImageCollectionView.rx.modelSelected(UIImage.self)
       .bind(with: self) { owner, image in
         owner.present(PostImageDetailSheetViewController(image: image), animated: true)
       }
       .disposed(by: disposeBag)
     
+    /// 입력방식 변경 > 스위치 선택 뷰 표시 여부 변경
+    selectInputMechanismView.selectedOption
+      .bind(with: self) { owner, inputMechanism in
+        owner.updateSwitchSelectionLayout(inputMechanism: inputMechanism)
+      }
+      .disposed(by: disposeBag)
+    
   }
   
   // MARK: - Method
+  private func updateSwitchSelectionLayout(inputMechanism: KeyboardInfo.InputMechanism) {
+    
+    keyboardInfoStack.removeArrangedSubviews(
+      selectMechnicalSwitchView,
+      selectCapacitiveSwitchView
+    )
+    
+    switch inputMechanism {
+      case .mechanical:
+        keyboardInfoStack.addArrangedSubview(selectMechnicalSwitchView)
+        
+      case .capacitiveNonContact:
+        keyboardInfoStack.addArrangedSubview(selectCapacitiveSwitchView)
+        
+      default:
+        break
+    }
+  }
 }
 
 @available(iOS 17.0, *)
