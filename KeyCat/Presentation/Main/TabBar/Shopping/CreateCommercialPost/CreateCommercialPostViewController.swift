@@ -73,7 +73,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let priceSectionLabel = KCLabel(style: .mainInfoTitle, title: "상품가")
   private lazy var priceInfoStack = UIStackView().configured {
     $0.axis = .vertical
-    $0.spacing = 20
+    $0.spacing = 30
     $0.addArrangedSubviews(
       regularPriceField,
       couponPriceField,
@@ -114,6 +114,19 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     $0.timeZone = Constant.Config.koreaTimeZone
   }
   
+  // MARK: 배송 정보
+  private let deliverySectionLabel = KCLabel(style: .mainInfoTitle, title: "배송")
+  private lazy var deliveryInfoStack = UIStackView().configured {
+    $0.axis = .vertical
+    $0.spacing = 20
+    $0.addArrangedSubviews(
+      selectDeliveryPriceView,
+      selectDeliveryScheduleView
+    )
+  }
+  private let selectDeliveryPriceView = KeyboardInfoSelectView(type: DeliveryInfo.Price.self)
+  private let selectDeliveryScheduleView = KeyboardInfoSelectView(type: DeliveryInfo.Schedule.self)
+  
   // MARK: 키보드 정보
   private let keyboardSectionLabel = KCLabel(style: .mainInfoTitle, title: "키보드")
   
@@ -121,7 +134,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let keyboardInfoSectionLabel = KCLabel(style: .sectionTitle, title: "스펙")
   private lazy var keyboardInfoStack = UIStackView().configured {
     $0.axis = .vertical
-    $0.spacing = 15
+    $0.spacing = 20
     $0.addArrangedSubviews(
       selectPurposeView,
       selectInputMechanismView,
@@ -148,7 +161,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let keycapInfoDivider = Divider()
   private lazy var keycapInfoStack = UIStackView().configured {
     $0.axis = .vertical
-    $0.spacing = 15
+    $0.spacing = 20
     $0.addArrangedSubviews(
       selectKeycapProfileView,
       selectPrintingDirectionView,
@@ -166,7 +179,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let keyboardAppearanceInfoDivider = Divider()
   private lazy var keyboardAppearanceInfoStack = UIStackView().configured {
     $0.axis = .vertical
-    $0.spacing = 15
+    $0.spacing = 20
     $0.addArrangedSubviews(
       selectLayoutRatioView,
       selectKeyboardDesignView,
@@ -177,6 +190,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectKeyboardDesignView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.KeyboardDesign.self)
   private let selectMaterialView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.Material.self)
   
+  private let createPostButton = KCButton(style: .primary, title: "작성 완료")
   
   // MARK: - Property
   let viewModel: CreateCommercialPostViewModel
@@ -190,7 +204,10 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubviews(scrollView)
+    view.addSubviews(
+      scrollView,
+      createPostButton
+    )
     scrollView.addSubviews(contentView)
     contentView.addSubviews(
       addImageButton,
@@ -204,6 +221,9 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       
       priceSectionLabel,
       priceInfoStack,
+      
+      deliverySectionLabel,
+      deliveryInfoStack,
       
       keyboardSectionLabel,
       
@@ -223,7 +243,9 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   
   override func setConstraint() {
     scrollView.snp.makeConstraints { make in
-      make.edges.equalTo(view.safeAreaLayoutGuide)
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.horizontalEdges.equalTo(view)
+      make.bottom.equalTo(createPostButton.snp.top)
     }
     
     contentView.snp.makeConstraints { make in
@@ -271,7 +293,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     }
     
     priceSectionLabel.snp.makeConstraints { make in
-      make.top.equalTo(lengthLabel.snp.bottom).offset(30)
+      make.top.equalTo(lengthLabel.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
@@ -280,8 +302,18 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
-    keyboardSectionLabel.snp.makeConstraints { make in
+    deliverySectionLabel.snp.makeConstraints { make in
       make.top.equalTo(priceInfoStack.snp.bottom).offset(40)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    deliveryInfoStack.snp.makeConstraints { make in
+      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(10)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    keyboardSectionLabel.snp.makeConstraints { make in
+      make.top.equalTo(deliveryInfoStack.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
@@ -328,7 +360,12 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     keyboardAppearanceInfoStack.snp.makeConstraints { make in
       make.top.equalTo(keyboardAppearanceInfoDivider.snp.bottom).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
-      make.bottom.equalToSuperview()
+      make.bottom.equalToSuperview().inset(20)
+    }
+    
+    createPostButton.snp.makeConstraints { make in
+      make.horizontalEdges.equalTo(view).inset(20)
+      make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
     }
   }
   
