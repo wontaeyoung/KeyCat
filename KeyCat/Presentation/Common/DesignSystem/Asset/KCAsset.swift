@@ -57,6 +57,7 @@ enum KCAsset {
     static let standardTitle: UIFont = font(.medium, size: 16)
     static let buttonTitle: UIFont = font(.bold, size: 19)
     static let captionLabel: UIFont = font(.medium, size: 15)
+    static let contentText: UIFont = font(.medium, size: 15)
     
     static let toastTitle: UIFont = font(.bold, size: 17)
     static let toastMessage: UIFont = font(.bold, size: 15)
@@ -66,10 +67,12 @@ enum KCAsset {
     
     private enum SF: String {
       
+      case xmark = "xmark"
       case xmarkCircleFill = "xmark.circle.fill"
       case checkmarkCircle = "checkmark.circle"
       case checkmarkCircleFill = "checkmark.circle.fill"
       case plusCircleFill = "plus.circle.fill"
+      case cameraFill = "camera.fill"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -83,10 +86,12 @@ enum KCAsset {
       return UIImage(systemName: sf.rawValue)
     }
     
+    static let leaveButton: UIImage? = image(.xmark)
     static let closeButton: UIImage? = image(.xmarkCircleFill)
     static let checkboxOff: UIImage? = image(.checkmarkCircle)
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
+    static let addImageButton: UIImage? = image(.cameraFill)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)
