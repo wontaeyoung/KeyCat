@@ -7,8 +7,6 @@
 
 import UIKit
 import SnapKit
-import RxSwift
-import RxCocoa
 
 final class CommercialPostImageCollectionCell: RxBaseCollectionViewCell {
   
@@ -23,49 +21,21 @@ final class CommercialPostImageCollectionCell: RxBaseCollectionViewCell {
     }
   }
   
-  private let deleteImageButton = KCButton(style: .icon, image: KCAsset.Symbol.closeButton)
-  
-  // MARK: - Observable
-  private let indexRelay = BehaviorRelay<Int>(value: 0)
-  
   // MARK: - Life Cycle
-  override func prepareForReuse() {
-    disposeBag = DisposeBag()
-  }
-  
   override func setHierarchy() {
-    contentView.addSubviews(
-      imageView,
-      deleteImageButton
-    )
+    contentView.addSubviews(imageView)
   }
   
   override func setConstraint() {
     imageView.snp.makeConstraints { make in
       make.edges.equalTo(contentView)
     }
-    
-    deleteImageButton.snp.makeConstraints { make in
-      make.top.trailing.equalTo(imageView).inset(-15)
-      make.size.equalTo(40)
-    }
   }
 }
 
 extension CommercialPostImageCollectionCell {
   
-  func updateImage(with image: UIImage, at index: Int, tapEvent: PublishRelay<Int>) {
+  func updateImage(with image: UIImage) {
     imageView.image = image
-    indexRelay.accept(index)
-    
-    bindDeleteButtonTapEvent(tapEvent)
-  }
-  
-  private func bindDeleteButtonTapEvent(_ tapEvent: PublishRelay<Int>) {
-    deleteImageButton.rx.tap
-      .buttonThrottle()
-      .withLatestFrom(indexRelay)
-      .bind(to: tapEvent)
-      .disposed(by: disposeBag)
   }
 }
