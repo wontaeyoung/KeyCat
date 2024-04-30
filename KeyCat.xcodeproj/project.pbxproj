@@ -161,6 +161,7 @@
 		6EAEACDD2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACDC2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift */; };
 		6EAEACDF2BDFD0B600993089 /* NSCollectionLayoutSection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */; };
 		6EAEACE12BE06FBB00993089 /* KCTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACE02BE06FBB00993089 /* KCTextView.swift */; };
+		6EAEACF22BE104A500993089 /* PostImageDetailSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACF12BE104A500993089 /* PostImageDetailSheetViewController.swift */; };
 		6EC801EF2BDD42A000FE2B69 /* ProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801EE2BDD42A000FE2B69 /* ProductField.swift */; };
 		6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */; };
 		6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */; };
@@ -327,6 +328,7 @@
 		6EAEACDC2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostImageCollectionCell.swift; sourceTree = "<group>"; };
 		6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSection+.swift"; sourceTree = "<group>"; };
 		6EAEACE02BE06FBB00993089 /* KCTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextView.swift; sourceTree = "<group>"; };
+		6EAEACF12BE104A500993089 /* PostImageDetailSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageDetailSheetViewController.swift; sourceTree = "<group>"; };
 		6EC801EE2BDD42A000FE2B69 /* ProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductField.swift; sourceTree = "<group>"; };
 		6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewController.swift; sourceTree = "<group>"; };
 		6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewModel.swift; sourceTree = "<group>"; };
@@ -1045,6 +1047,7 @@
 				6EAEACDB2BDFCBA600993089 /* Cell */,
 				6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */,
 				6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */,
+				6EAEACF12BE104A500993089 /* PostImageDetailSheetViewController.swift */,
 			);
 			path = CreateCommercialPost;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
+				6EAEACF22BE104A500993089 /* PostImageDetailSheetViewController.swift in Sources */,
 				6E8C9E752BC8B67C0086F913 /* ProfileDTO.swift in Sources */,
 				6E07782C2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift in Sources */,
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
