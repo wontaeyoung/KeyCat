@@ -9,7 +9,14 @@ enum BusinessValue {
   
   static let maxImageFileVolumeMB: Double = 2.0
   
+  enum Product {
+    
+    static let maxContentLength: Int = 300
+    static let maxProductImage: Int = 5
+  }
+  
   enum OptionLength {
+    
     static let keyboardInfo: Int = 8
     static let keycapInfo: Int = 4
     static let keyboardAppearance: Int = 7
