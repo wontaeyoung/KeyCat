@@ -13,14 +13,32 @@ import RxCocoa
 final class CreateCommercialPostViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
+  // MARK: 네비게이션 바
+  private lazy var leaveBarButton = UIBarButtonItem().configured {
+    $0.image = KCAsset.Symbol.leaveButton
+    setBarItem(at: .right, item: $0)
+  }
+  
   // MARK: 뷰 컨테이너
   private let scrollView = UIScrollView().configured { $0.keyboardDismissMode = .onDrag }
   private let contentView = UIView()
   
   // MARK: 상품 이미지 컬렉션
+  private let addImageButton = KCButton(
+    style: .iconWithText,
+    title: "0 / \(BusinessValue.Product.maxProductImage)",
+    image: KCAsset.Symbol.addImageButton
+  ).configured {
+    $0.layer.configure {
+      $0.borderColor = KCAsset.Color.lightGrayForeground.cgColor
+      $0.borderWidth = 1
+      $0.cornerRadius = 10
+    }
+  }
+  
   private lazy var productImageCollectionView = UICollectionView(
     frame: .zero,
-    collectionViewLayout: layout
+    collectionViewLayout: compositionalLayout
   ).configured {
     $0.register(
       CommercialPostImageCollectionCell.self,
@@ -29,6 +47,13 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     $0.showsHorizontalScrollIndicator = false
     $0.keyboardDismissMode = .onDrag
   }
+  
+  private var compositionalLayout = UICollectionViewCompositionalLayout(
+    section: .makeHorizontalScrollSection(
+      itemSpacing: 20,
+      sectionInset: .init(top: 10, leading: 0, bottom: 10, trailing: 20)
+    )
+  )
   
   private var layout: UICollectionViewFlowLayout {
     let cellCount: CGFloat = 3
@@ -43,8 +68,15 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     }
   }
   
-  // MARK: Product Name
+  // MARK: 상품 텍스트 정보
   private let titleField = ProductField(placeholder: "상품명")
+  private let contentTextView = KCTextView(
+    placeholder: "상품의 간단한 설명을 작성해주세요",
+    maxLength: BusinessValue.Product.maxContentLength
+  )
+  private let lengthLabel = KCLabel(style: .placeholder, alignment: .right).configured {
+    $0.textColor = KCAsset.Color.lightGrayForeground
+  }
   
   // MARK: 키보드 정보
   private let keyboardSectionLabel = KCLabel(style: .mainInfoTitle, title: "키보드")
@@ -109,6 +141,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectKeyboardDesignView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.KeyboardDesign.self)
   private let selectMaterialView = KeyboardInfoSelectView(type: KeyboardAppearanceInfo.Material.self)
   
+  
   // MARK: - Property
   let viewModel: CreateCommercialPostViewModel
   
@@ -124,9 +157,12 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     view.addSubviews(scrollView)
     scrollView.addSubviews(contentView)
     contentView.addSubviews(
+      addImageButton,
       productImageCollectionView,
       
       titleField,
+      contentTextView,
+      lengthLabel,
       
       keyboardSectionLabel,
       
@@ -154,10 +190,17 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.verticalEdges.equalTo(scrollView)
     }
     
+    addImageButton.snp.makeConstraints { make in
+      make.leading.equalToSuperview().inset(20)
+      make.centerY.equalTo(productImageCollectionView)
+      make.size.equalTo(100)
+    }
+    
     productImageCollectionView.snp.makeConstraints { make in
       make.top.equalToSuperview()
-      make.horizontalEdges.equalToSuperview()
-      make.height.equalTo(150)
+      make.leading.equalTo(addImageButton.snp.trailing).offset(20)
+      make.trailing.equalToSuperview()
+      make.height.equalTo(120)
     }
     
     titleField.snp.makeConstraints { make in
@@ -165,8 +208,19 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
+    contentTextView.snp.makeConstraints { make in
+      make.top.equalTo(titleField.snp.bottom).offset(20)
+      make.horizontalEdges.equalToSuperview().inset(20)
+      make.height.equalTo(300)
+    }
+    
+    lengthLabel.snp.makeConstraints { make in
+      make.top.equalTo(contentTextView.snp.bottom).offset(10)
+      make.trailing.equalTo(contentTextView.snp.trailing)
+    }
+    
     keyboardSectionLabel.snp.makeConstraints { make in
-      make.top.equalTo(titleField.snp.bottom).offset(40)
+      make.top.equalTo(lengthLabel.snp.bottom).offset(30)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     

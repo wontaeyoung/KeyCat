@@ -160,6 +160,7 @@
 		6EAEACDA2BDFC30600993089 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACD92BDFC30600993089 /* Divider.swift */; };
 		6EAEACDD2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACDC2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift */; };
 		6EAEACDF2BDFD0B600993089 /* NSCollectionLayoutSection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */; };
+		6EAEACE12BE06FBB00993089 /* KCTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEACE02BE06FBB00993089 /* KCTextView.swift */; };
 		6EC801EF2BDD42A000FE2B69 /* ProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801EE2BDD42A000FE2B69 /* ProductField.swift */; };
 		6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */; };
 		6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */; };
@@ -325,6 +326,7 @@
 		6EAEACD92BDFC30600993089 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		6EAEACDC2BDFCBC500993089 /* CommercialPostImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostImageCollectionCell.swift; sourceTree = "<group>"; };
 		6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSection+.swift"; sourceTree = "<group>"; };
+		6EAEACE02BE06FBB00993089 /* KCTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextView.swift; sourceTree = "<group>"; };
 		6EC801EE2BDD42A000FE2B69 /* ProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductField.swift; sourceTree = "<group>"; };
 		6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewController.swift; sourceTree = "<group>"; };
 		6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommercialPostViewModel.swift; sourceTree = "<group>"; };
@@ -430,16 +432,16 @@
 		6E0A4FA12BD1651F005A529F /* ReusableView */ = {
 			isa = PBXGroup;
 			children = (
-				6E0A4FA22BD16538005A529F /* SignField.swift */,
-				6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */,
-				6E0A4FC52BD24153005A529F /* InputInformation.swift */,
-				6E0778052BD7995A00B3A6EC /* SecureButton.swift */,
 				6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */,
-				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
-				6EC801EE2BDD42A000FE2B69 /* ProductField.swift */,
+				6EAEACD92BDFC30600993089 /* Divider.swift */,
+				6E0A4FC52BD24153005A529F /* InputInformation.swift */,
 				6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */,
 				6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */,
-				6EAEACD92BDFC30600993089 /* Divider.swift */,
+				6EC801EE2BDD42A000FE2B69 /* ProductField.swift */,
+				6E0778052BD7995A00B3A6EC /* SecureButton.swift */,
+				6E0A4FA22BD16538005A529F /* SignField.swift */,
+				6E0A4F9F2BD150E0005A529F /* SignUpTextField.swift */,
+				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -760,6 +762,7 @@
 			children = (
 				6E0A4FC92BD241D3005A529F /* KCButton.swift */,
 				6E0A4FCB2BD26A3D005A529F /* KCLabel.swift */,
+				6EAEACE02BE06FBB00993089 /* KCTextView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1299,6 +1302,7 @@
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0778342BD922A900B3A6EC /* UIImage+.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
+				6EAEACE12BE06FBB00993089 /* KCTextView.swift in Sources */,
 				6E567E732BC684C000250C56 /* DTO.swift in Sources */,
 				6E0778422BDA3A2300B3A6EC /* SignUpUsecase.swift in Sources */,
 				6E0778142BD88EA800B3A6EC /* CheckboxButton.swift in Sources */,
