@@ -48,6 +48,7 @@ extension KCButton {
     case secondary
     case plain
     case icon
+    case iconWithText
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
@@ -91,6 +92,12 @@ extension KCButton {
       $0.buttonSize = .small
     }
     
+    private static let iconWithTextConfig: UIButton.Configuration = .plain().applied {
+      
+      $0.imagePlacement = .top
+      $0.imagePadding = 10
+    }
+    
     var configuration: UIButton.Configuration {
       switch self {
         case .primary:
@@ -104,6 +111,9 @@ extension KCButton {
           
         case .icon:
           return Style.iconConfig
+          
+        case .iconWithText:
+          return Style.iconWithTextConfig
       }
     }
   }
