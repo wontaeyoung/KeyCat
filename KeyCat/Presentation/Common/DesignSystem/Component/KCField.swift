@@ -25,7 +25,7 @@ class KCField: HoshiTextField {
     self.spellCheckingType = .no
     self.tintColor = KCAsset.Color.brand
     self.clearButtonMode = clearable ? .whileEditing : .never
-    self.placeholderColor = KCAsset.Color.brand
+    self.placeholderColor = KCAsset.Color.darkGray
     self.borderActiveColor = KCAsset.Color.brand
     self.borderInactiveColor = KCAsset.Color.lightGrayForeground
     
