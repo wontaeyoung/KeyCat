@@ -40,4 +40,3 @@ final class ProductField: YoshikoTextField {
     fatalError("init(coder:) has not been implemented")
   }
 }
-
