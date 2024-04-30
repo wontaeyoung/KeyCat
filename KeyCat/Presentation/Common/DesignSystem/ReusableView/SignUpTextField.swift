@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class SignUpInputField: SignField {
+final class ValidationField: KCField {
   
   // MARK: - UI
   let validationResultLabel = KCLabel(style: .caption)
@@ -64,8 +64,8 @@ final class SignUpInputField: SignField {
       .disposed(by: disposeBag)
     
     /// 정규식 일치 여부를 유효성 검사 결과 옵저버블에 전달
-    /// 비밀번호 확인 필드는 정규식을 사용하지 않기 때문에 제외
-    if inputInformation != .passwordCheck {
+    /// 정규식 문자열이 비어있으면 검사하지 않음
+    if !inputInformation.pattern.isEmpty {
       currentInput
         .map { $0.isMatch(pattern: self.inputInformation.pattern) }
         .bind(to: inputValidation)

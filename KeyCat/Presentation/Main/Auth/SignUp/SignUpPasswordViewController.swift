@@ -13,8 +13,8 @@ import RxCocoa
 final class SignUpPasswordViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private let passwordField = SignUpInputField(inputInformation: .password)
-  private let passwordCheckField = SignUpInputField(inputInformation: .passwordCheck)
+  private let passwordField = ValidationField(inputInformation: .password)
+  private let passwordCheckField = ValidationField(inputInformation: .passwordCheck)
   private lazy var passwordSecureButton = SecureButton(field: passwordField)
   private lazy var passwordCheckSecureButton = SecureButton(field: passwordCheckField)
   

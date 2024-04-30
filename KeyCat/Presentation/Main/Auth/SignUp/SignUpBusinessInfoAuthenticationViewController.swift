@@ -13,7 +13,7 @@ import RxCocoa
 final class SignUpBusinessInfoAuthenticationViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private let businessNumberField = SignUpInputField(
+  private let businessNumberField = ValidationField(
     inputInformation: .businessNumber,
     type: .numberPad
   )

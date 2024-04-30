@@ -1,5 +1,5 @@
 //
-//  SignField.swift
+//  KCField.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/18/24.
@@ -11,7 +11,7 @@ import TextFieldEffects
 import RxSwift
 import RxCocoa
 
-class SignField: HoshiTextField {
+class KCField: HoshiTextField {
   
   let disposeBag = DisposeBag()
   

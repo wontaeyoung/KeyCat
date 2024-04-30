@@ -42,7 +42,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     image: KCAsset.Symbol.closeButton
   )
   
-  private let nicknameField = SignUpInputField(inputInformation: .nickname)
+  private let nicknameField = ValidationField(inputInformation: .nickname)
   
   private let updateProfileImageAvailableLabel = KCLabel(
     style: .caption,
