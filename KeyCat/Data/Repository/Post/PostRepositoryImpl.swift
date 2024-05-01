@@ -22,8 +22,6 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   }
   
   func uploadPostImages(files: [Data]) -> Single<[CommercialPost.URLString]> {
-    let router = PostRouter.postImageUpload
-    
     return service.callImageUploadRequest(data: files)
       .catch {
         let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
