@@ -27,7 +27,7 @@ extension UIViewController {
   }
   
   func kcNavigationTitle(with title: String) -> Self {
-    let titleLabel = KCLabel(style: .brandTitle, title: title)
+    let titleLabel = KCLabel(style: .blackTitle, title: title)
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
     return self
   }
