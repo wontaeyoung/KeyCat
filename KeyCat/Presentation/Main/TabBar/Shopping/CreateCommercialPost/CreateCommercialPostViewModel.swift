@@ -13,64 +13,64 @@ final class CreateCommercialPostViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
-    let title: PublishRelay<String>
-    let content: PublishRelay<String>
-    let images: PublishRelay<[Data]>
+    let title: BehaviorRelay<String>
+    let content: BehaviorRelay<String>
+    let images: BehaviorRelay<[Data]>
     
-    let regularPrice: PublishRelay<Int>
-    let couponPrice: PublishRelay<Int>
-    let discountPrice: PublishRelay<Int>
-    let discountExpiry: PublishRelay<Date>
+    let regularPrice: BehaviorRelay<Int>
+    let couponPrice: BehaviorRelay<Int>
+    let discountPrice: BehaviorRelay<Int>
+    let discountExpiry: BehaviorRelay<Date>
     
-    let deliveryPrice: PublishRelay<DeliveryInfo.Price>
-    let deliverySchedule: PublishRelay<DeliveryInfo.Schedule>
+    let deliveryPrice: BehaviorRelay<DeliveryInfo.Price>
+    let deliverySchedule: BehaviorRelay<DeliveryInfo.Schedule>
     
-    let purpose: PublishRelay<KeyboardInfo.Purpose>
-    let inputMechanism: PublishRelay<KeyboardInfo.InputMechanism>
-    let connectionType: PublishRelay<KeyboardInfo.ConnectionType>
-    let powerSource: PublishRelay<KeyboardInfo.PowerSource>
-    let backlight: PublishRelay<KeyboardInfo.Backlight>
-    let pcbType: PublishRelay<KeyboardInfo.PCBType>
-    let mechanicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch>
-    let capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch>
+    let purpose: BehaviorRelay<KeyboardInfo.Purpose>
+    let inputMechanism: BehaviorRelay<KeyboardInfo.InputMechanism>
+    let connectionType: BehaviorRelay<KeyboardInfo.ConnectionType>
+    let powerSource: BehaviorRelay<KeyboardInfo.PowerSource>
+    let backlight: BehaviorRelay<KeyboardInfo.Backlight>
+    let pcbType: BehaviorRelay<KeyboardInfo.PCBType>
+    let mechanicalSwitch: BehaviorRelay<KeyboardInfo.MechanicalSwitch>
+    let capacitiveSwitch: BehaviorRelay<KeyboardInfo.CapacitiveSwitch>
     
-    let keycapProfile: PublishRelay<KeycapInfo.KeycapProfile>
-    let printingDirection: PublishRelay<KeycapInfo.PrintingDirection>
-    let printingProcess: PublishRelay<KeycapInfo.PrintingProcess>
-    let printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage>
+    let keycapProfile: BehaviorRelay<KeycapInfo.KeycapProfile>
+    let printingDirection: BehaviorRelay<KeycapInfo.PrintingDirection>
+    let printingProcess: BehaviorRelay<KeycapInfo.PrintingProcess>
+    let printingLanguage: BehaviorRelay<KeycapInfo.PrintingLanguage>
     
-    let layoutRatio: PublishRelay<KeyboardAppearanceInfo.LayoutRatio>
-    let keyboardDesign: PublishRelay<KeyboardAppearanceInfo.KeyboardDesign>
-    let material: PublishRelay<KeyboardAppearanceInfo.Material>
+    let layoutRatio: BehaviorRelay<KeyboardAppearanceInfo.LayoutRatio>
+    let keyboardDesign: BehaviorRelay<KeyboardAppearanceInfo.KeyboardDesign>
+    let material: BehaviorRelay<KeyboardAppearanceInfo.Material>
     
     let createPostTapEvent: PublishRelay<Void>
     let leaveTapEvent: PublishRelay<Void>
     
     init(
-      title: PublishRelay<String> = .init(),
-      content: PublishRelay<String> = .init(),
-      images: PublishRelay<[Data]> = .init(),
-      regularPrice: PublishRelay<Int> = .init(),
-      couponPrice: PublishRelay<Int> = .init(),
-      discountPrice: PublishRelay<Int> = .init(),
-      discountExpiry: PublishRelay<Date> = .init(),
-      deliveryPrice: PublishRelay<DeliveryInfo.Price> = .init(),
-      deliverySchedule: PublishRelay<DeliveryInfo.Schedule> = .init(),
-      purpose: PublishRelay<KeyboardInfo.Purpose> = .init(),
-      inputMechanism: PublishRelay<KeyboardInfo.InputMechanism> = .init(),
-      connectionType: PublishRelay<KeyboardInfo.ConnectionType> = .init(),
-      powerSource: PublishRelay<KeyboardInfo.PowerSource> = .init(),
-      backlight: PublishRelay<KeyboardInfo.Backlight> = .init(),
-      pcbType: PublishRelay<KeyboardInfo.PCBType> = .init(),
-      mechanicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch> = .init(),
-      capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch> = .init(),
-      keycapProfile: PublishRelay<KeycapInfo.KeycapProfile> = .init(),
-      printingDirection: PublishRelay<KeycapInfo.PrintingDirection> = .init(),
-      printingProcess: PublishRelay<KeycapInfo.PrintingProcess> = .init(),
-      printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage> = .init(),
-      layoutRatio: PublishRelay<KeyboardAppearanceInfo.LayoutRatio> = .init(),
-      keyboardDesign: PublishRelay<KeyboardAppearanceInfo.KeyboardDesign> = .init(),
-      material: PublishRelay<KeyboardAppearanceInfo.Material> = .init(),
+      title: BehaviorRelay<String> = .init(value: .defaultValue),
+      content: BehaviorRelay<String> = .init(value: .defaultValue),
+      images: BehaviorRelay<[Data]> = .init(value: []),
+      regularPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
+      couponPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
+      discountPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
+      discountExpiry: BehaviorRelay<Date> = .init(value: .now),
+      deliveryPrice: BehaviorRelay<DeliveryInfo.Price> = .init(value: .coalesce),
+      deliverySchedule: BehaviorRelay<DeliveryInfo.Schedule> = .init(value: .coalesce),
+      purpose: BehaviorRelay<KeyboardInfo.Purpose> = .init(value: .coalesce),
+      inputMechanism: BehaviorRelay<KeyboardInfo.InputMechanism> = .init(value: .coalesce),
+      connectionType: BehaviorRelay<KeyboardInfo.ConnectionType> = .init(value: .coalesce),
+      powerSource: BehaviorRelay<KeyboardInfo.PowerSource> = .init(value: .coalesce),
+      backlight: BehaviorRelay<KeyboardInfo.Backlight> = .init(value: .coalesce),
+      pcbType: BehaviorRelay<KeyboardInfo.PCBType> = .init(value: .coalesce),
+      mechanicalSwitch: BehaviorRelay<KeyboardInfo.MechanicalSwitch> = .init(value: .coalesce),
+      capacitiveSwitch: BehaviorRelay<KeyboardInfo.CapacitiveSwitch> = .init(value: .coalesce),
+      keycapProfile: BehaviorRelay<KeycapInfo.KeycapProfile> = .init(value: .coalesce),
+      printingDirection: BehaviorRelay<KeycapInfo.PrintingDirection> = .init(value: .coalesce),
+      printingProcess: BehaviorRelay<KeycapInfo.PrintingProcess> = .init(value: .coalesce),
+      printingLanguage: BehaviorRelay<KeycapInfo.PrintingLanguage> = .init(value: .coalesce),
+      layoutRatio: BehaviorRelay<KeyboardAppearanceInfo.LayoutRatio> = .init(value: .coalesce),
+      keyboardDesign: BehaviorRelay<KeyboardAppearanceInfo.KeyboardDesign> = .init(value: .coalesce),
+      material: BehaviorRelay<KeyboardAppearanceInfo.Material> = .init(value: .coalesce),
       createPostTapEvent: PublishRelay<Void> = .init(),
       leaveTapEvent: PublishRelay<Void> = .init()
     ) {
@@ -147,6 +147,10 @@ final class CreateCommercialPostViewModel: ViewModel {
 }
 
 extension CreateCommercialPostViewModel {
+  
+  private func makePost() -> CommercialPost {
+    
+  }
   
   private func showLeaveAlert() {
     coordinator?.showAlert(
