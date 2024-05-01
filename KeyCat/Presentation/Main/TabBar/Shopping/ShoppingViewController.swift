@@ -25,6 +25,16 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     }
   }
   
+  private let productCollectionView = UICollectionView(
+    frame: .zero,
+    collectionViewLayout: UICollectionViewFlowLayout.gridLayout(cellCount: 2, cellSpacing: 20)
+  ).configured {
+    $0.register(
+      ProductCollectionCell.self,
+      forCellWithReuseIdentifier: ProductCollectionCell.identifier
+    )
+  }
+  
   // MARK: - Property
   let viewModel: ShoppingViewModel
   
@@ -37,7 +47,10 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubviews(createPostFloatingButton)
+    view.addSubviews(
+      productCollectionView,
+      createPostFloatingButton
+    )
   }
   
   override func setConstraint() {
@@ -45,6 +58,10 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       make.trailing.equalTo(view).inset(20)
       make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
       make.size.equalTo(50)
+    }
+    
+    productCollectionView.snp.makeConstraints { make in
+      make.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
   
@@ -60,6 +77,15 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     output.hasSellerAuthority
       .map { !$0 }
       .drive(createPostFloatingButton.rx.isHidden)
+      .disposed(by: disposeBag)
+    
+    output.commercialPosts
+      .drive(productCollectionView.rx.items(
+        cellIdentifier: ProductCollectionCell.identifier,
+        cellType: ProductCollectionCell.self)
+      ) { row, item, cell in
+        cell.setData(post: item)
+      }
       .disposed(by: disposeBag)
     
     createPostFloatingButton.rx.tap
