@@ -12,7 +12,6 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   
   private let service: APIService
   private let postMapper: PostMapper
-  private var nextCursor: Entity.PostID = ""
   
   init(
     service: APIService = APIService(),
@@ -46,7 +45,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       .map { self.postMapper.toEntity($0) }
   }
   
-  func fetchCommercialPosts() -> Single<[CommercialPost]> {
+  func fetchCommercialPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
     let query = FetchPostsQuery(
       next: nextCursor,
       limit: BusinessValue.Product.fetchCountForOnce,
@@ -59,9 +58,6 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
         let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
         return .error(domainError)
       }
-      .do(onSuccess: { response in
-        self.nextCursor = response.next_cursor
-      })
-      .map { self.postMapper.toEntity($0.data) }
+      .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
   }
 }
