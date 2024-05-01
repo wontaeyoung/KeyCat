@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class AppCoordinator: Coordinator {
   
@@ -44,6 +45,19 @@ extension AppCoordinator {
     
     window?.rootViewController = rootTabBarController
     window?.makeKeyAndVisible()
+    
+    updateKingfisherHeader()
+  }
+  
+  private func updateKingfisherHeader() {
+    KingfisherManager.shared.downloader.sessionConfiguration = URLSessionConfiguration.default.applied {
+      $0.httpAdditionalHeaders = [
+        KCHeader.Key.sesacKey: APIKey.sesacKey,
+        KCHeader.Key.authorization: UserInfoService.accessToken
+      ]
+      
+      $0.timeoutIntervalForRequest = 30
+    }
   }
 }
 
