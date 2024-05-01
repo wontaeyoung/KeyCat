@@ -44,10 +44,7 @@ extension HTTPErrorTransformer {
               case .signIn:
                 return .accessFailed(detail: .login)
                 
-              case .accessToken:
-                return .accessFailed(detail: .accessToken)
-                
-              case .createPost:
+              case .accessToken, .createPost, .fetchPosts:
                 return .accessFailed(detail: .accessToken)
                 
               default:
