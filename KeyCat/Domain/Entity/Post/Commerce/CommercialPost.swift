@@ -25,6 +25,10 @@ struct CommercialPost: Entity {
   let reviews: [CommercialReview]
   
   var productImagesURL: [URL?] {
-    return files.map { URL(string: $0) }
+    return files.map { URL(string: APIKey.baseURL + "/" + $0) }
+  }
+  
+  var isUserBookmark: Bool {
+    return likes.contains(UserInfoService.userID)
   }
 }
