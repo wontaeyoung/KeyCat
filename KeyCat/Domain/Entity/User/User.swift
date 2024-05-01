@@ -16,4 +16,12 @@ struct User: Entity {
   var profileImageURL: URL? {
     return URL(string: profileImageURLString)
   }
+  
+  static var empty: User {
+    return User(
+      userID: .defaultValue,
+      nickname: .defaultValue,
+      profileImageURLString: .defaultValue
+    )
+  }
 }
