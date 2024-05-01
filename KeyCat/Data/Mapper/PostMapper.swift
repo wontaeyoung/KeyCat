@@ -40,6 +40,11 @@ struct PostMapper: Mapper {
     )
   }
   
+  func toEntity(_ dtos: [PostDTO]) -> [CommercialPost] {
+    return dtos
+      .compactMap { toEntity($0) }
+  }
+  
   func toDTO(_ entity: CommercialPost) -> PostDTO? {
     
     let keyboardDTO = mapKeyboardDTO(from: entity.keyboard)
