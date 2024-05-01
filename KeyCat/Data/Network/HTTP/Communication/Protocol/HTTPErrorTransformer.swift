@@ -47,6 +47,9 @@ extension HTTPErrorTransformer {
               case .accessToken:
                 return .accessFailed(detail: .accessToken)
                 
+              case .createPost:
+                return .accessFailed(detail: .accessToken)
+                
               default:
                 return httpStatusError.toDomain
             }
@@ -62,6 +65,18 @@ extension HTTPErrorTransformer {
               case .signUp:
                 return .conflict(detail: .registeredUser)
                 
+              default:
+                return httpStatusError.toDomain
+            }
+            
+            /// 410 케이스 분석
+          case .targetNotFound:
+            
+            /// API 요청 도메인에 따라 다른 targetNotFound 케이스로 리턴
+            switch style {
+              case .createPost:
+                return .targetNotFound(detail: .create(model: .post))
+              
               default:
                 return httpStatusError.toDomain
             }
