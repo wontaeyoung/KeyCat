@@ -67,6 +67,34 @@ class KCLabel: UILabel {
           $0.textColor = KCAsset.Color.black
           $0.numberOfLines = 1
         }
+        
+      case .productCellTitle:
+        self.configure {
+          $0.font = KCAsset.Font.contentText
+          $0.textColor = KCAsset.Color.black
+          $0.numberOfLines = 2
+        }
+        
+      case .productCellPrice:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.lightGrayForeground
+          $0.numberOfLines = 1
+        }
+        
+      case .reviewScore:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.black
+          $0.numberOfLines = 1
+        }
+        
+      case .reviewCount:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.lightGrayForeground
+          $0.numberOfLines = 1
+        }
     }
   }
   
@@ -85,6 +113,10 @@ extension KCLabel {
     case mainInfoTitle
     case sectionTitle
     case standardTitle
+    case productCellTitle
+    case productCellPrice
+    case reviewScore
+    case reviewCount
   }
   
   func applyLineSpacing() {
