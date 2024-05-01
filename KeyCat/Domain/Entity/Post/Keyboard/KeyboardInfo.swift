@@ -13,9 +13,9 @@ struct KeyboardInfo {
   let connectionType: ConnectionType
   let powerSource: PowerSource
   let backlight: Backlight
+  let pcbType: PCBType
   let mechanicalSwitch: MechanicalSwitch
   let capacitiveSwitch: CapacitiveSwitch
-  let pcbType: PCBType
   
   var raws: [Int] {
     return [
@@ -24,9 +24,9 @@ struct KeyboardInfo {
       connectionType.rawValue,
       powerSource.rawValue,
       backlight.rawValue,
+      pcbType.rawValue,
       mechanicalSwitch.rawValue,
       capacitiveSwitch.rawValue,
-      pcbType.rawValue,
     ]
   }
   
@@ -137,6 +137,27 @@ struct KeyboardInfo {
     }
   }
   
+  enum PCBType: Int, SelectionExpressible {
+    
+    case none
+    case soldering
+    case hotSwap
+    
+    var name: String {
+      switch self {
+        case .none: "해당없음"
+        case .soldering: "솔더링"
+        case .hotSwap: "핫스왑"
+      }
+    }
+    
+    static let coalesce: PCBType = .none
+    
+    static var title: String {
+      return "기판"
+    }
+  }
+  
   enum MechanicalSwitch: Int, SelectionExpressible {
     
     case none
@@ -182,27 +203,6 @@ struct KeyboardInfo {
     
     static var title: String {
       return "스위치"
-    }
-  }
-  
-  enum PCBType: Int, SelectionExpressible {
-    
-    case none
-    case soldering
-    case hotSwap
-    
-    var name: String {
-      switch self {
-        case .none: "해당없음"
-        case .soldering: "솔더링"
-        case .hotSwap: "핫스왑"
-      }
-    }
-    
-    static let coalesce: PCBType = .none
-    
-    static var title: String {
-      return "기판"
     }
   }
 }

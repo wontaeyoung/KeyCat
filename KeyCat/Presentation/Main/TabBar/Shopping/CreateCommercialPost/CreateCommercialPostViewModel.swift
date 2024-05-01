@@ -30,18 +30,18 @@ final class CreateCommercialPostViewModel: ViewModel {
     let connectionType: PublishRelay<KeyboardInfo.ConnectionType>
     let powerSource: PublishRelay<KeyboardInfo.PowerSource>
     let backlight: PublishRelay<KeyboardInfo.Backlight>
-    let mechnicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch>
-    let capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch>
     let pcbType: PublishRelay<KeyboardInfo.PCBType>
+    let mechanicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch>
+    let capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch>
     
     let keycapProfile: PublishRelay<KeycapInfo.KeycapProfile>
     let printingDirection: PublishRelay<KeycapInfo.PrintingDirection>
     let printingProcess: PublishRelay<KeycapInfo.PrintingProcess>
     let printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage>
     
-    let layoutRatio: PublishRelay<KeyboardAppearanceInfo>
-    let keyboardDesign: PublishRelay<KeyboardAppearanceInfo>
-    let material: PublishRelay<KeyboardAppearanceInfo>
+    let layoutRatio: PublishRelay<KeyboardAppearanceInfo.LayoutRatio>
+    let keyboardDesign: PublishRelay<KeyboardAppearanceInfo.KeyboardDesign>
+    let material: PublishRelay<KeyboardAppearanceInfo.Material>
     
     let createPostTapEvent: PublishRelay<Void>
     let leaveTapEvent: PublishRelay<Void>
@@ -61,16 +61,16 @@ final class CreateCommercialPostViewModel: ViewModel {
       connectionType: PublishRelay<KeyboardInfo.ConnectionType> = .init(),
       powerSource: PublishRelay<KeyboardInfo.PowerSource> = .init(),
       backlight: PublishRelay<KeyboardInfo.Backlight> = .init(),
-      mechnicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch> = .init(),
-      capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch> = .init(),
       pcbType: PublishRelay<KeyboardInfo.PCBType> = .init(),
+      mechanicalSwitch: PublishRelay<KeyboardInfo.MechanicalSwitch> = .init(),
+      capacitiveSwitch: PublishRelay<KeyboardInfo.CapacitiveSwitch> = .init(),
       keycapProfile: PublishRelay<KeycapInfo.KeycapProfile> = .init(),
       printingDirection: PublishRelay<KeycapInfo.PrintingDirection> = .init(),
       printingProcess: PublishRelay<KeycapInfo.PrintingProcess> = .init(),
       printingLanguage: PublishRelay<KeycapInfo.PrintingLanguage> = .init(),
-      layoutRatio: PublishRelay<KeyboardAppearanceInfo> = .init(),
-      keyboardDesign: PublishRelay<KeyboardAppearanceInfo> = .init(),
-      material: PublishRelay<KeyboardAppearanceInfo> = .init(),
+      layoutRatio: PublishRelay<KeyboardAppearanceInfo.LayoutRatio> = .init(),
+      keyboardDesign: PublishRelay<KeyboardAppearanceInfo.KeyboardDesign> = .init(),
+      material: PublishRelay<KeyboardAppearanceInfo.Material> = .init(),
       createPostTapEvent: PublishRelay<Void> = .init(),
       leaveTapEvent: PublishRelay<Void> = .init()
     ) {
@@ -88,7 +88,7 @@ final class CreateCommercialPostViewModel: ViewModel {
       self.connectionType = connectionType
       self.powerSource = powerSource
       self.backlight = backlight
-      self.mechnicalSwitch = mechnicalSwitch
+      self.mechanicalSwitch = mechanicalSwitch
       self.capacitiveSwitch = capacitiveSwitch
       self.pcbType = pcbType
       self.keycapProfile = keycapProfile

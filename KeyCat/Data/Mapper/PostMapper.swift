@@ -118,9 +118,8 @@ extension PostMapper {
       connectionType: .init(keyboardDTO.keyboardInfo[2]),
       powerSource: .init(keyboardDTO.keyboardInfo[3]),
       backlight: .init(keyboardDTO.keyboardInfo[4]),
-      mechanicalSwitch: .init(keyboardDTO.keyboardInfo[5]),
-      capacitiveSwitch: .init(keyboardDTO.keyboardInfo[6]),
-      pcbType: .init(keyboardDTO.keyboardInfo[7])
+      pcbType: .init(keyboardDTO.keyboardInfo[5]), mechanicalSwitch: .init(keyboardDTO.keyboardInfo[6]),
+      capacitiveSwitch: .init(keyboardDTO.keyboardInfo[7])
     )
     
     let keycapInfo: KeycapInfo = KeycapInfo(
