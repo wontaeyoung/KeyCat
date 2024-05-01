@@ -397,8 +397,20 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     let input = CreateCommercialPostViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    /// 작성 버튼 활성화 여부 변경
     output.postCreatable
       .drive(createPostButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    
+    /// 작성 완료 토스트 안내 > 토스트 완료 이벤트 전달
+    output.isSuccessCreatePost
+      .drive(with: self) { owner, success in
+        owner.createPostButton.stopIndicator()
+        
+        if success {
+          owner.toast("판매글 작성이 완료되었어요.") { input.toastCompleteEvent.accept(()) }
+        }
+      }
       .disposed(by: disposeBag)
     
     /// 상품명 입력 전달
@@ -553,6 +565,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     /// 작성 버튼 > 현재 이미지 -> 데이터 변환 -> 이벤트 전달
     createPostButton.rx.tap
       .buttonThrottle()
+      .do (onNext: { self.createPostButton.showIndicator() })
       .withLatestFrom(images)
       .map {
         $0.compactMap { $0.compressedJPEGData }

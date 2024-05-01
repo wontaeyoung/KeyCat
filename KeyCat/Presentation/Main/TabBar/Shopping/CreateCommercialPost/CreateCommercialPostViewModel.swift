@@ -44,6 +44,7 @@ final class CreateCommercialPostViewModel: ViewModel {
     
     let createPostTapEvent: PublishRelay<[Data]>
     let leaveTapEvent: PublishRelay<Void>
+    let toastCompleteEvent: PublishRelay<Void>
     
     init(
       title: BehaviorRelay<String> = .init(value: .defaultValue),
@@ -70,7 +71,8 @@ final class CreateCommercialPostViewModel: ViewModel {
       keyboardDesign: BehaviorRelay<KeyboardAppearanceInfo.KeyboardDesign> = .init(value: .coalesce),
       material: BehaviorRelay<KeyboardAppearanceInfo.Material> = .init(value: .coalesce),
       createPostTapEvent: PublishRelay<[Data]> = .init(),
-      leaveTapEvent: PublishRelay<Void> = .init()
+      leaveTapEvent: PublishRelay<Void> = .init(),
+      toastCompleteEvent: PublishRelay<Void> = .init()
     ) {
       self.title = title
       self.content = content
@@ -97,27 +99,48 @@ final class CreateCommercialPostViewModel: ViewModel {
       self.material = material
       self.createPostTapEvent = createPostTapEvent
       self.leaveTapEvent = leaveTapEvent
+      self.toastCompleteEvent = toastCompleteEvent
     }
   }
   
   struct Output {
     let postCreatable: Driver<Bool>
+    let isSuccessCreatePost: Driver<Bool>
   }
   
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
+  private let createPostUsecase: CreatePostUsecase
   
   // MARK: - Initializer
-  init() {
-    
+  init(
+    createPostUsecase: CreatePostUsecase = CreatePostUsecaseImpl()
+  ) {
+    self.createPostUsecase = createPostUsecase
   }
   
   // MARK: - Method
   func transform(input: Input) -> Output {
     
     let postCreatable = BehaviorRelay<Bool>(value: false)
+    let isSuccessCreatePost = BehaviorRelay<Bool>(value: false)
     
+    /// 상품 판매 게시글 작성
+    input.createPostTapEvent
+      .withUnretained(self)
+      .flatMap { owner, files in
+        let post = owner.makePost(input: input)
+        
+        return owner.createPostUsecase.execute(files: files, post: post)
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .just(false)
+          }
+      }
+      .bind(to: isSuccessCreatePost)
+      .disposed(by: disposeBag)
+      
     /// 나가기 이벤트 > 작성 중단 안내 팝업 표시
     input.leaveTapEvent
       .bind(with: self) { owner, _ in
@@ -125,6 +148,14 @@ final class CreateCommercialPostViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 토스트 완료 이벤트 > 작성 화면 나가기
+    input.toastCompleteEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.pop()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 작성 완료 버튼 활성화 여부 검사
     Observable.combineLatest(
       input.title,
       input.regularPrice,
@@ -138,15 +169,77 @@ final class CreateCommercialPostViewModel: ViewModel {
     .disposed(by: disposeBag)
     
     return Output(
-      postCreatable: postCreatable.asDriver()
+      postCreatable: postCreatable.asDriver(),
+      isSuccessCreatePost: isSuccessCreatePost.asDriver()
     )
   }
 }
 
 extension CreateCommercialPostViewModel {
   
-  private func makePost() -> CommercialPost {
+  private func makePost(input: Input) -> CommercialPost {
     
+    let keyboardInfo = KeyboardInfo(
+      purpose: input.purpose.value,
+      inputMechanism: input.inputMechanism.value,
+      connectionType: input.connectionType.value,
+      powerSource: input.powerSource.value,
+      backlight: input.backlight.value,
+      pcbType: input.pcbType.value,
+      mechanicalSwitch: input.mechanicalSwitch.value,
+      capacitiveSwitch: input.capacitiveSwitch.value
+    )
+    
+    let keycapInfo = KeycapInfo(
+      profile: input.keycapProfile.value,
+      direction: input.printingDirection.value,
+      process: input.printingProcess.value,
+      language: input.printingLanguage.value
+    )
+    
+    let keyboardAppearanceInfo = KeyboardAppearanceInfo(
+      ratio: input.layoutRatio.value,
+      design: input.keyboardDesign.value,
+      material: input.material.value,
+      size: .init(width: .defaultValue, height: .defaultValue, depth: .defaultValue, weight: .defaultValue)
+    )
+    
+    let keyboard = Keyboard(
+      keyboardInfo: keyboardInfo,
+      keycapInfo: keycapInfo,
+      keyboardAppearanceInfo: keyboardAppearanceInfo
+    )
+    
+    let commercialPrice = CommercialPrice(
+      regularPrice: input.regularPrice.value,
+      couponPrice: input.couponPrice.value,
+      discountPrice: input.discountPrice.value,
+      discountExpiryDate: input.discountExpiry.value
+    )
+    
+    let deliveryInfo = DeliveryInfo(
+      price: input.deliveryPrice.value,
+      schedule: input.deliverySchedule.value
+    )
+    
+    let commercialPost = CommercialPost(
+      postID: .defaultValue, 
+      postType: .keycat_commercialProduct,
+      title: input.title.value,
+      content: input.content.value,
+      keyboard: keyboard,
+      price: commercialPrice, 
+      delivery: deliveryInfo,
+      createdAt: .now,
+      creator: .empty,
+      files: [],
+      likes: [],
+      shoppingCarts: [],
+      hashTags: [],
+      reviews: []
+    )
+    
+    return commercialPost
   }
   
   private func showLeaveAlert() {
