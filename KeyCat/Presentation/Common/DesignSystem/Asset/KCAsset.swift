@@ -18,6 +18,9 @@ enum KCAsset {
     static let darkGray: UIColor = .init(hex: "#686868")
     static let black: UIColor = .init(hex: "000000")
     static let white: UIColor = .init(hex: "FFFFFF")
+    static let pastelRed: UIColor = .init(hex: "#E8A2A2")
+    static let pastelBlue: UIColor = .init(hex: "#A0C3D2")
+    static let pastelGreen: UIColor = .init(hex: "#A8D1D1")
     
     static let background: UIColor = .background
     static let label: UIColor = .label
