@@ -16,5 +16,8 @@ enum HTTPRequestDomain {
   case emailValidation
   case signUp
   
+  // 401, 410
+  case createPost
+  
   case none
 }
