@@ -46,7 +46,7 @@ final class ReviewView: RxBaseView {
   }
   
   func setData(reviews: [CommercialReview]) {
-    scoreLabel.text = reviews.averageScore.description
+    scoreLabel.text = reviews.averageScore.rounded
     countLabel.text = "(\(reviews.count))"
   }
   

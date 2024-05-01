@@ -8,6 +8,6 @@
 extension Double {
   
   var rounded: String {
-    return NumberFormatManager.shared.toRounded(from: self, fractionDigits: 2)
+    return NumberFormatManager.shared.toRounded(from: self, fractionDigits: 1)
   }
 }
