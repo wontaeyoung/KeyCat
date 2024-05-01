@@ -533,9 +533,9 @@ final class ViewController: RxBaseViewController {
         connectionType: .bluetooth,
         powerSource: .battery,
         backlight: .withBacklight,
+        pcbType: .hotSwap, 
         mechanicalSwitch: .clicky,
-        capacitiveSwitch: .none,
-        pcbType: .hotSwap
+        capacitiveSwitch: .none
       ),
       keycapInfo: KeycapInfo(
         profile: .cherry,
