@@ -27,7 +27,7 @@ final class KCButton: UIButton {
     self.configuration?.title = title
   }
   
-  func image(_ image: UIImage) {
+  func image(_ image: UIImage?) {
     self.configuration?.image = image
   }
   
@@ -90,7 +90,7 @@ extension KCButton {
     private static let iconConfig: UIButton.Configuration = .plain().applied {
       
       $0.cornerStyle = .capsule
-      $0.buttonSize = .small
+      $0.buttonSize = .large
     }
     
     private static let iconWithTextConfig: UIButton.Configuration = .plain().applied {
