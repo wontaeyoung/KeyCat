@@ -73,6 +73,7 @@ enum KCAsset {
       case checkmarkCircleFill = "checkmark.circle.fill"
       case plusCircleFill = "plus.circle.fill"
       case cameraFill = "camera.fill"
+      case exclamationmarkCircleFill = "exclamationmark.circle.fill"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -92,6 +93,7 @@ enum KCAsset {
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
     static let addImageButton: UIImage? = image(.cameraFill)
+    static let networkDisconnect: UIImage? = image(.exclamationmarkCircleFill)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)
