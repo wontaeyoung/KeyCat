@@ -14,8 +14,8 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let createPostFloatingButton = KCButton(
-    style: .icon,
-    image: KCAsset.Symbol.createFloatingButton
+    style: .floating,
+    title: "+"
   ).configured {
     $0.layer.configure {
       $0.shadowColor = KCAsset.Color.black.cgColor
@@ -44,7 +44,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     createPostFloatingButton.snp.makeConstraints { make in
       make.trailing.equalTo(view).inset(20)
       make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-      make.size.equalTo(40)
+      make.size.equalTo(50)
     }
   }
   

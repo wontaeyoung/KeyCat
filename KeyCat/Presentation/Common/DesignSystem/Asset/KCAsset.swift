@@ -56,6 +56,7 @@ enum KCAsset {
     static let sectionTitle: UIFont = font(.bold, size: 20)
     static let standardTitle: UIFont = font(.medium, size: 16)
     static let buttonTitle: UIFont = font(.bold, size: 19)
+    static let floatingButtonTitle: UIFont = font(.bold, size: 40)
     static let captionLabel: UIFont = font(.medium, size: 15)
     static let contentText: UIFont = font(.medium, size: 15)
     

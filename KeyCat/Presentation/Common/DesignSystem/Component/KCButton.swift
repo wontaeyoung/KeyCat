@@ -49,6 +49,7 @@ extension KCButton {
     case plain
     case icon
     case iconWithText
+    case floating
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
@@ -98,6 +99,18 @@ extension KCButton {
       $0.imagePadding = 10
     }
     
+    private static let floatingConfig: UIButton.Configuration = .filled().applied {
+      
+      $0.baseForegroundColor = .white
+      $0.baseBackgroundColor = KCAsset.Color.brand
+      $0.buttonSize = .mini
+      $0.cornerStyle = .capsule
+      
+      $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
+        return $0.applied { $0.font = KCAsset.Font.floatingButtonTitle }
+      }
+    }
+    
     var configuration: UIButton.Configuration {
       switch self {
         case .primary:
@@ -114,6 +127,9 @@ extension KCButton {
           
         case .iconWithText:
           return Style.iconWithTextConfig
+          
+        case .floating:
+          return Style.floatingConfig
       }
     }
   }
