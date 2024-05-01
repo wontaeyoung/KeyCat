@@ -104,7 +104,7 @@ final class CreateCommercialPostViewModel: ViewModel {
   }
   
   struct Output {
-    
+    let postCreatable: Driver<Bool>
   }
   
   // MARK: - Property
@@ -119,6 +119,8 @@ final class CreateCommercialPostViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
+    let postCreatable = BehaviorRelay<Bool>(value: false)
+    
     /// 나가기 이벤트 > 작성 중단 안내 팝업 표시
     input.leaveTapEvent
       .bind(with: self) { owner, _ in
@@ -126,7 +128,21 @@ final class CreateCommercialPostViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
-    return Output()
+    Observable.combineLatest(
+      input.title,
+      input.regularPrice,
+      input.couponPrice,
+      input.discountPrice
+    )
+    .map {
+      $0.0.isEmpty == false && $0.1 >= 0 && $0.2 >= 0 && $0.3 >= 0
+    }
+    .bind(to: postCreatable)
+    .disposed(by: disposeBag)
+    
+    return Output(
+      postCreatable: postCreatable.asDriver()
+    )
   }
 }
 

@@ -397,6 +397,10 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     let input = CreateCommercialPostViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    output.postCreatable
+      .drive(createPostButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    
     /// 상품명 입력 전달
     titleField.rx.text.orEmpty
       .bind(to: input.title)
