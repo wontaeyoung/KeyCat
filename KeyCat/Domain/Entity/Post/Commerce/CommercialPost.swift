@@ -18,7 +18,7 @@ struct CommercialPost: Entity {
   let delivery: DeliveryInfo
   let createdAt: Date
   let creator: User
-  let files: [URLString]
+  var files: [URLString]
   let likes: [UserID]
   let shoppingCarts: [UserID]
   let hashTags: [Hashtag]
