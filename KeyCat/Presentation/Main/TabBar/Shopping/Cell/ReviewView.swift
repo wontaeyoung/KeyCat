@@ -39,7 +39,7 @@ final class ReviewView: RxBaseView {
     }
     
     countLabel.snp.makeConstraints { make in
-      make.leading.equalTo(scoreLabel.snp.trailing).offset(5)
+      make.leading.equalTo(scoreLabel.snp.trailing)
       make.trailing.lessThanOrEqualToSuperview()
       make.centerY.equalTo(starIcon)
     }

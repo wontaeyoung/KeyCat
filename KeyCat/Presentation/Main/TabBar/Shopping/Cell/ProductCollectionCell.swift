@@ -30,6 +30,32 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   private let regularPriceLabel = KCLabel(style: .productCellPrice)
   private let discountPriceLabel = KCLabel(style: .productCellTitle)
   private let reviewView = ReviewView()
+  private lazy var tagStack = UIStackView().configured {
+    $0.axis = .vertical
+    $0.spacing = 5
+    $0.addArrangedSubviews(
+      freeDeliveryTag,
+      deliveryScheduleTag
+    )
+  }
+
+  private let specialPriceTag = TagLabel(
+    style: .tag,
+    title: "특가",
+    backgroundColor: KCAsset.Color.pastelRed
+  )
+  
+  private let freeDeliveryTag = TagLabel(
+    style: .tag,
+    title: DeliveryInfo.Price.free.name,
+    backgroundColor: KCAsset.Color.pastelBlue
+  )
+  
+  private let deliveryScheduleTag = TagLabel(
+    style: .tag,
+    title: DeliveryInfo.Schedule.allCases.randomElement()!.name,
+    backgroundColor: KCAsset.Color.pastelGreen
+  )
   
   // MARK: - Life Cycle
   override func setHierarchy() {
@@ -40,7 +66,8 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       discountRatioLabel,
       regularPriceLabel,
       discountPriceLabel,
-      reviewView
+      reviewView,
+      tagStack
     )
   }
   
@@ -82,6 +109,11 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       make.top.equalTo(discountPriceLabel.snp.bottom).offset(10)
       make.horizontalEdges.equalTo(contentView)
     }
+    
+    tagStack.snp.makeConstraints { make in
+      make.top.equalTo(reviewView.snp.bottom).offset(10)
+      make.leading.equalTo(contentView)
+    }
   }
   
   func setData(post: CommercialPost) {
@@ -95,5 +127,9 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     discountPriceLabel.text = "\(post.price.discountPrice.formatted())원"
     bookmarkButton.image(post.isUserBookmark ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff)
     reviewView.setData(reviews: post.reviews)
+    
+    if post.price.discountRatio >= 75 {
+      tagStack.addArrangedSubview(specialPriceTag)
+    }
   }
 }
