@@ -10,7 +10,7 @@ import RxSwift
 
 class SignUpBaseViewController: RxBaseViewController {
   
-  let inputInfoTitleLabel = KCLabel(style: .mainInfoTitle)
+  let inputInfoTitleLabel = KCLabel(style: .brandTitle)
   let nextButton = KCButton(style: .primary, title: Constant.Button.next)
   private let bottomBufferHeight: CGFloat = 20
   

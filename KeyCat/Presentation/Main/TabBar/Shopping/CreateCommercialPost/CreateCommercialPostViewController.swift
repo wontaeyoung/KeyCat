@@ -72,7 +72,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   }
   
   // MARK: 가격 정보
-  private let priceSectionLabel = KCLabel(style: .mainInfoTitle, title: "상품가")
+  private let priceSectionLabel = KCLabel(style: .brandTitle, title: "상품가")
   private lazy var priceInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 30
@@ -122,7 +122,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   }
   
   // MARK: 배송 정보
-  private let deliverySectionLabel = KCLabel(style: .mainInfoTitle, title: "배송")
+  private let deliverySectionLabel = KCLabel(style: .brandTitle, title: "배송")
   private lazy var deliveryInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 20
@@ -135,7 +135,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectDeliveryScheduleView = KeyboardInfoSelectView(type: DeliveryInfo.Schedule.self)
   
   // MARK: 키보드 정보
-  private let keyboardSectionLabel = KCLabel(style: .mainInfoTitle, title: "키보드")
+  private let keyboardSectionLabel = KCLabel(style: .brandTitle, title: "키보드")
   
   // MARK: 키보드 스펙 섹션
   private let keyboardInfoSectionLabel = KCLabel(style: .sectionTitle, title: "스펙")
