@@ -5,6 +5,9 @@
 //  Created by 원태영 on 4/19/24.
 //
 
+import Foundation
+import UIKit
+
 extension String {
   func isMatch(pattern: String) -> Bool {
     let isMathed: Bool = self.range(
@@ -13,5 +16,17 @@ extension String {
     ) != nil
     
     return isMathed
+  }
+  
+  func strikethroughAttributedString(
+    strikethroughStyle: NSUnderlineStyle = .single,
+    strikethroughColor: UIColor = .black
+  ) -> NSAttributedString {
+    let attributes: [NSAttributedString.Key: Any] = [
+      .strikethroughStyle: strikethroughStyle.rawValue,
+      .strikethroughColor: strikethroughColor
+    ]
+    
+    return NSAttributedString(string: self, attributes: attributes)
   }
 }
