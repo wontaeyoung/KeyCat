@@ -15,7 +15,6 @@ final class CreateCommercialPostViewModel: ViewModel {
   struct Input {
     let title: BehaviorRelay<String>
     let content: BehaviorRelay<String>
-    let images: BehaviorRelay<[Data]>
     
     let regularPrice: BehaviorRelay<Int>
     let couponPrice: BehaviorRelay<Int>
@@ -43,13 +42,12 @@ final class CreateCommercialPostViewModel: ViewModel {
     let keyboardDesign: BehaviorRelay<KeyboardAppearanceInfo.KeyboardDesign>
     let material: BehaviorRelay<KeyboardAppearanceInfo.Material>
     
-    let createPostTapEvent: PublishRelay<Void>
+    let createPostTapEvent: PublishRelay<[Data]>
     let leaveTapEvent: PublishRelay<Void>
     
     init(
       title: BehaviorRelay<String> = .init(value: .defaultValue),
       content: BehaviorRelay<String> = .init(value: .defaultValue),
-      images: BehaviorRelay<[Data]> = .init(value: []),
       regularPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
       couponPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
       discountPrice: BehaviorRelay<Int> = .init(value: .defaultValue),
@@ -71,12 +69,11 @@ final class CreateCommercialPostViewModel: ViewModel {
       layoutRatio: BehaviorRelay<KeyboardAppearanceInfo.LayoutRatio> = .init(value: .coalesce),
       keyboardDesign: BehaviorRelay<KeyboardAppearanceInfo.KeyboardDesign> = .init(value: .coalesce),
       material: BehaviorRelay<KeyboardAppearanceInfo.Material> = .init(value: .coalesce),
-      createPostTapEvent: PublishRelay<Void> = .init(),
+      createPostTapEvent: PublishRelay<[Data]> = .init(),
       leaveTapEvent: PublishRelay<Void> = .init()
     ) {
       self.title = title
       self.content = content
-      self.images = images
       self.regularPrice = regularPrice
       self.couponPrice = couponPrice
       self.discountPrice = discountPrice

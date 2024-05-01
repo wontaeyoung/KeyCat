@@ -550,6 +550,16 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 작성 버튼 > 현재 이미지 -> 데이터 변환 -> 이벤트 전달
+    createPostButton.rx.tap
+      .buttonThrottle()
+      .withLatestFrom(images)
+      .map {
+        $0.compactMap { $0.compressedJPEGData }
+      }
+      .bind(to: input.createPostTapEvent)
+      .disposed(by: disposeBag)
+    
   }
   
   // MARK: - Method
