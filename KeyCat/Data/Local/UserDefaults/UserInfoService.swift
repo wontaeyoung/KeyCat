@@ -16,13 +16,17 @@ struct UserInfoService {
   @UserDefault(key: UserInfoKey.hasSellerAuthority, defaultValue: .defaultValue)
   static var hasSellerAuthority: Bool
   
+  @UserDefault(key: UserInfoKey.userID, defaultValue: .defaultValue)
+  static var userID: String
+  
   static var hasSignInLog: Bool {
     return !accessToken.isEmpty && !refreshToken.isEmpty
   }
   
-  static func login(accessToken: String, refreshToken: String) {
+  static func login(accessToken: String, refreshToken: String, userID: String) {
     self.accessToken = accessToken
     self.refreshToken = refreshToken
+    self.userID = userID
   }
   
   static func renewAccessToken(with accessToken: String) {
@@ -43,6 +47,7 @@ extension UserInfoService {
     case accessToken
     case refreshToken
     case hasSellerAuthority
+    case userID
     
     var name: String {
       return self.rawValue
