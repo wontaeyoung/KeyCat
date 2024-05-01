@@ -61,10 +61,8 @@ class RxBaseViewController: UIViewController {
       .bind(to: tap)
       .disposed(by: disposeBag)
     
-    /// Window 갈아끼우기 구현
     NetworkMonitor.shared.networkStateSatisfied
       .thread(.main)
-      .map { _ in false }
       .bind(with: self) { owner, isSatisfied in
         owner.updateNetworkUnsatisfiedViewVisibility(isSatisfied: isSatisfied)
       }
