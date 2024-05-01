@@ -157,7 +157,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectConnectionTypeView = KeyboardInfoSelectView(type: KeyboardInfo.ConnectionType.self)
   private let selectPowerSourceView = KeyboardInfoSelectView(type: KeyboardInfo.PowerSource.self)
   private let selectBacklightView = KeyboardInfoSelectView(type: KeyboardInfo.Backlight.self)
-  private let selectMechnicalSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.MechanicalSwitch.self)
+  private let selectMechanicalSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.MechanicalSwitch.self)
   private let selectCapacitiveSwitchView = KeyboardInfoSelectView(type: KeyboardInfo.CapacitiveSwitch.self)
   private let selectPCBTypeView = KeyboardInfoSelectView(type: KeyboardInfo.PCBType.self)
   
@@ -397,6 +397,112 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     let input = CreateCommercialPostViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    /// 상품명 입력 전달
+    titleField.rx.text.orEmpty
+      .bind(to: input.title)
+      .disposed(by: disposeBag)
+    
+    /// 상품 설명 입력 전달
+    contentTextView.rx.text.orEmpty
+      .bind(to: input.content)
+      .disposed(by: disposeBag)
+    
+    /// 상품가 입력 전달
+    regularPriceField.rx.text.orEmpty
+      .compactMap { Int($0) }
+      .bind(to: input.regularPrice)
+      .disposed(by: disposeBag)
+    
+    /// 쿠폰가 입력 전달
+    couponPriceField.rx.text.orEmpty
+      .compactMap { Int($0) }
+      .bind(to: input.couponPrice)
+      .disposed(by: disposeBag)
+    
+    /// 할인가 입력 전달
+    discountPriceField.rx.text.orEmpty
+      .compactMap { Int($0) }
+      .bind(to: input.discountPrice)
+      .disposed(by: disposeBag)
+    
+    /// 할인마감일 전달
+    discountExpiryDatePicker.rx.date
+      .bind(to: input.discountExpiry)
+      .disposed(by: disposeBag)
+    
+    /// 배송비 선택 전달
+    selectDeliveryPriceView.selectedOption
+      .bind(to: input.deliveryPrice)
+      .disposed(by: disposeBag)
+    
+    /// 배송일 선택 전달
+    selectDeliveryScheduleView.selectedOption
+      .bind(to: input.deliverySchedule)
+      .disposed(by: disposeBag)
+    
+    /// 배송비 선택 전달
+    selectPurposeView.selectedOption
+      .bind(to: input.purpose)
+      .disposed(by: disposeBag)
+    
+    /// 입력 메커니즘 전달
+    selectInputMechanismView.selectedOption
+      .bind(to: input.inputMechanism)
+      .disposed(by: disposeBag)
+    
+    selectConnectionTypeView.selectedOption
+      .bind(to: input.connectionType)
+      .disposed(by: disposeBag)
+    
+    selectPowerSourceView.selectedOption
+      .bind(to: input.powerSource)
+      .disposed(by: disposeBag)
+    
+    selectBacklightView.selectedOption
+      .bind(to: input.backlight)
+      .disposed(by: disposeBag)
+    
+    selectPCBTypeView.selectedOption
+      .bind(to: input.pcbType)
+      .disposed(by: disposeBag)
+    
+    selectMechanicalSwitchView.selectedOption
+      .bind(to: input.mechanicalSwitch)
+      .disposed(by: disposeBag)
+    
+    selectCapacitiveSwitchView.selectedOption
+      .bind(to: input.capacitiveSwitch)
+      .disposed(by: disposeBag)
+    
+    selectKeycapProfileView.selectedOption
+      .bind(to: input.keycapProfile)
+      .disposed(by: disposeBag)
+    
+    selectPrintingDirectionView.selectedOption
+      .bind(to: input.printingDirection)
+      .disposed(by: disposeBag)
+    
+    selectPrintingProcessView.selectedOption
+      .bind(to: input.printingProcess)
+      .disposed(by: disposeBag)
+    
+    selectPrintingLanguageView.selectedOption
+      .bind(to: input.printingLanguage)
+      .disposed(by: disposeBag)
+    
+    selectLayoutRatioView.selectedOption
+      .bind(to: input.layoutRatio)
+      .disposed(by: disposeBag)
+    
+    selectKeyboardDesignView.selectedOption
+      .bind(to: input.keyboardDesign)
+      .disposed(by: disposeBag)
+    
+    selectMaterialView.selectedOption
+      .bind(to: input.material)
+      .disposed(by: disposeBag)
+    
+    /// 작성 중단 바 버튼 이벤트 전달
     leaveBarButton.rx.tap
       .buttonThrottle()
       .bind(to: input.leaveTapEvent)
@@ -446,13 +552,13 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private func updateSwitchSelectionLayout(inputMechanism: KeyboardInfo.InputMechanism) {
     
     keyboardInfoStack.removeArrangedSubviews(
-      selectMechnicalSwitchView,
+      selectMechanicalSwitchView,
       selectCapacitiveSwitchView
     )
     
     switch inputMechanism {
       case .mechanical:
-        keyboardInfoStack.addArrangedSubview(selectMechnicalSwitchView)
+        keyboardInfoStack.addArrangedSubview(selectMechanicalSwitchView)
         
       case .capacitiveNonContact:
         keyboardInfoStack.addArrangedSubview(selectCapacitiveSwitchView)
