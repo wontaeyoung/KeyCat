@@ -59,6 +59,7 @@ enum KCAsset {
     static let floatingButtonTitle: UIFont = font(.bold, size: 40)
     static let captionLabel: UIFont = font(.medium, size: 15)
     static let contentText: UIFont = font(.medium, size: 15)
+    static let mini: UIFont = font(.medium, size: 13)
     
     static let toastTitle: UIFont = font(.bold, size: 17)
     static let toastMessage: UIFont = font(.bold, size: 15)
@@ -75,6 +76,9 @@ enum KCAsset {
       case plusCircleFill = "plus.circle.fill"
       case cameraFill = "camera.fill"
       case exclamationmarkCircleFill = "exclamationmark.circle.fill"
+      case starFill = "star.fill"
+      case bookmark = "bookmark"
+      case bookmarkFill = "bookmark.fill"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -95,6 +99,9 @@ enum KCAsset {
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
     static let addImageButton: UIImage? = image(.cameraFill)
     static let networkDisconnect: UIImage? = image(.exclamationmarkCircleFill)
+    static let review: UIImage? = image(.starFill)
+    static let bookmarkOff: UIImage? = image(.bookmark)
+    static let bookmarkOn: UIImage? = image(.bookmarkFill)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)
