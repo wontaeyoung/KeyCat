@@ -24,7 +24,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     $0.backgroundColor = .systemBlue
   }
   
-  private let bookmarkButton = KCButton(style: .icon)
   private let titleLabel = KCLabel(style: .productCellTitle)
   private let discountRatioLabel = KCLabel(style: .productCellPrice)
   private let regularPriceLabel = KCLabel(style: .productCellPrice)
@@ -33,10 +32,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   private lazy var tagStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 5
-    $0.addArrangedSubviews(
-      freeDeliveryTag,
-      deliveryScheduleTag
-    )
   }
 
   private let specialPriceTag = TagLabel(
@@ -53,7 +48,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   
   private let deliveryScheduleTag = TagLabel(
     style: .tag,
-    title: DeliveryInfo.Schedule.allCases.randomElement()!.name,
+    title: nil,
     backgroundColor: KCAsset.Color.pastelGreen
   )
   
@@ -61,7 +56,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   override func setHierarchy() {
     contentView.addSubviews(
       imageView,
-      bookmarkButton,
       titleLabel,
       discountRatioLabel,
       regularPriceLabel,
@@ -76,12 +70,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       make.top.equalTo(contentView)
       make.horizontalEdges.equalTo(contentView)
       make.height.equalTo(imageView.snp.width)
-    }
-    
-    bookmarkButton.snp.makeConstraints { make in
-      make.top.equalTo(imageView).inset(5)
-      make.trailing.equalTo(imageView).inset(5)
-      make.size.equalTo(30)
     }
     
     titleLabel.snp.makeConstraints { make in
@@ -116,7 +104,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     }
   }
   
-  func setData(post: CommercialPost) {
+  func setData(with post: CommercialPost) {
   
     imageView.kf.setImage(with: post.productImagesURL.first!)
     titleLabel.text = post.title
@@ -125,11 +113,17 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       .formatted()
       .strikethroughAttributedString(strikethroughColor: KCAsset.Color.lightGrayForeground)
     discountPriceLabel.text = "\(post.price.discountPrice.formatted())원"
-    bookmarkButton.image(post.isUserBookmark ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff)
     reviewView.setData(reviews: post.reviews)
     
-    if post.price.discountRatio >= 75 {
-      tagStack.addArrangedSubview(specialPriceTag)
+    updateTags(with: post)
+  }
+  
+  private func updateTags(with post: CommercialPost) {
+    if post.price.discountRatio >= BusinessValue.Product.specialPriceRatio { tagStack.addArrangedSubview(specialPriceTag) }
+    if post.delivery.price == .free { tagStack.addArrangedSubview(freeDeliveryTag) }
+    if post.delivery.schedule != .standard {
+      deliveryScheduleTag.text = post.delivery.schedule.name
+      tagStack.addArrangedSubview(deliveryScheduleTag)
     }
   }
 }
