@@ -24,6 +24,11 @@ extension ObservableType {
     }
   }
   
+  func showingCellThrottle(seconds: Int = 1)
+  -> Observable<Element> {
+    return self.throttle(.seconds(seconds), scheduler: MainScheduler.instance)
+  }
+  
   func buttonThrottle(seconds: Int = 2)
   -> Observable<Element> {
     return self.throttle(.seconds(seconds), scheduler: MainScheduler.instance)
