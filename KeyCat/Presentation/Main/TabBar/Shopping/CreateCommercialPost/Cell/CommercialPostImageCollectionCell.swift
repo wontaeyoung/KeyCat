@@ -21,21 +21,36 @@ final class CommercialPostImageCollectionCell: RxBaseCollectionViewCell {
     }
   }
   
+  private let mainImageInfoLabel = KCLabel(
+    style: .tag,
+    title: "메인 이미지",
+    alignment: .center
+  ).configured {
+    $0.backgroundColor = KCAsset.Color.black
+  }
+  
   // MARK: - Life Cycle
   override func setHierarchy() {
     contentView.addSubviews(imageView)
+    imageView.addSubviews(mainImageInfoLabel)
   }
   
   override func setConstraint() {
     imageView.snp.makeConstraints { make in
       make.edges.equalTo(contentView)
     }
+    
+    mainImageInfoLabel.snp.makeConstraints { make in
+      make.horizontalEdges.equalTo(imageView)
+      make.bottom.equalTo(imageView)
+    }
   }
 }
 
 extension CommercialPostImageCollectionCell {
   
-  func updateImage(with image: UIImage) {
+  func updateImage(with image: UIImage, row: Int) {
     imageView.image = image
+    mainImageInfoLabel.isHidden = row > 0
   }
 }

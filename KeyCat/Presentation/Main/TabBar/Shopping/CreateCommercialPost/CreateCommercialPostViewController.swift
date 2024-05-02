@@ -50,6 +50,8 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     $0.allowsSelection = true
   }
   
+  private let needImageInfoLabel = KCLabel(style: .placeholder, title: "이미지는 한 장 이상 추가해주세요")
+  
   private var compositionalLayout = UICollectionViewCompositionalLayout(
     section: .makeHorizontalScrollSection(
       itemSpacing: 20,
@@ -235,6 +237,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     contentView.addSubviews(
       addImageButton,
       productImageCollectionView,
+      needImageInfoLabel,
       
       titleLabel,
       titleField,
@@ -289,8 +292,13 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.height.equalTo(120)
     }
     
+    needImageInfoLabel.snp.makeConstraints { make in
+      make.top.equalTo(productImageCollectionView.snp.bottom)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
     titleLabel.snp.makeConstraints { make in
-      make.top.equalTo(productImageCollectionView.snp.bottom).offset(20)
+      make.top.equalTo(needImageInfoLabel.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
@@ -399,6 +407,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     
     /// 작성 버튼 활성화 여부 변경
     output.postCreatable
+      .map { $0 && !self.images.value.isEmpty }
       .drive(createPostButton.rx.isEnabled)
       .disposed(by: disposeBag)
     
@@ -538,13 +547,19 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       .bind(to: addImageButton.rx.title())
       .disposed(by: disposeBag)
     
+    /// 이미지 갯수 > 이미지 추가 요구 라벨 표시여부 반영
+    images
+      .map { $0.isFilled }
+      .bind(to: needImageInfoLabel.rx.isHidden)
+      .disposed(by: disposeBag)
+    
     /// 현재 이미지로 이미지 컬렉션 뷰 그리기
     images
       .bind(to: productImageCollectionView.rx.items(
         cellIdentifier: CommercialPostImageCollectionCell.identifier,
         cellType: CommercialPostImageCollectionCell.self)
       ) { row, item, cell in
-        cell.updateImage(with: item)
+        cell.updateImage(with: item, row: row)
       }
       .disposed(by: disposeBag)
     
