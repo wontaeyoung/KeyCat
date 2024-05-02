@@ -163,7 +163,7 @@ final class CreateCommercialPostViewModel: ViewModel {
       input.discountPrice
     )
     .map {
-      $0.0.isEmpty == false && $0.1 >= 0 && $0.2 >= 0 && $0.3 >= 0
+      $0.0.isFilled && $0.1 >= 0 && $0.2 >= 0 && $0.3 >= 0
     }
     .bind(to: postCreatable)
     .disposed(by: disposeBag)

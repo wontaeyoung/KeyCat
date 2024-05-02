@@ -23,7 +23,7 @@ final class CreatePostUsecaseImpl: CreatePostUsecase {
         
         return self.postRepository.createCommercialPost(
           post: post,
-          isUpdateImages: files.isEmpty == false
+          isUpdateImages: files.isFilled
         )
       }
       .map { $0 != nil }

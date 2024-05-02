@@ -407,7 +407,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     
     /// 작성 버튼 활성화 여부 변경
     output.postCreatable
-      .map { $0 && !self.images.value.isEmpty }
+      .map { $0 && self.images.value.isFilled }
       .drive(createPostButton.rx.isEnabled)
       .disposed(by: disposeBag)
     

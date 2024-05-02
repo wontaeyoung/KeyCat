@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 extension String {
+  var isFilled: Bool {
+    return isEmpty == false
+  }
+  
   func isMatch(pattern: String) -> Bool {
     let isMathed: Bool = self.range(
       of: pattern,

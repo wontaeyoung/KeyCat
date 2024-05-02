@@ -69,7 +69,7 @@ final class ValidationField: KCField {
     
     /// 정규식 일치 여부를 유효성 검사 결과 옵저버블에 전달
     /// 정규식 문자열이 비어있으면 검사하지 않음
-    if !inputInformation.pattern.isEmpty {
+    if inputInformation.pattern.isFilled {
       currentInput
         .map { $0.isMatch(pattern: self.inputInformation.pattern) }
         .bind(to: inputValidation)

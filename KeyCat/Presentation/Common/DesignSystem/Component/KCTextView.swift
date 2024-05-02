@@ -83,7 +83,7 @@ extension KCTextView {
   private func togglePlaceholderVisibility() {
     guard let text = self.text else { return }
     
-    placeholderLabel.isHidden = !text.isEmpty
+    placeholderLabel.isHidden = text.isFilled
   }
   
   private func applyLineSpacing() {

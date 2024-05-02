@@ -20,7 +20,7 @@ struct UserInfoService {
   static var userID: String
   
   static var hasSignInLog: Bool {
-    return !accessToken.isEmpty && !refreshToken.isEmpty
+    return accessToken.isFilled && refreshToken.isFilled
   }
   
   static func login(accessToken: String, refreshToken: String, userID: String) {

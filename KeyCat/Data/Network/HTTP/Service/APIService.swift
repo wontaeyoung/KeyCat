@@ -29,7 +29,7 @@ struct APIService {
   }
   
   func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
-    guard !data.isEmpty else {
+    guard data.isFilled else {
       return .just(UploadPostImageResponse(files: []))
     }
     
