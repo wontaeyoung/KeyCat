@@ -86,7 +86,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
         cellIdentifier: ProductCollectionCell.identifier,
         cellType: ProductCollectionCell.self)
       ) { row, item, cell in
-        cell.setData(post: item)
+        cell.setData(with: item)
       }
       .disposed(by: disposeBag)
     
