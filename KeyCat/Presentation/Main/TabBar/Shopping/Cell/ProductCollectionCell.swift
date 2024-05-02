@@ -15,7 +15,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   private let imageView = UIImageView().configured {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
-    $0.isUserInteractionEnabled = true
     $0.layer.configure {
       $0.cornerRadius = 10
       $0.borderColor = KCAsset.Color.lightGrayBackground.cgColor
@@ -25,9 +24,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   }
   
   private let titleLabel = KCLabel(style: .productCellTitle)
-  private let discountRatioLabel = KCLabel(style: .productCellPrice)
-  private let regularPriceLabel = KCLabel(style: .productCellPrice)
-  private let discountPriceLabel = KCLabel(style: .productCellTitle)
+  private let productPriceView = ProductPriceView()
   private let reviewView = ReviewView()
   private lazy var tagStack = UIStackView().configured {
     $0.axis = .vertical
@@ -57,9 +54,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     contentView.addSubviews(
       imageView,
       titleLabel,
-      discountRatioLabel,
-      regularPriceLabel,
-      discountPriceLabel,
+      productPriceView,
       reviewView,
       tagStack
     )
@@ -77,24 +72,13 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       make.horizontalEdges.equalTo(contentView)
     }
     
-    discountRatioLabel.snp.makeConstraints { make in
+    productPriceView.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom).offset(20)
-      make.leading.equalTo(contentView)
-    }
-    
-    regularPriceLabel.snp.makeConstraints { make in
-      make.leading.equalTo(discountRatioLabel.snp.trailing).offset(5)
-      make.centerY.equalTo(discountRatioLabel)
-      make.trailing.lessThanOrEqualTo(contentView)
-    }
-    
-    discountPriceLabel.snp.makeConstraints { make in
-      make.top.equalTo(discountRatioLabel.snp.bottom).offset(5)
       make.horizontalEdges.equalTo(contentView)
     }
     
     reviewView.snp.makeConstraints { make in
-      make.top.equalTo(discountPriceLabel.snp.bottom).offset(10)
+      make.top.equalTo(productPriceView.snp.bottom).offset(10)
       make.horizontalEdges.equalTo(contentView)
     }
     
@@ -106,15 +90,17 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   
   func setData(with post: CommercialPost) {
   
+    var post = post
+    post.files = ["uploads/posts/vamillo_1_1714571161018.jpg"]
+    post.reviews = (1...Int.random(in: 1...15)).map { _ in
+      .init(reviewID: "", content: "", rating: .allCases.randomElement()!, createdAt: .now, creator: .empty)
+    }
+    
     imageView.kf.setImage(with: post.productImagesURL.first!)
     titleLabel.text = post.title
-    discountRatioLabel.text = "\(post.price.discountRatio)%"
-    regularPriceLabel.attributedText = post.price.regularPrice
-      .formatted()
-      .strikethroughAttributedString(strikethroughColor: KCAsset.Color.lightGrayForeground)
-    discountPriceLabel.text = "\(post.price.discountPrice.formatted())원"
-    reviewView.setData(reviews: post.reviews)
     
+    productPriceView.setData(price: post.price)
+    reviewView.setData(reviews: post.reviews)
     updateTags(with: post)
   }
   
