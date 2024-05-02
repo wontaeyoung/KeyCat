@@ -41,6 +41,7 @@ extension ShoppingCoordinator {
     
     let vc = CreateCommercialPostViewController(viewModel: vm)
       .hideBackButton()
+      .hideTabBar()
       .navigationTitle(with: "상품 판매", displayMode: .never)
     
     push(vc)
