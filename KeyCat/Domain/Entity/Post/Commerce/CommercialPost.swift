@@ -22,7 +22,7 @@ struct CommercialPost: Entity {
   let likes: [UserID]
   let shoppingCarts: [UserID]
   let hashTags: [Hashtag]
-  let reviews: [CommercialReview]
+  var reviews: [CommercialReview]
   
   var productImagesURL: [URL?] {
     return files.map { URL(string: APIKey.baseURL + "/" + $0) }

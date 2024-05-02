@@ -141,7 +141,7 @@ final class ViewController: RxBaseViewController {
     
     포스트생성버튼.rx.tap
       .bind(with: self) { owner, _ in
-        owner.createPost()
+        owner.createPost2()
       }
       .disposed(by: disposeBag)
     
@@ -193,6 +193,74 @@ final class ViewController: RxBaseViewController {
   let user2ID = "66205d47e8473868acf6af29"
   var postID = "6620d597e8473868acf6b64f"
   var commentID = ""
+  let posts: [CommercialPost] = (1...100).map { n in
+      CommercialPost(
+        postID: n.description,
+        postType: .keycat_commercialProduct,
+        title: "키보드 상품 타이틀 \(n)",
+        content: "상품 설명입니다 \(n)",
+        keyboard: .init(
+          keyboardInfo: .init(
+            purpose: .allCases.randomElement()!,
+            inputMechanism: .allCases.randomElement()!,
+            connectionType: .allCases.randomElement()!,
+            powerSource: .allCases.randomElement()!,
+            backlight: .allCases.randomElement()!,
+            pcbType: .allCases.randomElement()!,
+            mechanicalSwitch: .allCases.randomElement()!,
+            capacitiveSwitch: .allCases.randomElement()!
+          ),
+          keycapInfo: .init(
+            profile: .allCases.randomElement()!,
+            direction: .allCases.randomElement()!,
+            process: .allCases.randomElement()!,
+            language: .allCases.randomElement()!
+          ),
+          keyboardAppearanceInfo: .init(
+            ratio: .allCases.randomElement()!,
+            design: .allCases.randomElement()!,
+            material: .allCases.randomElement()!,
+            size: .init(width: 380, height: 150, depth: 40, weight: 1062)
+          )
+        ),
+        price: .init(
+          regularPrice: n * 1000,
+          couponPrice: [0, 1000].randomElement()!,
+          discountPrice: [150, 300, 450, 500, 600, 900].randomElement()! * n,
+          discountExpiryDate: DateManager.shared.date(from: .now, as: .day, by: n)
+        ),
+        delivery: .init(
+          price: .allCases.randomElement()!,
+          schedule: .allCases.randomElement()!
+        ),
+        createdAt: DateManager.shared.date(from: .now, as: .hour, by: n),
+        creator: .init(
+          userID: n.description,
+          nickname: "닉네임 \(n)",
+          profileImageURLString: ""
+        ),
+        files: ["uploads/posts/vamillo_1_1714571161018.jpg"],
+        likes: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
+        shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
+        hashTags: [],
+        reviews: (1...5).map { i in
+            .init(
+              reviewID: n.description,
+              content: "리뷰 \(n)",
+              rating: .allCases.randomElement()!,
+              createdAt: DateManager.shared.date(from: .now, as: .hour, by: n),
+              creator: .init(
+                userID: n.description,
+                nickname: "닉네임 \(n*i)",
+                profileImageURLString: ""
+              )
+            )
+        }
+      )
+  }
+  
+  var postIndex: Int = 0
+  
   
   // MARK: - Method
   private func fetchBusinessInfo() {
@@ -228,15 +296,9 @@ final class ViewController: RxBaseViewController {
   }
   
   private func login() {
-    let request = LoginRequest(email: "kez@gmail.com", password: "1")
-    let router = AuthRouter.login(request: request)
-    
-    service.callRequest(with: router, of: LoginResponse.self)
+    SignInUsecaseImpl().execute(email: "q@keycat.com", password: "123@")
       .subscribe(with: self) { owner, response in
         owner.결과라벨.text = "요청 성공"
-        owner.내용라벨.text = response.accessToken
-        UserInfoService.accessToken = response.accessToken
-        UserInfoService.refreshToken = response.refreshToken
       } onFailure: { owner, error in
         owner.결과라벨.text = "요청 실패"
         owner.내용라벨.text = error.localizedDescription
@@ -520,6 +582,21 @@ final class ViewController: RxBaseViewController {
       }
       .disposed(by: disposeBag)
       
+  }
+  
+  private func createPost2() {
+    
+    let usecase = CreatePostUsecaseImpl()
+    
+    usecase.execute(files: [], post: posts[postIndex])
+      .subscribe(with: self) { owner, success in
+        print(success)
+      } onFailure: { owner, error in
+        print(error.localizedDescription)
+      }
+      .disposed(by: disposeBag)
+
+    postIndex += 1
   }
   
   private func createPost() {

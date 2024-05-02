@@ -25,6 +25,12 @@ final class AppCoordinator: Coordinator {
 
 extension AppCoordinator {
   
+  private func connectTestView() {
+    let vc = ViewController()
+    window?.rootViewController = vc
+    window?.makeKeyAndVisible()
+  }
+  
   private func connectSignFlow() {
     let rootNavigationVC = UINavigationController()
     let authCoordinator = AuthCoordinator(rootNavigationVC)
