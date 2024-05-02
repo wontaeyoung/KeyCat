@@ -54,7 +54,7 @@ final class SignInViewModel: ViewModel {
     
     /// 비밀번호 필드 비어있는지 검사
     let passwordValidation = input.password
-      .map { !$0.isFilled }
+      .map { $0.isFilled }
     
     /// 두 필드가 모두 비어있지 않을 때 로그인 버튼 활성화
     let loginButtonEnable = Observable.combineLatest(emailValidation, passwordValidation)
