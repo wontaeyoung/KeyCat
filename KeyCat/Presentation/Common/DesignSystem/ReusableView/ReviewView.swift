@@ -11,7 +11,7 @@ import SnapKit
 final class ReviewView: RxBaseView {
   
   private let starIcon = UIImageView(image: KCAsset.Symbol.review)
-  private let scoreLabel = KCLabel(style: .reviewScore)
+  private let scoreLabel = KCLabel(style: .content)
   private let countLabel = KCLabel(style: .reviewCount)
   
   override init() {
