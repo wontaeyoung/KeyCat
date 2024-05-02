@@ -29,8 +29,10 @@ extension ShoppingCoordinator {
   func showShoppoingView() {
     let vm = ShoppingViewModel()
       .coordinator(self)
+    
     let vc = ShoppingViewController(viewModel: vm)
       .kcNavigationTitle(with: MainTabBarPage.shopping.title)
+      .hideBackTitle()
     
     push(vc)
   }
