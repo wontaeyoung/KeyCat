@@ -18,17 +18,17 @@ final class ProductField: YoshikoTextField {
   init(placeholder: String? = nil, clearable: Bool = false) {
     super.init(frame: .zero)
     
-    self.font = KCAsset.Font.signField
+    self.font = KCAsset.Font.medium(size: 19).font
     self.placeholder = placeholder
     self.autocapitalizationType = .none
     self.autocorrectionType = .no
     self.spellCheckingType = .no
-    self.tintColor = KCAsset.Color.brand
+    self.tintColor = KCAsset.Color.brand.color
     self.clearButtonMode = clearable ? .whileEditing : .never
-    self.placeholderColor = KCAsset.Color.darkGray
+    self.placeholderColor = KCAsset.Color.darkGray.color
     
     self.activeBorderColor = .accent
-    self.inactiveBorderColor = KCAsset.Color.lightGrayBackground
+    self.inactiveBorderColor = KCAsset.Color.lightGrayBackground.color
     
     self.snp.makeConstraints { make in
       make.height.equalTo(60)

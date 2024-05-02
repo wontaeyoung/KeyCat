@@ -23,11 +23,11 @@ class KCField: HoshiTextField {
     self.autocapitalizationType = .none
     self.autocorrectionType = .no
     self.spellCheckingType = .no
-    self.tintColor = KCAsset.Color.brand
+    self.tintColor = KCAsset.Color.brand.color
     self.clearButtonMode = clearable ? .whileEditing : .never
-    self.placeholderColor = KCAsset.Color.darkGray
-    self.borderActiveColor = KCAsset.Color.brand
-    self.borderInactiveColor = KCAsset.Color.lightGrayForeground
+    self.placeholderColor = KCAsset.Color.darkGray.color
+    self.borderActiveColor = KCAsset.Color.brand.color
+    self.borderInactiveColor = KCAsset.Color.lightGrayForeground.color
     
     self.snp.makeConstraints { make in
       make.height.equalTo(60)

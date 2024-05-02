@@ -12,7 +12,7 @@ import RxCocoa
 
 final class KeyboardInfoSelectView<T: SelectionExpressible>: RxBaseView {
   
-  private let titleLabel = KCLabel(style: .standardTitle)
+  private let titleLabel = KCLabel(font: .medium(size: 16))
   private let popUpButton = KCButton(style: .plain)
   
   let selectedOption: BehaviorRelay<T>

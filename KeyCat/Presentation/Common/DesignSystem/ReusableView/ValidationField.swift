@@ -13,7 +13,11 @@ import RxCocoa
 final class ValidationField: KCField {
   
   // MARK: - UI
-  let validationResultLabel = KCLabel(style: .caption)
+  let validationResultLabel = KCLabel(
+    font: .medium(size: 15),
+    color: .lightGrayForeground,
+    line: 2
+  )
   
   // MARK: - Property
   private let inputInformation: InputInformation

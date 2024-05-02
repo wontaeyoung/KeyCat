@@ -15,7 +15,7 @@ final class KeyboardInfoSegmentView<T: SelectionExpressible>: UIView {
   private let scrollView = UIScrollView().configured {
     $0.showsHorizontalScrollIndicator = false
   }
-  private let titleLabel = KCLabel(style: .standardTitle)
+  private let titleLabel = KCLabel(font: .medium(size: 16))
   private let segment: UISegmentedControl
   
   private let disposeBag = DisposeBag()

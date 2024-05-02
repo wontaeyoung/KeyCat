@@ -18,17 +18,15 @@ class RxBaseViewController: UIViewController {
   
   private let networkUnsatisfiedView = UIView().configured {
     let imageView = UIImageView(image: KCAsset.Symbol.networkDisconnect).configured {
-      $0.tintColor = KCAsset.Color.darkGray
+      $0.tintColor = KCAsset.Color.darkGray.color
     }
     
     let label = KCLabel(
-      style: .standardTitle,
       title: "네트워크가 원활하지 않습니다.\n연결 상태를 다시 확인해주세요.",
+      font: .medium(size: 16),
+      line: 2, 
       alignment: .center
     )
-      .configured {
-        $0.numberOfLines = 2
-      }
     
     $0.addSubviews(imageView, label)
     

@@ -17,13 +17,13 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 10
-      $0.borderColor = KCAsset.Color.lightGrayBackground.cgColor
+      $0.borderColor = KCAsset.Color.lightGrayBackground.color.cgColor
       $0.borderWidth = 1
     }
     $0.backgroundColor = .systemBlue
   }
   
-  private let titleLabel = KCLabel(style: .productCellTitle)
+  private let titleLabel = KCLabel(font: .medium(size: 15), line: 2)
   private let productPriceView = ProductPriceView()
   private let reviewView = ReviewView()
   private lazy var tagStack = UIStackView().configured {
@@ -31,23 +31,11 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     $0.spacing = 5
   }
 
-  private let specialPriceTag = TagLabel(
-    style: .tag,
-    title: "특가",
-    backgroundColor: KCAsset.Color.pastelRed
-  )
+  private let specialPriceTag = TagLabel(title: "특가", backgroundColor: .pastelRed)
   
-  private let freeDeliveryTag = TagLabel(
-    style: .tag,
-    title: DeliveryInfo.Price.free.name,
-    backgroundColor: KCAsset.Color.pastelBlue
-  )
+  private let freeDeliveryTag = TagLabel(title: DeliveryInfo.Price.free.name, backgroundColor: .pastelBlue)
   
-  private let deliveryScheduleTag = TagLabel(
-    style: .tag,
-    title: nil,
-    backgroundColor: KCAsset.Color.pastelGreen
-  )
+  private let deliveryScheduleTag = TagLabel(title: nil, backgroundColor: .pastelGreen)
   
   // MARK: - Life Cycle
   override func setHierarchy() {
@@ -91,9 +79,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   func setData(with post: CommercialPost) {
   
     var post = post
-    post.reviews = (1...Int.random(in: 1...15)).map { _ in
-      .init(reviewID: "", content: "", rating: .allCases.randomElement()!, createdAt: .now, creator: .empty)
-    }
+    post.reviews = CommercialPost.dummyReviews
     
     let productImageURL = post.productImagesURL
       .compactMap { $0 }

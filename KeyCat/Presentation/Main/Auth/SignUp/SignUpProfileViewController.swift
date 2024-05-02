@@ -22,7 +22,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 100 / 2
-      $0.borderColor = KCAsset.Color.primary.cgColor
+      $0.borderColor = KCAsset.Color.primary.color.cgColor
       $0.borderWidth = 2
     }
   }
@@ -32,7 +32,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 100 / 2
-      $0.borderColor = KCAsset.Color.primary.cgColor
+      $0.borderColor = KCAsset.Color.primary.color.cgColor
       $0.borderWidth = 2
     }
   }
@@ -45,8 +45,10 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   private let nicknameField = ValidationField(inputInformation: .nickname)
   
   private let updateProfileImageAvailableLabel = KCLabel(
-    style: .caption,
     title: Constant.Label.updateProfileImageAvailable,
+    font: .medium(size: 15),
+    color: .lightGrayForeground,
+    line: 2,
     alignment: .center
   )
   

@@ -15,17 +15,22 @@ final class TagLabel: KCLabel {
   
   // MARK: - Initializer
   init(
-    style: Style = .tag,
     title: String?,
     horizontalInset: CGFloat = 8,
     verticalInset: CGFloat = 4,
-    backgroundColor: UIColor
+    backgroundColor: KCAsset.Color
   ) {
     self.horizontalInset = horizontalInset
     self.verticalInset = verticalInset
     
-    super.init(style: style, title: title, alignment: .center)
-    self.backgroundColor = backgroundColor
+    super.init(
+      title: title,
+      font: .bold(size: 12),
+      color: .white,
+      alignment: .center
+    )
+    
+    self.backgroundColor = backgroundColor.color
     self.clipsToBounds = true
     self.layer.cornerRadius = 5
   }

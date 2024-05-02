@@ -9,18 +9,23 @@ import UIKit
 
 enum KCAsset {
   
-  enum Color {
-    static let brand: UIColor = .init(hex: "#7E63FF")
-    static let primary: UIColor = .init(hex: "#A896FF")
-    static let secondary: UIColor = .init(hex: "#C1CFFF")
-    static let lightGrayBackground: UIColor = .init(hex: "#F2F2F6")
-    static let lightGrayForeground: UIColor = .init(hex: "#BCBCBC")
-    static let darkGray: UIColor = .init(hex: "#686868")
-    static let black: UIColor = .init(hex: "000000")
-    static let white: UIColor = .init(hex: "FFFFFF")
-    static let pastelRed: UIColor = .init(hex: "#E8A2A2")
-    static let pastelBlue: UIColor = .init(hex: "#A0C3D2")
-    static let pastelGreen: UIColor = .init(hex: "#A8D1D1")
+  enum Color: String {
+    
+    case brand = "#7E63FF"
+    case primary = "#A896FF"
+    case secondary = "#C1CFFF"
+    case lightGrayBackground = "#F2F2F6"
+    case lightGrayForeground = "#BCBCBC"
+    case darkGray = "#686868"
+    case black = "#000000"
+    case white = "#FFFFFF"
+    case pastelRed = "#E8A2A2"
+    case pastelBlue = "#A0C3D2"
+    case pastelGreen = "#A8D1D1"
+    
+    var color: UIColor {
+      return UIColor(hex: self.rawValue)
+    }
     
     static let background: UIColor = .background
     static let label: UIColor = .label
@@ -49,6 +54,19 @@ enum KCAsset {
       }
       
       return UIFont(name: fontName.name, size: size) ?? .systemFont(ofSize: size, weight: coalesceWeight)
+    }
+    
+    case medium(size: CGFloat)
+    case bold(size: CGFloat)
+    
+    var font: UIFont {
+      switch self {
+        case .medium(let size):
+          return Self.font(.medium, size: size)
+          
+        case .bold(let size):
+          return Self.font(.bold, size: size)
+      }
     }
     
     static let signField: UIFont = font(.medium, size: 19)

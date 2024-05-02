@@ -16,9 +16,9 @@ final class KCTextView: UITextView {
     super.init(frame: .zero, textContainer: nil)
     
     self.configure {
-      $0.font = KCAsset.Font.contentText
-      $0.textColor = KCAsset.Color.black
-      $0.tintColor = KCAsset.Color.brand
+      $0.font = KCAsset.Font.medium(size: 15).font
+      $0.textColor = KCAsset.Color.black.color
+      $0.tintColor = KCAsset.Color.brand.color
       $0.textAlignment = .natural
       $0.autocapitalizationType = .none
       $0.autocorrectionType = .no
@@ -33,7 +33,7 @@ final class KCTextView: UITextView {
       $0.layer.configure {
         $0.cornerRadius = 10
         $0.borderWidth = 1
-        $0.borderColor = KCAsset.Color.lightGrayBackground.cgColor
+        $0.borderColor = KCAsset.Color.lightGrayBackground.color.cgColor
       }
       
       if isResponder { $0.becomeFirstResponder() }
@@ -56,12 +56,7 @@ final class KCTextView: UITextView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private lazy var placeholderLabel = UILabel().configured {
-    $0.font = font
-    $0.textColor = KCAsset.Color.lightGrayForeground
-    $0.numberOfLines = 0
-    $0.textAlignment = .natural
-  }
+  private lazy var placeholderLabel = KCLabel(font: .medium(size: 15), color: .lightGrayForeground, line: 0)
 }
 
 extension KCTextView: UITextViewDelegate {

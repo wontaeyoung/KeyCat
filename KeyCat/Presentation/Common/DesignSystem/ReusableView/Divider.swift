@@ -10,7 +10,7 @@ import SnapKit
 
 final class Divider: RxBaseView {
   
-  init(color: UIColor = KCAsset.Color.lightGrayForeground) {
+  init(color: UIColor = KCAsset.Color.lightGrayForeground.color) {
     super.init()
     
     self.backgroundColor = color

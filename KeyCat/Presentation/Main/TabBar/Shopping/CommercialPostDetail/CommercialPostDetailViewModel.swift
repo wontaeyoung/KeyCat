@@ -26,6 +26,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   // MARK: - Initializer
   init(post: CommercialPost) {
+    let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     self.post = BehaviorRelay<CommercialPost>(value: post)
   }
   

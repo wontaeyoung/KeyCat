@@ -34,17 +34,17 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     section: .makeCardSection(cardSpacing: 0, heightRatio: 1)
   )
   
-  private let imagePageTag = TagLabel(title: nil, backgroundColor: KCAsset.Color.darkGray)
+  private let imagePageTag = TagLabel(title: nil, backgroundColor: .darkGray)
   
   // MARK: 상품 텍스트 정보
-  private let titleLabel = KCLabel(style: .standardTitle)
+  private let titleLabel = KCLabel(font: .medium(size: 16))
   private let reviewView = ReviewView()
   private let productPriceView = ProductPriceView()
   
   private let deliverySectionDivider = Divider()
-  private let deliverySectionLabel = KCLabel(style: .sectionTitle)
-  private let deliveryPriceLabel = KCLabel(style: .content)
-  private let deliveryScheduleLabel = KCLabel(style: .content)
+  private let deliverySectionLabel = KCLabel(title: "배송", font: .medium(size: 13))
+  private let deliveryPriceLabel = KCLabel(font: .medium(size: 13))
+  private let deliveryScheduleLabel = KCLabel(font: .medium(size: 13))
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
@@ -140,6 +140,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     let input = CommercialPostDetailViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    /// 상품 이미지 URL로 컬렉션 뷰 표시
     output.post
       .map { $0.productImagesURL }
       .drive(productImageCollectionView.rx.items(
@@ -150,6 +151,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 상품 이미지 페이지 번호 표시
     Observable.combineLatest(
       productImageCollectionView.rx.willDisplayCell.map { $0.at },
       output.post.map { $0.files.count }.asObservable()
@@ -158,5 +160,36 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     .bind(to: imagePageTag.rx.text)
     .disposed(by: disposeBag)
     
+    /// 상품 타이틀 표시
+    output.post
+      .map { $0.title }
+      .drive(titleLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    /// 상품 리뷰 표시
+    output.post
+      .map { $0.reviews }
+      .drive(with: self) { owner, reviews in
+        owner.reviewView.setData(reviews: reviews)
+      }
+      .disposed(by: disposeBag)
+    
+    /// 상품 가격 표시
+    output.post
+      .map { $0.price }
+      .drive(with: self) { owner, price in
+        owner.productPriceView.setData(price: price)
+      }
+      .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.delivery.price.name }
+      .drive(deliveryPriceLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.delivery.schedule.name }
+      .drive(deliveryScheduleLabel.rx.text)
+      .disposed(by: disposeBag)
   }
 }

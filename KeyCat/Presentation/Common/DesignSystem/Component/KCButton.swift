@@ -53,37 +53,37 @@ extension KCButton {
     
     private static let primaryConfig: UIButton.Configuration = .filled().applied {
       
-      $0.baseForegroundColor = .white
-      $0.baseBackgroundColor = KCAsset.Color.brand
+      $0.baseForegroundColor = KCAsset.Color.white.color
+      $0.baseBackgroundColor = KCAsset.Color.brand.color
       $0.buttonSize = .large
       $0.cornerStyle = .capsule
       $0.imagePadding = 6
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.buttonTitle }
+        return $0.applied { $0.font = KCAsset.Font.bold(size: 19).font }
       }
     }
     
     private static let secondaryConfig: UIButton.Configuration = .tinted().applied {
       
-      $0.baseForegroundColor = KCAsset.Color.brand
-      $0.baseBackgroundColor = KCAsset.Color.secondary
+      $0.baseForegroundColor = KCAsset.Color.brand.color
+      $0.baseBackgroundColor = KCAsset.Color.secondary.color
       $0.buttonSize = .large
       $0.cornerStyle = .capsule
       $0.imagePadding = 6
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.buttonTitle }
+        return $0.applied { $0.font = KCAsset.Font.bold(size: 19).font }
       }
     }
     
     private static let plainConfig: UIButton.Configuration = .plain().applied {
       
-      $0.baseForegroundColor = KCAsset.Color.brand
+      $0.baseForegroundColor = KCAsset.Color.brand.color
       $0.buttonSize = .mini
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.captionLabel }
+        return $0.applied { $0.font = KCAsset.Font.medium(size: 15).font }
       }
     }
     
@@ -102,12 +102,12 @@ extension KCButton {
     private static let floatingConfig: UIButton.Configuration = .filled().applied {
       
       $0.baseForegroundColor = .white
-      $0.baseBackgroundColor = KCAsset.Color.brand
+      $0.baseBackgroundColor = KCAsset.Color.brand.color
       $0.buttonSize = .mini
       $0.cornerStyle = .capsule
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.floatingButtonTitle }
+        return $0.applied { $0.font = KCAsset.Font.bold(size: 36).font }
       }
     }
     

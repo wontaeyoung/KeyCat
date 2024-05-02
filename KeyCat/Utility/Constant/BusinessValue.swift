@@ -10,7 +10,6 @@ enum BusinessValue {
   static let maxImageFileVolumeMB: Double = 2.0
   
   enum Product {
-    
     static let maxContentLength: Int = 300
     static let maxProductImage: Int = 5
     static let defaultDeliveryCharge: Int = 3000

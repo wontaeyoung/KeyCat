@@ -16,17 +16,19 @@ final class CommercialPostImageCollectionCell: RxBaseCollectionViewCell {
     $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 10
-      $0.borderColor = KCAsset.Color.lightGrayBackground.cgColor
+      $0.borderColor = KCAsset.Color.lightGrayBackground.color.cgColor
       $0.borderWidth = 1
     }
   }
   
   private let mainImageInfoLabel = KCLabel(
-    style: .tag,
     title: "메인 이미지",
+    font: .bold(size: 12),
+    color: .white,
+    line: 1,
     alignment: .center
   ).configured {
-    $0.backgroundColor = KCAsset.Color.black
+    $0.backgroundColor = KCAsset.Color.black.color
   }
   
   // MARK: - Life Cycle
