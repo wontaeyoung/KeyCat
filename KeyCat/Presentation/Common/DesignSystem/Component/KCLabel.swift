@@ -89,7 +89,7 @@ class KCLabel: UILabel {
           $0.numberOfLines = 1
         }
         
-      case .reviewScore:
+      case .content:
         self.configure {
           $0.font = KCAsset.Font.mini
           $0.textColor = KCAsset.Color.black
@@ -109,6 +109,7 @@ class KCLabel: UILabel {
           $0.textColor = KCAsset.Color.white
           $0.numberOfLines = 1
         }
+        
     }
   }
   
@@ -130,7 +131,7 @@ extension KCLabel {
     case standardTitle
     case productCellTitle
     case productCellPrice
-    case reviewScore
+    case content
     case reviewCount
     case tag
   }
