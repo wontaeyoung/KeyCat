@@ -78,11 +78,9 @@ final class ShoppingViewModel: ViewModel {
       .bind(to: fetchedPosts)
       .disposed(by: disposeBag)
     
+    /// 마지막 상품의 이전 줄이 표시될 때, 페이지네이션
     input.showProductCellEvent
-      .do(onNext: {
-        print($0)
-      })
-      .filter { $0.item >= self.commercialPosts.value.count - 4 }
+      .filter { $0.row >= self.commercialPosts.value.count - 4 }
       .withUnretained(self)
       .flatMap { owner, _ in
         return owner.fetchPosts()
