@@ -46,4 +46,14 @@ extension ShoppingCoordinator {
     
     push(vc)
   }
+  
+  func showPostDetailView(post: CommercialPost) {
+    let vm = CommercialPostDetailViewModel(post: post)
+      .coordinator(self)
+    
+    let vc = CommercialPostDetailViewController(viewModel: vm)
+      .hideTabBar()
+    
+    push(vc)
+  }
 }
