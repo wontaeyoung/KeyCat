@@ -137,20 +137,22 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   override func bind() {
     
-    let images = Observable<[UIImage]>.just([.catWithKeycap1, .catWithKeycap2, .keyCatOpacity, .catWithKeycap1])
+    let input = CommercialPostDetailViewModel.Input()
+    let output = viewModel.transform(input: input)
     
-    images
-      .bind(to: productImageCollectionView.rx.items(
+    output.post
+      .map { $0.productImagesURL }
+      .drive(productImageCollectionView.rx.items(
         cellIdentifier: CommercialPostDetailImageCollectionCell.identifier,
         cellType: CommercialPostDetailImageCollectionCell.self)
-      ) { row, item, cell in
-        cell.updateImage(with: item)
+      ) { row, url, cell in
+        cell.updateImage(with: url)
       }
       .disposed(by: disposeBag)
     
     Observable.combineLatest(
       productImageCollectionView.rx.willDisplayCell.map { $0.at },
-      images.map { $0.count }
+      output.post.map { $0.files.count }.asObservable()
     )
     .map { "\($0.0.item + 1) / \($0.1)"}
     .bind(to: imagePageTag.rx.text)

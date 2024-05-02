@@ -186,6 +186,7 @@
 		6ED51E702BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6F2BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift */; };
 		6ED51E722BE35F7D005D7FBD /* ProductPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */; };
 		6ED51E742BE377F2005D7FBD /* TappableBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E732BE377F2005D7FBD /* TappableBaseViewController.swift */; };
+		6ED51E762BE3909F005D7FBD /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E752BE3909F005D7FBD /* UIImageView+.swift */; };
 		6EFB92152BDBFB1200AA8D09 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */; };
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
@@ -371,6 +372,7 @@
 		6ED51E6F2BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailImageCollectionCell.swift; sourceTree = "<group>"; };
 		6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPriceView.swift; sourceTree = "<group>"; };
 		6ED51E732BE377F2005D7FBD /* TappableBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableBaseViewController.swift; sourceTree = "<group>"; };
+		6ED51E752BE3909F005D7FBD /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 				6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */,
 				6EAEAD012BE2681100993089 /* UICollectionViewFlowLayout+.swift */,
 				6E3460D32BE272A300840E21 /* Array+.swift */,
+				6ED51E752BE3909F005D7FBD /* UIImageView+.swift */,
 				6E3460D52BE2745600840E21 /* Double+.swift */,
 			);
 			path = Extension;
@@ -1271,6 +1274,7 @@
 				6E9829022BCEA78F00105910 /* KCBody.swift in Sources */,
 				6E0778302BD8E9E400B3A6EC /* SignUpBusinessInfoAuthenticationViewController.swift in Sources */,
 				6E98291D2BD0915000105910 /* UserRouter.swift in Sources */,
+				6ED51E762BE3909F005D7FBD /* UIImageView+.swift in Sources */,
 				6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */,
 				6E98291B2BCFF0C900105910 /* LikeRouter.swift in Sources */,
 				6E0A4F892BD108FD005A529F /* DeliveryInfoDTO.swift in Sources */,

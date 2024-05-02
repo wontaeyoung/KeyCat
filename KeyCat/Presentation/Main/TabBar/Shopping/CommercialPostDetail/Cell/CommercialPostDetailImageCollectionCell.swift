@@ -7,12 +7,13 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class CommercialPostDetailImageCollectionCell: RxBaseCollectionViewCell {
   
   // MARK: - UI
   private let imageView = UIImageView().configured {
-    $0.contentMode = .scaleAspectFill
+    $0.contentMode = .scaleAspectFit
   }
   
   // MARK: - Life Cycle
@@ -26,7 +27,7 @@ final class CommercialPostDetailImageCollectionCell: RxBaseCollectionViewCell {
     }
   }
   
-  func updateImage(with image: UIImage) {
-    imageView.image = image
+  func updateImage(with url: URL?) {
+    imageView.load(with: url)
   }
 }

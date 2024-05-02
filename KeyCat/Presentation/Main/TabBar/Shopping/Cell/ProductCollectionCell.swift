@@ -91,12 +91,15 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   func setData(with post: CommercialPost) {
   
     var post = post
-    post.files = ["uploads/posts/vamillo_1_1714571161018.jpg"]
     post.reviews = (1...Int.random(in: 1...15)).map { _ in
       .init(reviewID: "", content: "", rating: .allCases.randomElement()!, createdAt: .now, creator: .empty)
     }
     
-    imageView.kf.setImage(with: post.productImagesURL.first!)
+    let productImageURL = post.productImagesURL
+      .compactMap { $0 }
+      .first
+    
+    imageView.load(with: productImageURL)
     titleLabel.text = post.title
     
     productPriceView.setData(price: post.price)
