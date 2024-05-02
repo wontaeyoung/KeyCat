@@ -65,10 +65,6 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     }
   }
   
-  override func setAttribute() {
-    
-  }
-  
   override func bind() {
     
     let input = ShoppingViewModel.Input()
@@ -90,7 +86,13 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       }
       .disposed(by: disposeBag)
     
+    /// 컬렉션 뷰 탭 이벤트 전달
+    productCollectionView.rx.modelSelected(CommercialPost.self)
+      .bind(to: input.postCollectionCellSelectedEvent)
+      .disposed(by: disposeBag)
     
+    
+    /// 셀 화면 표시 이벤트 전달
     productCollectionView.rx.willDisplayCell
       .showingCellThrottle()
       .map { $0.at }
@@ -106,7 +108,4 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     
     input.viewDidLoadEvent.accept(())
   }
-  
-  // MARK: - Method
-  
 }

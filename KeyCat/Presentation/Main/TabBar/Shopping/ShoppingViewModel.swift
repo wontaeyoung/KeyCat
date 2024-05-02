@@ -16,15 +16,18 @@ final class ShoppingViewModel: ViewModel {
     let viewDidLoadEvent: PublishRelay<Void>
     let createPostTapEvent: PublishRelay<Void>
     let showProductCellEvent: PublishRelay<IndexPath>
+    let postCollectionCellSelectedEvent: PublishRelay<CommercialPost>
     
     init(
       viewDidLoadEvent: PublishRelay<Void> = .init(),
       createPostTapEvent: PublishRelay<Void> = .init(),
-      showProductCellEvent: PublishRelay<IndexPath> = .init()
+      showProductCellEvent: PublishRelay<IndexPath> = .init(),
+      postCollectionCellSelectedEvent: PublishRelay<CommercialPost> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
       self.createPostTapEvent = createPostTapEvent
       self.showProductCellEvent = showProductCellEvent
+      self.postCollectionCellSelectedEvent = postCollectionCellSelectedEvent
     }
   }
   
@@ -54,7 +57,7 @@ final class ShoppingViewModel: ViewModel {
     
     let hasSellerAuthority = PublishRelay<Bool>()
     
-    /// 새로 조회한
+    /// 새로운 게시물 응답을 기존 게시물 배열에 추가
     fetchedPosts
       .bind(with: self) { owner, newPosts in
         owner.appendPosts(newPosts)
@@ -94,6 +97,13 @@ final class ShoppingViewModel: ViewModel {
     input.createPostTapEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.showCreatePostView()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 포스트 셀 탭 이벤트 > 상품 디테일 화면 연결
+    input.postCollectionCellSelectedEvent
+      .bind(with: self) { owner, post in
+        owner.coordinator?.showPostDetailView(post: post)
       }
       .disposed(by: disposeBag)
     
