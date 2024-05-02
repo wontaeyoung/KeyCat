@@ -136,6 +136,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   }
   
   override func bind() {
+    
     let images = Observable<[UIImage]>.just([.catWithKeycap1, .catWithKeycap2, .keyCatOpacity, .catWithKeycap1])
     
     images
@@ -151,7 +152,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       productImageCollectionView.rx.willDisplayCell.map { $0.at },
       images.map { $0.count }
     )
-    .map { "\($0.0.item) / \($0.1)"}
+    .map { "\($0.0.item + 1) / \($0.1)"}
     .bind(to: imagePageTag.rx.text)
     .disposed(by: disposeBag)
     
