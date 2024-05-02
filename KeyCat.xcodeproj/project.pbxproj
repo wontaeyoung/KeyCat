@@ -181,6 +181,8 @@
 		6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */; };
 		6ED51E662BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E652BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift */; };
 		6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift */; };
+		6ED51E6B2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */; };
+		6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */; };
 		6EFB92152BDBFB1200AA8D09 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */; };
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
@@ -361,6 +363,8 @@
 		6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		6ED51E652BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostsUsecaseImpl.swift; sourceTree = "<group>"; };
 		6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostsUsecase.swift; sourceTree = "<group>"; };
+		6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailViewController.swift; sourceTree = "<group>"; };
+		6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailViewModel.swift; sourceTree = "<group>"; };
 		6EFB92142BDBFB1200AA8D09 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
@@ -1130,14 +1134,24 @@
 			path = CreateCommercialPost;
 			sourceTree = "<group>";
 		};
+		6ED51E692BE34BC4005D7FBD /* CommercialPostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */,
+				6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */,
+			);
+			path = CommercialPostDetail;
+			sourceTree = "<group>";
+		};
 		6EFB92162BDBFB5A00AA8D09 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
 				6EAEAD032BE2695400993089 /* Cell */,
 				6EFB92172BDBFC6600AA8D09 /* Coordinator */,
+				6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */,
+				6ED51E692BE34BC4005D7FBD /* CommercialPostDetail */,
 				6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */,
 				6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */,
-				6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
@@ -1261,6 +1275,7 @@
 				6EAEACF72BE2289C00993089 /* PostRepositoryImpl.swift in Sources */,
 				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
+				6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */,
 				6EAEACFA2BE2352F00993089 /* PostRepository.swift in Sources */,
 				6E0A4F922BD13353005A529F /* UserInfoService.swift in Sources */,
 				6E0A4FE92BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift in Sources */,
@@ -1307,6 +1322,7 @@
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
+				6ED51E6B2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift in Sources */,
 				6E0A4FA02BD150E0005A529F /* ValidationField.swift in Sources */,
 				6E0778442BDA88CA00B3A6EC /* SignInUsecaseImpl.swift in Sources */,
 				6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */,
