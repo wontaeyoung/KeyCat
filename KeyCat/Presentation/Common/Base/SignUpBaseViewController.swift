@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SignUpBaseViewController: RxBaseViewController {
+class SignUpBaseViewController: TappableBaseViewController {
   
   let inputInfoTitleLabel = KCLabel(style: .brandTitle)
   let nextButton = KCButton(style: .primary, title: Constant.Button.next)

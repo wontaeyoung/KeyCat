@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import TextFieldEffects
 
-final class SignInViewController: RxBaseViewController, ViewModelController {
+final class SignInViewController: TappableBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let appLogoImageView = UIImageView().configured {
