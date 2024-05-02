@@ -53,4 +53,10 @@ enum Constant {
     static let koreaLocale: Locale = Locale(identifier: "ko_KR")
     static let koreaTimeZone: TimeZone? = TimeZone(identifier: "Asia/Seoul")
   }
+  
+  enum Network {
+    
+    static let fetchCountForOnce: String = "10"
+    static let lastCursorSign: String = "0"
+  }
 }

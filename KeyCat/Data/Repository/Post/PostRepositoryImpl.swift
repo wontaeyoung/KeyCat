@@ -48,7 +48,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   func fetchCommercialPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
     let query = FetchPostsQuery(
       next: nextCursor,
-      limit: BusinessValue.Product.fetchCountForOnce,
+      limit: Constant.Network.fetchCountForOnce,
       postType: .keycat_commercialProduct
     )
     let router = PostRouter.postsFetch(query: query)

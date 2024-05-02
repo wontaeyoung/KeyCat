@@ -15,7 +15,6 @@ enum BusinessValue {
     static let maxProductImage: Int = 5
     static let defaultDeliveryCharge: Int = 3000
     static let maxDiscountExpiryMonthFromNow: Int = 1
-    static let fetchCountForOnce: String = "10"
   }
   
   enum OptionLength {
