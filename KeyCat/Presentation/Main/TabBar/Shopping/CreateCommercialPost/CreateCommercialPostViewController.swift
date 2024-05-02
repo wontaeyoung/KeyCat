@@ -566,7 +566,10 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     /// 셀 선택 > 이미지 디테일 시트뷰 표시
     productImageCollectionView.rx.modelSelected(UIImage.self)
       .bind(with: self) { owner, image in
-        owner.present(PostImageDetailSheetViewController(image: image), animated: true)
+        let vc = UINavigationController(rootViewController: PostImageDetailSheetViewController(image: image))
+        vc.modalPresentationStyle = .fullScreen
+        
+        owner.present(vc, animated: true)
       }
       .disposed(by: disposeBag)
     
