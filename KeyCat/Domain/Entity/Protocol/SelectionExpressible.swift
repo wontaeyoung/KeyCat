@@ -6,8 +6,10 @@
 //
 
 protocol SelectionExpressible: CaseIterable, RawRepresentable where Self.RawValue == Int {
-  static var coalesce: Self { get }
+  
   var name: String { get }
+  var index: Int { get }
+  static var coalesce: Self { get }
   static var title: String { get }
   static var selection: [Self] { get }
   
@@ -15,6 +17,11 @@ protocol SelectionExpressible: CaseIterable, RawRepresentable where Self.RawValu
 }
 
 extension SelectionExpressible {
+  
+  var index: Int {
+    return self.rawValue
+  }
+  
   static var selection: [Self] {
     return Array(Self.allCases)
   }

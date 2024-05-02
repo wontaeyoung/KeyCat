@@ -13,7 +13,7 @@ import RxCocoa
 final class SignUpEmailViewController: SignUpBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private let emailField = SignUpInputField(
+  private let emailField = ValidationField(
     inputInformation: .email,
     type: .emailAddress
   )

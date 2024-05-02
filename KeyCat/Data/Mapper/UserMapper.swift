@@ -85,6 +85,6 @@ struct UserMapper {
   }
   
   private func getProfileType(email: String) -> Profile.ProfileType {
-    return email.isEmpty ? .other : .mine
+    return email.isFilled ? .mine : .other
   }
 }

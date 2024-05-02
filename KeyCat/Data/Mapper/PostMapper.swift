@@ -34,9 +34,15 @@ struct PostMapper: Mapper {
       creator: userMapper.toEntity(dto.creator),
       files: dto.files,
       likes: dto.likes,
+      shoppingCarts: dto.likes2,
       hashTags: dto.hashTags,
       reviews: commentMapper.toEntity(dto.comments)
     )
+  }
+  
+  func toEntity(_ dtos: [PostDTO]) -> [CommercialPost] {
+    return dtos
+      .compactMap { toEntity($0) }
   }
   
   func toDTO(_ entity: CommercialPost) -> PostDTO? {
@@ -117,9 +123,9 @@ extension PostMapper {
       connectionType: .init(keyboardDTO.keyboardInfo[2]),
       powerSource: .init(keyboardDTO.keyboardInfo[3]),
       backlight: .init(keyboardDTO.keyboardInfo[4]),
-      mechanicalSwitch: .init(keyboardDTO.keyboardInfo[5]),
-      capacitiveSwitch: .init(keyboardDTO.keyboardInfo[6]),
-      pcbType: .init(keyboardDTO.keyboardInfo[7])
+      pcbType: .init(keyboardDTO.keyboardInfo[5]), 
+      mechanicalSwitch: .init(keyboardDTO.keyboardInfo[6]),
+      capacitiveSwitch: .init(keyboardDTO.keyboardInfo[7])
     )
     
     let keycapInfo: KeycapInfo = KeycapInfo(

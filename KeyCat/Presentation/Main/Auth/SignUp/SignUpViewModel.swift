@@ -201,7 +201,7 @@ final class SignUpViewModel: ViewModel {
       input.password,
       input.passwordCheck
     )
-    .map { $0 == $1 && !$0.isEmpty && !$1.isEmpty }
+    .map { $0 == $1 && $0.isFilled && $1.isFilled }
     .bind(to: passwordEqualValidationResult)
     .disposed(by: disposeBag)
     

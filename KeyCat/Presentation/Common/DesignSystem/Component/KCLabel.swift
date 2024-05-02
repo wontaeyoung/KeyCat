@@ -33,6 +33,13 @@ class KCLabel: UILabel {
           $0.numberOfLines = 2
         }
         
+      case .placeholder:
+        self.configure {
+          $0.font = KCAsset.Font.inputFieldPlaceholder
+          $0.textColor = KCAsset.Color.darkGray
+          $0.numberOfLines = 1
+        }
+        
       case .logo:
         self.configure {
           $0.font = KCAsset.Font.appLogoLabel
@@ -40,11 +47,25 @@ class KCLabel: UILabel {
           $0.numberOfLines = 1
         }
         
-      case .mainInfoTitle:
+      case .brandTitle:
         self.configure {
-          $0.font = KCAsset.Font.mainInfoTitle
+          $0.font = KCAsset.Font.title
           $0.textColor = KCAsset.Color.brand
           $0.numberOfLines = 2
+        }
+        
+      case .blackTitle:
+        self.configure {
+          $0.font = KCAsset.Font.title
+          $0.textColor = KCAsset.Color.black
+          $0.numberOfLines = 1
+        }
+        
+      case .sectionTitle:
+        self.configure {
+          $0.font = KCAsset.Font.sectionTitle
+          $0.textColor = KCAsset.Color.darkGray
+          $0.numberOfLines = 1
         }
         
       case .standardTitle:
@@ -53,6 +74,42 @@ class KCLabel: UILabel {
           $0.textColor = KCAsset.Color.black
           $0.numberOfLines = 1
         }
+        
+      case .productCellTitle:
+        self.configure {
+          $0.font = KCAsset.Font.contentText
+          $0.textColor = KCAsset.Color.black
+          $0.numberOfLines = 2
+        }
+        
+      case .productCellPrice:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.lightGrayForeground
+          $0.numberOfLines = 1
+        }
+        
+      case .content:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.black
+          $0.numberOfLines = 1
+        }
+        
+      case .reviewCount:
+        self.configure {
+          $0.font = KCAsset.Font.mini
+          $0.textColor = KCAsset.Color.lightGrayForeground
+          $0.numberOfLines = 1
+        }
+        
+      case .tag:
+        self.configure {
+          $0.font = KCAsset.Font.tag
+          $0.textColor = KCAsset.Color.white
+          $0.numberOfLines = 1
+        }
+        
     }
   }
   
@@ -66,9 +123,17 @@ extension KCLabel {
   
   enum Style {
     case caption
+    case placeholder
     case logo
-    case mainInfoTitle
+    case brandTitle
+    case blackTitle
+    case sectionTitle
     case standardTitle
+    case productCellTitle
+    case productCellPrice
+    case content
+    case reviewCount
+    case tag
   }
   
   func applyLineSpacing() {
@@ -82,7 +147,7 @@ extension KCLabel {
       let range = NSRange(location: 0, length: $0.length)
       
       $0.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: range)
-      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.inputField, range: range)
+      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.signField, range: range)
     }
   }
 }

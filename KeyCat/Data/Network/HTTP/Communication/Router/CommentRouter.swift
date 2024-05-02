@@ -44,13 +44,13 @@ enum CommentRouter: Router {
     switch self {
       case .commentCreate, .commentUpdate:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken),
+          HTTPHeader(name: KCHeader.Key.authorization, value: UserInfoService.accessToken),
           HTTPHeader(name: KCHeader.Key.contentType, value: KCHeader.Value.applicationJson)
         ]
         
       case .commentDelete:
         return [
-          HTTPHeader(name: KCHeader.Key.authorization, value: APITokenContainer.accessToken)
+          HTTPHeader(name: KCHeader.Key.authorization, value: UserInfoService.accessToken)
         ]
     }
   }

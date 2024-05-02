@@ -168,6 +168,14 @@ extension DateManager {
     
     return (start, end)
   }
+  
+  func startOfDay(when date: Date) -> Date {
+    return calendar.startOfDay(for: date)
+  }
+  
+  func date(from date: Date, as component: Calendar.Component, by value: Int) -> Date {
+    return calendar.date(byAdding: component, value: value, to: date) ?? .now
+  }
 }
 
 // MARK: - Compare Date
@@ -189,4 +197,3 @@ extension DateManager {
       .contains(false)
   }
 }
-

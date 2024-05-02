@@ -8,9 +8,9 @@
 import UIKit
 import RxSwift
 
-class SignUpBaseViewController: RxBaseViewController {
+class SignUpBaseViewController: TappableBaseViewController {
   
-  let inputInfoTitleLabel = KCLabel(style: .mainInfoTitle)
+  let inputInfoTitleLabel = KCLabel(style: .brandTitle)
   let nextButton = KCButton(style: .primary, title: Constant.Button.next)
   private let bottomBufferHeight: CGFloat = 20
   
@@ -67,10 +67,7 @@ class SignUpBaseViewController: RxBaseViewController {
   }
   
   private func bindEndEditing() {
-    let tap = UITapGestureRecognizer()
-    view.addGestureRecognizer(tap)
-    
-    tap.rx.event
+    tap
       .bind(with: self) { owner, _ in
         owner.view.endEditing(true)
       }

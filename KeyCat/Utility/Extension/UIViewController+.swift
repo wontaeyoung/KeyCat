@@ -26,6 +26,12 @@ extension UIViewController {
     return self
   }
   
+  func kcNavigationTitle(with title: String) -> Self {
+    let titleLabel = KCLabel(style: .blackTitle, title: title)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+    return self
+  }
+  
   func hideTabBar() -> Self {
     self.hidesBottomBarWhenPushed = true
     return self
@@ -40,5 +46,19 @@ extension UIViewController {
     view.makeToast(message, position: position) { _ in
       completion?()
     }
+  }
+  
+  func setBarItem(at position: NavigationBarPosition, item: UIBarButtonItem) {
+    switch position {
+      case .left:
+        navigationItem.setLeftBarButton(item, animated: false)
+      case .right:
+        navigationItem.setRightBarButton(item, animated: false)
+    }
+  }
+  
+  enum NavigationBarPosition {
+    case left
+    case right
   }
 }

@@ -13,9 +13,9 @@ struct KeyboardInfo {
   let connectionType: ConnectionType
   let powerSource: PowerSource
   let backlight: Backlight
+  let pcbType: PCBType
   let mechanicalSwitch: MechanicalSwitch
   let capacitiveSwitch: CapacitiveSwitch
-  let pcbType: PCBType
   
   var raws: [Int] {
     return [
@@ -24,9 +24,9 @@ struct KeyboardInfo {
       connectionType.rawValue,
       powerSource.rawValue,
       backlight.rawValue,
+      pcbType.rawValue,
       mechanicalSwitch.rawValue,
       capacitiveSwitch.rawValue,
-      pcbType.rawValue,
     ]
   }
   
@@ -35,14 +35,14 @@ struct KeyboardInfo {
     case office
     case gaming
     
-    static let coalesce: Purpose = .gaming
-    
     var name: String {
       switch self {
         case .office: "사무용"
         case .gaming: "게이밍"
       }
     }
+    
+    static let coalesce: Purpose = .gaming
     
     static var title: String {
       return "사용목적"
@@ -58,8 +58,6 @@ struct KeyboardInfo {
     case optical
     case other
     
-    static let coalesce: InputMechanism = .membrane
-    
     var name: String {
       switch self {
         case .membrane: "멤브레인"
@@ -70,6 +68,8 @@ struct KeyboardInfo {
         case .other: "기타"
       }
     }
+    
+    static let coalesce: InputMechanism = .membrane
     
     static var title: String {
       return "접점방식"
@@ -82,8 +82,6 @@ struct KeyboardInfo {
     case wireless
     case bluetooth
     
-    static let coalesce: ConnectionType = .wired
-    
     var name: String {
       switch self {
         case .wired: "유선"
@@ -91,6 +89,8 @@ struct KeyboardInfo {
         case .bluetooth: "블루투스"
       }
     }
+    
+    static let coalesce: ConnectionType = .wired
     
     static var title: String {
       return "연결방식"
@@ -103,8 +103,6 @@ struct KeyboardInfo {
     case battery
     case batteryCell
     
-    static let coalesce: PowerSource = .powerCord
-    
     var name: String {
       switch self {
         case .powerCord: "연결"
@@ -112,6 +110,8 @@ struct KeyboardInfo {
         case .batteryCell: "건전지"
       }
     }
+    
+    static let coalesce: PowerSource = .powerCord
     
     static var title: String {
       return "전원"
@@ -123,8 +123,6 @@ struct KeyboardInfo {
     case noBacklight
     case withBacklight
     
-    static let coalesce: Backlight = .noBacklight
-    
     var name: String {
       switch self {
         case .noBacklight: "없음"
@@ -132,8 +130,31 @@ struct KeyboardInfo {
       }
     }
     
+    static let coalesce: Backlight = .noBacklight
+    
     static var title: String {
       return "백라이트"
+    }
+  }
+  
+  enum PCBType: Int, SelectionExpressible {
+    
+    case none
+    case soldering
+    case hotSwap
+    
+    var name: String {
+      switch self {
+        case .none: "해당없음"
+        case .soldering: "솔더링"
+        case .hotSwap: "핫스왑"
+      }
+    }
+    
+    static let coalesce: PCBType = .none
+    
+    static var title: String {
+      return "기판"
     }
   }
   
@@ -146,8 +167,6 @@ struct KeyboardInfo {
     case silentTactile
     case silentLinear
     
-    static let coalesce: MechanicalSwitch = .none
-    
     var name: String {
       switch self {
         case .none: "해당없음"
@@ -158,6 +177,8 @@ struct KeyboardInfo {
         case .silentLinear: "저소음 리니어"
       }
     }
+    
+    static let coalesce: MechanicalSwitch = .none
     
     static var title: String {
       return "스위치"
@@ -170,8 +191,6 @@ struct KeyboardInfo {
     case noppoo
     case topre
     
-    static let coalesce: CapacitiveSwitch = .none
-    
     var name: String {
       switch self {
         case .none: "해당없음"
@@ -180,29 +199,10 @@ struct KeyboardInfo {
       }
     }
     
+    static let coalesce: CapacitiveSwitch = .none
+    
     static var title: String {
       return "스위치"
-    }
-  }
-  
-  enum PCBType: Int, SelectionExpressible {
-    
-    case none
-    case soldering
-    case hotSwap
-    
-    static let coalesce: PCBType = .none
-    
-    var name: String {
-      switch self {
-        case .none: "해당없음"
-        case .soldering: "솔더링"
-        case .hotSwap: "핫스왑"
-      }
-    }
-    
-    static var title: String {
-      return "기판"
     }
   }
 }

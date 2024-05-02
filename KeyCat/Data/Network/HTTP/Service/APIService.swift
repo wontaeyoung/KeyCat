@@ -29,6 +29,10 @@ struct APIService {
   }
   
   func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
+    guard data.isFilled else {
+      return .just(UploadPostImageResponse(files: []))
+    }
+    
     let router = PostRouter.postImageUpload
     
     return session
@@ -38,7 +42,7 @@ struct APIService {
             $0,
             withName: KCBody.Key.postImageFiles,
             fileName: KCBody.Value.fileName,
-            mimeType: KCBody.Value.mimeTypePNG
+            mimeType: KCBody.Value.mimeTypeJPEG
           )
         }
       }, to: router, headers: router.headers)

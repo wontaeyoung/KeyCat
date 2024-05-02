@@ -5,6 +5,8 @@
 //  Created by 원태영 on 4/19/24.
 //
 
+import Foundation
+
 enum Constant {
   
   enum Label {
@@ -44,5 +46,17 @@ enum Constant {
     static let jpg: String = "jpg"
     static let jpeg: String = "jpeg"
     static let png: String = "png"
+  }
+  
+  enum Config {
+    
+    static let koreaLocale: Locale = Locale(identifier: "ko_KR")
+    static let koreaTimeZone: TimeZone? = TimeZone(identifier: "Asia/Seoul")
+  }
+  
+  enum Network {
+    
+    static let fetchCountForOnce: String = "10"
+    static let lastCursorSign: String = "0"
   }
 }

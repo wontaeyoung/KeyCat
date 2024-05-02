@@ -11,10 +11,14 @@ enum HTTPRequestDomain {
   // 401
   case signIn
   case accessToken
+  case fetchPosts
   
   // 409
   case emailValidation
   case signUp
+  
+  // 401, 410
+  case createPost
   
   case none
 }

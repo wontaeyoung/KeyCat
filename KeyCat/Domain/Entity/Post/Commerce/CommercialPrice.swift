@@ -13,4 +13,10 @@ struct CommercialPrice {
   let couponPrice: Int
   let discountPrice: Int
   let discountExpiryDate: Date?
+  
+  var discountRatio: Int {
+    return Int(
+      ((Double(regularPrice) - Double(discountPrice)) / Double(regularPrice) * 100).rounded(.down)
+    )
+  }
 }

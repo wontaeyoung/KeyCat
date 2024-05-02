@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import Toast
 
 protocol Configurator { }
@@ -41,6 +42,9 @@ extension Array: Configurator { }
 extension Dictionary: Configurator { }
 extension Set: Configurator { }
 
+extension CommercialPost: Configurator { }
+
+extension PHPickerConfiguration: Configurator { }
 extension UIButton.Configuration: Configurator { }
 extension URLRequest: Configurator { }
 

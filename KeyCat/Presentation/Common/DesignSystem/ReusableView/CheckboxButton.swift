@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class CheckboxButton: UIButton {
+final class CheckboxButton: UIButton {
   
   private let disposeBag = DisposeBag()
   private var isOnState: Bool = false {

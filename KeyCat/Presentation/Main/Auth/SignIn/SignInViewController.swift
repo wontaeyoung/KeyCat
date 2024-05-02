@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import TextFieldEffects
 
-final class SignInViewController: RxBaseViewController, ViewModelController {
+final class SignInViewController: TappableBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let appLogoImageView = UIImageView().configured {
@@ -22,9 +22,9 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
   private let appLogoLabel = KCLabel(style: .logo, title: Constant.Label.appName, alignment: .center)
   
   private let emailField =
-  KCTextField(style: .input, placeholder: InputInformation.email.title)
+  KCField(placeholder: InputInformation.email.title)
   
-  private let passwordField = KCTextField(style: .input, placeholder: InputInformation.password.title, clearable: false)
+  private let passwordField = KCField(placeholder: InputInformation.password.title, clearable: false)
   
   private lazy var secureButton = SecureButton(field: passwordField)
   
@@ -144,13 +144,13 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
     
     /// 로그인 버튼 이벤트 전달
     signInButton.rx.tap
-      .throttle(.seconds(1), scheduler: MainScheduler.instance)
+      .buttonThrottle()
       .bind(to: input.loginButtonTapEvent)
       .disposed(by: disposeBag)
     
     /// 회원가입 버튼 이벤트 전달
     signUpButton.rx.tap
-      .throttle(.seconds(1), scheduler: MainScheduler.instance)
+      .buttonThrottle()
       .bind(to: input.signUpButtonTapEvent)
       .disposed(by: disposeBag)
     
@@ -173,19 +173,18 @@ final class SignInViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     /// 뷰 탭 제스처 EndEditEvent 연결
-    let tap = UITapGestureRecognizer()
-    view.addGestureRecognizer(tap)
-    tap.rx.event
-      .map { _ in () }
+    tap
       .bind(to: endEditEvnet)
       .disposed(by: disposeBag)
     
+    /// 이메일 필드 활성화 > 로고 사이즈 조정
     emailField.rx.controlEvent(.editingDidBegin)
       .bind(with: self) { owner, _ in
         owner.updateLogoSize(editing: true)
       }
       .disposed(by: disposeBag)
     
+    /// 비밀번호 필드 활성화 > 로고 사이즈 조정
     passwordField.rx.controlEvent(.editingDidBegin)
       .bind(with: self) { owner, _ in
         owner.updateLogoSize(editing: true)

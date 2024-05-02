@@ -1,5 +1,5 @@
 //
-//  InputField.swift
+//  ValidationField.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/18/24.
@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class SignUpInputField: KCTextField {
+final class ValidationField: KCField {
   
   // MARK: - UI
   let validationResultLabel = KCLabel(style: .caption)
@@ -23,8 +23,12 @@ final class SignUpInputField: KCTextField {
   init(inputInformation: InputInformation, type: UIKeyboardType = .default) {
     self.inputInformation = inputInformation
     
-    super.init(style: .input, placeholder: inputInformation.title, clearable: false)
+    super.init(placeholder: inputInformation.title, clearable: false)
     self.keyboardType = type
+    
+    if type == .numberPad {
+      self.delegate = self
+    }
     
     setLayout()
     bind()
@@ -35,7 +39,7 @@ final class SignUpInputField: KCTextField {
     self.addSubviews(validationResultLabel)
     
     validationResultLabel.snp.makeConstraints { make in
-      make.top.equalTo(self.snp.bottom).offset(5)
+      make.top.equalTo(self.snp.bottom).offset(-5)
       make.horizontalEdges.equalTo(self)
       make.height.equalTo(40)
     }
@@ -64,8 +68,8 @@ final class SignUpInputField: KCTextField {
       .disposed(by: disposeBag)
     
     /// 정규식 일치 여부를 유효성 검사 결과 옵저버블에 전달
-    /// 비밀번호 확인 필드는 정규식을 사용하지 않기 때문에 제외
-    if inputInformation != .passwordCheck {
+    /// 정규식 문자열이 비어있으면 검사하지 않음
+    if inputInformation.pattern.isFilled {
       currentInput
         .map { $0.isMatch(pattern: self.inputInformation.pattern) }
         .bind(to: inputValidation)

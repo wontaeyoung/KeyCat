@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class AppCoordinator: Coordinator {
   
@@ -24,6 +25,12 @@ final class AppCoordinator: Coordinator {
 
 extension AppCoordinator {
   
+  private func connectTestView() {
+    let vc = ViewController()
+    window?.rootViewController = vc
+    window?.makeKeyAndVisible()
+  }
+  
   private func connectSignFlow() {
     let rootNavigationVC = UINavigationController()
     let authCoordinator = AuthCoordinator(rootNavigationVC)
@@ -36,7 +43,27 @@ extension AppCoordinator {
   }
   
   private func connectMainTabBarFlow() {
+    let rootTabBarController = UITabBarController()
+    let mainTabBarCoordinator = MainTabBarCoordinator(tabBarController: rootTabBarController)
+    mainTabBarCoordinator.delegate = self
+    mainTabBarCoordinator.start()
+    addChild(mainTabBarCoordinator)
     
+    window?.rootViewController = rootTabBarController
+    window?.makeKeyAndVisible()
+    
+    updateKingfisherHeader()
+  }
+  
+  private func updateKingfisherHeader() {
+    KingfisherManager.shared.downloader.sessionConfiguration = URLSessionConfiguration.default.applied {
+      $0.httpAdditionalHeaders = [
+        KCHeader.Key.sesacKey: APIKey.sesacKey,
+        KCHeader.Key.authorization: UserInfoService.accessToken
+      ]
+      
+      $0.timeoutIntervalForRequest = 30
+    }
   }
 }
 
@@ -47,7 +74,7 @@ extension AppCoordinator: CoordinatorDelegate {
   }
   
   private func connectFlow() {
-    if APITokenContainer.hasSignInLog {
+    if UserInfoService.hasSignInLog {
       connectMainTabBarFlow()
     } else {
       connectSignFlow()

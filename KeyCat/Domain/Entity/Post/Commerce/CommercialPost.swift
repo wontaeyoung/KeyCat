@@ -18,12 +18,17 @@ struct CommercialPost: Entity {
   let delivery: DeliveryInfo
   let createdAt: Date
   let creator: User
-  let files: [URLString]
+  var files: [URLString]
   let likes: [UserID]
+  let shoppingCarts: [UserID]
   let hashTags: [Hashtag]
-  let reviews: [CommercialReview]
+  var reviews: [CommercialReview]
   
   var productImagesURL: [URL?] {
-    return files.map { URL(string: $0) }
+    return files.map { URL(string: APIKey.baseURL + "/" + $0) }
+  }
+  
+  var isUserBookmark: Bool {
+    return likes.contains(UserInfoService.userID)
   }
 }

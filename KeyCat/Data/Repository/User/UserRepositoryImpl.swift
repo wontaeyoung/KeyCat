@@ -21,6 +21,21 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     self.userMapper = userMapper
   }
   
+  func fetchSellerAuthority() -> Single<Bool> {
+    return .just(UserInfoService.hasSellerAuthority)
+  }
+  
+  func fetchMyProfile() -> Single<Profile> {
+    let router = UserRouter.myProfileFetch
+    
+    return service.callRequest(with: router, of: ProfileDTO.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        return .error(domainError)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
+  
   func updateProfileImage(with imageData: Data?) -> Single<Profile> {
     let request = UpdateMyProfileRequest(profile: imageData)
     
