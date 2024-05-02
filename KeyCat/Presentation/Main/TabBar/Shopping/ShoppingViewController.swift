@@ -74,11 +74,13 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     let input = ShoppingViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    /// 판매자 등록 여부 > 판매글 작성 버튼 표시
     output.hasSellerAuthority
       .map { !$0 }
       .drive(createPostFloatingButton.rx.isHidden)
       .disposed(by: disposeBag)
     
+    /// 게시글 리스트 컬렉션 뷰에 전달
     output.commercialPosts
       .drive(productCollectionView.rx.items(
         cellIdentifier: ProductCollectionCell.identifier,
@@ -88,6 +90,15 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       }
       .disposed(by: disposeBag)
     
+    
+    productCollectionView.rx.willDisplayCell
+      .showingCellThrottle()
+      .map { $0.at }
+      .distinctUntilChanged()
+      .bind(to: input.showProductCellEvent)
+      .disposed(by: disposeBag)
+    
+    /// 판매글 작성 버튼 탭 이벤트 전달
     createPostFloatingButton.rx.tap
       .buttonThrottle()
       .bind(to: input.createPostTapEvent)

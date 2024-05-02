@@ -15,13 +15,16 @@ final class ShoppingViewModel: ViewModel {
   struct Input {
     let viewDidLoadEvent: PublishRelay<Void>
     let createPostTapEvent: PublishRelay<Void>
+    let showProductCellEvent: PublishRelay<IndexPath>
     
     init(
       viewDidLoadEvent: PublishRelay<Void> = .init(),
-      createPostTapEvent: PublishRelay<Void> = .init()
+      createPostTapEvent: PublishRelay<Void> = .init(),
+      showProductCellEvent: PublishRelay<IndexPath> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
       self.createPostTapEvent = createPostTapEvent
+      self.showProductCellEvent = showProductCellEvent
     }
   }
   
@@ -33,28 +36,63 @@ final class ShoppingViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
+  private let fetchCommercialPostsUsecase: FetchCommercialPostsUsecase
+  
+  private var nextCursor: CommercialPost.PostID = ""
+  private let fetchedPosts = PublishRelay<[CommercialPost]>()
+  private let commercialPosts = BehaviorRelay<[CommercialPost]>(value: [])
   
   // MARK: - Initializer
-  init() {
-    
+  init(
+    fetchCommercialPostsUsecase: FetchCommercialPostsUsecase = FetchCommercialPostsUsecaseImpl()
+  ) {
+    self.fetchCommercialPostsUsecase = fetchCommercialPostsUsecase
   }
   
   // MARK: - Method
   func transform(input: Input) -> Output {
     
     let hasSellerAuthority = PublishRelay<Bool>()
-    let commercialPosts = PublishRelay<[CommercialPost]>()
     
+    /// 새로 조회한
+    fetchedPosts
+      .bind(with: self) { owner, newPosts in
+        owner.appendPosts(newPosts)
+      }
+      .disposed(by: disposeBag)
+    
+    /// 유저의 판매자 권한 등록 여부 확인
     input.viewDidLoadEvent
       .map { UserInfoService.hasSellerAuthority }
       .bind(to: hasSellerAuthority)
       .disposed(by: disposeBag)
     
+    /// 상품 조회 로직 호출
     input.viewDidLoadEvent
-      .map { self.makeDummyPosts() }
-      .bind(to: commercialPosts)
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchPosts()
+      }
+      .do(onNext: { self.nextCursor = $0.0 })
+      .map { $0.1 }
+      .bind(to: fetchedPosts)
       .disposed(by: disposeBag)
     
+    input.showProductCellEvent
+      .do(onNext: {
+        print($0)
+      })
+      .filter { $0.item >= self.commercialPosts.value.count - 4 }
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchPosts()
+      }
+      .do(onNext: { self.nextCursor = $0.0 })
+      .map { $0.1 }
+      .bind(to: fetchedPosts)
+      .disposed(by: disposeBag)
+    
+    /// 상품 판매글 작성 화면 연결
     input.createPostTapEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.showCreatePostView()
@@ -67,74 +105,22 @@ final class ShoppingViewModel: ViewModel {
     )
   }
   
-  private func makeDummyPosts() -> [CommercialPost] {
-    print("시작", Date.now)
-    let posts: [CommercialPost] = (1...20).map { n in
-        CommercialPost(
-          postID: n.description,
-          postType: .keycat_commercialProduct,
-          title: "키보드 상품 타이틀 \(n)",
-          content: "상품 설명입니다 \(n)",
-          keyboard: .init(
-            keyboardInfo: .init(
-              purpose: .allCases.randomElement()!,
-              inputMechanism: .allCases.randomElement()!,
-              connectionType: .allCases.randomElement()!,
-              powerSource: .allCases.randomElement()!,
-              backlight: .allCases.randomElement()!,
-              pcbType: .allCases.randomElement()!,
-              mechanicalSwitch: .allCases.randomElement()!,
-              capacitiveSwitch: .allCases.randomElement()!
-            ),
-            keycapInfo: .init(
-              profile: .allCases.randomElement()!,
-              direction: .allCases.randomElement()!,
-              process: .allCases.randomElement()!,
-              language: .allCases.randomElement()!
-            ),
-            keyboardAppearanceInfo: .init(
-              ratio: .allCases.randomElement()!,
-              design: .allCases.randomElement()!,
-              material: .allCases.randomElement()!,
-              size: .init(width: 380, height: 150, depth: 40, weight: 1062)
-            )
-          ),
-          price: .init(
-            regularPrice: n * 1000,
-            couponPrice: [0, 1000].randomElement()!,
-            discountPrice: [0, 250, 500].randomElement()! * n,
-            discountExpiryDate: DateManager.shared.date(from: .now, as: .day, by: n)
-          ),
-          delivery: .init(
-            price: .allCases.randomElement()!,
-            schedule: .allCases.randomElement()!
-          ),
-          createdAt: DateManager.shared.date(from: .now, as: .hour, by: n),
-          creator: .init(
-            userID: n.description,
-            nickname: "닉네임 \(n)",
-            profileImageURLString: ""
-          ),
-          files: ["uploads/posts/vamillo_1_1714571161018.jpg"],
-          likes: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
-          shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
-          hashTags: [],
-          reviews: [
-            .init(
-              reviewID: n.description,
-              content: "리뷰 \(n)",
-              rating: .allCases.randomElement()!,
-              createdAt: DateManager.shared.date(from: .now, as: .hour, by: n),
-              creator: .init(
-                userID: n.description,
-                nickname: "닉네임 \(n+1)",
-                profileImageURLString: ""
-              )
-            )
-          ]
-        )
-    }
-    print("종료", Date.now)
-    return posts
+  private func fetchPosts() -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    // 최근 커서가 마지막 커서 사인이면 스트림 종료
+    guard nextCursor != Constant.Network.lastCursorSign else { return .never() }
+    
+    return fetchCommercialPostsUsecase.execute(nextCursor: nextCursor)
+      .catch { error in
+        self.coordinator?.showErrorAlert(error: error)
+        
+        return .just((self.nextCursor, []))
+      }
+  }
+  
+  private func appendPosts(_ newPosts: [CommercialPost]) {
+    var mergedPosts = commercialPosts.value
+    mergedPosts.append(contentsOf: newPosts)
+    
+    commercialPosts.accept(mergedPosts)
   }
 }
