@@ -8,7 +8,6 @@
 import UIKit
 
 extension UICollectionViewFlowLayout {
-  
   static func gridLayout(cellCount: CGFloat, cellSpacing: CGFloat) -> UICollectionViewFlowLayout {
     let cellWidth: CGFloat = (UIScreen.main.bounds.width - (cellSpacing * (2 + cellCount - 1))) / cellCount
     
