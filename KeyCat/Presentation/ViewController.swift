@@ -240,7 +240,7 @@ final class ViewController: RxBaseViewController {
           profileImageURLString: ""
         ),
         files: ["uploads/posts/vamillo_1_1714571161018.jpg"],
-        likes: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
+        bookmarks: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
         shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
         hashTags: [],
         reviews: (1...5).map { i in

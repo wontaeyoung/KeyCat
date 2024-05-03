@@ -19,7 +19,7 @@ struct CommercialPost: Entity {
   let createdAt: Date
   let creator: User
   var files: [URLString]
-  let likes: [UserID]
+  let bookmarks: [UserID]
   let shoppingCarts: [UserID]
   let hashTags: [Hashtag]
   var reviews: [CommercialReview]
@@ -29,7 +29,7 @@ struct CommercialPost: Entity {
   }
   
   var isBookmarked: Bool {
-    return likes.contains(UserInfoService.userID)
+    return bookmarks.contains(UserInfoService.userID)
   }
   
   var isCreatedByMe: Bool {

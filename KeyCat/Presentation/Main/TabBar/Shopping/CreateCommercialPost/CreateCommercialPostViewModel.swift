@@ -233,7 +233,7 @@ extension CreateCommercialPostViewModel {
       createdAt: .now,
       creator: .empty,
       files: [],
-      likes: [],
+      bookmarks: [],
       shoppingCarts: [],
       hashTags: [],
       reviews: []

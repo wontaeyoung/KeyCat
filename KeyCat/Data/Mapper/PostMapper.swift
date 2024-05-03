@@ -33,7 +33,7 @@ struct PostMapper: Mapper {
       createdAt: toDate(from: dto.createdAt),
       creator: userMapper.toEntity(dto.creator),
       files: dto.files,
-      likes: dto.likes,
+      bookmarks: dto.likes,
       shoppingCarts: dto.likes2,
       hashTags: dto.hashTags,
       reviews: commentMapper.toEntity(dto.comments)
@@ -72,7 +72,7 @@ struct PostMapper: Mapper {
       createdAt: entity.createdAt.toISOString,
       creator: userMapper.toDTO(entity.creator),
       files: entity.files,
-      likes: entity.likes,
+      likes: entity.bookmarks,
       likes2: [],
       hashTags: entity.hashTags,
       comments: commentMapper.toDTO(entity.reviews)
