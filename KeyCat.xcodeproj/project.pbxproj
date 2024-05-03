@@ -153,6 +153,7 @@
 		6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */; };
 		6E90900E2BE48C97001B107A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90900D2BE48C97001B107A /* IconLabel.swift */; };
 		6E9090122BE529D9001B107A /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090112BE529D9001B107A /* DeliveryInfoView.swift */; };
+		6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090132BE5388E001B107A /* SellerProfileView.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -341,6 +342,7 @@
 		6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
 		6E90900D2BE48C97001B107A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
 		6E9090112BE529D9001B107A /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
+		6E9090132BE5388E001B107A /* SellerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProfileView.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 				6EAEAD062BE26DCA00993089 /* ReviewView.swift */,
 				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
 				6E9090112BE529D9001B107A /* DeliveryInfoView.swift */,
+				6E9090132BE5388E001B107A /* SellerProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1367,6 +1370,7 @@
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
+				6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
 				6ED51E6B2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift in Sources */,
 				6E0A4FA02BD150E0005A529F /* ValidationField.swift in Sources */,

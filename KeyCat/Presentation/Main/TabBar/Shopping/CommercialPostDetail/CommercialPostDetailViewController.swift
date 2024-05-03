@@ -44,6 +44,9 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   private let deliverySectionDivider = Divider()
   private let deliveryInfoView = DeliveryInfoView()
   
+  private let sellerSectionDivider = Divider()
+  private let sellerProfileView = SellerProfileView()
+  
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
   
@@ -65,7 +68,9 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       reviewView,
       productPriceView,
       deliverySectionDivider,
-      deliveryInfoView
+      deliveryInfoView,
+      sellerSectionDivider,
+      sellerProfileView
     )
   }
   
@@ -112,6 +117,16 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     
     deliveryInfoView.snp.makeConstraints { make in
       make.top.equalTo(deliverySectionDivider).offset(10)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    sellerSectionDivider.snp.makeConstraints { make in
+      make.top.equalTo(deliveryInfoView.snp.bottom).offset(20)
+      make.horizontalEdges.equalToSuperview()
+    }
+    
+    sellerProfileView.snp.makeConstraints { make in
+      make.top.equalTo(sellerSectionDivider).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
     }
@@ -168,6 +183,11 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     output.post
       .map { $0.delivery }
       .drive(deliveryInfoView.rx.deliveryInfo)
+      .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.creator }
+      .drive(sellerProfileView.rx.seller)
       .disposed(by: disposeBag)
   }
 }
