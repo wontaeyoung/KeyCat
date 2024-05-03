@@ -41,14 +41,21 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   private let reviewView = ReviewView()
   private let productPriceView = ProductPriceView()
   
+  // MARK: 배송 정보
   private let deliverySectionDivider = Divider()
   private let deliveryInfoView = DeliveryInfoView()
   
+  // MARK: 판매자 정보
   private let sellerSectionDivider = Divider()
   private let sellerProfileView = SellerProfileView()
   
+  // MARK: 키보드 정보
   private let keyboardSectionDivider = Divider()
   private let keyboardInfoView = KeyboardInfoView()
+  
+  private let contentSectionDivider = Divider()
+  private let contentSectionLabel = KCLabel(title: "상품 설명", font: .bold(size: 15), color: .darkGray)
+  private let contentLabel = KCLabel(font: .medium(size: 14), line: 0, isUpdatingLineSpacing: true)
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
@@ -75,7 +82,10 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       sellerSectionDivider,
       sellerProfileView,
       keyboardSectionDivider,
-      keyboardInfoView
+      keyboardInfoView,
+      contentSectionDivider,
+      contentSectionLabel,
+      contentLabel
     )
   }
   
@@ -121,34 +131,45 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     }
     
     deliveryInfoView.snp.makeConstraints { make in
-      make.top.equalTo(deliverySectionDivider).offset(10)
+      make.top.equalTo(deliverySectionDivider).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
     sellerSectionDivider.snp.makeConstraints { make in
-      make.top.equalTo(deliveryInfoView.snp.bottom).offset(20)
+      make.top.equalTo(deliveryInfoView.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview()
     }
     
     sellerProfileView.snp.makeConstraints { make in
-      make.top.equalTo(sellerSectionDivider).offset(10)
+      make.top.equalTo(sellerSectionDivider).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
     keyboardSectionDivider.snp.makeConstraints { make in
-      make.top.equalTo(sellerProfileView.snp.bottom).offset(20)
+      make.top.equalTo(sellerProfileView.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview()
     }
     
     keyboardInfoView.snp.makeConstraints { make in
-      make.top.equalTo(keyboardSectionDivider).offset(10)
+      make.top.equalTo(keyboardSectionDivider).offset(20)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    contentSectionDivider.snp.makeConstraints { make in
+      make.top.equalTo(keyboardInfoView.snp.bottom).offset(40)
+      make.horizontalEdges.equalToSuperview()
+    }
+    
+    contentSectionLabel.snp.makeConstraints { make in
+      make.top.equalTo(contentSectionDivider).offset(20)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
+    contentLabel.snp.makeConstraints { make in
+      make.top.equalTo(contentSectionLabel.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
     }
-  }
-  
-  override func setAttribute() {
-    
   }
   
   override func bind() {
@@ -210,6 +231,11 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     output.post
       .map { $0.keyboard }
       .drive(keyboardInfoView.rx.keyboard)
+      .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.content }
+      .drive(contentLabel.rx.text)
       .disposed(by: disposeBag)
   }
 }
