@@ -50,7 +50,7 @@ extension HTTPErrorTransformer {
           case .signIn:
             return .accessFailed(detail: .login)
             
-          case .accessToken, .createPost, .fetchPosts:
+          case .accessToken, .createPost, .fetchPosts, .likePost:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -79,6 +79,9 @@ extension HTTPErrorTransformer {
         switch style {
           case .createPost:
             return .targetNotFound(detail: .create(model: .post))
+            
+          case .likePost:
+            return .targetNotFound(detail: .update(model: .post))
           
           default:
             return httpStatusError.toDomain

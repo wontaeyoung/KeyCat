@@ -19,6 +19,7 @@ enum HTTPRequestDomain {
   
   // 401, 410
   case createPost
+  case likePost
   
   case none
 }
