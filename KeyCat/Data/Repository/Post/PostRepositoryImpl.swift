@@ -56,6 +56,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {
         let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        
         return .error(domainError)
       }
       .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
