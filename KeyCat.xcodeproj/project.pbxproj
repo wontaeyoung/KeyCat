@@ -151,6 +151,7 @@
 		6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2B2BCD21930086F913 /* CommercialPriceDTO.swift */; };
 		6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */; };
 		6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */; };
+		6E90900E2BE48C97001B107A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90900D2BE48C97001B107A /* IconLabel.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -337,6 +338,7 @@
 		6E8C9F2B2BCD21930086F913 /* CommercialPriceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPriceDTO.swift; sourceTree = "<group>"; };
 		6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
+		6E90900D2BE48C97001B107A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */,
 				6EAEAD062BE26DCA00993089 /* ReviewView.swift */,
 				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
+				6E90900D2BE48C97001B107A /* IconLabel.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -711,26 +714,26 @@
 		6E567E312BC5788B00250C56 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6E3460D32BE272A300840E21 /* Array+.swift */,
 				6E77ECF92BCE585100ACDA3B /* Data+.swift */,
 				6E0A4F8A2BD11416005A529F /* Date+.swift */,
+				6E3460D52BE2745600840E21 /* Double+.swift */,
 				6E77ED002BCE652600ACDA3B /* HTTPHeaders+.swift */,
 				6E0A4FEA2BD447A2005A529F /* HTTPStatus+.swift */,
 				6E8C9EA62BC9558F0086F913 /* KeyedDecodingContainer+.swift */,
+				6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */,
 				6E567E622BC67F1C00250C56 /* ObservableType+.swift */,
 				6E77ECFB2BCE5BB900ACDA3B /* Reactive+DataRequest.swift */,
 				6E0A4FC72BD24164005A529F /* String+.swift */,
 				6E567E662BC67F2800250C56 /* UIAlertController+.swift */,
+				6EAEAD012BE2681100993089 /* UICollectionViewFlowLayout+.swift */,
 				6E567E402BC6752800250C56 /* UIColor+.swift */,
 				6E0778332BD922A900B3A6EC /* UIImage+.swift */,
+				6ED51E752BE3909F005D7FBD /* UIImageView+.swift */,
 				6E567E642BC67F2800250C56 /* UINavigationController+.swift */,
+				6EAEACD72BDFBCB600993089 /* UIStackView+.swift */,
 				6E567E652BC67F2800250C56 /* UIView+.swift */,
 				6E567E672BC67F2800250C56 /* UIViewController+.swift */,
-				6EAEACD72BDFBCB600993089 /* UIStackView+.swift */,
-				6EAEACDE2BDFD0B600993089 /* NSCollectionLayoutSection+.swift */,
-				6EAEAD012BE2681100993089 /* UICollectionViewFlowLayout+.swift */,
-				6E3460D32BE272A300840E21 /* Array+.swift */,
-				6ED51E752BE3909F005D7FBD /* UIImageView+.swift */,
-				6E3460D52BE2745600840E21 /* Double+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1281,6 +1284,7 @@
 				6E0A4FD02BD2880C005A529F /* AppCoordinator.swift in Sources */,
 				6E0A4FD62BD299F8005A529F /* SignUpBaseViewController.swift in Sources */,
 				6E567E5F2BC67EC700250C56 /* GCD.swift in Sources */,
+				6E90900E2BE48C97001B107A /* IconLabel.swift in Sources */,
 				6E8C9E732BC8B6460086F913 /* CommentDTO.swift in Sources */,
 				6EAEAD002BE2411600993089 /* CreatePostUsecase.swift in Sources */,
 				6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */,
