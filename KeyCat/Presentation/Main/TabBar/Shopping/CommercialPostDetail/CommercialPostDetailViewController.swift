@@ -357,6 +357,11 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     handlePostAction
       .bind(to: input.handlePostAction)
       .disposed(by: disposeBag)
+    
+    bookmarkButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.bookmarkTapEvent)
+      .disposed(by: disposeBag)
   }
 }
 
