@@ -18,7 +18,7 @@ class KCField: HoshiTextField {
   init(placeholder: String? = nil, clearable: Bool = true) {
     super.init(frame: .zero)
     
-    self.font = KCAsset.Font.signField
+    self.font = KCAsset.Font.medium(size: 19).font
     self.placeholder = placeholder
     self.autocapitalizationType = .none
     self.autocorrectionType = .no
