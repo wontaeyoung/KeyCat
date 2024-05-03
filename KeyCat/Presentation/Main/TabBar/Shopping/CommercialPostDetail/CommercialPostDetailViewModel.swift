@@ -38,6 +38,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   struct Output {
     let post: Driver<CommercialPost>
+    let addCartResultToast: Driver<String>
   }
   
   // MARK: - Property
@@ -62,6 +63,9 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     let updatePostEvent = PublishRelay<Void>()
     let deletePostEvent = PublishRelay<Void>()
+    let addCartResultToast = PublishRelay<String>()
+    
+    let addCartActionTrigger = PublishRelay<Void>()
     
     /// 게시글 변경 이벤트 핸들링
     input.handlePostAction
@@ -86,11 +90,33 @@ final class CommercialPostDetailViewModel: ViewModel {
       .bind(to: post)
       .disposed(by: disposeBag)
       
-  
     input.addCartTapEvent
+      .withLatestFrom(post)
+      .map { $0.isAddedInCart }
+      .bind { isAdded in
+        if isAdded {
+          addCartResultToast.accept("이미 장바구니에 추가되어있어요!")
+        } else {
+          addCartActionTrigger.accept(())
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 카트 추가하기 액션
+    addCartActionTrigger
+      .withLatestFrom(post)
+      .withUnretained(self)
+      .flatMap { owner, post in
+        return owner.commercialPostInteractionUsecase.addCart(postID: post.postID, adding: true)
+      }
+      .compactMap { $0 }
+      .do(onNext: { _ in addCartResultToast.accept("상품이 장바구니에 추가되었어요!") })
+      .bind(to: post)
+      .disposed(by: disposeBag)
     
     return Output(
-      post: post.asDriver()
+      post: post.asDriver(),
+      addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: "")
     )
   }
   

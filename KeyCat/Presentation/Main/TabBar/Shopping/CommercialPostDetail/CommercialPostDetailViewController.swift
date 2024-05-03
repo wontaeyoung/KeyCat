@@ -353,6 +353,12 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .drive(reviewButton.rx.title())
       .disposed(by: disposeBag)
     
+    output.addCartResultToast
+      .drive(with: self) { owner, message in
+        owner.toast(message)
+      }
+      .disposed(by: disposeBag)
+    
     /// 게시물 변경 액션 이벤트 전달
     handlePostAction
       .bind(to: input.handlePostAction)
@@ -361,6 +367,11 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     bookmarkButton.rx.tap
       .buttonThrottle()
       .bind(to: input.bookmarkTapEvent)
+      .disposed(by: disposeBag)
+    
+    addCartButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.addCartTapEvent)
       .disposed(by: disposeBag)
   }
 }
