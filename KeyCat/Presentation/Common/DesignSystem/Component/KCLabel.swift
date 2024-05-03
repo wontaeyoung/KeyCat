@@ -9,13 +9,26 @@ import UIKit
 
 class KCLabel: UILabel {
   
+  override var text: String? {
+    didSet {
+      if isUpdatingLineSpacing {
+        applyLineSpacing()
+      }
+    }
+  }
+  
+  var isUpdatingLineSpacing: Bool
+  
   init(
     title: String? = nil,
     font: KCAsset.Font,
     color: KCAsset.Color = .black,
     line: Int = 1,
-    alignment: NSTextAlignment = .natural
+    alignment: NSTextAlignment = .natural,
+    isUpdatingLineSpacing: Bool = false
   ) {
+    self.isUpdatingLineSpacing = isUpdatingLineSpacing
+    
     super.init(frame: .zero)
     
     self.text = title
@@ -44,7 +57,7 @@ extension KCLabel {
       let range = NSRange(location: 0, length: $0.length)
       
       $0.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: range)
-      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.medium(size: 19).font, range: range)
+      $0.addAttribute(NSAttributedString.Key.font, value: font ?? KCAsset.Font.medium(size: 14).font, range: range)
     }
   }
 }
