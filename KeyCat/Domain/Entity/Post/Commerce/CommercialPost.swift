@@ -32,6 +32,10 @@ struct CommercialPost: Entity {
     return bookmarks.contains(UserInfoService.userID)
   }
   
+  var isAddedInCart: Bool {
+    return shoppingCarts.contains(UserInfoService.userID)
+  }
+  
   var isCreatedByMe: Bool {
     return creator.userID == UserInfoService.userID
   }
