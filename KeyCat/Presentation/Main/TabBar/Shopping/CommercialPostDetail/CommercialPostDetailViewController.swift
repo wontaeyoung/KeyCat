@@ -37,14 +37,14 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   private let imagePageTag = TagLabel(title: nil, backgroundColor: .darkGray)
   
   // MARK: 상품 텍스트 정보
-  private let titleLabel = KCLabel(font: .medium(size: 16))
+  private let titleLabel = KCLabel(font: .medium(size: 16), line: 2)
   private let reviewView = ReviewView()
   private let productPriceView = ProductPriceView()
   
   private let deliverySectionDivider = Divider()
-  private let deliverySectionLabel = KCLabel(title: "배송", font: .medium(size: 13))
-  private let deliveryPriceLabel = KCLabel(font: .medium(size: 13))
-  private let deliveryScheduleLabel = KCLabel(font: .medium(size: 13))
+  private let deliverySectionLabel = KCLabel(title: "배송", font: .bold(size: 15), color: .darkGray)
+  private let deliveryPriceLabel = IconLabel(image: KCAsset.Symbol.deliveryPrice, font: .bold(size: 14))
+  private let deliveryScheduleLabel = IconLabel(image: KCAsset.Symbol.deliverySchedule, font: .bold(size: 14))
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
@@ -115,17 +115,17 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     }
     
     deliverySectionLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliverySectionDivider).offset(5)
+      make.top.equalTo(deliverySectionDivider).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
     deliveryPriceLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(5)
+      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
     deliveryScheduleLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliveryPriceLabel.snp.bottom).offset(5)
+      make.top.equalTo(deliveryPriceLabel.snp.bottom).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
     }
@@ -182,14 +182,16 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 배송비 표시
     output.post
       .map { $0.delivery.price.name }
-      .drive(deliveryPriceLabel.rx.text)
+      .drive(deliveryPriceLabel.rx.title)
       .disposed(by: disposeBag)
     
+    /// 배송 도착 스케쥴 표시
     output.post
-      .map { $0.delivery.schedule.name }
-      .drive(deliveryScheduleLabel.rx.text)
+      .map { "\($0.delivery.schedule.arrivingDay) 도착 보장" }
+      .drive(deliveryScheduleLabel.rx.title)
       .disposed(by: disposeBag)
   }
 }
