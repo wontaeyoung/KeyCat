@@ -10,9 +10,46 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+extension CommercialPostDetailViewController {
+  
+  private enum HandlePostAction: String, CaseIterable {
+    
+    case update = "수정"
+    case delete = "삭제"
+    
+    var title: String {
+      return self.rawValue
+    }
+    
+    var image: UIImage? {
+      switch self {
+        case .update:
+          return KCAsset.Symbol.update
+        case .delete:
+          return KCAsset.Symbol.delete
+      }
+    }
+  }
+}
+
 final class CommercialPostDetailViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
+  private lazy var menuBarItem = UIBarButtonItem(image: KCAsset.Symbol.menuBarItem).configured {
+    let actions = HandlePostAction.allCases
+      .map { action in
+        return UIAction(
+          title: action.title,
+          image: action.image,
+          attributes: action == .delete ? .destructive : []
+        ) { _ in
+          self.handlePostAction.accept(action)
+        }
+      }
+    
+    $0.menu = UIMenu(title: "게시물 변경", children: actions)
+  }
+  
   // MARK: 뷰 컨테이너
   private let scrollView = UIScrollView().configured { $0.keyboardDismissMode = .onDrag }
   private let contentView = UIView()
@@ -59,6 +96,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
+  private let handlePostAction = PublishRelay<HandlePostAction>()
   
   // MARK: - Initializer
   init(viewModel: CommercialPostDetailViewModel) {
@@ -233,9 +271,20 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .drive(keyboardInfoView.rx.keyboard)
       .disposed(by: disposeBag)
     
+    /// 상품 설명 표시
     output.post
       .map { $0.content }
       .drive(contentLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    /// 게시물 작성자인 경우에만 변경 메뉴 추가
+    output.post
+      .map { $0.isCreatedByMe }
+      .drive(with: self) { owner, isCreatedByMe in
+        if isCreatedByMe {
+          owner.navigationItem.setRightBarButton(owner.menuBarItem, animated: true)
+        }
+      }
       .disposed(by: disposeBag)
   }
 }
