@@ -84,6 +84,8 @@ enum KCAsset {
       case starFill = "star.fill"
       case bookmark = "bookmark"
       case bookmarkFill = "bookmark.fill"
+      case wonsignCircle = "wonsign.circle"
+      case truckBoxBadgeClock = "truck.box.badge.clock"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -107,6 +109,8 @@ enum KCAsset {
     static let review: UIImage? = image(.starFill)
     static let bookmarkOff: UIImage? = image(.bookmark)
     static let bookmarkOn: UIImage? = image(.bookmarkFill)
+    static let deliveryPrice: UIImage? = image(.wonsignCircle)
+    static let deliverySchedule: UIImage? = image(.truckBoxBadgeClock)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)
