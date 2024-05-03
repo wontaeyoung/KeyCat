@@ -14,6 +14,12 @@ final class ProductPriceView: RxBaseView {
   private let regularPriceLabel = KCLabel(font: .medium(size: 13), color: .lightGrayForeground)
   private let discountPriceLabel = KCLabel(font: .medium(size: 13))
   
+  var productPrice: CommercialPrice? {
+    didSet {
+      setData(price: productPrice)
+    }
+  }
+  
   override init() {
     super.init()
   }
@@ -45,7 +51,9 @@ final class ProductPriceView: RxBaseView {
     }
   }
   
-  func setData(price: CommercialPrice) {
+  func setData(price: CommercialPrice?) {
+    guard let price else { return }
+    
     discountRatioLabel.text = "\(price.discountRatio)%"
     regularPriceLabel.attributedText = price.regularPrice
       .formatted()

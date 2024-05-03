@@ -14,6 +14,12 @@ final class ReviewView: RxBaseView {
   private let scoreLabel = KCLabel(font: .medium(size: 13))
   private let countLabel = KCLabel(font: .medium(size: 13), color: .lightGrayForeground)
   
+  var reviews: [CommercialReview] = [] {
+    didSet {
+      setData(reviews: reviews)
+    }
+  }
+  
   override init() {
     super.init()
   }
