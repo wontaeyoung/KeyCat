@@ -154,6 +154,8 @@
 		6E90900E2BE48C97001B107A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90900D2BE48C97001B107A /* IconLabel.swift */; };
 		6E9090122BE529D9001B107A /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090112BE529D9001B107A /* DeliveryInfoView.swift */; };
 		6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090132BE5388E001B107A /* SellerProfileView.swift */; };
+		6E9090162BE53DAF001B107A /* KeyboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090152BE53DAF001B107A /* KeyboardInfoView.swift */; };
+		6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090172BE550DB001B107A /* KeyboardInfoRowView.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -343,6 +345,8 @@
 		6E90900D2BE48C97001B107A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
 		6E9090112BE529D9001B107A /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
 		6E9090132BE5388E001B107A /* SellerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProfileView.swift; sourceTree = "<group>"; };
+		6E9090152BE53DAF001B107A /* KeyboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoView.swift; sourceTree = "<group>"; };
+		6E9090172BE550DB001B107A /* KeyboardInfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoRowView.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1070,6 +1074,8 @@
 				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
 				6E9090112BE529D9001B107A /* DeliveryInfoView.swift */,
 				6E9090132BE5388E001B107A /* SellerProfileView.swift */,
+				6E9090152BE53DAF001B107A /* KeyboardInfoView.swift */,
+				6E9090172BE550DB001B107A /* KeyboardInfoRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1419,6 +1425,7 @@
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
 				6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */,
 				6E8C9E9E2BC8BD310086F913 /* FetchSearchHashtagQuery.swift in Sources */,
+				6E9090162BE53DAF001B107A /* KeyboardInfoView.swift in Sources */,
 				6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */,
 				6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */,
 				6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */,
@@ -1452,6 +1459,7 @@
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
+				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
