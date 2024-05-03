@@ -92,7 +92,7 @@ extension KCTextView {
       let range = NSRange(location: 0, length: $0.length)
       
       $0.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: range)
-      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.contentText, range: range)
+      $0.addAttribute(NSAttributedString.Key.font, value: KCAsset.Font.medium(size: 15).font, range: range)
     }
   }
 }
