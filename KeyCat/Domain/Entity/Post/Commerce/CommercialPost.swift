@@ -28,7 +28,11 @@ struct CommercialPost: Entity {
     return files.map { URL(string: APIKey.baseURL + "/" + $0) }
   }
   
-  var isUserBookmark: Bool {
+  var isBookmarked: Bool {
     return likes.contains(UserInfoService.userID)
+  }
+  
+  var isCreatedByMe: Bool {
+    return creator.userID == UserInfoService.userID
   }
 }
