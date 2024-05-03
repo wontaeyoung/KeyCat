@@ -10,24 +10,21 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-extension CommercialPostDetailViewController {
+enum HandlePostAction: String, CaseIterable {
   
-  private enum HandlePostAction: String, CaseIterable {
-    
-    case update = "수정"
-    case delete = "삭제"
-    
-    var title: String {
-      return self.rawValue
-    }
-    
-    var image: UIImage? {
-      switch self {
-        case .update:
-          return KCAsset.Symbol.update
-        case .delete:
-          return KCAsset.Symbol.delete
-      }
+  case update = "수정"
+  case delete = "삭제"
+  
+  var title: String {
+    return self.rawValue
+  }
+  
+  var image: UIImage? {
+    switch self {
+      case .update:
+        return KCAsset.Symbol.update
+      case .delete:
+        return KCAsset.Symbol.delete
     }
   }
 }
@@ -73,7 +70,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   private let imagePageTag = TagLabel(title: nil, backgroundColor: .darkGray)
   
-  // MARK: 상품 텍스트 정보
+  // MARK: 상품 기본 정보
   private let titleLabel = KCLabel(font: .medium(size: 16), line: 2)
   private let reviewView = ReviewView()
   private let productPriceView = ProductPriceView()
@@ -90,9 +87,16 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   private let keyboardSectionDivider = Divider()
   private let keyboardInfoView = KeyboardInfoView()
   
+  // MARK: 상품 설명 텍스트
   private let contentSectionDivider = Divider()
   private let contentSectionLabel = KCLabel(title: "상품 설명", font: .bold(size: 15), color: .darkGray)
   private let contentLabel = KCLabel(font: .medium(size: 14), line: 0, isUpdatingLineSpacing: true)
+  
+  // MARK: 하단 버튼 영역
+  private let buttonSectionView = UIView()
+  private let bookmarkButton = KCButton(style: .iconWithText)
+  private let addCartButton = KCButton(style: .secondary, title: "장바구니")
+  private let buyingButton = KCButton(style: .primary, title: "구매하기")
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
@@ -107,8 +111,13 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubviews(scrollView)
+    view.addSubviews(
+      scrollView,
+      buttonSectionView
+    )
+    
     scrollView.addSubviews(contentView)
+    
     contentView.addSubviews(
       productImageCollectionView,
       imagePageTag,
@@ -125,11 +134,19 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       contentSectionLabel,
       contentLabel
     )
+    
+    buttonSectionView.addSubviews(
+      bookmarkButton,
+      addCartButton,
+      buyingButton
+    )
   }
   
   override func setConstraint() {
     scrollView.snp.makeConstraints { make in
-      make.edges.equalTo(view.safeAreaLayoutGuide)
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.horizontalEdges.equalToSuperview()
+      make.bottom.equalTo(buttonSectionView.snp.top).offset(-20)
     }
     
     contentView.snp.makeConstraints { make in
@@ -207,6 +224,29 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       make.top.equalTo(contentSectionLabel.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
+    }
+    
+    buttonSectionView.snp.makeConstraints { make in
+      make.horizontalEdges.equalToSuperview().inset(20)
+      make.bottom.equalTo(view.safeAreaLayoutGuide)
+      make.height.equalTo(buyingButton)
+    }
+    
+    bookmarkButton.snp.makeConstraints { make in
+      make.leading.equalToSuperview()
+      make.centerY.equalToSuperview()
+    }
+    
+    addCartButton.snp.makeConstraints { make in
+      make.leading.equalTo(bookmarkButton.snp.trailing).offset(10)
+      make.centerY.equalToSuperview()
+    }
+    
+    buyingButton.snp.makeConstraints { make in
+      make.leading.equalTo(addCartButton.snp.trailing).offset(10)
+      make.centerY.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.width.equalTo(addCartButton)
     }
   }
   
@@ -286,6 +326,23 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
         }
       }
       .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.isBookmarked }
+      .map { $0 ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff }
+      .drive(bookmarkButton.rx.image())
+      .disposed(by: disposeBag)
+    
+    output.post
+      .map { $0.bookmarks.count.description }
+      .drive(bookmarkButton.rx.title())
+      .disposed(by: disposeBag)
+      
+    
+    /// 게시물 변경 액션 이벤트 전달
+    handlePostAction
+      .bind(to: input.handlePostAction)
+      .disposed(by: disposeBag)
   }
 }
 
@@ -341,7 +398,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       "uploads/posts/keyboard2_1714639591628.jpg",
       "uploads/posts/keyboard3_1714639591630.png"
     ],
-    likes: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
+    bookmarks: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
     shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
     hashTags: [],
     reviews: CommercialPost.dummyReviews

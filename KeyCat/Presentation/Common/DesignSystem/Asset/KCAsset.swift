@@ -90,6 +90,9 @@ enum KCAsset {
       case pencilLine = "pencil.line"
       case trash = "trash"
       
+      case cartBadgePlus = "cart.badge.plus"
+      case cart = "cart"
+      
       case house = "house"
       case houseFill = "house.fill"
       case bag = "bag"
@@ -106,18 +109,26 @@ enum KCAsset {
     static let closeButton: UIImage? = image(.xmarkCircleFill)
     static let checkboxOff: UIImage? = image(.checkmarkCircle)
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
+    
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
     static let addImageButton: UIImage? = image(.cameraFill)
+    
     static let networkDisconnect: UIImage? = image(.exclamationmarkCircleFill)
+    
     static let review: UIImage? = image(.starFill)
+    
     static let bookmarkOff: UIImage? = image(.bookmark)
     static let bookmarkOn: UIImage? = image(.bookmarkFill)
+    
     static let deliveryPrice: UIImage? = image(.wonsignCircle)
     static let deliverySchedule: UIImage? = image(.truckBoxBadgeClock)
     
     static let menuBarItem: UIImage? = image(.ellipsis)
     static let update: UIImage? = image(.pencilLine)
     static let delete: UIImage? = image(.trash)
+    
+    static let addCart: UIImage? = image(.cartBadgePlus)
+    static let cart: UIImage? = image(.cart)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)

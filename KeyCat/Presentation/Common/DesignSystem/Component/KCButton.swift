@@ -96,7 +96,7 @@ extension KCButton {
     private static let iconWithTextConfig: UIButton.Configuration = .plain().applied {
       
       $0.imagePlacement = .top
-      $0.imagePadding = 10
+      $0.imagePadding = 6
     }
     
     private static let floatingConfig: UIButton.Configuration = .filled().applied {

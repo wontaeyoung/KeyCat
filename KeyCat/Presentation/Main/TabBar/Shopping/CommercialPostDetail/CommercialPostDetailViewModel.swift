@@ -12,7 +12,11 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
+    let handlePostAction: PublishRelay<HandlePostAction>
     
+    init(handlePostAction: PublishRelay<HandlePostAction> = .init()) {
+      self.handlePostAction = handlePostAction
+    }
   }
   
   struct Output {
