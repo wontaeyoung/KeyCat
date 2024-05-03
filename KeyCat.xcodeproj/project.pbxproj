@@ -156,6 +156,8 @@
 		6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090132BE5388E001B107A /* SellerProfileView.swift */; };
 		6E9090162BE53DAF001B107A /* KeyboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090152BE53DAF001B107A /* KeyboardInfoView.swift */; };
 		6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090172BE550DB001B107A /* KeyboardInfoRowView.swift */; };
+		6E90901C2BE57E4A001B107A /* BookmarkUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90901B2BE57E4A001B107A /* BookmarkUsecase.swift */; };
+		6E90901E2BE57E56001B107A /* BookmarkUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90901D2BE57E56001B107A /* BookmarkUsecaseImpl.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -184,8 +186,8 @@
 		6EC802042BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */; };
 		6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */; };
 		6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */; };
-		6ED51E662BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E652BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift */; };
-		6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift */; };
+		6ED51E662BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E652BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift */; };
+		6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift */; };
 		6ED51E6B2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */; };
 		6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */; };
 		6ED51E702BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED51E6F2BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift */; };
@@ -347,6 +349,8 @@
 		6E9090132BE5388E001B107A /* SellerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProfileView.swift; sourceTree = "<group>"; };
 		6E9090152BE53DAF001B107A /* KeyboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoView.swift; sourceTree = "<group>"; };
 		6E9090172BE550DB001B107A /* KeyboardInfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoRowView.swift; sourceTree = "<group>"; };
+		6E90901B2BE57E4A001B107A /* BookmarkUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkUsecase.swift; sourceTree = "<group>"; };
+		6E90901D2BE57E56001B107A /* BookmarkUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -375,8 +379,8 @@
 		6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfoSelectView.swift; sourceTree = "<group>"; };
 		6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBaseView.swift; sourceTree = "<group>"; };
 		6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
-		6ED51E652BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostsUsecaseImpl.swift; sourceTree = "<group>"; };
-		6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostsUsecase.swift; sourceTree = "<group>"; };
+		6ED51E652BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostUsecaseImpl.swift; sourceTree = "<group>"; };
+		6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommercialPostUsecase.swift; sourceTree = "<group>"; };
 		6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailViewController.swift; sourceTree = "<group>"; };
 		6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailViewModel.swift; sourceTree = "<group>"; };
 		6ED51E6F2BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialPostDetailImageCollectionCell.swift; sourceTree = "<group>"; };
@@ -1125,7 +1129,8 @@
 			children = (
 				6EAEACFC2BE2355500993089 /* Interface */,
 				6EAEACFD2BE2356A00993089 /* CreatePostUsecaseImpl.swift */,
-				6ED51E652BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift */,
+				6ED51E652BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift */,
+				6E90901D2BE57E56001B107A /* BookmarkUsecaseImpl.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1134,7 +1139,8 @@
 			isa = PBXGroup;
 			children = (
 				6EAEACFF2BE2411600993089 /* CreatePostUsecase.swift */,
-				6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift */,
+				6ED51E672BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift */,
+				6E90901B2BE57E4A001B107A /* BookmarkUsecase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1324,7 +1330,7 @@
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
 				6E0778522BDBEF6A00B3A6EC /* MainTabBarPage.swift in Sources */,
 				6E3460D62BE2745600840E21 /* Double+.swift in Sources */,
-				6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostsUsecase.swift in Sources */,
+				6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift in Sources */,
 				6EAEACF72BE2289C00993089 /* PostRepositoryImpl.swift in Sources */,
 				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
@@ -1367,7 +1373,7 @@
 				6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */,
 				6EFB92152BDBFB1200AA8D09 /* MainTabBarCoordinator.swift in Sources */,
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
-				6ED51E662BE2C08F005D7FBD /* FetchCommercialPostsUsecaseImpl.swift in Sources */,
+				6ED51E662BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift in Sources */,
 				6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
@@ -1384,9 +1390,11 @@
 				6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */,
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
+				6E90901E2BE57E56001B107A /* BookmarkUsecaseImpl.swift in Sources */,
 				6E0A4FCE2BD286B8005A529F /* Constant.swift in Sources */,
 				6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */,
 				6E567E552BC67DFC00250C56 /* RxBaseTableViewCell.swift in Sources */,
+				6E90901C2BE57E4A001B107A /* BookmarkUsecase.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6EAEAD052BE2695E00993089 /* ProductCollectionCell.swift in Sources */,
 				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
