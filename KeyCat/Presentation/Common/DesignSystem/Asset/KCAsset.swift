@@ -92,6 +92,7 @@ enum KCAsset {
       
       case cartBadgePlus = "cart.badge.plus"
       case cart = "cart"
+      case bubbleLeftAndTextBubbleRight = "bubble.left.and.text.bubble.right"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -115,7 +116,7 @@ enum KCAsset {
     
     static let networkDisconnect: UIImage? = image(.exclamationmarkCircleFill)
     
-    static let review: UIImage? = image(.starFill)
+    static let reviewScore: UIImage? = image(.starFill)
     
     static let bookmarkOff: UIImage? = image(.bookmark)
     static let bookmarkOn: UIImage? = image(.bookmarkFill)
@@ -129,6 +130,8 @@ enum KCAsset {
     
     static let addCart: UIImage? = image(.cartBadgePlus)
     static let cart: UIImage? = image(.cart)
+    
+    static let review: UIImage? = image(.bubbleLeftAndTextBubbleRight)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)

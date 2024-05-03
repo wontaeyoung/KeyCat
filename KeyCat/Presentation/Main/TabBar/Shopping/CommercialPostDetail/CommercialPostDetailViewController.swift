@@ -95,6 +95,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   // MARK: 하단 버튼 영역
   private let buttonSectionView = UIView()
   private let bookmarkButton = KCButton(style: .iconWithText)
+  private let reviewButton = KCButton(style: .iconWithText, image: KCAsset.Symbol.review)
   private let addCartButton = KCButton(style: .secondary, title: "장바구니")
   private let buyingButton = KCButton(style: .primary, title: "구매하기")
   
@@ -137,6 +138,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     
     buttonSectionView.addSubviews(
       bookmarkButton,
+      reviewButton,
       addCartButton,
       buyingButton
     )
@@ -237,8 +239,13 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       make.centerY.equalToSuperview()
     }
     
+    reviewButton.snp.makeConstraints { make in
+      make.leading.equalTo(bookmarkButton.snp.trailing)
+      make.centerY.equalToSuperview()
+    }
+    
     addCartButton.snp.makeConstraints { make in
-      make.leading.equalTo(bookmarkButton.snp.trailing).offset(10)
+      make.leading.equalTo(reviewButton.snp.trailing)
       make.centerY.equalToSuperview()
     }
     
@@ -327,17 +334,24 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 북마크 이미지 표시
     output.post
       .map { $0.isBookmarked }
       .map { $0 ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff }
       .drive(bookmarkButton.rx.image())
       .disposed(by: disposeBag)
     
+    /// 북마크 갯수 표시
     output.post
       .map { $0.bookmarks.count.description }
       .drive(bookmarkButton.rx.title())
       .disposed(by: disposeBag)
       
+    /// 리뷰 갯수 표시
+    output.post
+      .map { $0.reviews.count.description }
+      .drive(reviewButton.rx.title())
+      .disposed(by: disposeBag)
     
     /// 게시물 변경 액션 이벤트 전달
     handlePostAction

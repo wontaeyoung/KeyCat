@@ -424,8 +424,8 @@
 		6E07784F2BDBEEE400B3A6EC /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
 				6E0778502BDBEF3900B3A6EC /* Coordinator */,
+				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
