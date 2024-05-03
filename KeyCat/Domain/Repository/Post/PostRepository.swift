@@ -13,4 +13,6 @@ protocol PostRepository {
   func uploadPostImages(files: [Data]) -> Single<[CommercialPost.URLString]>
   func createCommercialPost(post: CommercialPost, isUpdateImages: Bool) -> Single<CommercialPost?>
   func fetchCommercialPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
+  func fetchSpecificPost(postID: CommercialPost.PostID) -> Single<CommercialPost?>
+  func bookmark(postID: CommercialPost.PostID, isOn: Bool) -> Single<Bool>
 }
