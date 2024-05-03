@@ -25,6 +25,9 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   
   private let titleLabel = KCLabel(font: .medium(size: 15), line: 2)
   private let productPriceView = ProductPriceView()
+  private let cardDiscountTag = TagLabel(title: nil, color: .black, backgroundColor: .white).configured {
+    $0.isHidden = true
+  }
   private let reviewView = ReviewView()
   private lazy var tagStack = UIStackView().configured {
     $0.axis = .vertical
@@ -32,9 +35,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   }
 
   private let specialPriceTag = TagLabel(title: "특가", backgroundColor: .pastelRed)
-  
   private let freeDeliveryTag = TagLabel(title: DeliveryInfo.Price.free.name, backgroundColor: .pastelBlue)
-  
   private let deliveryScheduleTag = TagLabel(title: nil, backgroundColor: .pastelGreen)
   
   // MARK: - Life Cycle
@@ -44,7 +45,8 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       titleLabel,
       productPriceView,
       reviewView,
-      tagStack
+      tagStack,
+      cardDiscountTag
     )
   }
   
@@ -74,12 +76,16 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       make.top.equalTo(reviewView.snp.bottom).offset(10)
       make.leading.equalTo(contentView)
     }
+    
+    cardDiscountTag.snp.makeConstraints { make in
+      make.top.equalTo(tagStack.snp.bottom).offset(5)
+      make.leading.equalTo(contentView)
+    }
   }
   
   func setData(with post: CommercialPost) {
   
-    var post = post
-    post.reviews = CommercialPost.dummyReviews
+    let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     
     let productImageURL = post.productImagesURL
       .compactMap { $0 }
@@ -91,6 +97,11 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     productPriceView.setData(price: post.price)
     reviewView.setData(reviews: post.reviews)
     updateTags(with: post)
+    
+    if .random() {
+      cardDiscountTag.text = "\((2...10).randomElement() ?? 5)% 카드 결제할인"
+      cardDiscountTag.isHidden = false
+    }
   }
   
   private func updateTags(with post: CommercialPost) {
