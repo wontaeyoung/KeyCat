@@ -56,7 +56,7 @@ final class SellerProfileView: RxBaseView {
     }
     
     profileImageView.snp.makeConstraints { make in
-      make.top.equalTo(sellerSectionLabel.snp.bottom).offset(10)
+      make.top.equalTo(sellerSectionLabel.snp.bottom).offset(20)
       make.leading.equalToSuperview()
       make.size.equalTo(profileImageSize)
       make.bottom.equalToSuperview()

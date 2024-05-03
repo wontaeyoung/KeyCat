@@ -39,7 +39,7 @@ final class DeliveryInfoView: RxBaseView {
     }
     
     deliveryPriceLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(10)
+      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(20)
       make.horizontalEdges.equalToSuperview()
     }
     
