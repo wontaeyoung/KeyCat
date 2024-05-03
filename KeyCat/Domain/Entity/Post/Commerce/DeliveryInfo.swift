@@ -5,6 +5,8 @@
 //  Created by 원태영 on 4/14/24.
 //
 
+import Foundation
+
 struct DeliveryInfo {
   
   let price: Price
@@ -54,6 +56,20 @@ struct DeliveryInfo {
         case .nextDawn: "내일 새벽 도착"
         case .nextDay: "내일 도착"
       }
+    }
+    
+    var addingDay: Int {
+      switch self {
+        case .today: 0
+        case .nextDawn, .nextDay: 1
+        case .standard: 2
+      }
+    }
+    
+    var arrivingDay: String {
+      let arrivingDate = DateManager.shared.date(from: .now, as: .day, by: addingDay)
+      
+      return DateManager.shared.toString(with: arrivingDate, format: .MMddEEEEKR)
     }
   }
 }
