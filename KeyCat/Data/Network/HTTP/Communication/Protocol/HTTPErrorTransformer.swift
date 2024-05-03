@@ -23,65 +23,70 @@ extension HTTPErrorTransformer {
     
     /// HTTP Error 체크
     switch httpError {
+        
         /// 요청이 실패해서 상태코드 없이 실패한 케이스 (인터넷 상태, URL 문제 등)
       case .requestFailed:
-        return .networkError
+        return .retrySignIn
         
         /// 상태코드가 있는 케이스
       case .unexceptedResponse(let status):
+        return handleStatusCode(status: status, style: style)
+    }
+  }
+  
+  private func handleStatusCode(status: HTTPError.HTTPStatus, style: HTTPRequestDomain) -> KCError {
+    
+    /// 상태 코드를 통해서 HTTPStatusError 초기화
+    let httpStatusError = status.toHTTPStatusError
+    
+    /// 상태코드 에러 체크
+    switch httpStatusError {
         
-        /// 상태 코드를 통해서 HTTPStatusError 초기화
-        let httpStatusError = status.toHTTPStatusError
+        /// 401 케이스 분석
+      case .accessFailed:
         
-        /// 상태코드 에러 체크
-        switch httpStatusError {
+        /// API 요청 도메인에 따라 다른 accessFailed 케이스로 리턴
+        switch style {
+          case .signIn:
+            return .accessFailed(detail: .login)
             
-            /// 401 케이스 분석
-          case .accessFailed:
+          case .accessToken, .createPost, .fetchPosts:
+            return .accessFailed(detail: .accessToken)
             
-            /// API 요청 도메인에 따라 다른 accessFailed 케이스로 리턴
-            switch style {
-              case .signIn:
-                return .accessFailed(detail: .login)
-                
-              case .accessToken, .createPost, .fetchPosts:
-                return .accessFailed(detail: .accessToken)
-                
-              default:
-                return httpStatusError.toDomain
-            }
-            
-            /// 409 케이스 분석
-          case .conflict:
-            
-            /// API 요청 도메인에 따라 다른 conflict 케이스로 리턴
-            switch style {
-              case .emailValidation:
-                return .conflict(detail: .emailDuplicated)
-                
-              case .signUp:
-                return .conflict(detail: .registeredUser)
-                
-              default:
-                return httpStatusError.toDomain
-            }
-            
-            /// 410 케이스 분석
-          case .targetNotFound:
-            
-            /// API 요청 도메인에 따라 다른 targetNotFound 케이스로 리턴
-            switch style {
-              case .createPost:
-                return .targetNotFound(detail: .create(model: .post))
-              
-              default:
-                return httpStatusError.toDomain
-            }
-            
-            /// 도메인에 대해 분기처리가 필요 없는 에러는 미리 정의한 매핑 에러로 변환
           default:
             return httpStatusError.toDomain
         }
+        
+        /// 409 케이스 분석
+      case .conflict:
+        
+        /// API 요청 도메인에 따라 다른 conflict 케이스로 리턴
+        switch style {
+          case .emailValidation:
+            return .conflict(detail: .emailDuplicated)
+            
+          case .signUp:
+            return .conflict(detail: .registeredUser)
+            
+          default:
+            return httpStatusError.toDomain
+        }
+        
+        /// 410 케이스 분석
+      case .targetNotFound:
+        
+        /// API 요청 도메인에 따라 다른 targetNotFound 케이스로 리턴
+        switch style {
+          case .createPost:
+            return .targetNotFound(detail: .create(model: .post))
+          
+          default:
+            return httpStatusError.toDomain
+        }
+        
+        /// 도메인에 대해 분기처리가 필요 없는 에러는 미리 정의한 매핑 에러로 변환
+      default:
+        return httpStatusError.toDomain
     }
   }
 }
