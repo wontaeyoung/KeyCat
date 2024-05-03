@@ -1,5 +1,5 @@
 //
-//  BookmarkUsecaseImpl.swift
+//  CommercialPostInteractionUsecaseImpl.swift
 //  KeyCat
 //
 //  Created by 원태영 on 5/4/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class BookmarkUsecaseImpl: BookmarkUsecase {
+final class CommercialPostInteractionUsecaseImpl: CommercialPostInteractionUsecase {
   
   private let postRepository: PostRepository
   
@@ -16,7 +16,7 @@ final class BookmarkUsecaseImpl: BookmarkUsecase {
     self.postRepository = postRepository
   }
   
-  func execute(postID: CommercialPost.PostID, isOn: Bool) -> Single<CommercialPost?> {
+  func bookmark(postID: CommercialPost.PostID, isOn: Bool) -> Single<CommercialPost?> {
     return postRepository.bookmark(postID: postID, isOn: isOn)
       .flatMap { _ in
         return self.postRepository.fetchSpecificPost(postID: postID)

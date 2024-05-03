@@ -43,18 +43,18 @@ final class CommercialPostDetailViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let bookmarkUsecase: BookmarkUsecase
+  private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
   
   private let post: BehaviorRelay<CommercialPost>
   
   // MARK: - Initializer
   init(
     post: CommercialPost,
-    bookmarkUsecase: BookmarkUsecase = BookmarkUsecaseImpl()
+    commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
     let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     self.post = BehaviorRelay<CommercialPost>(value: post)
-    self.bookmarkUsecase = bookmarkUsecase
+    self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
   }
   
   // MARK: - Method
@@ -80,13 +80,14 @@ final class CommercialPostDetailViewModel: ViewModel {
       .withLatestFrom(post)
       .withUnretained(self)
       .flatMap { owner, post in
-        return owner.bookmarkUsecase.execute(postID: post.postID, isOn: !post.isBookmarked)
+        return owner.commercialPostInteractionUsecase.bookmark(postID: post.postID, isOn: !post.isBookmarked)
       }
       .compactMap { $0 }
       .bind(to: post)
       .disposed(by: disposeBag)
       
-      
+  
+    input.addCartTapEvent
     
     return Output(
       post: post.asDriver()
