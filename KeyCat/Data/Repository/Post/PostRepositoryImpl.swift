@@ -86,4 +86,17 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       }
       .map { $0.like_status }
   }
+  
+  func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<Bool> {
+    let request = LikePostRequest(like_status: adding)
+    let router = LikeRouter.like2(postID: postID, request: request)
+    
+    return service.callRequest(with: router, of: LikePostResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .likePost)
+        
+        return .error(domainError)
+      }
+      .map { $0.like_status }
+  }
 }

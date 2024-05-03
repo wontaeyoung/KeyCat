@@ -15,4 +15,5 @@ protocol PostRepository {
   func fetchCommercialPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
   func fetchSpecificPost(postID: CommercialPost.PostID) -> Single<CommercialPost?>
   func bookmark(postID: CommercialPost.PostID, isOn: Bool) -> Single<Bool>
+  func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<Bool>
 }
