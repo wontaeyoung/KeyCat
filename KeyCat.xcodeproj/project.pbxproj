@@ -152,6 +152,7 @@
 		6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */; };
 		6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */; };
 		6E90900E2BE48C97001B107A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90900D2BE48C97001B107A /* IconLabel.swift */; };
+		6E9090122BE529D9001B107A /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090112BE529D9001B107A /* DeliveryInfoView.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -339,6 +340,7 @@
 		6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMapper.swift; sourceTree = "<group>"; };
 		6E90900D2BE48C97001B107A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
+		6E9090112BE529D9001B107A /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1064,6 +1066,7 @@
 			children = (
 				6EAEAD062BE26DCA00993089 /* ReviewView.swift */,
 				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
+				6E9090112BE529D9001B107A /* DeliveryInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1432,6 +1435,7 @@
 				6E567E612BC67EEA00250C56 /* Configurator.swift in Sources */,
 				6E0778402BDA363A00B3A6EC /* UserRepositoryImpl.swift in Sources */,
 				6E8C9EE02BCBFF580086F913 /* PostMapper.swift in Sources */,
+				6E9090122BE529D9001B107A /* DeliveryInfoView.swift in Sources */,
 				6E0A4FDC2BD3EA7C005A529F /* CheckEmailDuplicationUsecase.swift in Sources */,
 				6EAEACDF2BDFD0B600993089 /* NSCollectionLayoutSection+.swift in Sources */,
 				6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */,

@@ -42,9 +42,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   private let productPriceView = ProductPriceView()
   
   private let deliverySectionDivider = Divider()
-  private let deliverySectionLabel = KCLabel(title: "배송", font: .bold(size: 15), color: .darkGray)
-  private let deliveryPriceLabel = IconLabel(image: KCAsset.Symbol.deliveryPrice, font: .bold(size: 14))
-  private let deliveryScheduleLabel = IconLabel(image: KCAsset.Symbol.deliverySchedule, font: .bold(size: 14))
+  private let deliveryInfoView = DeliveryInfoView()
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
@@ -67,9 +65,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       reviewView,
       productPriceView,
       deliverySectionDivider,
-      deliverySectionLabel,
-      deliveryPriceLabel,
-      deliveryScheduleLabel
+      deliveryInfoView
     )
   }
   
@@ -114,18 +110,8 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       make.horizontalEdges.equalToSuperview()
     }
     
-    deliverySectionLabel.snp.makeConstraints { make in
+    deliveryInfoView.snp.makeConstraints { make in
       make.top.equalTo(deliverySectionDivider).offset(10)
-      make.horizontalEdges.equalToSuperview().inset(20)
-    }
-    
-    deliveryPriceLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliverySectionLabel.snp.bottom).offset(10)
-      make.horizontalEdges.equalToSuperview().inset(20)
-    }
-    
-    deliveryScheduleLabel.snp.makeConstraints { make in
-      make.top.equalTo(deliveryPriceLabel.snp.bottom).offset(10)
       make.horizontalEdges.equalToSuperview().inset(20)
       make.bottom.equalToSuperview()
     }
@@ -169,29 +155,19 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     /// 상품 리뷰 표시
     output.post
       .map { $0.reviews }
-      .drive(with: self) { owner, reviews in
-        owner.reviewView.setData(reviews: reviews)
-      }
+      .drive(reviewView.rx.reviews)
       .disposed(by: disposeBag)
     
     /// 상품 가격 표시
     output.post
       .map { $0.price }
-      .drive(with: self) { owner, price in
-        owner.productPriceView.setData(price: price)
-      }
+      .drive(productPriceView.rx.productPrice)
       .disposed(by: disposeBag)
     
-    /// 배송비 표시
+    /// 배송정보 표시
     output.post
-      .map { $0.delivery.price.name }
-      .drive(deliveryPriceLabel.rx.title)
-      .disposed(by: disposeBag)
-    
-    /// 배송 도착 스케쥴 표시
-    output.post
-      .map { "\($0.delivery.schedule.arrivingDay) 도착 보장" }
-      .drive(deliveryScheduleLabel.rx.title)
+      .map { $0.delivery }
+      .drive(deliveryInfoView.rx.deliveryInfo)
       .disposed(by: disposeBag)
   }
 }
