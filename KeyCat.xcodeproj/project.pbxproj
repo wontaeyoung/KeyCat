@@ -477,15 +477,11 @@
 				6E0778132BD88EA800B3A6EC /* CheckboxButton.swift */,
 				6EAEACD92BDFC30600993089 /* Divider.swift */,
 				6E0A4FC52BD24153005A529F /* InputInformation.swift */,
-				6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */,
-				6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */,
 				6EC801EE2BDD42A000FE2B69 /* ProductField.swift */,
 				6E0778052BD7995A00B3A6EC /* SecureButton.swift */,
 				6E0A4F9F2BD150E0005A529F /* ValidationField.swift */,
 				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
 				6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */,
-				6EAEAD062BE26DCA00993089 /* ReviewView.swift */,
-				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
 				6E90900D2BE48C97001B107A /* IconLabel.swift */,
 			);
 			path = ReusableView;
@@ -1054,6 +1050,24 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
+		6E90900F2BE5298C001B107A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6EC802012BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift */,
+				6EC802032BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6E9090102BE529A1001B107A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6EAEAD062BE26DCA00993089 /* ReviewView.swift */,
+				6ED51E712BE35F7D005D7FBD /* ProductPriceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6E9829032BCF428000105910 /* Body */ = {
 			isa = PBXGroup;
 			children = (
@@ -1140,6 +1154,7 @@
 		6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */ = {
 			isa = PBXGroup;
 			children = (
+				6E90900F2BE5298C001B107A /* View */,
 				6EAEACDB2BDFCBA600993089 /* Cell */,
 				6EC801FD2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift */,
 				6EC801FF2BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift */,
@@ -1151,6 +1166,7 @@
 		6ED51E692BE34BC4005D7FBD /* CommercialPostDetail */ = {
 			isa = PBXGroup;
 			children = (
+				6E9090102BE529A1001B107A /* View */,
 				6ED51E6E2BE34EF8005D7FBD /* Cell */,
 				6ED51E6A2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift */,
 				6ED51E6C2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift */,
