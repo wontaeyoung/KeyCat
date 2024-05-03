@@ -39,7 +39,7 @@ final class ShoppingViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let fetchCommercialPostsUsecase: FetchCommercialPostsUsecase
+  private let fetchCommercialPostsUsecase: FetchCommercialPostUsecase
   
   private var nextCursor: CommercialPost.PostID = ""
   private let fetchedPosts = PublishRelay<[CommercialPost]>()
@@ -47,7 +47,7 @@ final class ShoppingViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
-    fetchCommercialPostsUsecase: FetchCommercialPostsUsecase = FetchCommercialPostsUsecaseImpl()
+    fetchCommercialPostsUsecase: FetchCommercialPostUsecase = FetchCommercialPostUsecaseImpl()
   ) {
     self.fetchCommercialPostsUsecase = fetchCommercialPostsUsecase
   }
@@ -117,7 +117,7 @@ final class ShoppingViewModel: ViewModel {
     // 최근 커서가 마지막 커서 사인이면 스트림 종료
     guard nextCursor != Constant.Network.lastCursorSign else { return .never() }
     
-    return fetchCommercialPostsUsecase.execute(nextCursor: nextCursor)
+    return fetchCommercialPostsUsecase.fetchPosts(nextCursor: nextCursor)
       .catch { error in
         self.coordinator?.showErrorAlert(error: error)
         
