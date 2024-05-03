@@ -18,6 +18,7 @@ final class TagLabel: KCLabel {
     title: String?,
     horizontalInset: CGFloat = 8,
     verticalInset: CGFloat = 4,
+    color: KCAsset.Color = .white,
     backgroundColor: KCAsset.Color
   ) {
     self.horizontalInset = horizontalInset
@@ -26,13 +27,20 @@ final class TagLabel: KCLabel {
     super.init(
       title: title,
       font: .bold(size: 12),
-      color: .white,
+      color: color,
       alignment: .center
     )
     
     self.backgroundColor = backgroundColor.color
     self.clipsToBounds = true
     self.layer.cornerRadius = 5
+    
+    if backgroundColor == .white {
+      self.layer.configure {
+        $0.borderColor = color.color.cgColor
+        $0.borderWidth = 1
+      }
+    }
   }
   
   @available(*, unavailable)
