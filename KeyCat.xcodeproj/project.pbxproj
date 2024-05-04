@@ -178,6 +178,7 @@
 		6E90904E2BE6C440001B107A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90904D2BE6C440001B107A /* ProfileView.swift */; };
 		6E9090512BE6CCBF001B107A /* FetchProfileUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */; };
 		6E9090542BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */; };
+		6E90905A2BE6DA8C001B107A /* MyProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -391,6 +392,7 @@
 		6E90904D2BE6C440001B107A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecase.swift; sourceTree = "<group>"; };
 		6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableCell.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1216,6 +1218,7 @@
 			children = (
 				6E9090452BE6C07F001B107A /* MyProfileViewController.swift */,
 				6E9090472BE6C085001B107A /* MyProfileViewModel.swift */,
+				6E9090582BE6DA82001B107A /* Cell */,
 				6E90904C2BE6C436001B107A /* View */,
 				6E9090492BE6C15F001B107A /* Coordinator */,
 			);
@@ -1253,6 +1256,14 @@
 				6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		6E9090582BE6DA82001B107A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6E9829032BCF428000105910 /* Body */ = {
@@ -1579,6 +1590,7 @@
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6EAEAD052BE2695E00993089 /* ProductCollectionCell.swift in Sources */,
 				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
+				6E90905A2BE6DA8C001B107A /* MyProfileTableCell.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
 				6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
