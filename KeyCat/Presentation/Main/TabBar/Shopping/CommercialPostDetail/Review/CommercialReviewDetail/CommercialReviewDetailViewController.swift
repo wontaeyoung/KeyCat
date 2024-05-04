@@ -13,6 +13,21 @@ import RxCocoa
 final class CommercialReviewDetailViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
+  private lazy var menuBarItem = UIBarButtonItem(image: KCAsset.Symbol.menuBarItem).configured {
+    let actions = HandleContentAction.allCases
+      .map { action in
+        return UIAction(
+          title: action.title,
+          image: action.image,
+          attributes: action == .delete ? .destructive : []
+        ) { _ in
+          self.handleReviewAction.accept(action)
+        }
+      }
+    
+    $0.menu = UIMenu(title: "리뷰 변경", children: actions)
+  }
+  
   private let scrollView = UIScrollView()
   private let contentView = UIView()
   private let containerView = UIView()
@@ -37,6 +52,7 @@ final class CommercialReviewDetailViewController: RxBaseViewController, ViewMode
   let viewModel: CommercialReviewDetailViewModel
   
   private let profileImageSize: CGFloat = 40
+  private let handleReviewAction = PublishRelay<HandleContentAction>()
   
   // MARK: - Initializer
   init(viewModel: CommercialReviewDetailViewModel) {
@@ -108,15 +124,29 @@ final class CommercialReviewDetailViewController: RxBaseViewController, ViewMode
     let input = CommercialReviewDetailViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    /// 리뷰 데이터 표시
     output.review
       .drive(with: self) { owner, review in
         owner.setData(review: review)
       }
       .disposed(by: disposeBag)
     
+    /// 리뷰 삭제 토스트 완료 이벤트 전달
+    output.reviewDeletedToast
+      .drive(with: self) { owner, _ in
+        owner.toast("리뷰가 삭제되었어요") { input.toastCompleteEvent.accept(()) }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 프로필 이미지 탭 이벤트 전달
     profileImageView.tap
       .buttonThrottle()
       .bind(to: input.profileTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 리뷰 변경 메뉴 아이템 탭 이벤트 전달
+    handleReviewAction
+      .bind(to: input.handleReviewAction)
       .disposed(by: disposeBag)
   }
   
@@ -127,6 +157,10 @@ final class CommercialReviewDetailViewController: RxBaseViewController, ViewMode
     contentLabel.text = review.content
     
     stackingReviewStar(rating: review.rating)
+    
+    if review.isCreatedByMe {
+      navigationItem.setRightBarButton(menuBarItem, animated: true)
+    }
   }
   
   private func stackingReviewStar(rating: CommercialReview.Rating) {
