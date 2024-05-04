@@ -22,6 +22,10 @@ struct CommercialReview: Entity {
     return DateManager.shared.toString(with: createdAt, format: .yyyyMMddEEDot)
   }
   
+  var isCreatedByMe: Bool {
+    return creator.userID == UserInfoService.userID
+  }
+  
   enum Rating: Int, CaseIterable {
     case one = 1
     case two
