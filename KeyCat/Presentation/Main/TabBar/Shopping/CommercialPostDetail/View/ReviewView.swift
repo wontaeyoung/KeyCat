@@ -10,9 +10,15 @@ import SnapKit
 
 final class ReviewView: RxBaseView {
   
-  private let starIcon = UIImageView(image: KCAsset.Symbol.review)
-  private let scoreLabel = KCLabel(style: .content)
-  private let countLabel = KCLabel(style: .reviewCount)
+  private let starIcon = UIImageView(image: KCAsset.Symbol.reviewScore)
+  private let scoreLabel = KCLabel(font: .medium(size: 13))
+  private let countLabel = KCLabel(font: .medium(size: 13), color: .lightGrayForeground)
+  
+  var reviews: [CommercialReview] = [] {
+    didSet {
+      setData(reviews: reviews)
+    }
+  }
   
   override init() {
     super.init()

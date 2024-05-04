@@ -9,18 +9,23 @@ import UIKit
 
 enum KCAsset {
   
-  enum Color {
-    static let brand: UIColor = .init(hex: "#7E63FF")
-    static let primary: UIColor = .init(hex: "#A896FF")
-    static let secondary: UIColor = .init(hex: "#C1CFFF")
-    static let lightGrayBackground: UIColor = .init(hex: "#F2F2F6")
-    static let lightGrayForeground: UIColor = .init(hex: "#BCBCBC")
-    static let darkGray: UIColor = .init(hex: "#686868")
-    static let black: UIColor = .init(hex: "000000")
-    static let white: UIColor = .init(hex: "FFFFFF")
-    static let pastelRed: UIColor = .init(hex: "#E8A2A2")
-    static let pastelBlue: UIColor = .init(hex: "#A0C3D2")
-    static let pastelGreen: UIColor = .init(hex: "#A8D1D1")
+  enum Color: String {
+    
+    case brand = "#7E63FF"
+    case primary = "#A896FF"
+    case secondary = "#C1CFFF"
+    case lightGrayBackground = "#F2F2F6"
+    case lightGrayForeground = "#BCBCBC"
+    case darkGray = "#686868"
+    case black = "#000000"
+    case white = "#FFFFFF"
+    case pastelRed = "#E8A2A2"
+    case pastelBlue = "#A0C3D2"
+    case pastelGreen = "#A8D1D1"
+    
+    var color: UIColor {
+      return UIColor(hex: self.rawValue)
+    }
     
     static let background: UIColor = .background
     static let label: UIColor = .label
@@ -51,22 +56,18 @@ enum KCAsset {
       return UIFont(name: fontName.name, size: size) ?? .systemFont(ofSize: size, weight: coalesceWeight)
     }
     
-    static let signField: UIFont = font(.medium, size: 19)
-    static let productField: UIFont = font(.medium, size: 17)
-    static let inputFieldPlaceholder: UIFont = font(.medium, size: 13)
-    static let appLogoLabel: UIFont = font(.bold, size: 50)
-    static let title: UIFont = font(.bold, size: 24)
-    static let sectionTitle: UIFont = font(.bold, size: 20)
-    static let standardTitle: UIFont = font(.medium, size: 16)
-    static let buttonTitle: UIFont = font(.bold, size: 19)
-    static let floatingButtonTitle: UIFont = font(.bold, size: 40)
-    static let captionLabel: UIFont = font(.medium, size: 15)
-    static let contentText: UIFont = font(.medium, size: 15)
-    static let mini: UIFont = font(.medium, size: 13)
-    static let tag: UIFont = font(.bold, size: 12)
+    case medium(size: CGFloat)
+    case bold(size: CGFloat)
     
-    static let toastTitle: UIFont = font(.bold, size: 17)
-    static let toastMessage: UIFont = font(.bold, size: 15)
+    var font: UIFont {
+      switch self {
+        case .medium(let size):
+          return Self.font(.medium, size: size)
+          
+        case .bold(let size):
+          return Self.font(.bold, size: size)
+      }
+    }
   }
   
   enum Symbol {
@@ -83,6 +84,15 @@ enum KCAsset {
       case starFill = "star.fill"
       case bookmark = "bookmark"
       case bookmarkFill = "bookmark.fill"
+      case wonsignCircle = "wonsign.circle"
+      case truckBoxBadgeClock = "truck.box.badge.clock"
+      case ellipsis = "ellipsis"
+      case pencilLine = "pencil.line"
+      case trash = "trash"
+      
+      case cartBadgePlus = "cart.badge.plus"
+      case cart = "cart"
+      case bubbleLeftAndTextBubbleRight = "bubble.left.and.text.bubble.right"
       
       case house = "house"
       case houseFill = "house.fill"
@@ -100,12 +110,28 @@ enum KCAsset {
     static let closeButton: UIImage? = image(.xmarkCircleFill)
     static let checkboxOff: UIImage? = image(.checkmarkCircle)
     static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
+    
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
     static let addImageButton: UIImage? = image(.cameraFill)
+    
     static let networkDisconnect: UIImage? = image(.exclamationmarkCircleFill)
-    static let review: UIImage? = image(.starFill)
+    
+    static let reviewScore: UIImage? = image(.starFill)
+    
     static let bookmarkOff: UIImage? = image(.bookmark)
     static let bookmarkOn: UIImage? = image(.bookmarkFill)
+    
+    static let deliveryPrice: UIImage? = image(.wonsignCircle)
+    static let deliverySchedule: UIImage? = image(.truckBoxBadgeClock)
+    
+    static let menuBarItem: UIImage? = image(.ellipsis)
+    static let update: UIImage? = image(.pencilLine)
+    static let delete: UIImage? = image(.trash)
+    
+    static let addCart: UIImage? = image(.cartBadgePlus)
+    static let cart: UIImage? = image(.cart)
+    
+    static let review: UIImage? = image(.bubbleLeftAndTextBubbleRight)
     
     static let homeTab: UIImage? = image(.house)
     static let homeSelectedTab: UIImage? = image(.houseFill)

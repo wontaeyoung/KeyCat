@@ -31,7 +31,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     image: KCAsset.Symbol.addImageButton
   ).configured {
     $0.layer.configure {
-      $0.borderColor = KCAsset.Color.lightGrayForeground.cgColor
+      $0.borderColor = KCAsset.Color.lightGrayForeground.color.cgColor
       $0.borderWidth = 1
       $0.cornerRadius = 10
     }
@@ -50,7 +50,12 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     $0.allowsSelection = true
   }
   
-  private let needImageInfoLabel = KCLabel(style: .placeholder, title: "이미지는 한 장 이상 추가해주세요")
+  private let needImageInfoLabel = KCLabel(
+    title: "이미지는 한 장 이상 추가해주세요",
+    font: .medium(size: 13),
+    color: .lightGrayForeground,
+    line: 2
+  )
   
   private var compositionalLayout = UICollectionViewCompositionalLayout(
     section: .makeHorizontalScrollSection(
@@ -60,21 +65,38 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   )
   
   // MARK: 상품 텍스트 정보
-  private let titleLabel = KCLabel(style: .placeholder, title: "상품명")
+  private let titleLabel = KCLabel(
+    title: "상품명",
+    font: .medium(size: 13),
+    color: .lightGrayForeground,
+    line: 2
+  )
+  
   private let titleField = UITextField().configured {
     $0.borderStyle = .roundedRect
   }
-  private let contentTextTitleLabel = KCLabel(style: .placeholder, title: "상품 설명")
+  private let contentTextTitleLabel = KCLabel(
+    title: "상품설명",
+    font: .medium(size: 13),
+    color: .lightGrayForeground,
+    line: 2
+  )
+  
   private let contentTextView = KCTextView(
     placeholder: "상품의 간단한 설명을 작성해주세요",
     maxLength: BusinessValue.Product.maxContentLength
   )
-  private let lengthLabel = KCLabel(style: .placeholder, alignment: .right).configured {
-    $0.textColor = KCAsset.Color.lightGrayForeground
-  }
+  
+  private let lengthLabel = KCLabel(
+    font: .medium(size: 13),
+    color: .lightGrayForeground,
+    line: 2,
+    alignment: .right
+  )
   
   // MARK: 가격 정보
-  private let priceSectionLabel = KCLabel(style: .brandTitle, title: "상품가")
+  private let priceSectionLabel = KCLabel(font: .bold(size: 24), color: .brand, line: 2)
+  
   private lazy var priceInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 30
@@ -109,7 +131,11 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       make.trailing.equalTo(view)
     }
   }
-  private let discountExpiryDateTitleLabel = KCLabel(style: .standardTitle, title: "할인 마감일")
+  private let discountExpiryDateTitleLabel = KCLabel(
+    title: "할인 마감일", 
+    font: .medium(size: 16)
+  )
+  
   private let discountExpiryDatePicker = UIDatePicker().configured {
     $0.preferredDatePickerStyle = .compact
     $0.datePickerMode = .date
@@ -124,7 +150,8 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   }
   
   // MARK: 배송 정보
-  private let deliverySectionLabel = KCLabel(style: .brandTitle, title: "배송")
+  private let deliverySectionLabel = KCLabel(title: "배송", font: .bold(size: 24), color: .brand)
+  
   private lazy var deliveryInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 20
@@ -137,10 +164,11 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectDeliveryScheduleView = KeyboardInfoSelectView(type: DeliveryInfo.Schedule.self)
   
   // MARK: 키보드 정보
-  private let keyboardSectionLabel = KCLabel(style: .brandTitle, title: "키보드")
+  private let keyboardSectionLabel = KCLabel(title: "키보드", font: .bold(size: 24), color: .brand)
   
   // MARK: 키보드 스펙 섹션
-  private let keyboardInfoSectionLabel = KCLabel(style: .sectionTitle, title: "스펙")
+  private let keyboardInfoSectionLabel = KCLabel(title: "스펙", font: .bold(size: 20), color: .darkGray)
+  
   private lazy var keyboardInfoStack = UIStackView().configured {
     $0.axis = .vertical
     $0.spacing = 20
@@ -164,7 +192,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectPCBTypeView = KeyboardInfoSelectView(type: KeyboardInfo.PCBType.self)
   
   // MARK: 키캡 정보 섹션
-  private let keycapInfoSectionLabel = KCLabel(style: .sectionTitle, title: "키캡")
+  private let keycapInfoSectionLabel = KCLabel(title: "키캡", font: .bold(size: 20), color: .darkGray)
   private let keycapInfoDivider = Divider()
   private lazy var keycapInfoStack = UIStackView().configured {
     $0.axis = .vertical
@@ -182,7 +210,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
   private let selectPrintingLanguageView = KeyboardInfoSelectView(type: KeycapInfo.PrintingLanguage.self)
   
   // MARK: 키보드 디자인 섹션
-  private let keyboardAppearanceInfoSectionLabel = KCLabel(style: .sectionTitle, title: "디자인")
+  private let keyboardAppearanceInfoSectionLabel = KCLabel(title: "디자인", font: .bold(size: 20), color: .darkGray)
   private let keyboardAppearanceInfoDivider = Divider()
   private lazy var keyboardAppearanceInfoStack = UIStackView().configured {
     $0.axis = .vertical
@@ -566,7 +594,10 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
     /// 셀 선택 > 이미지 디테일 시트뷰 표시
     productImageCollectionView.rx.modelSelected(UIImage.self)
       .bind(with: self) { owner, image in
-        owner.present(PostImageDetailSheetViewController(image: image), animated: true)
+        let vc = UINavigationController(rootViewController: PostImageDetailSheetViewController(image: image))
+        vc.modalPresentationStyle = .fullScreen
+        
+        owner.present(vc, animated: true)
       }
       .disposed(by: disposeBag)
     

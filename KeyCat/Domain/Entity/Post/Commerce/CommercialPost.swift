@@ -19,7 +19,7 @@ struct CommercialPost: Entity {
   let createdAt: Date
   let creator: User
   var files: [URLString]
-  let likes: [UserID]
+  let bookmarks: [UserID]
   let shoppingCarts: [UserID]
   let hashTags: [Hashtag]
   var reviews: [CommercialReview]
@@ -28,7 +28,21 @@ struct CommercialPost: Entity {
     return files.map { URL(string: APIKey.baseURL + "/" + $0) }
   }
   
-  var isUserBookmark: Bool {
-    return likes.contains(UserInfoService.userID)
+  var isBookmarked: Bool {
+    return bookmarks.contains(UserInfoService.userID)
+  }
+  
+  var isAddedInCart: Bool {
+    return shoppingCarts.contains(UserInfoService.userID)
+  }
+  
+  var isCreatedByMe: Bool {
+    return creator.userID == UserInfoService.userID
+  }
+  
+  static var dummyReviews: [CommercialReview] {
+    (1...Int.random(in: 1...15)).map {
+      .init(reviewID: "", content: "구매 후기입니다 \($0)", rating: .allCases.randomElement()!, createdAt: .now, creator: .empty)
+    }
   }
 }

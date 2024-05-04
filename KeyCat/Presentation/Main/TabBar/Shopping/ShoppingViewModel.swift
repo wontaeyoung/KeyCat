@@ -33,21 +33,21 @@ final class ShoppingViewModel: ViewModel {
   
   struct Output {
     let hasSellerAuthority: Driver<Bool>
-    let commercialPosts: Driver<[CommercialPost]>
+    let posts: Driver<[CommercialPost]>
   }
   
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let fetchCommercialPostsUsecase: FetchCommercialPostsUsecase
+  private let fetchCommercialPostsUsecase: FetchCommercialPostUsecase
   
   private var nextCursor: CommercialPost.PostID = ""
   private let fetchedPosts = PublishRelay<[CommercialPost]>()
-  private let commercialPosts = BehaviorRelay<[CommercialPost]>(value: [])
+  private let posts = BehaviorRelay<[CommercialPost]>(value: [])
   
   // MARK: - Initializer
   init(
-    fetchCommercialPostsUsecase: FetchCommercialPostsUsecase = FetchCommercialPostsUsecaseImpl()
+    fetchCommercialPostsUsecase: FetchCommercialPostUsecase = FetchCommercialPostUsecaseImpl()
   ) {
     self.fetchCommercialPostsUsecase = fetchCommercialPostsUsecase
   }
@@ -83,7 +83,7 @@ final class ShoppingViewModel: ViewModel {
     
     /// 마지막 상품의 이전 줄이 표시될 때, 페이지네이션
     input.showProductCellEvent
-      .filter { $0.row >= self.commercialPosts.value.count - 4 }
+      .filter { $0.row >= self.posts.value.count - 4 }
       .withUnretained(self)
       .flatMap { owner, _ in
         return owner.fetchPosts()
@@ -103,13 +103,13 @@ final class ShoppingViewModel: ViewModel {
     /// 포스트 셀 탭 이벤트 > 상품 디테일 화면 연결
     input.postCollectionCellSelectedEvent
       .bind(with: self) { owner, post in
-        owner.coordinator?.showPostDetailView(post: post)
+        owner.coordinator?.showPostDetailView(post: post, from: owner.posts)
       }
       .disposed(by: disposeBag)
     
     return Output(
       hasSellerAuthority: hasSellerAuthority.asDriver(onErrorJustReturn: false),
-      commercialPosts: commercialPosts.asDriver(onErrorJustReturn: [])
+      posts: posts.asDriver(onErrorJustReturn: [])
     )
   }
   
@@ -117,7 +117,7 @@ final class ShoppingViewModel: ViewModel {
     // 최근 커서가 마지막 커서 사인이면 스트림 종료
     guard nextCursor != Constant.Network.lastCursorSign else { return .never() }
     
-    return fetchCommercialPostsUsecase.execute(nextCursor: nextCursor)
+    return fetchCommercialPostsUsecase.fetchPosts(nextCursor: nextCursor)
       .catch { error in
         self.coordinator?.showErrorAlert(error: error)
         
@@ -126,9 +126,9 @@ final class ShoppingViewModel: ViewModel {
   }
   
   private func appendPosts(_ newPosts: [CommercialPost]) {
-    var mergedPosts = commercialPosts.value
+    var mergedPosts = posts.value
     mergedPosts.append(contentsOf: newPosts)
     
-    commercialPosts.accept(mergedPosts)
+    posts.accept(mergedPosts)
   }
 }

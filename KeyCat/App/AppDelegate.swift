@@ -34,14 +34,14 @@ extension AppDelegate {
   
   private func setGlobalToastStyle() {
     ToastManager.shared.style = ToastStyle().applied {
-      $0.backgroundColor = KCAsset.Color.lightGrayBackground
-      $0.messageColor = KCAsset.Color.black
-      $0.messageFont = KCAsset.Font.toastMessage
-      $0.titleColor = KCAsset.Color.black
-      $0.titleFont = KCAsset.Font.toastTitle
+      $0.backgroundColor = KCAsset.Color.lightGrayBackground.color
+      $0.messageColor = KCAsset.Color.black.color
+      $0.messageFont = KCAsset.Font.bold(size: 15).font
+      $0.titleColor = KCAsset.Color.black.color
+      $0.titleFont = KCAsset.Font.bold(size: 17).font
       $0.titleAlignment = .center
       $0.activityBackgroundColor = .clear
-      $0.activityIndicatorColor = KCAsset.Color.brand
+      $0.activityIndicatorColor = KCAsset.Color.brand.color
     }
   }
 }

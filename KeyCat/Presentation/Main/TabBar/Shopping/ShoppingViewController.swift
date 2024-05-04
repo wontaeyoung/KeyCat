@@ -18,7 +18,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     title: "+"
   ).configured {
     $0.layer.configure {
-      $0.shadowColor = KCAsset.Color.black.cgColor
+      $0.shadowColor = KCAsset.Color.black.color.cgColor
       $0.shadowOffset = CGSize(width: 0, height: 2)
       $0.shadowOpacity = 0.5
       $0.shadowRadius = 2
@@ -77,7 +77,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     /// 게시글 리스트 컬렉션 뷰에 전달
-    output.commercialPosts
+    output.posts
       .drive(productCollectionView.rx.items(
         cellIdentifier: ProductCollectionCell.identifier,
         cellType: ProductCollectionCell.self)

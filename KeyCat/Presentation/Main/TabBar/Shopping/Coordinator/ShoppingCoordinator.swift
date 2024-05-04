@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxRelay
 
 final class ShoppingCoordinator: SubCoordinator {
   
@@ -49,8 +50,8 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func showPostDetailView(post: CommercialPost) {
-    let vm = CommercialPostDetailViewModel(post: post)
+  func showPostDetailView(post: CommercialPost, from originalPosts: BehaviorRelay<[CommercialPost]>) {
+    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts)
       .coordinator(self)
     
     let vc = CommercialPostDetailViewController(viewModel: vm)

@@ -41,7 +41,7 @@ final class PostImageDetailSheetViewController: RxBaseViewController {
   }
   
   override func setAttribute() {
-    view.backgroundColor = KCAsset.Color.black
+    view.backgroundColor = KCAsset.Color.black.color
   }
   
   override func bind() {

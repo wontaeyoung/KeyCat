@@ -15,6 +15,7 @@ final class APIRequestInterceptor: RequestInterceptor {
     for session: Session,
     completion: @escaping (Result<URLRequest, any Error>) -> Void
   ) {
+    
     /// 최초 로그인 시 토큰이 없기 때문에 종료
     guard
       let urlString = urlRequest.url?.absoluteString,
@@ -27,7 +28,6 @@ final class APIRequestInterceptor: RequestInterceptor {
     
     let urlRequest = urlRequest.applied {
       $0.setValue(UserInfoService.accessToken, forHTTPHeaderField: KCHeader.Key.authorization)
-      $0.setValue(UserInfoService.refreshToken, forHTTPHeaderField: KCHeader.Key.refresh)
     }
     
     completion(.success(urlRequest))
@@ -47,14 +47,14 @@ final class APIRequestInterceptor: RequestInterceptor {
     else {
       return completion(.doNotRetry)
     }
-    
+      
     AF.request(AuthRouter.tokenRefresh)
       .validate()
       .responseDecodable(of: RefreshTokenResponse.self) { response in
         
         switch response.result {
           case .success(let tokenResponse):
-            UserInfoService.accessToken = tokenResponse.accessToken
+            UserInfoService.renewAccessToken(with: tokenResponse.accessToken)
             completion(.retry)
             
           case .failure:

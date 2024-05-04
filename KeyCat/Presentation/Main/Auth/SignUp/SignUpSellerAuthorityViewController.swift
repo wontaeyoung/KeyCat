@@ -14,9 +14,10 @@ final class SignUpSellerAuthorityViewController: SignUpBaseViewController, ViewM
   
   // MARK: - UI
   private let updateSellerAuthorityAvailableLabel = KCLabel(
-    style: .caption,
     title: Constant.Label.updateSellerAuthorityAvailable,
-    alignment: .center
+    font: .medium(size: 15),
+    color: .lightGrayForeground,
+    line: 2
   )
   
   private let sellerAuthorityButton = KCButton(
