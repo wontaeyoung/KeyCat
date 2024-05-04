@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-enum HandlePostAction: String, CaseIterable {
+enum HandleContentAction: String, CaseIterable {
   
   case update = "수정"
   case delete = "삭제"
@@ -33,7 +33,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - UI
   private lazy var menuBarItem = UIBarButtonItem(image: KCAsset.Symbol.menuBarItem).configured {
-    let actions = HandlePostAction.allCases
+    let actions = HandleContentAction.allCases
       .map { action in
         return UIAction(
           title: action.title,
@@ -101,7 +101,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
-  private let handlePostAction = PublishRelay<HandlePostAction>()
+  private let handlePostAction = PublishRelay<HandleContentAction>()
   
   // MARK: - Initializer
   init(viewModel: CommercialPostDetailViewModel) {
@@ -371,73 +371,17 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .bind(to: input.bookmarkTapEvent)
       .disposed(by: disposeBag)
     
+    /// 리뷰 탭 이벤트 전달
+    reviewButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.reviewTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 장바구니 탭 이벤트 전달
     addCartButton.rx.tap
       .buttonThrottle()
       .bind(to: input.addCartTapEvent)
       .disposed(by: disposeBag)
+    
   }
-}
-
-@available(iOS 17.0, *)
-#Preview {
-  let post = CommercialPost(
-    postID: "66328622ea1f6976de7e36d8",
-    postType: .keycat_commercialProduct,
-    title: "로지텍 코리아 MX MECHANICAL MIN for mac 블루투스 기계식 키보드",
-    content: "맥 전용 키 레이아웃을 갖춰 기존에 애플 디바이스 사용자는 별도의 적응 시간 없이 사용할 수 있고, 맥 전용 제품인 만큼 맥북, 아이폰, 아이패드와 뛰어난 호환성을 자랑한다. 디자인 측면에서도 맥 전용 페일 그레이 컬러로 출시되어 맥 제품군과 어울린다. 멀티태스킹 성능 또한 뛰어나다. 이지 스위치 기능을 통해 최대 3개의 기기와 동시에 페어링한 후, 버튼을 눌러 전환하며 사용할 수 있고, 로지텍 플로우 기능 또한 지원해 서로 다른 OS의 기기를 마치 하나의 OS에서 사용하는 것처럼 자연스럽게 넘나들며 업무를 진행할 수 있다.",
-    keyboard: .init(
-      keyboardInfo: .init(
-        purpose: .allCases.randomElement()!,
-        inputMechanism: .allCases.randomElement()!,
-        connectionType: .allCases.randomElement()!,
-        powerSource: .allCases.randomElement()!,
-        backlight: .allCases.randomElement()!,
-        pcbType: .allCases.randomElement()!,
-        mechanicalSwitch: .allCases.randomElement()!,
-        capacitiveSwitch: .allCases.randomElement()!
-      ),
-      keycapInfo: .init(
-        profile: .allCases.randomElement()!,
-        direction: .allCases.randomElement()!,
-        process: .allCases.randomElement()!,
-        language: .allCases.randomElement()!
-      ),
-      keyboardAppearanceInfo: .init(
-        ratio: .allCases.randomElement()!,
-        design: .allCases.randomElement()!,
-        material: .allCases.randomElement()!,
-        size: .init(width: 380, height: 150, depth: 40, weight: 1062)
-      )
-    ),
-    price: .init(
-      regularPrice: 229000,
-      couponPrice: 2000,
-      discountPrice: 149000,
-      discountExpiryDate: DateManager.shared.date(from: .now, as: .day, by: 5)
-    ),
-    delivery: .init(
-      price: .allCases.randomElement()!,
-      schedule: .allCases.randomElement()!
-    ),
-    createdAt: .now,
-    creator: .init(
-      userID: "662a499ea8bf9f5c9ca667a8",
-      nickname: "qaz",
-      profileImageURLString: "uploads/profiles/1714047391048.jpg"
-    ),
-    files: [
-      "uploads/posts/keyboard1_1714639591607.jpg",
-      "uploads/posts/keyboard2_1714639591628.jpg",
-      "uploads/posts/keyboard3_1714639591630.png"
-    ],
-    bookmarks: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
-    shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
-    hashTags: [],
-    reviews: CommercialPost.dummyReviews
-  )
-  
-  let vm = CommercialPostDetailViewModel(post: post, originalPosts: .init(value: []))
-  let vc = CommercialPostDetailViewController(viewModel: vm)
-  return UINavigationController(rootViewController: vc)
 }

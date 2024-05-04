@@ -21,7 +21,7 @@ struct APIService {
       .call(of: T.self)
   }
   
-  func callReqeust(with router: Router) -> Single<Bool> {
+  func callReqeust(with router: Router) -> Single<Void> {
     return session
       .request(router)
       .rx

@@ -426,7 +426,6 @@ final class ViewController: RxBaseViewController {
     service.callReqeust(with: router)
       .subscribe(with: self) { owner, response in
         owner.결과라벨.text = "요청 성공"
-        owner.내용라벨.text = response.description
       } onFailure: { owner, error in
         owner.결과라벨.text = "요청 실패"
         owner.내용라벨.text = error.localizedDescription
@@ -492,7 +491,6 @@ final class ViewController: RxBaseViewController {
     service.callReqeust(with: router)
       .subscribe(with: self) { owner, response in
         owner.결과라벨.text = "요청 성공"
-        owner.내용라벨.text = response.description
       } onFailure: { owner, error in
         owner.결과라벨.text = "요청 실패"
         owner.내용라벨.text = error.localizedDescription

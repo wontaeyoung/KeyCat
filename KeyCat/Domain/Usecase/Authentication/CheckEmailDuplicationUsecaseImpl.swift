@@ -15,7 +15,7 @@ final class CheckEmailDuplicationUsecaseImpl: CheckEmailDuplicationUsecase {
     self.authRepository = authRepository
   }
   
-  func execute(email: String) -> Single<Bool> {
+  func execute(email: String) -> Single<Void> {
     
     return authRepository.checkEmailDuplication(email: email)
   }

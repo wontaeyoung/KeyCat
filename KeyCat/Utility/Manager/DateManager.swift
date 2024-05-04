@@ -49,6 +49,7 @@ extension DateManager {
     case yyyyMMddKR = "yyyy년 MM월 dd일"
     case yyyyMMddEEEEKR = "yyyy년 MM월 dd일 EEEE"
     case MMddEEEEKR = "M/d(EE)"
+    case yyyyMMddEEDot = "yyyy.MM.dd(EE)"
     
     var format: String {
       return self.rawValue
@@ -181,6 +182,20 @@ extension DateManager {
 
 // MARK: - Compare Date
 extension DateManager {
+  
+  func isToday(_ date: Date) -> Bool {
+    let todayStart = startOfDay(when: .now)
+    let todayEnd = calendar.date(byAdding: .day, value: 1, to: todayStart) ?? .now
+    
+    return date >= todayStart && date < todayEnd
+  }
+  
+  func isYesterday(_ date: Date) -> Bool {
+    let yesterdayStart = calendar.date(byAdding: .day, value: -1, to: startOfDay(when: .now)) ?? .now
+    let yesterdayEnd = startOfDay(when: .now)
+    
+    return date >= yesterdayStart && date < yesterdayEnd
+  }
   
   func isDate(with interval: TimeInterval, by component: Calendar.Component, equalTo: Int) -> Bool {
     return calendar.component(component, from: Date(timeIntervalSince1970: interval)) == equalTo

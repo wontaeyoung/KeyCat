@@ -55,8 +55,24 @@ extension ShoppingCoordinator {
       .coordinator(self)
     
     let vc = CommercialPostDetailViewController(viewModel: vm)
+      .hideBackTitle()
       .hideTabBar()
+      .navigationTitle(with: "상품 상세", displayMode: .never)
     
     push(vc)
+  }
+  
+  func ConnectReviewFlow(post: BehaviorRelay<CommercialPost>) {
+    let coordinator = ReviewCoordinator(navigationController)
+    coordinator.delegate = self
+    coordinator.showReviewListView(post: post)
+    addChild(coordinator)
+  }
+}
+
+extension ShoppingCoordinator: CoordinatorDelegate {
+  
+  func coordinatorDidEnd(_ childCoordinator: Coordinator) {
+    emptyOut()
   }
 }

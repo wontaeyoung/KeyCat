@@ -91,7 +91,6 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .bind(to: input.postCollectionCellSelectedEvent)
       .disposed(by: disposeBag)
     
-    
     /// 셀 화면 표시 이벤트 전달
     productCollectionView.rx.willDisplayCell
       .showingCellThrottle()

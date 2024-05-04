@@ -12,7 +12,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
-    let handlePostAction: PublishRelay<HandlePostAction>
+    let handlePostAction: PublishRelay<HandleContentAction>
     let sellerProfileTapEvent: PublishRelay<Void>
     let bookmarkTapEvent: PublishRelay<Void>
     let reviewTapEvent: PublishRelay<Void>
@@ -20,7 +20,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let buyingTapEvent: PublishRelay<Void>
     
     init(
-      handlePostAction: PublishRelay<HandlePostAction> = .init(),
+      handlePostAction: PublishRelay<HandleContentAction> = .init(),
       sellerProfileTapEvent: PublishRelay<Void> = .init(),
       bookmarkTapEvent: PublishRelay<Void> = .init(),
       reviewTapEvent: PublishRelay<Void> = .init(),
@@ -55,7 +55,6 @@ final class CommercialPostDetailViewModel: ViewModel {
     originalPosts: BehaviorRelay<[CommercialPost]>,
     commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
-    let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     self.post = BehaviorRelay<CommercialPost>(value: post)
     self.originalPosts = originalPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
@@ -91,6 +90,13 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .compactMap { $0 }
       .bind(to: post)
+      .disposed(by: disposeBag)
+    
+    /// 리뷰 탭 이벤트 > 리뷰 화면 연결
+    input.reviewTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.ConnectReviewFlow(post: owner.post)
+      }
       .disposed(by: disposeBag)
       
     /// 장바구니 추가 이벤트 > 이미 추가되어있는지 체크 > 액션 분기 처리
