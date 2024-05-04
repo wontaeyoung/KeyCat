@@ -42,8 +42,13 @@ extension UIViewController {
     return self
   }
   
-  func toast(_ message: String, position: ToastPosition = .center, completion: (() -> Void)? = nil) {
-    view.makeToast(message, position: position) { _ in
+  func toast(
+    _ message: String,
+    position: ToastPosition = .center,
+    completion: (() -> Void)? = nil,
+    duration: TimeInterval = 1.5
+  ) {
+    view.makeToast(message, duration: duration, position: position) { _ in
       completion?()
     }
   }
