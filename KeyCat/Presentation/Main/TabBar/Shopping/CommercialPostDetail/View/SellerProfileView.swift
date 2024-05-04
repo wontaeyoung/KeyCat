@@ -34,11 +34,6 @@ final class SellerProfileView: RxBaseView {
   
   override init() {
     super.init()
-    
-    profileImageView.tap
-      .compactMap { self.seller }
-      .bind(to: profileTapEvent)
-      .disposed(by: disposeBag)
   }
   
   override func setHierarchy() {
@@ -67,6 +62,13 @@ final class SellerProfileView: RxBaseView {
       make.centerY.equalTo(profileImageView)
       make.trailing.equalToSuperview()
     }
+  }
+  
+  override func bind() {
+    profileImageView.tap
+      .compactMap { self.seller }
+      .bind(to: profileTapEvent)
+      .disposed(by: disposeBag)
   }
   
   private func setData(seller: User?) {
