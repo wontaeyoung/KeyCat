@@ -371,11 +371,18 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .bind(to: input.bookmarkTapEvent)
       .disposed(by: disposeBag)
     
+    /// 리뷰 탭 이벤트 전달
+    reviewButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.reviewTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 장바구니 탭 이벤트 전달
     addCartButton.rx.tap
       .buttonThrottle()
       .bind(to: input.addCartTapEvent)
       .disposed(by: disposeBag)
+    
   }
 }
 
