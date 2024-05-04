@@ -170,6 +170,8 @@
 		6E90903A2BE692A7001B107A /* CreateReviewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090392BE692A7001B107A /* CreateReviewUsecase.swift */; };
 		6E90903D2BE6A919001B107A /* CommercialReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90903C2BE6A919001B107A /* CommercialReviewDetailViewController.swift */; };
 		6E90903F2BE6A925001B107A /* CommercialReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */; };
+		6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */; };
+		6E9090432BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -375,6 +377,8 @@
 		6E9090392BE692A7001B107A /* CreateReviewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReviewUsecase.swift; sourceTree = "<group>"; };
 		6E90903C2BE6A919001B107A /* CommercialReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialReviewDetailViewController.swift; sourceTree = "<group>"; };
 		6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialReviewDetailViewModel.swift; sourceTree = "<group>"; };
+		6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecase.swift; sourceTree = "<group>"; };
+		6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1170,6 +1174,7 @@
 			children = (
 				6E9090382BE692A0001B107A /* Interface */,
 				6E9090362BE69261001B107A /* CreateReviewUsecaseImpl.swift */,
+				6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1178,6 +1183,7 @@
 			isa = PBXGroup;
 			children = (
 				6E9090392BE692A7001B107A /* CreateReviewUsecase.swift */,
+				6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1444,6 +1450,7 @@
 				6E9090232BE63912001B107A /* ReviewListViewModel.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
 				6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */,
+				6E9090432BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift in Sources */,
 				6EAEACFA2BE2352F00993089 /* PostRepository.swift in Sources */,
 				6E0A4F922BD13353005A529F /* UserInfoService.swift in Sources */,
 				6E0A4FE92BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift in Sources */,
@@ -1547,6 +1554,7 @@
 				6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */,
 				6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */,
 				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
+				6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
 				6E9090262BE63925001B107A /* ReviewCoordinator.swift in Sources */,
 				6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */,
