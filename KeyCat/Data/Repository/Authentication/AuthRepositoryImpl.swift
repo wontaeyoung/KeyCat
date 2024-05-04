@@ -20,7 +20,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     self.userMapper = userMapper
   }
   
-  func checkEmailDuplication(email: String) -> Single<Bool> {
+  func checkEmailDuplication(email: String) -> Single<Void> {
     let request = EmailValidationRequest(email: email)
     let router = AuthRouter.emailValidation(request: request)
     

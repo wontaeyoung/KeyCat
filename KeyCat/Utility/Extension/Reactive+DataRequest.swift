@@ -35,7 +35,7 @@ extension Reactive where Base: DataRequest {
     }
   }
   
-  func call() -> Single<Bool> {
+  func call() -> Single<Void> {
     
     return Single.create { single in
       let request = base
@@ -46,7 +46,7 @@ extension Reactive where Base: DataRequest {
           
           switch response.result {
             case .success:
-              single(.success(true))
+              single(.success(()))
               
             case .failure(let error):
               let httpError = mapError(error)

@@ -180,12 +180,12 @@ final class SignUpViewModel: ViewModel {
       .flatMap { owner, email in
         return owner.checkEmailValidationUsecase.execute(email: email)
           .catch { error in
-            return Single.just(false)
+            return Single.just(())
           }
       }
       .bind {
-        duplicateCheckResult.accept($0)
-        showDuplicationCheckResultToast.accept(())
+        duplicateCheckResult.accept(true)
+        showDuplicationCheckResultToast.accept($0)
       }
       .disposed(by: disposeBag)
 

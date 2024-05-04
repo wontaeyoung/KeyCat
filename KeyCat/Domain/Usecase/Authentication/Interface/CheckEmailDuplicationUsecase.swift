@@ -9,5 +9,5 @@ import RxSwift
 
 protocol CheckEmailDuplicationUsecase {
   
-  func execute(email: String) -> Single<Bool>
+  func execute(email: String) -> Single<Void>
 }
