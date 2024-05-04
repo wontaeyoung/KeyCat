@@ -1,5 +1,5 @@
 //
-//  ReviewViewModel.swift
+//  ReviewListViewModel.swift
 //  KeyCat
 //
 //  Created by 원태영 on 5/4/24.
@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-final class ReviewViewModel: ViewModel {
+final class ReviewListViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
@@ -16,7 +16,7 @@ final class ReviewViewModel: ViewModel {
   }
   
   struct Output {
-    
+    let reviews: Driver<[CommercialReview]>
   }
   
   // MARK: - Property
@@ -31,7 +31,9 @@ final class ReviewViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    return Output()
+    return Output(
+      reviews: Driver.just(CommercialPost.dummyReviews)
+    )
   }
 }
 
