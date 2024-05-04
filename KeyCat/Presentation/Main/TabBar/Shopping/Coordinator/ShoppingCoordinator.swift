@@ -62,7 +62,7 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func ConnectReviewFlow(post: CommercialPost) {
+  func ConnectReviewFlow(post: BehaviorRelay<CommercialPost>) {
     let coordinator = ReviewCoordinator(navigationController)
     coordinator.delegate = self
     coordinator.showReviewListView(post: post)

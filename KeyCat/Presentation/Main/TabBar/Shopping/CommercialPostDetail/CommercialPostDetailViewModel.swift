@@ -55,7 +55,6 @@ final class CommercialPostDetailViewModel: ViewModel {
     originalPosts: BehaviorRelay<[CommercialPost]>,
     commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
-    let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     self.post = BehaviorRelay<CommercialPost>(value: post)
     self.originalPosts = originalPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
@@ -96,7 +95,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     /// 리뷰 탭 이벤트 > 리뷰 화면 연결
     input.reviewTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.ConnectReviewFlow(post: owner.post.value)
+        owner.coordinator?.ConnectReviewFlow(post: owner.post)
       }
       .disposed(by: disposeBag)
       

@@ -31,15 +31,24 @@ final class ReviewListViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ReviewCoordinator?
-  private let post: CommercialPost
+  private let post: BehaviorRelay<CommercialPost>
   
   // MARK: - Initializer
-  init(post: CommercialPost) {
+  init(post: BehaviorRelay<CommercialPost>) {
     self.post = post
   }
   
   // MARK: - Method
   func transform(input: Input) -> Output {
+    
+    let reviews = BehaviorRelay<[CommercialReview]>(value: [])
+    
+    /// 리뷰가 추가되면 원본 포스트에 반영
+    reviews
+      .bind(with: self) { owner, reviews in
+        owner.updateReviewInPost(updatedReviews: reviews)
+      }
+      .disposed(by: disposeBag)
     
     /// 리뷰 코디네이터 해제를 위해 커스텀 Back 버튼 동작
     input.backTapEvent
@@ -52,12 +61,17 @@ final class ReviewListViewModel: ViewModel {
     /// 리뷰 작성 이벤트 > 리뷰 작성 화면 연결
     input.createReviewTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.showCreateCommercialReviewView(post: owner.post)
+        owner.coordinator?.showCreateCommercialReviewView(post: owner.post.value, reviews: reviews)
       }
       .disposed(by: disposeBag)
     
     return Output(
-      reviews: Driver.just(CommercialPost.dummyReviews)
+      reviews: reviews.asDriver()
     )
+  }
+  
+  private func updateReviewInPost(updatedReviews: [CommercialReview]) {
+    var currentPost = post.value.applied { $0.reviews = updatedReviews }
+    post.accept(currentPost)
   }
 }

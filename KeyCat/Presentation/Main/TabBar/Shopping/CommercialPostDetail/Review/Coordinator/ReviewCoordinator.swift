@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxRelay
 
 final class ReviewCoordinator: SubCoordinator {
   
@@ -25,7 +26,7 @@ final class ReviewCoordinator: SubCoordinator {
 
 extension ReviewCoordinator {
   
-  func showReviewListView(post: CommercialPost) {
+  func showReviewListView(post: BehaviorRelay<CommercialPost>) {
     
     let vm = ReviewListViewModel(post: post)
       .coordinator(self)
@@ -37,9 +38,9 @@ extension ReviewCoordinator {
     push(vc)
   }
   
-  func showCreateCommercialReviewView(post: CommercialPost) {
+  func showCreateCommercialReviewView(post: CommercialPost, reviews: BehaviorRelay<[CommercialReview]>) {
     
-    let vm = CreateCommercialReviewViewModel(post: post)
+    let vm = CreateCommercialReviewViewModel(post: post, reviews: reviews)
       .coordinator(self)
     
     let vc = CreateCommercialReviewViewController(viewModel: vm)
