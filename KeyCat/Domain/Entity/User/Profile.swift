@@ -23,7 +23,22 @@ struct Profile: Entity {
     return URL(string: profileImageURLString)
   }
   
+  static var empty: Profile {
+    return Profile(
+      userID: .defaultValue,
+      email: .defaultValue,
+      nickname: .defaultValue,
+      userType: .none,
+      profileImageURLString: .defaultValue,
+      followers: [],
+      folllowing: [],
+      postIDs: [],
+      profileType: .mine
+    )
+  }
+  
   enum UserType: Int, SelectionExpressible {
+    
     case none
     case standard
     case seller
