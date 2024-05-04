@@ -36,4 +36,15 @@ final class ReviewRepositoryImpl: ReviewRepository, HTTPErrorTransformer {
       }
       .map { self.commentMapper.toEntity($0) }
   }
+  
+  func deleteCommercialReview(postID: CommercialPost.PostID, reviewID: CommercialReview.CommentID) -> Single<Void> {
+    
+    let router = CommentRouter.commentDelete(postID: postID, commentID: reviewID)
+    
+    return service.callReqeust(with: router)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .deleteReview)
+        return .error(domainError)
+      }
+  }
 }

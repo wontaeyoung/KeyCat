@@ -10,4 +10,5 @@ import RxSwift
 protocol ReviewRepository {
   
   func createCommercialReview(postID: CommercialPost.PostID, review: CommercialReview) -> Single<CommercialReview?>
+  func deleteCommercialReview(postID: CommercialPost.PostID, reviewID: CommercialReview.CommentID) -> Single<Void>
 }
