@@ -18,18 +18,18 @@ final class ProfileView: RxBaseView {
       $0.borderColor = KCAsset.Color.lightGrayForeground.color.cgColor
     }
   }
-  private let nicknameLabel = KCLabel(font: .bold(size: 14))
-  private let followingLabel = KCLabel(font: .medium(size: 13))
-  private let followVerticalDivider = KCLabel(
-    title: "|",
-    font: .bold(size: 13),
-    color: .lightGrayForeground,
-    alignment: .center
-  )
-  private let followerLabel = KCLabel(font: .medium(size: 13))
+  private let nicknameLabel = KCLabel(font: .bold(size: 20))
   private let sellerIcon = UIImageView().configured {
     $0.contentMode = .scaleAspectFit
   }
+  private let followingLabel = KCLabel(font: .medium(size: 16))
+  private let followVerticalDivider = KCLabel(
+    title: "|",
+    font: .bold(size: 16),
+    color: .lightGrayForeground,
+    alignment: .center
+  )
+  private let followerLabel = KCLabel(font: .medium(size: 16))
   
   var profile: Profile? {
     didSet {
@@ -37,7 +37,7 @@ final class ProfileView: RxBaseView {
     }
   }
   
-  private let profileImageSize: CGFloat = 50
+  private let profileImageSize: CGFloat = 80
   
   override init() {
     super.init()
@@ -63,13 +63,20 @@ final class ProfileView: RxBaseView {
     
     nicknameLabel.snp.makeConstraints { make in
       make.top.equalToSuperview()
-      make.leading.equalTo(profileImageView.snp.trailing).offset(10)
-      make.trailing.equalToSuperview()
+      make.leading.equalTo(profileImageView.snp.trailing).offset(20)
+    }
+    
+    sellerIcon.snp.makeConstraints { make in
+      make.centerY.equalTo(nicknameLabel)
+      make.leading.equalTo(nicknameLabel.snp.trailing).offset(10)
+      make.trailing.lessThanOrEqualToSuperview()
+      make.size.equalTo(30)
     }
     
     followingLabel.snp.makeConstraints { make in
-      make.top.equalTo(nicknameLabel.snp.bottom).offset(10)
+      make.top.equalTo(nicknameLabel.snp.bottom).offset(20)
       make.leading.equalTo(nicknameLabel)
+      make.bottom.equalToSuperview()
     }
     
     followVerticalDivider.snp.makeConstraints { make in
@@ -80,14 +87,7 @@ final class ProfileView: RxBaseView {
     followerLabel.snp.makeConstraints { make in
       make.top.equalTo(followingLabel)
       make.leading.equalTo(followVerticalDivider.snp.trailing).offset(10)
-      make.trailing.equalToSuperview()
-    }
-    
-    sellerIcon.snp.makeConstraints { make in
-      make.top.equalTo(followingLabel.snp.bottom).offset(10)
-      make.leading.equalTo(followingLabel)
-      make.bottom.equalToSuperview()
-      make.size.equalTo(20)
+      make.trailing.lessThanOrEqualToSuperview()
     }
   }
   
