@@ -22,7 +22,7 @@ final class MyProfileViewModel: ViewModel {
   }
   
   struct Output {
-    let profile: Driver<Profile>
+    let profile: BehaviorRelay<Profile>
   }
   
   // MARK: - Property
@@ -40,7 +40,7 @@ final class MyProfileViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    let profile = PublishRelay<Profile>()
+    let profile = BehaviorRelay<Profile>(value: .empty)
     
     /// 화면 진입 이벤트 > 프로필 조회 호출
     input.viewDidLoadEvent
@@ -52,7 +52,7 @@ final class MyProfileViewModel: ViewModel {
       .disposed(by: disposeBag)
     
     return Output(
-      profile: profile.asDriver(onErrorJustReturn: .empty)
+      profile: profile
     )
   }
 }
