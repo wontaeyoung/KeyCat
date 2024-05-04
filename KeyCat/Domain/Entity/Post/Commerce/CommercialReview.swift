@@ -15,6 +15,13 @@ struct CommercialReview: Entity {
   let createdAt: Date
   let creator: User
   
+  var dateString: String {
+    if DateManager.shared.isToday(createdAt) { return "오늘" }
+    if DateManager.shared.isYesterday(createdAt) { return "어제" }
+    
+    return DateManager.shared.toString(with: createdAt, format: .yyyyMMddEEDot)
+  }
+  
   enum Rating: Int, CaseIterable {
     case one = 1
     case two
