@@ -93,6 +93,7 @@ final class CommercialPostDetailViewModel: ViewModel {
       .bind(to: post)
       .disposed(by: disposeBag)
       
+    /// 장바구니 추가 이벤트 > 이미 추가되어있는지 체크 > 액션 분기 처리
     input.addCartTapEvent
       .withLatestFrom(post)
       .map { $0.isAddedInCart }

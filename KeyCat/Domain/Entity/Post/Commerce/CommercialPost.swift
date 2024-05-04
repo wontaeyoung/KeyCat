@@ -39,4 +39,10 @@ struct CommercialPost: Entity {
   var isCreatedByMe: Bool {
     return creator.userID == UserInfoService.userID
   }
+  
+  static var dummyReviews: [CommercialReview] {
+    (1...Int.random(in: 1...15)).map {
+      .init(reviewID: "", content: "구매 후기입니다 \($0)", rating: .allCases.randomElement()!, createdAt: .now, creator: .empty)
+    }
+  }
 }
