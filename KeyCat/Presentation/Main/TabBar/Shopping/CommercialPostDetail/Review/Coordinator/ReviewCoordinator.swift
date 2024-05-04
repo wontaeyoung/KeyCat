@@ -19,10 +19,21 @@ final class ReviewCoordinator: SubCoordinator {
   }
   
   func start() {
-    
+    showReviewListView()
   }
 }
 
 extension ReviewCoordinator {
   
+  func showReviewListView() {
+    
+    let vm = ReviewListViewModel()
+      .coordinator(self)
+    
+    let vc = ReviewListViewController(viewModel: vm)
+      .hideBackTitle()
+      .navigationTitle(with: "리뷰 모아보기", displayMode: .never)
+    
+    push(vc)
+  }
 }
