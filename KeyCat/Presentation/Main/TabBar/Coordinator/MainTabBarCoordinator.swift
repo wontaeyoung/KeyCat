@@ -61,7 +61,10 @@ final class MainTabBarCoordinator: Coordinator {
         coordinator.tabBarDelegate = self
         
       case .profile:
-        break
+        let coordinator = MyPageCoordinator(tabPageController)
+        addChild(coordinator)
+        coordinator.start()
+        coordinator.tabBarDelegate = self
     }
   }
 }

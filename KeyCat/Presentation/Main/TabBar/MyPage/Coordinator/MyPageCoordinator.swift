@@ -21,10 +21,21 @@ final class MyPageCoordinator: SubCoordinator {
   }
   
   func start() {
-    
+    showMyProfileView()
   }
 }
 
 extension MyPageCoordinator {
   
+  private func showMyProfileView() {
+    
+    let vm = MyProfileViewModel()
+      .coordinator(self)
+    
+    let vc = MyProfileViewController(viewModel: vm)
+      .hideBackTitle()
+      .kcNavigationTitle(with: "마이 페이지")
+    
+    push(vc)
+  }
 }

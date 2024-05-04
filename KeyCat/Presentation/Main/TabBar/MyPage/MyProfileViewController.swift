@@ -47,7 +47,7 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
     
     /// 프로필 데이터 표시
     output.profile
-      .drive(profileView.profile)
+      .drive(profileView.rx.profile)
       .disposed(by: disposeBag)
     
     input.viewDidLoadEvent.accept(())
