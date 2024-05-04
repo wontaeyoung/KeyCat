@@ -13,11 +13,14 @@ final class ReviewListViewModel: ViewModel {
   // MARK: - I / O
   struct Input {
     let backTapEvent: PublishRelay<Void>
+    let createReviewTapEvent: PublishRelay<Void>
     
     init(
-      backTapEvent: PublishRelay<Void> = .init()
+      backTapEvent: PublishRelay<Void> = .init(),
+      createReviewTapEvent: PublishRelay<Void> = .init()
     ) {
       self.backTapEvent = backTapEvent
+      self.createReviewTapEvent = createReviewTapEvent
     }
   }
   
@@ -28,10 +31,11 @@ final class ReviewListViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ReviewCoordinator?
+  private let post: CommercialPost
   
   // MARK: - Initializer
-  init() {
-    
+  init(post: CommercialPost) {
+    self.post = post
   }
   
   // MARK: - Method
@@ -42,6 +46,13 @@ final class ReviewListViewModel: ViewModel {
       .bind(with: self) { owner, _ in
         owner.coordinator?.pop()
         owner.coordinator?.end()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 리뷰 작성 이벤트 > 리뷰 작성 화면 연결
+    input.createReviewTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showCreateCommercialReviewView(post: owner.post)
       }
       .disposed(by: disposeBag)
     

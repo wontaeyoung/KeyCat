@@ -18,6 +18,11 @@ final class ReviewListViewController: RxBaseViewController, ViewModelController 
     setBarItem(at: .left, item: $0)
   }
   
+  private lazy var createReviewBarButtonItem = UIBarButtonItem().configured {
+    $0.title = "리뷰 쓰기"
+    setBarItem(at: .right, item: $0)
+  }
+  
   private let tableView = UITableView().configured {
     $0.register(ReviewTableCell.self, forCellReuseIdentifier: ReviewTableCell.identifier)
   }
@@ -45,10 +50,6 @@ final class ReviewListViewController: RxBaseViewController, ViewModelController 
     }
   }
   
-  override func setAttribute() {
-    
-  }
-  
   override func bind() {
     
     let input = ReviewListViewModel.Input()
@@ -66,14 +67,11 @@ final class ReviewListViewController: RxBaseViewController, ViewModelController 
       .buttonThrottle()
       .bind(to: input.backTapEvent)
       .disposed(by: disposeBag)
+    
+    /// 리뷰 작성 버튼 탭 이벤트 전달
+    createReviewBarButtonItem.rx.tap
+      .buttonThrottle()
+      .bind(to: input.createReviewTapEvent)
+      .disposed(by: disposeBag)
   }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-  let vm = ReviewListViewModel()
-  let vc = ReviewListViewController(viewModel: vm)
-  return UINavigationController(rootViewController: vc)
-}
-
-
