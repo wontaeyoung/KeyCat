@@ -164,6 +164,13 @@ final class CreateCommercialReviewViewController: RxBaseViewController, ViewMode
       .drive(createButton.rx.isEnabled)
       .disposed(by: disposeBag)
     
+    /// 작성 완료 토스트 후 종료 이벤트 전달
+    output.reviewCreatedToast
+      .drive(with: self) { owner, _ in
+        owner.toast("리뷰가 작성되었어요!") { input.toastCompleteEvent.accept(()) }
+      }
+      .disposed(by: disposeBag)
+    
     /// 리뷰 점수 변경 이벤트 전달
     reviewRating
       .bind(to: input.reviewRating)
