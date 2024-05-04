@@ -39,6 +39,12 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   private let deliveryScheduleTag = TagLabel(title: nil, backgroundColor: .pastelGreen)
   
   // MARK: - Life Cycle
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    
+    tagStack.removeAllArrangedSubviews()
+  }
+  
   override func setHierarchy() {
     contentView.addSubviews(
       imageView,
