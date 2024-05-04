@@ -441,7 +441,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     bookmarks: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
     shoppingCarts: [["662a499ea8bf9f5c9ca667a8"], []].randomElement()!,
     hashTags: [],
-    reviews: CommercialPost.dummyReviews
+    reviews: []
   )
   
   let vm = CommercialPostDetailViewModel(post: post, originalPosts: .init(value: []))

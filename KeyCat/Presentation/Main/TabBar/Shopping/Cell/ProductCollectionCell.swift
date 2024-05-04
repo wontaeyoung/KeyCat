@@ -90,8 +90,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   }
   
   func setData(with post: CommercialPost) {
-  
-    let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     
     let productImageURL = post.productImagesURL
       .compactMap { $0 }
