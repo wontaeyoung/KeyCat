@@ -12,7 +12,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
-    let handlePostAction: PublishRelay<HandlePostAction>
+    let handlePostAction: PublishRelay<HandleContentAction>
     let sellerProfileTapEvent: PublishRelay<Void>
     let bookmarkTapEvent: PublishRelay<Void>
     let reviewTapEvent: PublishRelay<Void>
@@ -20,7 +20,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let buyingTapEvent: PublishRelay<Void>
     
     init(
-      handlePostAction: PublishRelay<HandlePostAction> = .init(),
+      handlePostAction: PublishRelay<HandleContentAction> = .init(),
       sellerProfileTapEvent: PublishRelay<Void> = .init(),
       bookmarkTapEvent: PublishRelay<Void> = .init(),
       reviewTapEvent: PublishRelay<Void> = .init(),

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-enum HandlePostAction: String, CaseIterable {
+enum HandleContentAction: String, CaseIterable {
   
   case update = "수정"
   case delete = "삭제"
@@ -33,7 +33,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - UI
   private lazy var menuBarItem = UIBarButtonItem(image: KCAsset.Symbol.menuBarItem).configured {
-    let actions = HandlePostAction.allCases
+    let actions = HandleContentAction.allCases
       .map { action in
         return UIAction(
           title: action.title,
@@ -101,7 +101,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
   
   // MARK: - Property
   let viewModel: CommercialPostDetailViewModel
-  private let handlePostAction = PublishRelay<HandlePostAction>()
+  private let handlePostAction = PublishRelay<HandleContentAction>()
   
   // MARK: - Initializer
   init(viewModel: CommercialPostDetailViewModel) {
