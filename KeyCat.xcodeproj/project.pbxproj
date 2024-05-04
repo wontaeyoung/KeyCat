@@ -172,6 +172,9 @@
 		6E90903F2BE6A925001B107A /* CommercialReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */; };
 		6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */; };
 		6E9090432BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */; };
+		6E9090462BE6C07F001B107A /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090452BE6C07F001B107A /* MyProfileViewController.swift */; };
+		6E9090482BE6C085001B107A /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090472BE6C085001B107A /* MyProfileViewModel.swift */; };
+		6E90904B2BE6C1AC001B107A /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -379,6 +382,9 @@
 		6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecase.swift; sourceTree = "<group>"; };
 		6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090452BE6C07F001B107A /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		6E9090472BE6C085001B107A /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -458,6 +464,7 @@
 			children = (
 				6E0778502BDBEF3900B3A6EC /* Coordinator */,
 				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
+				6E9090442BE6C045001B107A /* MyPage */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -1197,6 +1204,24 @@
 			path = CommercialReviewDetail;
 			sourceTree = "<group>";
 		};
+		6E9090442BE6C045001B107A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090452BE6C07F001B107A /* MyProfileViewController.swift */,
+				6E9090472BE6C085001B107A /* MyProfileViewModel.swift */,
+				6E9090492BE6C15F001B107A /* Coordinator */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		6E9090492BE6C15F001B107A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		6E9829032BCF428000105910 /* Body */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1525,7 @@
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
+				6E9090462BE6C07F001B107A /* MyProfileViewController.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
@@ -1563,6 +1589,7 @@
 				6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */,
 				6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */,
 				6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */,
+				6E90904B2BE6C1AC001B107A /* MyPageCoordinator.swift in Sources */,
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
@@ -1585,6 +1612,7 @@
 				6E0A4FDC2BD3EA7C005A529F /* CheckEmailDuplicationUsecase.swift in Sources */,
 				6EAEACDF2BDFD0B600993089 /* NSCollectionLayoutSection+.swift in Sources */,
 				6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */,
+				6E9090482BE6C085001B107A /* MyProfileViewModel.swift in Sources */,
 				6E567E6B2BC67F2800250C56 /* UIViewController+.swift in Sources */,
 				6E77ED052BCE657B00ACDA3B /* KCHeader.swift in Sources */,
 				6E8C9EBE2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift in Sources */,
