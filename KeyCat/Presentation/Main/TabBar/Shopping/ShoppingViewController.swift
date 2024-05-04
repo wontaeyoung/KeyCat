@@ -77,7 +77,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     /// 게시글 리스트 컬렉션 뷰에 전달
-    output.commercialPosts
+    output.posts
       .drive(productCollectionView.rx.items(
         cellIdentifier: ProductCollectionCell.identifier,
         cellType: ProductCollectionCell.self)

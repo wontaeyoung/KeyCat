@@ -353,6 +353,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .drive(reviewButton.rx.title())
       .disposed(by: disposeBag)
     
+    /// 장바구니 결과 메세지 토스트 표시
     output.addCartResultToast
       .drive(with: self) { owner, message in
         owner.toast(message)
@@ -364,11 +365,13 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .bind(to: input.handlePostAction)
       .disposed(by: disposeBag)
     
+    /// 북마크 탭 이벤트 전달
     bookmarkButton.rx.tap
       .buttonThrottle()
       .bind(to: input.bookmarkTapEvent)
       .disposed(by: disposeBag)
     
+    /// 장바구니 탭 이벤트 전달
     addCartButton.rx.tap
       .buttonThrottle()
       .bind(to: input.addCartTapEvent)
@@ -434,7 +437,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     reviews: CommercialPost.dummyReviews
   )
   
-  let vm = CommercialPostDetailViewModel(post: post)
+  let vm = CommercialPostDetailViewModel(post: post, originalPosts: .init(value: []))
   let vc = CommercialPostDetailViewController(viewModel: vm)
   return UINavigationController(rootViewController: vc)
 }

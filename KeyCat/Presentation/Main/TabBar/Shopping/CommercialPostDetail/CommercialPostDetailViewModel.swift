@@ -47,14 +47,17 @@ final class CommercialPostDetailViewModel: ViewModel {
   private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
   
   private let post: BehaviorRelay<CommercialPost>
+  private let originalPosts: BehaviorRelay<[CommercialPost]>
   
   // MARK: - Initializer
   init(
     post: CommercialPost,
+    originalPosts: BehaviorRelay<[CommercialPost]>,
     commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
     let post = post.applied { $0.reviews = CommercialPost.dummyReviews }
     self.post = BehaviorRelay<CommercialPost>(value: post)
+    self.originalPosts = originalPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
   }
   
@@ -102,6 +105,13 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 게시물의 변경사항을 외부 원본 배열에 반영
+    post
+      .bind(with: self) { owner, updatedPost in
+        owner.updatePostInList(updatedPost: updatedPost)
+      }
+      .disposed(by: disposeBag)
+    
     /// 카트 추가하기 액션
     addCartActionTrigger
       .withLatestFrom(post)
@@ -118,6 +128,15 @@ final class CommercialPostDetailViewModel: ViewModel {
       post: post.asDriver(),
       addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: "")
     )
+  }
+  
+  private func updatePostInList(updatedPost: CommercialPost) {
+    var currentPosts = originalPosts.value
+    
+    guard let index = currentPosts.firstIndex(where: { $0.postID == updatedPost.postID }) else { return }
+    
+    currentPosts[index] = updatedPost
+    originalPosts.accept(currentPosts)
   }
   
   private func showDeletePostAlert(_ event: PublishRelay<Void>) {
