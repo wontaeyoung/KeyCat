@@ -59,6 +59,7 @@ final class ProfileView: RxBaseView {
       make.top.equalToSuperview()
       make.leading.equalToSuperview()
       make.size.equalTo(profileImageSize)
+      make.bottom.equalToSuperview()
     }
     
     nicknameLabel.snp.makeConstraints { make in
@@ -76,7 +77,6 @@ final class ProfileView: RxBaseView {
     followingLabel.snp.makeConstraints { make in
       make.top.equalTo(nicknameLabel.snp.bottom).offset(20)
       make.leading.equalTo(nicknameLabel)
-      make.bottom.equalToSuperview()
     }
     
     followVerticalDivider.snp.makeConstraints { make in
