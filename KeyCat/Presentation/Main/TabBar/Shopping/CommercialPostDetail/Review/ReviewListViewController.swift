@@ -59,7 +59,13 @@ final class ReviewListViewController: RxBaseViewController, ViewModelController 
     output.reviews
       .drive(tableView.rx.items(cellIdentifier: ReviewTableCell.identifier, cellType: ReviewTableCell.self)) { row, review, cell in
         cell.setData(review: review)
+        cell.selectionStyle = .none
       }
+      .disposed(by: disposeBag)
+    
+    /// 리뷰 셀 탭 이벤트 전달
+    tableView.rx.modelSelected(CommercialReview.self)
+      .bind(to: input.reviewCellTapEvent)
       .disposed(by: disposeBag)
     
     /// 커스텀 Back 버튼 탭 이벤트 전달

@@ -49,4 +49,20 @@ extension ReviewCoordinator {
     
     push(vc)
   }
+  
+  func showCommercialReviewDetailView(
+    postID: CommercialPost.PostID,
+    review: CommercialReview,
+    reviews: BehaviorRelay<[CommercialReview]>
+  ) {
+    
+    let vm = CommercialReviewDetailViewModel(postID: postID, review: review, reviews: reviews)
+      .coordinator(self)
+    
+    let vc = CommercialReviewDetailViewController(viewModel: vm)
+      .hideBackTitle()
+      .navigationTitle(with: "리뷰 상세", displayMode: .never)
+    
+    push(vc)
+  }
 }

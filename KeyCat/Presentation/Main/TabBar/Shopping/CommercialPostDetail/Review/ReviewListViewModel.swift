@@ -14,13 +14,16 @@ final class ReviewListViewModel: ViewModel {
   struct Input {
     let backTapEvent: PublishRelay<Void>
     let createReviewTapEvent: PublishRelay<Void>
+    let reviewCellTapEvent: PublishRelay<CommercialReview>
     
     init(
       backTapEvent: PublishRelay<Void> = .init(),
-      createReviewTapEvent: PublishRelay<Void> = .init()
+      createReviewTapEvent: PublishRelay<Void> = .init(),
+      reviewCellTapEvent: PublishRelay<CommercialReview> = .init()
     ) {
       self.backTapEvent = backTapEvent
       self.createReviewTapEvent = createReviewTapEvent
+      self.reviewCellTapEvent = reviewCellTapEvent
     }
   }
   
@@ -41,7 +44,7 @@ final class ReviewListViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    let reviews = BehaviorRelay<[CommercialReview]>(value: [])
+    let reviews = BehaviorRelay<[CommercialReview]>(value: post.value.reviews)
     
     /// 리뷰가 추가되면 원본 포스트에 반영
     reviews
@@ -65,13 +68,20 @@ final class ReviewListViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 리뷰 셀 탭 이벤트 > 리뷰 상세 화면 연결
+    input.reviewCellTapEvent
+      .bind(with: self) { owner, review in
+        owner.coordinator?.showCommercialReviewDetailView(postID: owner.post.value.postID, review: review, reviews: reviews)
+      }
+      .disposed(by: disposeBag)
+    
     return Output(
       reviews: reviews.asDriver()
     )
   }
   
   private func updateReviewInPost(updatedReviews: [CommercialReview]) {
-    var currentPost = post.value.applied { $0.reviews = updatedReviews }
+    let currentPost = post.value.applied { $0.reviews = updatedReviews }
     post.accept(currentPost)
   }
 }

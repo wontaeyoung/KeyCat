@@ -1315,8 +1315,8 @@
 				6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */,
 				6EAEAD032BE2695400993089 /* Cell */,
 				6EFB92172BDBFC6600AA8D09 /* Coordinator */,
-				6ED51E692BE34BC4005D7FBD /* CommercialPostDetail */,
 				6EC801F82BDE785C00FE2B69 /* CreateCommercialPost */,
+				6ED51E692BE34BC4005D7FBD /* CommercialPostDetail */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
