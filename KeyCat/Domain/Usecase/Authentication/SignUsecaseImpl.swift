@@ -51,4 +51,8 @@ final class SignUsecaseImpl: SignUsecase {
       }
       .map { _ in () }
   }
+  
+  func withdraw() -> Single<Void> {
+    return authRepository.withdraw()
+  }
 }

@@ -50,7 +50,7 @@ extension HTTPErrorTransformer {
           case .signIn:
             return .accessFailed(detail: .login)
             
-          case .accessToken, .createPost, .fetchPosts, .likePost, .createReview, .deleteReview, .follow, .unfollow:
+          case .accessToken, .createPost, .fetchPosts, .likePost, .createReview, .deleteReview, .follow, .unfollow, .withdraw:
             return .accessFailed(detail: .accessToken)
             
           default:

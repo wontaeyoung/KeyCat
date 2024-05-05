@@ -12,6 +12,7 @@ enum HTTPRequestDomain {
   case signIn
   case accessToken
   case fetchPosts
+  case withdraw
   
   // 409
   case emailValidation

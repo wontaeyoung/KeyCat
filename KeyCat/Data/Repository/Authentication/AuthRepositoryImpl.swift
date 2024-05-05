@@ -85,4 +85,15 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
       }
       .map { self.userMapper.toEntity($0) }
   }
+  
+  func withdraw() -> Single<Void> {
+    let router = AuthRouter.withdraw
+    
+    return service.callRequest(with: router, of: AuthResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .withdraw)
+        return .error(domainError)
+      }
+      .map { _ in () }
+  }
 }

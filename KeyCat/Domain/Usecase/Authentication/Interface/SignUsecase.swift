@@ -12,4 +12,5 @@ protocol SignUsecase {
   
   func signUp(email: String, password: String, nickname: String, profileData: Data?, userType: Profile.UserType) -> Single<Bool>
   func signIn(email: String, password: String) -> Single<Void>
+  func withdraw() -> Single<Void>
 }
