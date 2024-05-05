@@ -13,7 +13,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   // MARK: - I / O
   struct Input {
     let handlePostAction: PublishRelay<HandleContentAction>
-    let sellerProfileTapEvent: PublishRelay<Void>
+    let sellerProfileTapEvent: PublishRelay<User>
     let bookmarkTapEvent: PublishRelay<Void>
     let reviewTapEvent: PublishRelay<Void>
     let addCartTapEvent: PublishRelay<Void>
@@ -21,7 +21,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     init(
       handlePostAction: PublishRelay<HandleContentAction> = .init(),
-      sellerProfileTapEvent: PublishRelay<Void> = .init(),
+      sellerProfileTapEvent: PublishRelay<User> = .init(),
       bookmarkTapEvent: PublishRelay<Void> = .init(),
       reviewTapEvent: PublishRelay<Void> = .init(),
       addCartTapEvent: PublishRelay<Void> = .init(),
@@ -78,6 +78,12 @@ final class CommercialPostDetailViewModel: ViewModel {
           case .delete:
             owner.showDeletePostAlert(deletePostEvent)
         }
+      }
+      .disposed(by: disposeBag)
+    
+    input.sellerProfileTapEvent
+      .bind(with: self) { owner, user in
+        owner.coordinator?.connectProfileFlow(user: user)
       }
       .disposed(by: disposeBag)
     
