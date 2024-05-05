@@ -56,7 +56,7 @@ final class MyProfileViewModel: ViewModel {
     
     input.tableCellTapEvent
       .bind(with: self) { owner, row in
-        owner.handleProfileRowTapEvent(with: row)
+        owner.handleProfileRowTapEvent(with: row, profile: profile)
       }
       .disposed(by: disposeBag)
     
@@ -65,14 +65,14 @@ final class MyProfileViewModel: ViewModel {
     )
   }
   
-  private func handleProfileRowTapEvent(with row: MyProfileViewController.ProfileRow) {
+  private func handleProfileRowTapEvent(with row: MyProfileViewController.ProfileRow, profile: BehaviorRelay<Profile>) {
     switch row {
       case .myPosts:
         break
       case .following:
-        coordinator?.showFollowListView(followTab: .following)
+        coordinator?.showFollowListView(profile: profile, followTab: .following)
       case .follower:
-        coordinator?.showFollowListView(followTab: .follower)
+        coordinator?.showFollowListView(profile: profile, followTab: .follower)
       case .bookmark:
         break
       case .updateProfile:

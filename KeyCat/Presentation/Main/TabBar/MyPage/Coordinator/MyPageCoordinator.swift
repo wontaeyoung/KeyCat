@@ -39,12 +39,12 @@ extension MyPageCoordinator {
     push(vc)
   }
   
-  func showFollowListView(followTab: FollowListViewController.FollowTab) {
+  func showFollowListView(profile: BehaviorRelay<Profile>, followTab: FollowTabmanViewController.FollowTab) {
     
-    let vm = FollowListViewModel()
+    let vm = FollowListViewModel(profile: profile)
       .coordinator(self)
     
-    let vc = FollowListViewController(viewModel: vm, followTab: followTab)
+    let vc = FollowTabmanViewController(viewModel: vm, followTab: followTab)
       .hideBackTitle()
       .hideTabBar()
       .navigationTitle(with: "팔로우")
