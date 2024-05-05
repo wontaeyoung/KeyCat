@@ -15,12 +15,18 @@ struct Profile: Entity {
   let userType: UserType
   let profileImageURLString: URLString
   var followers: [User]
-  var folllowing: [User]
+  var following: [User]
   var postIDs: [PostID]
   let profileType: ProfileType
   
   var profileImageURL: URL? {
     return URL(string: profileImageURLString)
+  }
+  
+  var isFollowing: Bool {
+    return followers
+      .map { $0.userID }
+      .contains(UserInfoService.userID)
   }
   
   static var empty: Profile {
@@ -31,7 +37,7 @@ struct Profile: Entity {
       userType: .none,
       profileImageURLString: .defaultValue,
       followers: [],
-      folllowing: [],
+      following: [],
       postIDs: [],
       profileType: .mine
     )
