@@ -56,4 +56,17 @@ extension MyPageCoordinator {
     
     push(vc)
   }
+  
+  func showPostListView(userID: CommercialPost.UserID, postCase: PostListViewModel.PostCase) {
+    
+    let vm = PostListViewModel(userID: userID, postCase: postCase)
+      .coordinator(self)
+    
+    let vc = PostListViewController(viewModel: vm)
+      .hideBackTitle()
+      .hideTabBar()
+      .navigationTitle(with: postCase.title)
+    
+    push(vc)
+  }
 }

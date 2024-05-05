@@ -55,6 +55,8 @@ final class ProfileViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
+    let myProfileFetchCompleteEvent = PublishRelay<Void>()
+    
     /// 화면 로드 > 내 프로필 갱신
     input.viewDidLoadEvent
       .withUnretained(self)
@@ -65,11 +67,14 @@ final class ProfileViewModel: ViewModel {
             return .never()
           }
       }
-      .bind(to: myProfile)
+      .bind(with: self) { owner, myProfile in
+        owner.myProfile.accept(myProfile)
+        myProfileFetchCompleteEvent.accept(())
+      }
       .disposed(by: disposeBag)
     
     /// 내 프로필 화면이면 조회 결과 공유, 상대 프로필이면 신규 조회
-    input.viewDidLoadEvent
+    myProfileFetchCompleteEvent
       .map { UserInfoService.isMyUserID(with: self.userID) }
       .withUnretained(self)
       .flatMap { owner, isMine in
@@ -127,9 +132,6 @@ final class ProfileViewModel: ViewModel {
       otherProfile.followers.append(makeUser(from: myProfile))
     } else {
       
-      let myFollowing = myProfile.following.map({ $0.userID })
-      let othersFollowers = otherProfile.followers.map({ $0.userID })
-      
       guard
         let myProfileIndex = otherProfile.followers.map({ $0.userID }).firstIndex(of: UserInfoService.userID),
         let otherProfileIndex = myProfile.following.map({ $0.userID }).firstIndex(of: otherProfile.userID)
@@ -152,13 +154,13 @@ final class ProfileViewModel: ViewModel {
   private func handleProfileRowTapEvent(with row: ProfileViewController.ProfileRow, profile: BehaviorRelay<Profile>) {
     switch row {
       case .writingPosts:
-        break
+        coordinator?.showPostListView(userID: profile.value.userID, postCase: .createdBy)
       case .following:
         coordinator?.showFollowListView(profile: profile, myProfile: myProfile, followTab: .following)
       case .follower:
         coordinator?.showFollowListView(profile: profile, myProfile: myProfile, followTab: .follower)
       case .bookmark:
-        break
+        coordinator?.showPostListView(userID: profile.value.userID, postCase: .bookmark)
       case .updateProfile:
         break
       case .withdraw:
