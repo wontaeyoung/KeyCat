@@ -75,10 +75,12 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     let output = viewModel.transform(input: input)
     
     /// 판매자 등록 여부 > 판매글 작성 버튼 표시
+    /* 사업자 번호가 없는 유저의 게시물 생성 테스트 환경을 위해 Hidden 처리 비활성화
     output.hasSellerAuthority
       .map { !$0 }
       .drive(createPostFloatingButton.rx.isHidden)
       .disposed(by: disposeBag)
+     */
     
     /// 게시글 리스트 컬렉션 뷰에 전달
     output.posts
