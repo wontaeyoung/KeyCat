@@ -24,6 +24,12 @@ struct CommercialPost: Entity {
   let hashTags: [Hashtag]
   var reviews: [CommercialReview]
   
+  var mainImageURL: URL? {
+    return productImagesURL
+      .compactMap { $0 }
+      .first
+  }
+  
   var productImagesURL: [URL?] {
     return files.map { URL(string: APIKey.baseURL + "/" + $0) }
   }

@@ -20,7 +20,6 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
       $0.borderColor = KCAsset.Color.lightGrayBackground.color.cgColor
       $0.borderWidth = 1
     }
-    $0.backgroundColor = .systemBlue
   }
   
   private let titleLabel = KCLabel(font: .medium(size: 15), line: 2)
@@ -90,12 +89,8 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
   }
   
   func setData(with post: CommercialPost) {
-    
-    let productImageURL = post.productImagesURL
-      .compactMap { $0 }
-      .first
-    
-    imageView.load(with: productImageURL)
+        
+    imageView.load(with: post.mainImageURL)
     titleLabel.text = post.title
     
     productPriceView.setData(price: post.price)
