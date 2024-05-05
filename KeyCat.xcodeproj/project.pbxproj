@@ -188,6 +188,7 @@
 		6E9090762BE77D60001B107A /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090752BE77D60001B107A /* PostListViewController.swift */; };
 		6E9090782BE77E07001B107A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090772BE77E07001B107A /* PostListViewModel.swift */; };
 		6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907A2BE7889D001B107A /* ProductTableCell.swift */; };
+		6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907C2BE7B2A7001B107A /* BadgeButton.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -410,6 +411,7 @@
 		6E9090752BE77D60001B107A /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		6E9090772BE77E07001B107A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		6E90907A2BE7889D001B107A /* ProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableCell.swift; sourceTree = "<group>"; };
+		6E90907C2BE7B2A7001B107A /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
 				6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */,
 				6E90900D2BE48C97001B107A /* IconLabel.swift */,
+				6E90907C2BE7B2A7001B107A /* BadgeButton.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -1699,6 +1702,7 @@
 				6E9090162BE53DAF001B107A /* KeyboardInfoView.swift in Sources */,
 				6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */,
 				6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */,
+				6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */,
 				6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */,
 				6E90904B2BE6C1AC001B107A /* MyPageCoordinator.swift in Sources */,
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
