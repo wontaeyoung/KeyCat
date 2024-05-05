@@ -20,7 +20,7 @@ extension UIViewController {
     self.navigationItem.largeTitleDisplayMode = displayMode
   }
   
-  func navigationTitle(with title: String, displayMode: UINavigationItem.LargeTitleDisplayMode) -> Self {
+  func navigationTitle(with title: String, displayMode: UINavigationItem.LargeTitleDisplayMode = .never) -> Self {
     self.navigationItem.title = title
     self.navigationItem.largeTitleDisplayMode = displayMode
     return self
