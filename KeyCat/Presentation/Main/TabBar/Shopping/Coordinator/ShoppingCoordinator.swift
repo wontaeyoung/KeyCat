@@ -11,6 +11,7 @@ import RxRelay
 final class ShoppingCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   weak var tabBarDelegate: TabBarDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
@@ -50,8 +51,12 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func showPostDetailView(post: CommercialPost, from originalPosts: BehaviorRelay<[CommercialPost]>) {
-    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts)
+  func showPostDetailView(
+    post: CommercialPost,
+    originalPosts: BehaviorRelay<[CommercialPost]>,
+    cartPosts: BehaviorRelay<[CommercialPost]>
+  ) {
+    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts, cartPosts: cartPosts)
       .coordinator(self)
     
     let vc = CommercialPostDetailViewController(viewModel: vm)
@@ -62,10 +67,19 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func ConnectReviewFlow(post: BehaviorRelay<CommercialPost>) {
+  func connectReviewFlow(post: BehaviorRelay<CommercialPost>) {
     let coordinator = ReviewCoordinator(navigationController)
     coordinator.delegate = self
+    coordinator.signOutDelegate = self
     coordinator.showReviewListView(post: post)
+    addChild(coordinator)
+  }
+  
+  func connectProfileFlow(user: User) {
+    let coordinator = MyPageCoordinator(navigationController)
+    coordinator.delegate = self
+    coordinator.signOutDelegate = self
+    coordinator.showMyProfileView(userID: user.userID)
     addChild(coordinator)
   }
 }
@@ -76,3 +90,5 @@ extension ShoppingCoordinator: CoordinatorDelegate {
     emptyOut()
   }
 }
+
+extension ShoppingCoordinator: SignOutDelegate { }

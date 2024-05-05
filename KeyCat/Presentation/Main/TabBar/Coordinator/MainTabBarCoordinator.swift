@@ -17,14 +17,17 @@ extension MainTabBarCoordinator: TabBarDelegate {
   }
 }
 
-final class MainTabBarCoordinator: Coordinator {
+final class MainTabBarCoordinator: SubCoordinator {
   
   // MARK: - Property
+  var navigationController: UINavigationController
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   var childCoordinators: [Coordinator]
   var tabBarController: UITabBarController
   
-  init(tabBarController: UITabBarController) {
+  init(_ navigationController: UINavigationController, tabBarController: UITabBarController) {
+    self.navigationController = navigationController
     self.childCoordinators = []
     self.tabBarController = tabBarController
   }
@@ -59,9 +62,16 @@ final class MainTabBarCoordinator: Coordinator {
         addChild(coordinator)
         coordinator.start()
         coordinator.tabBarDelegate = self
+        coordinator.signOutDelegate = self
         
       case .profile:
-        break
+        let coordinator = MyPageCoordinator(tabPageController)
+        addChild(coordinator)
+        coordinator.start()
+        coordinator.tabBarDelegate = self
+        coordinator.signOutDelegate = self
     }
   }
 }
+
+extension MainTabBarCoordinator: SignOutDelegate { }

@@ -23,6 +23,8 @@ enum KCAsset {
     case pastelBlue = "#A0C3D2"
     case pastelGreen = "#A8D1D1"
     
+    case red = "#EA4E3D"
+    
     var color: UIColor {
       return UIColor(hex: self.rawValue)
     }
@@ -87,6 +89,7 @@ enum KCAsset {
       case wonsignCircle = "wonsign.circle"
       case truckBoxBadgeClock = "truck.box.badge.clock"
       case xmarkCircleFill = "xmark.circle.fill"
+      case storefrontCircle = "storefront.circle"
       
       // MARK: Button
       case cameraFill = "camera.fill"
@@ -125,6 +128,7 @@ enum KCAsset {
     static let emptyReviewScore: UIImage? = image(.star)
     static let deliveryPrice: UIImage? = image(.wonsignCircle)
     static let deliverySchedule: UIImage? = image(.truckBoxBadgeClock)
+    static let seller: UIImage? = image(.storefrontCircle)
     
     // MARK: Button
     static let closeButton: UIImage? = image(.xmarkCircleFill)

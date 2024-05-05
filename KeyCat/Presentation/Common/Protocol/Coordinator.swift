@@ -12,8 +12,14 @@ protocol CoordinatorDelegate: AnyObject {
   func coordinatorDidEnd(_ childCoordinator: Coordinator)
 }
 
+protocol SignOutDelegate: AnyObject {
+  
+  func signOut(_ childCoordinator: Coordinator?)
+}
+
 protocol Coordinator: AnyObject {
   var delegate: CoordinatorDelegate? { get set }
+  var signOutDelegate: SignOutDelegate? { get set }
   var childCoordinators: [Coordinator] { get set }
   
   func start()
@@ -24,10 +30,8 @@ protocol SubCoordinator: Coordinator {
   // MARK: - Property
   var navigationController: UINavigationController { get set }
   
-  // MARK: - Initialzier
-  init(_ navigationController: UINavigationController)
-  
   // MARK: - Method
+  func signOut(_ childCoordinator: Coordinator?)
   func end()
   func push(_ viewController: UIViewController, animation: Bool)
   func pop(animation: Bool)
@@ -54,6 +58,11 @@ extension Coordinator {
 
 // MARK: - View Navigation
 extension SubCoordinator {
+  
+  func signOut(_ childCoordinator: Coordinator?) {
+    self.emptyOut()
+    self.signOutDelegate?.signOut(self)
+  }
   
   func end() {
     self.emptyOut()
@@ -96,12 +105,23 @@ extension SubCoordinator {
   }
   
   func showErrorAlert(error: Error, completion: (() -> Void)? = nil) {
+    var completion = completion
+    
     guard let error = error as? AppError else {
       let unknownError = CommonError.unknownError(error: error)
       LogManager.shared.log(with: unknownError, to: .local)
       showErrorAlert(error: unknownError)
       
       return
+    }
+    
+    if
+      let error = error as? KCError,
+      case .retrySignIn = error {
+      
+      completion = {
+        self.signOut(nil)
+      }
     }
     
     let alertController = UIAlertController(

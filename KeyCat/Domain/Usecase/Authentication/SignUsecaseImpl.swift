@@ -1,5 +1,5 @@
 //
-//  SignUpUsecaseImpl.swift
+//  SignUsecaseImpl.swift
 //  KeyCat
 //
 //  Created by 원태영 on 4/25/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class SignUpUsecaseImpl: SignUpUsecase {
+final class SignUsecaseImpl: SignUsecase {
   
   private let authRepository: AuthRepository
   private let userRepository: UserRepository
@@ -21,7 +21,7 @@ final class SignUpUsecaseImpl: SignUpUsecase {
     self.userRepository = userRepository
   }
   
-  func execute(
+  func signUp(
     email: String,
     password: String,
     nickname: String,
@@ -39,5 +39,20 @@ final class SignUpUsecaseImpl: SignUpUsecase {
       .flatMap { _ in
         return .just(true)
       }
+  }
+  
+  func signIn(email: String, password: String) -> Single<Void> {
+    return authRepository.signIn(email: email, password: password)
+      .flatMap { _ in
+        return self.userRepository.fetchMyProfile()
+      }
+      .do {
+        UserInfoService.hasSellerAuthority = $0.userType == .seller
+      }
+      .map { _ in () }
+  }
+  
+  func withdraw() -> Single<Void> {
+    return authRepository.withdraw()
   }
 }

@@ -13,7 +13,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   // MARK: - I / O
   struct Input {
     let handlePostAction: PublishRelay<HandleContentAction>
-    let sellerProfileTapEvent: PublishRelay<Void>
+    let sellerProfileTapEvent: PublishRelay<User>
     let bookmarkTapEvent: PublishRelay<Void>
     let reviewTapEvent: PublishRelay<Void>
     let addCartTapEvent: PublishRelay<Void>
@@ -21,7 +21,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     init(
       handlePostAction: PublishRelay<HandleContentAction> = .init(),
-      sellerProfileTapEvent: PublishRelay<Void> = .init(),
+      sellerProfileTapEvent: PublishRelay<User> = .init(),
       bookmarkTapEvent: PublishRelay<Void> = .init(),
       reviewTapEvent: PublishRelay<Void> = .init(),
       addCartTapEvent: PublishRelay<Void> = .init(),
@@ -48,15 +48,18 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   private let post: BehaviorRelay<CommercialPost>
   private let originalPosts: BehaviorRelay<[CommercialPost]>
+  private let cartPosts: BehaviorRelay<[CommercialPost]>
   
   // MARK: - Initializer
   init(
     post: CommercialPost,
     originalPosts: BehaviorRelay<[CommercialPost]>,
+    cartPosts: BehaviorRelay<[CommercialPost]>,
     commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
     self.post = BehaviorRelay<CommercialPost>(value: post)
     self.originalPosts = originalPosts
+    self.cartPosts = cartPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
   }
   
@@ -68,6 +71,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let addCartResultToast = PublishRelay<String>()
     
     let addCartActionTrigger = PublishRelay<Void>()
+    let addedCartPost = PublishRelay<CommercialPost>()
     
     /// 게시글 변경 이벤트 핸들링
     input.handlePostAction
@@ -78,6 +82,13 @@ final class CommercialPostDetailViewModel: ViewModel {
           case .delete:
             owner.showDeletePostAlert(deletePostEvent)
         }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 판매자 프로필 탭 > 프로필 화면 연결
+    input.sellerProfileTapEvent
+      .bind(with: self) { owner, user in
+        owner.coordinator?.connectProfileFlow(user: user)
       }
       .disposed(by: disposeBag)
     
@@ -95,7 +106,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     /// 리뷰 탭 이벤트 > 리뷰 화면 연결
     input.reviewTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.ConnectReviewFlow(post: owner.post)
+        owner.coordinator?.connectReviewFlow(post: owner.post)
       }
       .disposed(by: disposeBag)
       
@@ -119,6 +130,13 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 카트에 추가된 게시물을 외부 원본 배열에 반영
+    addedCartPost
+      .bind(with: self) { owner, post in
+        owner.addPostInCart(addedPost: post)
+      }
+      .disposed(by: disposeBag)
+    
     /// 카트 추가하기 액션
     addCartActionTrigger
       .withLatestFrom(post)
@@ -127,7 +145,10 @@ final class CommercialPostDetailViewModel: ViewModel {
         return owner.commercialPostInteractionUsecase.addCart(postID: post.postID, adding: true)
       }
       .compactMap { $0 }
-      .do(onNext: { _ in addCartResultToast.accept("상품이 장바구니에 추가되었어요!") })
+      .do(onNext: {
+        addCartResultToast.accept("상품이 장바구니에 추가되었어요!")
+        addedCartPost.accept($0)
+      })
       .bind(to: post)
       .disposed(by: disposeBag)
     
@@ -144,6 +165,13 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     currentPosts[index] = updatedPost
     originalPosts.accept(currentPosts)
+  }
+  
+  private func addPostInCart(addedPost: CommercialPost) {
+    var cartPosts = cartPosts.value
+    cartPosts.insert(addedPost, at: 0)
+    
+    self.cartPosts.accept(cartPosts)
   }
   
   private func showDeletePostAlert(_ event: PublishRelay<Void>) {

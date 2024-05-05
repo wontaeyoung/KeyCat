@@ -56,7 +56,7 @@ enum Constant {
   
   enum Network {
     
-    static let fetchCountForOnce: String = "10"
+    static let fetchCountForOnce: String = "20"
     static let lastCursorSign: String = "0"
   }
 }

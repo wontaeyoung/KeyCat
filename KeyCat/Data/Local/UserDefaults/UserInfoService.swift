@@ -38,6 +38,10 @@ struct UserInfoService {
     refreshToken = .defaultValue
     hasSellerAuthority = .defaultValue
   }
+  
+  static func isMyUserID(with userID: User.UserID) -> Bool {
+    return userID == self.userID
+  }
 }
 
 extension UserInfoService {

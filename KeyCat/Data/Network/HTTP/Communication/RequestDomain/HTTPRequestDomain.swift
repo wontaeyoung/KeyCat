@@ -12,6 +12,7 @@ enum HTTPRequestDomain {
   case signIn
   case accessToken
   case fetchPosts
+  case withdraw
   
   // 409
   case emailValidation
@@ -21,9 +22,13 @@ enum HTTPRequestDomain {
   case createPost
   case likePost
   case createReview
+  case unfollow
   
   // 401, 410, 445
   case deleteReview
+  
+  // 401, 409, 410
+  case follow
   
   case none
 }

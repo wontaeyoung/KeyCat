@@ -20,16 +20,25 @@ extension UIViewController {
     self.navigationItem.largeTitleDisplayMode = displayMode
   }
   
-  func navigationTitle(with title: String, displayMode: UINavigationItem.LargeTitleDisplayMode) -> Self {
+  func navigationTitle(with title: String, displayMode: UINavigationItem.LargeTitleDisplayMode = .never) -> Self {
     self.navigationItem.title = title
     self.navigationItem.largeTitleDisplayMode = displayMode
     return self
+  }
+  
+  func setKCNavigationTitle(with title: String) {
+    let titleLabel = KCLabel(title: title, font: .bold(size: 24))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel) 
   }
   
   func kcNavigationTitle(with title: String) -> Self {
     let titleLabel = KCLabel(title: title, font: .bold(size: 24))
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
     return self
+  }
+  
+  func setTabBarHidden() {
+    self.hidesBottomBarWhenPushed = true
   }
   
   func hideTabBar() -> Self {

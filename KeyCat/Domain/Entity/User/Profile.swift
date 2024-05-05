@@ -14,16 +14,37 @@ struct Profile: Entity {
   let nickname: String
   let userType: UserType
   let profileImageURLString: URLString
-  let followers: [User]
-  let folllowing: [User]
-  let postIDs: [PostID]
+  var followers: [User]
+  var following: [User]
+  var postIDs: [PostID]
   let profileType: ProfileType
   
   var profileImageURL: URL? {
     return URL(string: profileImageURLString)
   }
   
+  var isFollowing: Bool {
+    return followers
+      .map { $0.userID }
+      .contains(UserInfoService.userID)
+  }
+  
+  static var empty: Profile {
+    return Profile(
+      userID: .defaultValue,
+      email: .defaultValue,
+      nickname: .defaultValue,
+      userType: .none,
+      profileImageURLString: .defaultValue,
+      followers: [],
+      following: [],
+      postIDs: [],
+      profileType: .mine
+    )
+  }
+  
   enum UserType: Int, SelectionExpressible {
+    
     case none
     case standard
     case seller

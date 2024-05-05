@@ -43,6 +43,7 @@ extension Dictionary: Configurator { }
 extension Set: Configurator { }
 
 extension CommercialPost: Configurator { }
+extension Profile: Configurator { }
 
 extension PHPickerConfiguration: Configurator { }
 extension UIButton.Configuration: Configurator { }

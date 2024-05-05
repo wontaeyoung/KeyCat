@@ -10,6 +10,7 @@ import UIKit
 final class AuthCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
   

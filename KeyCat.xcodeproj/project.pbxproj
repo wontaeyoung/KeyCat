@@ -22,12 +22,10 @@
 		6E0778342BD922A900B3A6EC /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778332BD922A900B3A6EC /* UIImage+.swift */; };
 		6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778352BD9237200B3A6EC /* NumberFormatManager.swift */; };
 		6E0778382BD929ED00B3A6EC /* TappableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778372BD929ED00B3A6EC /* TappableImageView.swift */; };
-		6E07783A2BD9D70D00B3A6EC /* SignUpUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778392BD9D70C00B3A6EC /* SignUpUsecaseImpl.swift */; };
+		6E07783A2BD9D70D00B3A6EC /* SignUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778392BD9D70C00B3A6EC /* SignUsecaseImpl.swift */; };
 		6E07783D2BD9E30900B3A6EC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07783C2BD9E30900B3A6EC /* UserRepository.swift */; };
 		6E0778402BDA363A00B3A6EC /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E07783F2BDA363A00B3A6EC /* UserRepositoryImpl.swift */; };
-		6E0778422BDA3A2300B3A6EC /* SignUpUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778412BDA3A2300B3A6EC /* SignUpUsecase.swift */; };
-		6E0778442BDA88CA00B3A6EC /* SignInUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778432BDA88CA00B3A6EC /* SignInUsecaseImpl.swift */; };
-		6E0778462BDA9E0700B3A6EC /* SignInUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778452BDA9E0700B3A6EC /* SignInUsecase.swift */; };
+		6E0778422BDA3A2300B3A6EC /* SignUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778412BDA3A2300B3A6EC /* SignUsecase.swift */; };
 		6E0778522BDBEF6A00B3A6EC /* MainTabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0778512BDBEF6A00B3A6EC /* MainTabBarPage.swift */; };
 		6E0A4F892BD108FD005A529F /* DeliveryInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */; };
 		6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0A4F8A2BD11416005A529F /* Date+.swift */; };
@@ -172,6 +170,25 @@
 		6E90903F2BE6A925001B107A /* CommercialReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */; };
 		6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */; };
 		6E9090432BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */; };
+		6E9090462BE6C07F001B107A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090452BE6C07F001B107A /* ProfileViewController.swift */; };
+		6E9090482BE6C085001B107A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090472BE6C085001B107A /* ProfileViewModel.swift */; };
+		6E90904B2BE6C1AC001B107A /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */; };
+		6E90904E2BE6C440001B107A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90904D2BE6C440001B107A /* ProfileView.swift */; };
+		6E9090512BE6CCBF001B107A /* FetchProfileUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */; };
+		6E9090542BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */; };
+		6E90905A2BE6DA8C001B107A /* ProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090592BE6DA8C001B107A /* ProfileTableCell.swift */; };
+		6E90905E2BE6E856001B107A /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 6E90905D2BE6E856001B107A /* Tabman */; };
+		6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90905F2BE6E871001B107A /* FollowTabmanViewController.swift */; };
+		6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */; };
+		6E9090672BE6EA05001B107A /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090662BE6EA05001B107A /* FollowListViewController.swift */; };
+		6E90906C2BE7446A001B107A /* FollowTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90906B2BE7446A001B107A /* FollowTableCell.swift */; };
+		6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90906E2BE75C8D001B107A /* TabmanRxBaseViewController.swift */; };
+		6E9090712BE76AE0001B107A /* UserInteractionUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090702BE76AE0001B107A /* UserInteractionUsecase.swift */; };
+		6E9090732BE76B58001B107A /* UserInteractionUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090722BE76B58001B107A /* UserInteractionUsecaseImpl.swift */; };
+		6E9090762BE77D60001B107A /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090752BE77D60001B107A /* PostListViewController.swift */; };
+		6E9090782BE77E07001B107A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090772BE77E07001B107A /* PostListViewModel.swift */; };
+		6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907A2BE7889D001B107A /* ProductTableCell.swift */; };
+		6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907C2BE7B2A7001B107A /* BadgeButton.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -230,12 +247,10 @@
 		6E0778332BD922A900B3A6EC /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		6E0778352BD9237200B3A6EC /* NumberFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatManager.swift; sourceTree = "<group>"; };
 		6E0778372BD929ED00B3A6EC /* TappableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableImageView.swift; sourceTree = "<group>"; };
-		6E0778392BD9D70C00B3A6EC /* SignUpUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E0778392BD9D70C00B3A6EC /* SignUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E07783C2BD9E30900B3A6EC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		6E07783F2BDA363A00B3A6EC /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
-		6E0778412BDA3A2300B3A6EC /* SignUpUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUsecase.swift; sourceTree = "<group>"; };
-		6E0778432BDA88CA00B3A6EC /* SignInUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsecaseImpl.swift; sourceTree = "<group>"; };
-		6E0778452BDA9E0700B3A6EC /* SignInUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsecase.swift; sourceTree = "<group>"; };
+		6E0778412BDA3A2300B3A6EC /* SignUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUsecase.swift; sourceTree = "<group>"; };
 		6E0778512BDBEF6A00B3A6EC /* MainTabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPage.swift; sourceTree = "<group>"; };
 		6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoDTO.swift; sourceTree = "<group>"; };
 		6E0A4F8A2BD11416005A529F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -379,6 +394,24 @@
 		6E90903E2BE6A925001B107A /* CommercialReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		6E9090402BE6B792001B107A /* HandleReviewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecase.swift; sourceTree = "<group>"; };
 		6E9090422BE6B7C6001B107A /* HandleReviewUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleReviewUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090452BE6C07F001B107A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6E9090472BE6C085001B107A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
+		6E90904D2BE6C440001B107A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecase.swift; sourceTree = "<group>"; };
+		6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090592BE6DA8C001B107A /* ProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableCell.swift; sourceTree = "<group>"; };
+		6E90905F2BE6E871001B107A /* FollowTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTabmanViewController.swift; sourceTree = "<group>"; };
+		6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewModel.swift; sourceTree = "<group>"; };
+		6E9090662BE6EA05001B107A /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
+		6E90906B2BE7446A001B107A /* FollowTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableCell.swift; sourceTree = "<group>"; };
+		6E90906E2BE75C8D001B107A /* TabmanRxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanRxBaseViewController.swift; sourceTree = "<group>"; };
+		6E9090702BE76AE0001B107A /* UserInteractionUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionUsecase.swift; sourceTree = "<group>"; };
+		6E9090722BE76B58001B107A /* UserInteractionUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090752BE77D60001B107A /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		6E9090772BE77E07001B107A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		6E90907A2BE7889D001B107A /* ProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableCell.swift; sourceTree = "<group>"; };
+		6E90907C2BE7B2A7001B107A /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -431,6 +464,7 @@
 				6E567E472BC67C6E00250C56 /* Toast in Frameworks */,
 				6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */,
 				6E0A4FA62BD1F2A0005A529F /* TextFieldEffects in Frameworks */,
+				6E90905E2BE6E856001B107A /* Tabman in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +492,7 @@
 			children = (
 				6E0778502BDBEF3900B3A6EC /* Coordinator */,
 				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
+				6E9090442BE6C045001B107A /* MyPage */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -523,6 +558,7 @@
 				6E0778372BD929ED00B3A6EC /* TappableImageView.swift */,
 				6ED51E622BE2A5C7005D7FBD /* TagLabel.swift */,
 				6E90900D2BE48C97001B107A /* IconLabel.swift */,
+				6E90907C2BE7B2A7001B107A /* BadgeButton.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -538,6 +574,7 @@
 		6E0A4FDA2BD3EA0C005A529F /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
+				6E90904F2BE6CCB1001B107A /* User */,
 				6E9090352BE69257001B107A /* Review */,
 				6EAEACFB2BE2355200993089 /* Post */,
 				6E0A4FDD2BD3EAE8005A529F /* Authentication */,
@@ -551,8 +588,7 @@
 				6E0A4FDE2BD3EAF1005A529F /* Interface */,
 				6E0A4FE82BD3ED74005A529F /* CheckEmailDuplicationUsecaseImpl.swift */,
 				6E07782D2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift */,
-				6E0778392BD9D70C00B3A6EC /* SignUpUsecaseImpl.swift */,
-				6E0778432BDA88CA00B3A6EC /* SignInUsecaseImpl.swift */,
+				6E0778392BD9D70C00B3A6EC /* SignUsecaseImpl.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -562,8 +598,7 @@
 			children = (
 				6E0A4FDB2BD3EA7C005A529F /* CheckEmailDuplicationUsecase.swift */,
 				6E07782B2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift */,
-				6E0778412BDA3A2300B3A6EC /* SignUpUsecase.swift */,
-				6E0778452BDA9E0700B3A6EC /* SignInUsecase.swift */,
+				6E0778412BDA3A2300B3A6EC /* SignUsecase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -733,6 +768,7 @@
 				6E567E502BC67DFC00250C56 /* RxBaseCollectionViewCell.swift */,
 				6E567E512BC67DFC00250C56 /* RxBaseTableViewCell.swift */,
 				6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */,
+				6E90906E2BE75C8D001B107A /* TabmanRxBaseViewController.swift */,
 				6E0A4FD52BD299F8005A529F /* SignUpBaseViewController.swift */,
 				6ED51E732BE377F2005D7FBD /* TappableBaseViewController.swift */,
 				6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */,
@@ -1197,6 +1233,100 @@
 			path = CommercialReviewDetail;
 			sourceTree = "<group>";
 		};
+		6E9090442BE6C045001B107A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090452BE6C07F001B107A /* ProfileViewController.swift */,
+				6E9090472BE6C085001B107A /* ProfileViewModel.swift */,
+				6E9090742BE77D4A001B107A /* Post */,
+				6E9090582BE6DA82001B107A /* Cell */,
+				6E9090492BE6C15F001B107A /* Coordinator */,
+				6E90904C2BE6C436001B107A /* View */,
+				6E90905B2BE6E828001B107A /* Follow */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		6E9090492BE6C15F001B107A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6E90904A2BE6C1AC001B107A /* MyPageCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6E90904C2BE6C436001B107A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6E90904D2BE6C440001B107A /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6E90904F2BE6CCB1001B107A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090522BE6CCC6001B107A /* Interface */,
+				6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */,
+				6E9090722BE76B58001B107A /* UserInteractionUsecaseImpl.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6E9090522BE6CCC6001B107A /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */,
+				6E9090702BE76AE0001B107A /* UserInteractionUsecase.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		6E9090582BE6DA82001B107A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090592BE6DA8C001B107A /* ProfileTableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E90905B2BE6E828001B107A /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				6E90905F2BE6E871001B107A /* FollowTabmanViewController.swift */,
+				6E9090662BE6EA05001B107A /* FollowListViewController.swift */,
+				6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */,
+				6E90906A2BE74461001B107A /* Cell */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		6E90906A2BE74461001B107A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E90906B2BE7446A001B107A /* FollowTableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E9090742BE77D4A001B107A /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090752BE77D60001B107A /* PostListViewController.swift */,
+				6E9090772BE77E07001B107A /* PostListViewModel.swift */,
+				6E9090792BE7887A001B107A /* Cell */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		6E9090792BE7887A001B107A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E90907A2BE7889D001B107A /* ProductTableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		6E9829032BCF428000105910 /* Body */ = {
 			isa = PBXGroup;
 			children = (
@@ -1357,6 +1487,7 @@
 				6E567E492BC67CD400250C56 /* RxAlamofire */,
 				6E567E7F2BC68F0900250C56 /* SnapKit */,
 				6E0A4FA52BD1F2A0005A529F /* TextFieldEffects */,
+				6E90905D2BE6E856001B107A /* Tabman */,
 			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
@@ -1392,6 +1523,7 @@
 				6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6E0A4FA42BD1F29F005A529F /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
@@ -1439,6 +1571,7 @@
 				6E8C9E772BC8B6A80086F913 /* FollowDTO.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */,
+				6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */,
 				6EAEACDA2BDFC30600993089 /* Divider.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
@@ -1459,6 +1592,8 @@
 				6E3460D42BE272A300840E21 /* Array+.swift in Sources */,
 				6E90903F2BE6A925001B107A /* CommercialReviewDetailViewModel.swift in Sources */,
 				6E8C9EC52BCB8FBA0086F913 /* CommercialPrice.swift in Sources */,
+				6E9090712BE76AE0001B107A /* UserInteractionUsecase.swift in Sources */,
+				6E90906C2BE7446A001B107A /* FollowTableCell.swift in Sources */,
 				6E0A4F8D2BD1304D005A529F /* APIRequestInterceptor.swift in Sources */,
 				6E0A4FE32BD3EC21005A529F /* AuthRepositoryImpl.swift in Sources */,
 				6E0A4FA32BD16538005A529F /* KCField.swift in Sources */,
@@ -1469,7 +1604,9 @@
 				6E8C9EB22BCA9EA40086F913 /* KeyboardInfo.swift in Sources */,
 				6E9090312BE68EF3001B107A /* ReviewRepositoryImpl.swift in Sources */,
 				6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */,
+				6E9090512BE6CCBF001B107A /* FetchProfileUsecase.swift in Sources */,
 				6ED51E742BE377F2005D7FBD /* TappableBaseViewController.swift in Sources */,
+				6E9090762BE77D60001B107A /* PostListViewController.swift in Sources */,
 				6E8C9E662BC8149D0086F913 /* Response.swift in Sources */,
 				6E0A4FED2BD4ECC4005A529F /* HTTPErrorTransformer.swift in Sources */,
 				6E8C9E892BC8B9F70086F913 /* LoginRequest.swift in Sources */,
@@ -1481,6 +1618,7 @@
 				6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */,
 				6E0A4FE72BD3ECFD005A529F /* AuthRepository.swift in Sources */,
 				6ED51E702BE34F13005D7FBD /* CommercialPostDetailImageCollectionCell.swift in Sources */,
+				6E90904E2BE6C440001B107A /* ProfileView.swift in Sources */,
 				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
 				6E90903D2BE6A919001B107A /* CommercialReviewDetailViewController.swift in Sources */,
 				6E0A4FD42BD28DB7005A529F /* SignUpEmailViewController.swift in Sources */,
@@ -1496,16 +1634,17 @@
 				6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
-				6E07783A2BD9D70D00B3A6EC /* SignUpUsecaseImpl.swift in Sources */,
+				6E07783A2BD9D70D00B3A6EC /* SignUsecaseImpl.swift in Sources */,
+				6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
+				6E9090462BE6C07F001B107A /* ProfileViewController.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
 				6ED51E6B2BE34BDA005D7FBD /* CommercialPostDetailViewController.swift in Sources */,
 				6E0A4FA02BD150E0005A529F /* ValidationField.swift in Sources */,
-				6E0778442BDA88CA00B3A6EC /* SignInUsecaseImpl.swift in Sources */,
 				6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */,
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
@@ -1518,7 +1657,9 @@
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6EAEAD052BE2695E00993089 /* ProductCollectionCell.swift in Sources */,
 				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
+				6E90905A2BE6DA8C001B107A /* ProfileTableCell.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
+				6E9090782BE77E07001B107A /* PostListViewModel.swift in Sources */,
 				6E0778082BD7AF4A00B3A6EC /* SignUpSellerAuthorityViewController.swift in Sources */,
 				6E8C9E7F2BC8B8AF0086F913 /* RefeshTokenResponse.swift in Sources */,
 				6E9090342BE69033001B107A /* ReviewRepository.swift in Sources */,
@@ -1542,7 +1683,6 @@
 				6E0A4FCA2BD241D3005A529F /* KCButton.swift in Sources */,
 				6E9090212BE638CC001B107A /* ReviewListViewController.swift in Sources */,
 				6E8C9EA52BC955480086F913 /* JsonCoder.swift in Sources */,
-				6E0778462BDA9E0700B3A6EC /* SignInUsecase.swift in Sources */,
 				6E0A4FEF2BD55FE1005A529F /* HTTPRequestDomain.swift in Sources */,
 				6E567E542BC67DFC00250C56 /* RxBaseCollectionViewCell.swift in Sources */,
 				6EC801EF2BDD42A000FE2B69 /* ProductField.swift in Sources */,
@@ -1562,13 +1702,16 @@
 				6E9090162BE53DAF001B107A /* KeyboardInfoView.swift in Sources */,
 				6E07782E2BD8C90400B3A6EC /* AuthenticateBusinessInfoUsecaseImpl.swift in Sources */,
 				6ED51E632BE2A5C7005D7FBD /* TagLabel.swift in Sources */,
+				6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */,
 				6E8C9F2E2BCD21B60086F913 /* UserMapper.swift in Sources */,
+				6E90904B2BE6C1AC001B107A /* MyPageCoordinator.swift in Sources */,
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
 				6EAEACF42BE11FC300993089 /* NetworkMonitor.swift in Sources */,
 				6EAEACF22BE104A500993089 /* PostImageDetailSheetViewController.swift in Sources */,
 				6E8C9E752BC8B67C0086F913 /* ProfileDTO.swift in Sources */,
+				6E9090542BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift in Sources */,
 				6E07782C2BD8C8E600B3A6EC /* AuthenticateBusinessInfoUsecase.swift in Sources */,
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
 				6E0A4FC62BD24153005A529F /* InputInformation.swift in Sources */,
@@ -1585,33 +1728,38 @@
 				6E0A4FDC2BD3EA7C005A529F /* CheckEmailDuplicationUsecase.swift in Sources */,
 				6EAEACDF2BDFD0B600993089 /* NSCollectionLayoutSection+.swift in Sources */,
 				6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */,
+				6E9090482BE6C085001B107A /* ProfileViewModel.swift in Sources */,
 				6E567E6B2BC67F2800250C56 /* UIViewController+.swift in Sources */,
 				6E77ED052BCE657B00ACDA3B /* KCHeader.swift in Sources */,
 				6E8C9EBE2BCAA28C0086F913 /* KeyboardAppearanceInfo.swift in Sources */,
 				6EAEAD072BE26DCA00993089 /* ReviewView.swift in Sources */,
 				6E8C9F282BCD195A0086F913 /* DateManager.swift in Sources */,
 				6E0A4FEB2BD447A2005A529F /* HTTPStatus+.swift in Sources */,
+				6E9090732BE76B58001B107A /* UserInteractionUsecaseImpl.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
 				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
+				6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
 				6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */,
+				6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */,
 				6ED51E722BE35F7D005D7FBD /* ProductPriceView.swift in Sources */,
 				6E07783D2BD9E30900B3A6EC /* UserRepository.swift in Sources */,
 				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
 				6E0778042BD7944D00B3A6EC /* SignUpProfileViewController.swift in Sources */,
+				6E9090672BE6EA05001B107A /* FollowListViewController.swift in Sources */,
 				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0778342BD922A900B3A6EC /* UIImage+.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
 				6EAEACE12BE06FBB00993089 /* KCTextView.swift in Sources */,
 				6E567E732BC684C000250C56 /* DTO.swift in Sources */,
-				6E0778422BDA3A2300B3A6EC /* SignUpUsecase.swift in Sources */,
+				6E0778422BDA3A2300B3A6EC /* SignUsecase.swift in Sources */,
 				6E0778142BD88EA800B3A6EC /* CheckboxButton.swift in Sources */,
 				6E8C9E7D2BC8B8A10086F913 /* LoginResponse.swift in Sources */,
 				6E90903A2BE692A7001B107A /* CreateReviewUsecase.swift in Sources */,
@@ -1881,6 +2029,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1908,6 +2064,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6E90905D2BE6E856001B107A /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -36,6 +36,17 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
       .map { self.userMapper.toEntity($0) }
   }
   
+  func fetchOtherProfile(userID: User.UserID) -> Single<Profile> {
+    let router = UserRouter.otherProfileFetch(userID: userID)
+    
+    return service.callRequest(with: router, of: ProfileDTO.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        return .error(domainError)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
+  
   func updateProfileImage(with imageData: Data?) -> Single<Profile> {
     let request = UpdateMyProfileRequest(profile: imageData)
     
@@ -45,5 +56,27 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
         return .error(domainError)
       }
       .map { self.userMapper.toEntity($0) }
+  }
+  
+  func follow(userID: User.UserID) -> Single<Bool> {
+    let router = UserRouter.follow(userID: userID)
+    
+    return service.callRequest(with: router, of: FollowDTO.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .follow)
+        return .error(domainError)
+      }
+      .map { $0.following_status }
+  }
+  
+  func unfollow(userID: User.UserID) -> Single<Bool> {
+    let router = UserRouter.unfollow(userID: userID)
+    
+    return service.callRequest(with: router, of: FollowDTO.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .unfollow)
+        return .error(domainError)
+      }
+      .map { $0.following_status }
   }
 }

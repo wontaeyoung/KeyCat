@@ -360,6 +360,11 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 판매자 프로필 탭 이벤트 전달
+    sellerProfileView.profileTapEvent
+      .bind(to: input.sellerProfileTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 게시물 변경 액션 이벤트 전달
     handlePostAction
       .bind(to: input.handlePostAction)
@@ -382,6 +387,5 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .buttonThrottle()
       .bind(to: input.addCartTapEvent)
       .disposed(by: disposeBag)
-    
   }
 }

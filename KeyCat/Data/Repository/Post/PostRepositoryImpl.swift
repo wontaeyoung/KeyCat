@@ -74,6 +74,27 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       .map { self.postMapper.toEntity($0) }
   }
   
+  func fetchCommercialPostsFromUser(
+    userID: User.UserID,
+    nextCursor: CommercialPost.PostID
+  ) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    
+    let query = FetchPostsQuery(
+      next: nextCursor,
+      limit: Constant.Network.fetchCountForOnce,
+      postType: .keycat_commercialProduct
+    )
+    let router = PostRouter.postsFromUserFetch(userID: userID, query: query)
+    
+    return service.callRequest(with: router, of: FetchPostsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        
+        return .error(domainError)
+      }
+      .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
+  }
+  
   func bookmark(postID: CommercialPost.PostID, isOn: Bool) -> Single<Bool> {
     let request = LikePostRequest(like_status: isOn)
     let router = LikeRouter.like(postID: postID, request: request)
@@ -87,6 +108,23 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       .map { $0.like_status }
   }
   
+  func fetchBookmarkPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    
+    let query = FetchLikePostsQuery(
+      next: nextCursor,
+      limit: Constant.Network.fetchCountForOnce
+    )
+    let router = LikeRouter.likePostsFetch(query: query)
+    
+    return service.callRequest(with: router, of: FetchPostsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        
+        return .error(domainError)
+      }
+      .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
+  }
+  
   func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<Bool> {
     let request = LikePostRequest(like_status: adding)
     let router = LikeRouter.like2(postID: postID, request: request)
@@ -98,5 +136,22 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
         return .error(domainError)
       }
       .map { $0.like_status }
+  }
+  
+  func fetchCartPosts() -> Single<[CommercialPost]> {
+    
+    let query = FetchLikePostsQuery(
+      next: "",
+      limit: "1000"
+    )
+    let router = LikeRouter.like2PostsFetch(query: query)
+    
+    return service.callRequest(with: router, of: FetchPostsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        
+        return .error(domainError)
+      }
+      .map { self.postMapper.toEntity($0.data) }
   }
 }

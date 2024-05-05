@@ -34,6 +34,7 @@ final class ShoppingViewModel: ViewModel {
   struct Output {
     let hasSellerAuthority: Driver<Bool>
     let posts: Driver<[CommercialPost]>
+    let cartPosts: Driver<[CommercialPost]>
   }
   
   // MARK: - Property
@@ -44,6 +45,7 @@ final class ShoppingViewModel: ViewModel {
   private var nextCursor: CommercialPost.PostID = ""
   private let fetchedPosts = PublishRelay<[CommercialPost]>()
   private let posts = BehaviorRelay<[CommercialPost]>(value: [])
+  private let cartPosts = BehaviorRelay<[CommercialPost]>(value: [])
   
   // MARK: - Initializer
   init(
@@ -81,6 +83,19 @@ final class ShoppingViewModel: ViewModel {
       .bind(to: fetchedPosts)
       .disposed(by: disposeBag)
     
+    /// 장바구니 상품 조회 호출
+    input.viewDidLoadEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchCommercialPostsUsecase.fetchCartPosts()
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .never()
+          }
+      }
+      .bind(to: cartPosts)
+      .disposed(by: disposeBag)
+    
     /// 마지막 상품의 이전 줄이 표시될 때, 페이지네이션
     input.showProductCellEvent
       .filter { $0.row >= self.posts.value.count - 4 }
@@ -103,13 +118,14 @@ final class ShoppingViewModel: ViewModel {
     /// 포스트 셀 탭 이벤트 > 상품 디테일 화면 연결
     input.postCollectionCellSelectedEvent
       .bind(with: self) { owner, post in
-        owner.coordinator?.showPostDetailView(post: post, from: owner.posts)
+        owner.coordinator?.showPostDetailView(post: post, originalPosts: owner.posts, cartPosts: owner.cartPosts)
       }
       .disposed(by: disposeBag)
     
     return Output(
       hasSellerAuthority: hasSellerAuthority.asDriver(onErrorJustReturn: false),
-      posts: posts.asDriver(onErrorJustReturn: [])
+      posts: posts.asDriver(onErrorJustReturn: []),
+      cartPosts: cartPosts.asDriver()
     )
   }
   

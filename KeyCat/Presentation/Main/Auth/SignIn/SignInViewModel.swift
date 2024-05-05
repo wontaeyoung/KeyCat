@@ -28,11 +28,11 @@ final class SignInViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: AuthCoordinator?
-  private let signInUsecase: SignInUsecase
+  private let signUsecase: SignUsecase
   
   // MARK: - Initializer
-  init(signInUsecase: SignInUsecase = SignInUsecaseImpl()) {
-    self.signInUsecase = signInUsecase
+  init(signUsecase: SignUsecase = SignUsecaseImpl()) {
+    self.signUsecase = signUsecase
   }
   
   // MARK: - Method
@@ -65,7 +65,7 @@ final class SignInViewModel: ViewModel {
     input.loginButtonTapEvent
       .withUnretained(self)
       .flatMap { owner, _ in
-        return owner.signInUsecase.execute(email: owner.email.value, password: owner.password.value)
+        return owner.signUsecase.signIn(email: owner.email.value, password: owner.password.value)
           .catch { error in
             owner.coordinator?.showErrorAlert(error: error)
             return .never()

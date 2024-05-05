@@ -50,7 +50,7 @@ extension HTTPErrorTransformer {
           case .signIn:
             return .accessFailed(detail: .login)
             
-          case .accessToken, .createPost, .fetchPosts, .likePost, .createReview, .deleteReview:
+          case .accessToken, .createPost, .fetchPosts, .likePost, .createReview, .deleteReview, .follow, .unfollow, .withdraw:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -67,6 +67,9 @@ extension HTTPErrorTransformer {
             
           case .signUp:
             return .conflict(detail: .registeredUser)
+            
+          case .follow:
+            return .conflict(detail: .follow)
             
           default:
             return httpStatusError.toDomain
@@ -88,6 +91,12 @@ extension HTTPErrorTransformer {
             
           case .deleteReview:
             return .targetNotFound(detail: .delete(model: .comment))
+            
+          case .follow:
+            return .targetNotFound(detail: .create(model: .follow))
+            
+          case .unfollow:
+            return .targetNotFound(detail: .delete(model: .follow))
           
           default:
             return httpStatusError.toDomain

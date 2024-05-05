@@ -80,7 +80,7 @@ final class SignUpViewModel: ViewModel {
   weak var coordinator: AuthCoordinator?
   private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase
   private let authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase
-  private let signUpUsecase: SignUpUsecase
+  private let signUsecase: SignUsecase
   
   private let email = BehaviorRelay<String>(value: "")
   private let password = BehaviorRelay<String>(value: "")
@@ -91,11 +91,11 @@ final class SignUpViewModel: ViewModel {
   init(
     checkEmailValidationUsecase: any CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
     authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl(),
-    signUpUsecase: any SignUpUsecase = SignUpUsecaseImpl()
+    signUsecase: any SignUsecase = SignUsecaseImpl()
   ) {
     self.checkEmailValidationUsecase = checkEmailValidationUsecase
     self.authenticateBusinessInfoUsecase = authenticateBusinessInfoUsecase
-    self.signUpUsecase = signUpUsecase
+    self.signUsecase = signUsecase
   }
   
   // MARK: - Method
@@ -222,7 +222,7 @@ final class SignUpViewModel: ViewModel {
     input.profileNextEvent
       .withUnretained(self)
       .flatMap { owner, imageData in
-        return owner.signUpUsecase.execute(
+        return owner.signUsecase.signUp(
           email: owner.email.value,
           password: owner.password.value,
           nickname: owner.nickname.value,
