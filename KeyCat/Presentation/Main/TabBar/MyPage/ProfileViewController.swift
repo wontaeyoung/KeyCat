@@ -17,7 +17,7 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
   private let followButton = KCButton(style: .secondary)
   private let profileTableTitleLabel = KCLabel(font: .bold(size: 18), color: .darkGray)
   private let profileTableView = UITableView().configured {
-    $0.register(MyProfileTableCell.self, forCellReuseIdentifier: MyProfileTableCell.identifier)
+    $0.register(ProfileTableCell.self, forCellReuseIdentifier: ProfileTableCell.identifier)
   }
   
   // MARK: - Property
@@ -96,8 +96,8 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
       .asDriver(onErrorJustReturn: [])
       .drive(
         profileTableView.rx.items(
-          cellIdentifier: MyProfileTableCell.identifier,
-          cellType: MyProfileTableCell.self)
+          cellIdentifier: ProfileTableCell.identifier,
+          cellType: ProfileTableCell.self)
       ) { row, item, cell in
         
         cell.accessoryType = item.accessory

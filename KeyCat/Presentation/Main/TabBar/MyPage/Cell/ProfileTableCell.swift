@@ -1,5 +1,5 @@
 //
-//  MyProfileTableCell.swift
+//  ProfileTableCell.swift
 //  KeyCat
 //
 //  Created by 원태영 on 5/5/24.
@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class MyProfileTableCell: RxBaseTableViewCell {
+final class ProfileTableCell: RxBaseTableViewCell {
   
   // MARK: - UI
   private let containerView = UIView()
