@@ -53,7 +53,7 @@ final class ProfileTableCell: RxBaseTableViewCell {
     
     switch rowType {
       case .writingPosts:
-        countLabel.text = UserInfoService.hasSellerAuthority ? profile.postIDs.count.description : "-"
+        countLabel.text = profile.postIDs.count.description
       case .following:
         countLabel.text = profile.following.count.description
       case .follower:
