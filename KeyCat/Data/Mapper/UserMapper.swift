@@ -55,9 +55,9 @@ struct UserMapper {
       userType: getUsetType(userTypeID: dto.phoneNum),
       profileImageURLString: dto.profileImage,
       followers: toEntity(dto.followers),
-      folllowing: toEntity(dto.following),
+      following: toEntity(dto.following),
       postIDs: dto.posts,
-      profileType: getProfileType(email: dto.email)
+      profileType: getProfileType(userID: dto.user_id)
     )
   }
   
@@ -84,7 +84,7 @@ struct UserMapper {
     return .init(id)
   }
   
-  private func getProfileType(email: String) -> Profile.ProfileType {
-    return email.isFilled ? .mine : .other
+  private func getProfileType(userID: User.UserID) -> Profile.ProfileType {
+    return UserInfoService.isMyUserID(with: userID) ? .mine : .other
   }
 }
