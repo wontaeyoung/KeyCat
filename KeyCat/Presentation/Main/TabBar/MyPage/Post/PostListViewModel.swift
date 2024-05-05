@@ -72,7 +72,7 @@ final class PostListViewModel: ViewModel {
       .bind(to: fetchedPosts)
       .disposed(by: disposeBag)
       
-    /// 마지막 상품의 이전 줄이 표시될 때, 페이지네이션
+    /// 화면에 표시될 상품이 4개 남았을 때
     input.showProductCellEvent
       .filter { $0.row >= self.posts.value.count - 4 }
       .withUnretained(self)

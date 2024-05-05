@@ -55,6 +55,14 @@ final class PostListViewController: RxBaseViewController, ViewModelController {
       }
       .disposed(by: disposeBag)
     
+    /// 셀 화면 표시 이벤트 전달
+    tableView.rx.willDisplayCell
+      .showingCellThrottle()
+      .map { $0.indexPath }
+      .distinctUntilChanged()
+      .bind(to: input.showProductCellEvent)
+      .disposed(by: disposeBag)
+    
     input.viewDidLoadEvnet.accept(())
   }
 }
