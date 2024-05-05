@@ -11,6 +11,7 @@ import RxRelay
 final class ReviewCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
   
@@ -66,3 +67,5 @@ extension ReviewCoordinator {
     push(vc)
   }
 }
+
+extension ReviewCoordinator: SignOutDelegate { }

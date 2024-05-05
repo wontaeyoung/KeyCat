@@ -11,6 +11,7 @@ import Kingfisher
 final class AppCoordinator: Coordinator {
   
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   weak var window: UIWindow?
   var childCoordinators: [Coordinator] = []
   
@@ -44,8 +45,9 @@ extension AppCoordinator {
   
   private func connectMainTabBarFlow() {
     let rootTabBarController = UITabBarController()
-    let mainTabBarCoordinator = MainTabBarCoordinator(tabBarController: rootTabBarController)
+    let mainTabBarCoordinator = MainTabBarCoordinator(.init(), tabBarController: rootTabBarController)
     mainTabBarCoordinator.delegate = self
+    mainTabBarCoordinator.signOutDelegate = self
     mainTabBarCoordinator.start()
     addChild(mainTabBarCoordinator)
     
@@ -70,6 +72,14 @@ extension AppCoordinator {
 extension AppCoordinator: CoordinatorDelegate {
   
   func coordinatorDidEnd(_ childCoordinator: Coordinator) {
+    connectFlow()
+  }
+}
+
+extension AppCoordinator: SignOutDelegate {
+  
+  func signOut(_ childCoordinator: Coordinator?) {
+    UserInfoService.logout()
     connectFlow()
   }
   

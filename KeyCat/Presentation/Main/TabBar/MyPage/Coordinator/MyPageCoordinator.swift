@@ -11,6 +11,7 @@ import RxRelay
 final class MyPageCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
+  weak var signOutDelegate: SignOutDelegate?
   weak var tabBarDelegate: TabBarDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
@@ -70,3 +71,5 @@ extension MyPageCoordinator {
     push(vc)
   }
 }
+
+extension MyPageCoordinator: SignOutDelegate { }
