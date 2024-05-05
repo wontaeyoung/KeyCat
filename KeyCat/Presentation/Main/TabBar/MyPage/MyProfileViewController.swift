@@ -105,7 +105,7 @@ extension MyProfileViewController {
 
   enum ProfileRow: Int, CaseIterable {
     
-    case myPosts
+    case writingPosts
     case following
     case follower
     case bookmark
@@ -114,7 +114,7 @@ extension MyProfileViewController {
     
     var title: String {
       switch self {
-        case .myPosts: "내 게시물"
+        case .writingPosts: "작성한 게시물"
         case .following: "팔로잉"
         case .follower: "팔로워"
         case .bookmark: "북마크"

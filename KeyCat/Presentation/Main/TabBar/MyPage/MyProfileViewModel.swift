@@ -67,7 +67,7 @@ final class MyProfileViewModel: ViewModel {
   
   private func handleProfileRowTapEvent(with row: MyProfileViewController.ProfileRow, profile: BehaviorRelay<Profile>) {
     switch row {
-      case .myPosts:
+      case .writingPosts:
         break
       case .following:
         coordinator?.showFollowListView(profile: profile, followTab: .following)

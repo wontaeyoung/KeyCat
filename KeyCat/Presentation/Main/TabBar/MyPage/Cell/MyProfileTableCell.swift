@@ -50,7 +50,7 @@ final class MyProfileTableCell: RxBaseTableViewCell {
     titleLabel.text = rowType.title
     
     switch rowType {
-      case .myPosts:
+      case .writingPosts:
         titleLabel.textColor = KCAsset.Color.black.color
         countLabel.text = UserInfoService.hasSellerAuthority ? profile.postIDs.count.description : "-"
       case .following:
