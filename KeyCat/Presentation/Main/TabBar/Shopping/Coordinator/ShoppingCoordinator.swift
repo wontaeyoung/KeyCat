@@ -51,8 +51,12 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func showPostDetailView(post: CommercialPost, from originalPosts: BehaviorRelay<[CommercialPost]>) {
-    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts)
+  func showPostDetailView(
+    post: CommercialPost,
+    originalPosts: BehaviorRelay<[CommercialPost]>,
+    cartPosts: BehaviorRelay<[CommercialPost]>
+  ) {
+    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts, cartPosts: cartPosts)
       .coordinator(self)
     
     let vc = CommercialPostDetailViewController(viewModel: vm)

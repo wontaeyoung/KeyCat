@@ -13,6 +13,9 @@ import RxCocoa
 final class ShoppingViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
+  private let cartButton = BadgeButton()
+  private lazy var cartBarButton = UIBarButtonItem(customView: cartButton)
+  
   private let createPostFloatingButton = KCButton(
     style: .floating,
     title: "+"
@@ -43,6 +46,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     self.viewModel = viewModel
     
     super.init()
+    setBarItem(at: .right, item: cartBarButton)
   }
   
   // MARK: - Life Cycle
@@ -84,6 +88,12 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       ) { row, item, cell in
         cell.setData(with: item)
       }
+      .disposed(by: disposeBag)
+    
+    /// 장바구니 상품 > 뱃지 갯수 반영
+    output.cartPosts
+      .map { $0.count.description }
+      .drive(cartButton.rx.title)
       .disposed(by: disposeBag)
     
     /// 컬렉션 뷰 탭 이벤트 전달
