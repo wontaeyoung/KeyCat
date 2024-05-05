@@ -179,6 +179,12 @@
 		6E9090512BE6CCBF001B107A /* FetchProfileUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */; };
 		6E9090542BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */; };
 		6E90905A2BE6DA8C001B107A /* MyProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */; };
+		6E90905E2BE6E856001B107A /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 6E90905D2BE6E856001B107A /* Tabman */; };
+		6E9090602BE6E871001B107A /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90905F2BE6E871001B107A /* FollowListViewController.swift */; };
+		6E9090622BE6E973001B107A /* TabmanRxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */; };
+		6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */; };
+		6E9090672BE6EA05001B107A /* FollowingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090662BE6EA05001B107A /* FollowingListViewController.swift */; };
+		6E9090692BE6EA3C001B107A /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090682BE6EA3C001B107A /* FollowerListViewController.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -393,6 +399,11 @@
 		6E9090502BE6CCBF001B107A /* FetchProfileUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecase.swift; sourceTree = "<group>"; };
 		6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableCell.swift; sourceTree = "<group>"; };
+		6E90905F2BE6E871001B107A /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
+		6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanRxBaseViewController.swift; sourceTree = "<group>"; };
+		6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewModel.swift; sourceTree = "<group>"; };
+		6E9090662BE6EA05001B107A /* FollowingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewController.swift; sourceTree = "<group>"; };
+		6E9090682BE6EA3C001B107A /* FollowerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -445,6 +456,7 @@
 				6E567E472BC67C6E00250C56 /* Toast in Frameworks */,
 				6E567E442BC67C5A00250C56 /* Kingfisher in Frameworks */,
 				6E0A4FA62BD1F2A0005A529F /* TextFieldEffects in Frameworks */,
+				6E90905E2BE6E856001B107A /* Tabman in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +763,7 @@
 				6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */,
 				6E0A4FD52BD299F8005A529F /* SignUpBaseViewController.swift */,
 				6ED51E732BE377F2005D7FBD /* TappableBaseViewController.swift */,
+				6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */,
 				6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */,
 			);
 			path = Base;
@@ -1216,6 +1229,7 @@
 		6E9090442BE6C045001B107A /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				6E90905B2BE6E828001B107A /* Follow */,
 				6E9090452BE6C07F001B107A /* MyProfileViewController.swift */,
 				6E9090472BE6C085001B107A /* MyProfileViewModel.swift */,
 				6E9090582BE6DA82001B107A /* Cell */,
@@ -1264,6 +1278,25 @@
 				6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E90905B2BE6E828001B107A /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				6E90905F2BE6E871001B107A /* FollowListViewController.swift */,
+				6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */,
+				6E9090652BE6E9F8001B107A /* FollowTab */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		6E9090652BE6E9F8001B107A /* FollowTab */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090662BE6EA05001B107A /* FollowingListViewController.swift */,
+				6E9090682BE6EA3C001B107A /* FollowerListViewController.swift */,
+			);
+			path = FollowTab;
 			sourceTree = "<group>";
 		};
 		6E9829032BCF428000105910 /* Body */ = {
@@ -1426,6 +1459,7 @@
 				6E567E492BC67CD400250C56 /* RxAlamofire */,
 				6E567E7F2BC68F0900250C56 /* SnapKit */,
 				6E0A4FA52BD1F2A0005A529F /* TextFieldEffects */,
+				6E90905D2BE6E856001B107A /* Tabman */,
 			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
@@ -1461,6 +1495,7 @@
 				6E567E482BC67CD400250C56 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6E0A4FA42BD1F29F005A529F /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
@@ -1547,6 +1582,7 @@
 				6EFB921D2BDBFF7F00AA8D09 /* ShoppingViewModel.swift in Sources */,
 				6E8C9EA92BCA32050086F913 /* PostRequest.swift in Sources */,
 				6E77ED012BCE652600ACDA3B /* HTTPHeaders+.swift in Sources */,
+				6E9090622BE6E973001B107A /* TabmanRxBaseViewController.swift in Sources */,
 				6E77ED0C2BCE6A9500ACDA3B /* APIService.swift in Sources */,
 				6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */,
 				6E0A4FE72BD3ECFD005A529F /* AuthRepository.swift in Sources */,
@@ -1651,6 +1687,7 @@
 				6E0A4F9C2BD14F98005A529F /* SignInViewController.swift in Sources */,
 				6E9090292BE63C3A001B107A /* ReviewTableCell.swift in Sources */,
 				6E0A4FC82BD24164005A529F /* String+.swift in Sources */,
+				6E9090692BE6EA3C001B107A /* FollowerListViewController.swift in Sources */,
 				6E8C9E812BC8B9290086F913 /* LikePostResonse.swift in Sources */,
 				6E77ECFC2BCE5BB900ACDA3B /* Reactive+DataRequest.swift in Sources */,
 				6E567E612BC67EEA00250C56 /* Configurator.swift in Sources */,
@@ -1671,16 +1708,19 @@
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
 				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
+				6E9090602BE6E871001B107A /* FollowListViewController.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
 				6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */,
+				6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */,
 				6ED51E722BE35F7D005D7FBD /* ProductPriceView.swift in Sources */,
 				6E07783D2BD9E30900B3A6EC /* UserRepository.swift in Sources */,
 				6E8C9ECB2BCBF9360086F913 /* PostType.swift in Sources */,
 				6E0778042BD7944D00B3A6EC /* SignUpProfileViewController.swift in Sources */,
+				6E9090672BE6EA05001B107A /* FollowingListViewController.swift in Sources */,
 				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0778342BD922A900B3A6EC /* UIImage+.swift in Sources */,
@@ -1957,6 +1997,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1984,6 +2032,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E567E7E2BC68F0900250C56 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6E90905D2BE6E856001B107A /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

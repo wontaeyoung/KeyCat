@@ -1,5 +1,5 @@
 {
-  "originHash" : "d30d3d6e008ae86a6d903b1f1e03fc05474fd7a3975a6f41bee17689297eaa33",
+  "originHash" : "d15ab072a9d967c56de7dc26949a7f58c4683fab9b5bb2c06c41263c477b3b7a",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -29,6 +29,15 @@
       }
     },
     {
+      "identity" : "pageboy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uias/Pageboy",
+      "state" : {
+        "revision" : "be0c1f6f1964cfb07f9d819b0863f2c3f255f612",
+        "version" : "4.2.0"
+      }
+    },
+    {
       "identity" : "rxalamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxAlamofire",
@@ -53,6 +62,15 @@
       "state" : {
         "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
         "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "tabman",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uias/Tabman",
+      "state" : {
+        "revision" : "3b2213290eb93e55bb50b49d1a179033005c11ab",
+        "version" : "3.2.0"
       }
     },
     {
