@@ -107,9 +107,9 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       discountExpiryDateView
     )
   }
-  private let regularPriceField = ValidationField(inputInformation: .regularPrice, type: .numberPad)
-  private let discountPriceField = ValidationField(inputInformation: .discountPrice, type: .numberPad)
-  private let couponPriceField = ValidationField(inputInformation: .coupon, type: .numberPad)
+  private let regularPriceField = KCField(placeholder: InputInformation.regularPrice.title, clearable: false)
+  private let discountPriceField = KCField(placeholder: InputInformation.discountPrice.title, clearable: false)
+  private let couponPriceField = KCField(placeholder: InputInformation.coupon.title, clearable: false)
   private lazy var discountExpiryDateView = UIView().configured { view in
     view.addSubviews(
       discountExpiryDateTitleLabel,
@@ -640,15 +640,6 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
         break
     }
   }
-}
-
-@available(iOS 17.0, *)
-#Preview {
-  return UINavigationController(
-    rootViewController: CreateCommercialPostViewController(
-      viewModel: CreateCommercialPostViewModel()
-    )
-  )
 }
 
 extension CreateCommercialPostViewController: PHPickerViewControllerDelegate {
