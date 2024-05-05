@@ -14,9 +14,9 @@ struct Profile: Entity {
   let nickname: String
   let userType: UserType
   let profileImageURLString: URLString
-  let followers: [User]
-  let folllowing: [User]
-  let postIDs: [PostID]
+  var followers: [User]
+  var folllowing: [User]
+  var postIDs: [PostID]
   let profileType: ProfileType
   
   var profileImageURL: URL? {
