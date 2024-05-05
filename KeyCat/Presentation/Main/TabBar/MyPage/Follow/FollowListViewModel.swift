@@ -12,7 +12,13 @@ final class FollowListViewModel: ViewModel {
   
   // MARK: - I / O
   struct Input {
+    let followCellTapEvent: PublishRelay<User>
     
+    init(
+      followCellTapEvent: PublishRelay<User> = .init()
+    ) {
+      self.followCellTapEvent = followCellTapEvent
+    }
   }
   
   struct Output {
@@ -23,26 +29,23 @@ final class FollowListViewModel: ViewModel {
   let disposeBag = DisposeBag()
   weak var coordinator: MyPageCoordinator?
   private let profile: BehaviorRelay<Profile>
+  private let myProfile: BehaviorRelay<Profile>
   
   // MARK: - Initializer
-  init(profile: BehaviorRelay<Profile>) {
-    let profile = profile
-    var profileValue = profile.value
-    profileValue.folllowing = (1...15).map {
-      User(userID: "id\($0)", nickname: "닉네임 \($0)", profileImageURLString: "")
-    }
-    
-    profileValue.followers = (1...10).map {
-      User(userID: "id\($0)", nickname: "이름 \($0)", profileImageURLString: "")
-    }
-    profile.accept(profileValue)
-    
+  init(profile: BehaviorRelay<Profile>, myProfile: BehaviorRelay<Profile>) {
     self.profile = profile
+    self.myProfile = myProfile
   }
   
   // MARK: - Method
   func transform(input: Input) -> Output {
    
+    input.followCellTapEvent
+      .bind(with: self) { owner, user in
+        owner.coordinator?.showMyProfileView(userID: user.userID, myProfile: owner.myProfile)
+      }
+      .disposed(by: disposeBag)
+    
     return Output(profile: profile.asDriver())
   }
 }

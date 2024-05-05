@@ -53,7 +53,7 @@ final class FollowListViewController: RxBaseViewController, ViewModelController 
     
     /// 프로필 셀 연결
     output.profile
-      .map { self.followTab == .following ? $0.folllowing : $0.followers }
+      .map { self.followTab == .following ? $0.following : $0.followers }
       .drive(tableView.rx.items(
         cellIdentifier: FollowTableCell.identifier, 
         cellType: FollowTableCell.self)
@@ -62,6 +62,11 @@ final class FollowListViewController: RxBaseViewController, ViewModelController 
         cell.setData(follow: user)
         cell.selectionStyle = .none
       }
+      .disposed(by: disposeBag)
+    
+    /// 팔로우 유저 탭 이벤트 전달
+    tableView.rx.modelSelected(User.self)
+      .bind(to: input.followCellTapEvent)
       .disposed(by: disposeBag)
   }
 }

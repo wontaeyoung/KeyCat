@@ -21,27 +21,32 @@ final class MyPageCoordinator: SubCoordinator {
   }
   
   func start() {
-    showMyProfileView()
+    showMyProfileView(userID: UserInfoService.userID, myProfile: nil)
   }
 }
 
 extension MyPageCoordinator {
   
-  private func showMyProfileView() {
+  func showMyProfileView(userID: User.UserID, myProfile: BehaviorRelay<Profile>?) {
     
-    let vm = MyProfileViewModel()
+    let vm = ProfileViewModel(userID: userID, myProfile: myProfile)
       .coordinator(self)
     
-    let vc = MyProfileViewController(viewModel: vm)
+    let vc = ProfileViewController(viewModel: vm)
       .hideBackTitle()
-      .kcNavigationTitle(with: "마이 페이지")
+    
+    if UserInfoService.isMyUserID(with: userID) {
+      vc.setKCNavigationTitle(with: "마이 페이지")
+    } else {
+      vc.setTabBarHidden()
+    }
     
     push(vc)
   }
   
-  func showFollowListView(profile: BehaviorRelay<Profile>, followTab: FollowTabmanViewController.FollowTab) {
+  func showFollowListView(profile: BehaviorRelay<Profile>, myProfile: BehaviorRelay<Profile>, followTab: FollowTabmanViewController.FollowTab) {
     
-    let vm = FollowListViewModel(profile: profile)
+    let vm = FollowListViewModel(profile: profile, myProfile: myProfile)
       .coordinator(self)
     
     let vc = FollowTabmanViewController(viewModel: vm, followTab: followTab)
