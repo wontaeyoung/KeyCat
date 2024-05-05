@@ -59,7 +59,7 @@ final class ProfileTableCell: RxBaseTableViewCell {
         countLabel.text = profile.following.count.description
       case .follower:
         countLabel.text = profile.followers.count.description
-      case .withdraw:
+      case .signOut, .withdraw:
         titleLabel.textColor = KCAsset.Color.incorrect
       case .bookmark, .updateProfile:
         break

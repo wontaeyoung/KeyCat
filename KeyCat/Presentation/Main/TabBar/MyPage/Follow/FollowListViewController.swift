@@ -42,10 +42,6 @@ final class FollowListViewController: RxBaseViewController, ViewModelController 
     }
   }
   
-  override func setAttribute() {
-    
-  }
-  
   override func bind() {
    
     let input = FollowListViewModel.Input()

@@ -131,6 +131,7 @@ extension ProfileViewController {
     case follower
     case bookmark
     case updateProfile
+    case signOut
     case withdraw
     
     var title: String {
@@ -140,13 +141,14 @@ extension ProfileViewController {
         case .follower: "팔로워"
         case .bookmark: "북마크"
         case .updateProfile: "내 프로필 수정"
+        case .signOut: "로그아웃"
         case .withdraw: "회원탈퇴"
       }
     }
     
     var accessory: UITableViewCell.AccessoryType {
       switch self {
-        case .withdraw:
+        case .signOut, .withdraw:
           return .none
           
         default:

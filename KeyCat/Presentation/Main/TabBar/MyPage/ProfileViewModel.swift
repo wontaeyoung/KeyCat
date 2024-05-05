@@ -163,6 +163,8 @@ final class ProfileViewModel: ViewModel {
         coordinator?.showPostListView(userID: profile.value.userID, postCase: .bookmark)
       case .updateProfile:
         break
+      case .signOut:
+        break
       case .withdraw:
         break
     }
