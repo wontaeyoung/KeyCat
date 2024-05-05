@@ -95,7 +95,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     /// 리뷰 탭 이벤트 > 리뷰 화면 연결
     input.reviewTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.ConnectReviewFlow(post: owner.post)
+        owner.coordinator?.connectReviewFlow(post: owner.post)
       }
       .disposed(by: disposeBag)
       
