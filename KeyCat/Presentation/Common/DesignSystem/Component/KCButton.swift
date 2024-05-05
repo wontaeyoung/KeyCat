@@ -89,6 +89,7 @@ extension KCButton {
     
     private static let iconConfig: UIButton.Configuration = .plain().applied {
       
+      $0.baseForegroundColor = KCAsset.Color.black.color
       $0.cornerStyle = .capsule
       $0.buttonSize = .large
     }

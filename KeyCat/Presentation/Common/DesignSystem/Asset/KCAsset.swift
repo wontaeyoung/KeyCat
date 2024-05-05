@@ -23,6 +23,8 @@ enum KCAsset {
     case pastelBlue = "#A0C3D2"
     case pastelGreen = "#A8D1D1"
     
+    case red = "#EA4E3D"
+    
     var color: UIColor {
       return UIColor(hex: self.rawValue)
     }
