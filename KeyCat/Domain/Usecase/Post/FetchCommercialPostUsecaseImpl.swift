@@ -23,4 +23,16 @@ final class FetchCommercialPostUsecaseImpl: FetchCommercialPostUsecase {
   func fetchSepecificPost(postID: CommercialPost.PostID) -> Single<CommercialPost?> {
     return postRepository.fetchSpecificPost(postID: postID)
   }
+  
+  func fetchCommercialPostsFromUser(userID: User.UserID, nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    return postRepository.fetchCommercialPostsFromUser(userID: userID, nextCursor: nextCursor)
+  }
+  
+  func fetchBookmarkPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    return postRepository.fetchBookmarkPosts(nextCursor: nextCursor)
+  }
+  
+  func fetchCartPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+    return postRepository.fetchCartPosts(nextCursor: nextCursor)
+  }
 }
