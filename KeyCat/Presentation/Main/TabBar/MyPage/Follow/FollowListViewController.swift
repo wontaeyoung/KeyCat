@@ -58,6 +58,7 @@ final class FollowListViewController: RxBaseViewController, ViewModelController 
         cellIdentifier: FollowTableCell.identifier, 
         cellType: FollowTableCell.self)
       ) { row, user, cell in
+        
         cell.setData(follow: user)
         cell.selectionStyle = .none
       }

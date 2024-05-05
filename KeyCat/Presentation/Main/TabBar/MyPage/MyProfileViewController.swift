@@ -14,7 +14,7 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let profileView = ProfileView()
-  private let profileTableTitleLabel = KCLabel(title: "내 정보", font: .bold(size: 18), color: .darkGray)
+  private let profileTableTitleLabel = KCLabel(font: .bold(size: 18), color: .darkGray)
   private let profileTableView = UITableView().configured {
     $0.register(MyProfileTableCell.self, forCellReuseIdentifier: MyProfileTableCell.identifier)
   }
@@ -70,8 +70,9 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
       .bind(to: profileView.rx.profile)
       .disposed(by: disposeBag)
     
+    /// 정보 테이블 Row 설정
     output.profile
-      .map { _ in ProfileRow.allCases }
+      .map { ProfileRow.rows(type: $0.profileType) }
       .asDriver(onErrorJustReturn: [])
       .drive(
         profileTableView.rx.items(
@@ -85,24 +86,18 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
       }
       .disposed(by: disposeBag)
     
+    /// 정보 테이블 타이틀 결정
+    output.profile
+      .map { $0.profileType == .mine ? "내 정보" : "\($0.nickname)님의 정보" }
+      .bind(to: profileTableTitleLabel.rx.text)
+      .disposed(by: disposeBag)
+    
     input.viewDidLoadEvent.accept(())
-    
-    
   }
 }
 
 extension MyProfileViewController {
-
-  enum ProfileSection: String, CaseIterable {
-    
-    case list = "리스트"
-    case myInfo = "내 정보"
-    
-    var title: String {
-      return self.rawValue
-    }
-  }
-
+  
   enum ProfileRow: Int, CaseIterable {
     
     case writingPosts
@@ -133,12 +128,13 @@ extension MyProfileViewController {
       }
     }
     
-    static func rows(section: ProfileSection) -> [ProfileRow] {
-      switch section {
-        case .list:
-          return [.myPosts, .following, .follower, .bookmark]
-        case .myInfo:
-          return [.updateProfile, .withdraw]
+    static func rows(type: Profile.ProfileType) -> [ProfileRow] {
+      switch type {
+        case .mine:
+          return ProfileRow.allCases
+          
+        case .other:
+          return [.writingPosts, .following, .follower]
       }
     }
   }
