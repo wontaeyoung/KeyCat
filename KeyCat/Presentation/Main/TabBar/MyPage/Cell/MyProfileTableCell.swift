@@ -48,18 +48,19 @@ final class MyProfileTableCell: RxBaseTableViewCell {
   
   func setData(rowType: MyProfileViewController.ProfileRow, profile: Profile) {
     titleLabel.text = rowType.title
+    countLabel.text = .defaultValue
     
     switch rowType {
       case .writingPosts:
         titleLabel.textColor = KCAsset.Color.black.color
         countLabel.text = UserInfoService.hasSellerAuthority ? profile.postIDs.count.description : "-"
+        
       case .following:
-        countLabel.text = profile.folllowing.count.description
+        countLabel.text = profile.following.count.description
       case .follower:
         countLabel.text = profile.followers.count.description
-      case.withdraw:
+      case .withdraw:
         titleLabel.textColor = KCAsset.Color.incorrect
-        countLabel.text = .defaultValue
       case .bookmark, .updateProfile:
         break
     }
