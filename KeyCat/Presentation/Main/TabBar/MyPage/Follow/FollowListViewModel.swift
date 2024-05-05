@@ -42,7 +42,7 @@ final class FollowListViewModel: ViewModel {
    
     input.followCellTapEvent
       .bind(with: self) { owner, user in
-        owner.coordinator?.showMyProfileView(userID: user.userID, myProfile: owner.myProfile)
+        owner.coordinator?.showMyProfileView(userID: user.userID)
       }
       .disposed(by: disposeBag)
     

@@ -38,18 +38,16 @@ final class ProfileViewModel: ViewModel {
   private let userInteractionUsecase: any UserInteractionUsecase
   
   private let userID: User.UserID
-  private let myProfile: BehaviorRelay<Profile>
+  private let myProfile = BehaviorRelay<Profile>(value: .empty)
   private let profile = BehaviorRelay<Profile>(value: .empty)
   
   // MARK: - Initializer
   init(
     userID: User.UserID,
-    myProfile: BehaviorRelay<Profile>?,
     fetchProfileUsecase: any FetchProfileUsecase = FetchProfileUsecaseImpl(),
     userInteractionUsecase: any UserInteractionUsecase = UserInteractionUsecaseImpl()
   ) {
     self.userID = userID
-    self.myProfile = myProfile ?? BehaviorRelay<Profile>(value: .empty)
     self.fetchProfileUsecase = fetchProfileUsecase
     self.userInteractionUsecase = userInteractionUsecase
   }

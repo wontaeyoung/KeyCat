@@ -187,6 +187,7 @@
 		6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90906E2BE75C8D001B107A /* TabmanRxBaseViewController.swift */; };
 		6E9090712BE76AE0001B107A /* UserInteractionUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090702BE76AE0001B107A /* UserInteractionUsecase.swift */; };
 		6E9090732BE76B58001B107A /* UserInteractionUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090722BE76B58001B107A /* UserInteractionUsecaseImpl.swift */; };
+		6E9090762BE77D60001B107A /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090752BE77D60001B107A /* PostListViewController.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
 		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
@@ -408,6 +409,7 @@
 		6E90906E2BE75C8D001B107A /* TabmanRxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanRxBaseViewController.swift; sourceTree = "<group>"; };
 		6E9090702BE76AE0001B107A /* UserInteractionUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionUsecase.swift; sourceTree = "<group>"; };
 		6E9090722BE76B58001B107A /* UserInteractionUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionUsecaseImpl.swift; sourceTree = "<group>"; };
+		6E9090752BE77D60001B107A /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
@@ -1235,6 +1237,7 @@
 			children = (
 				6E9090452BE6C07F001B107A /* ProfileViewController.swift */,
 				6E9090472BE6C085001B107A /* ProfileViewModel.swift */,
+				6E9090742BE77D4A001B107A /* Post */,
 				6E9090582BE6DA82001B107A /* Cell */,
 				6E9090492BE6C15F001B107A /* Coordinator */,
 				6E90904C2BE6C436001B107A /* View */,
@@ -1303,6 +1306,14 @@
 				6E90906B2BE7446A001B107A /* FollowTableCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		6E9090742BE77D4A001B107A /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6E9090752BE77D60001B107A /* PostListViewController.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 		6E9829032BCF428000105910 /* Body */ = {
@@ -1584,6 +1595,7 @@
 				6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */,
 				6E9090512BE6CCBF001B107A /* FetchProfileUsecase.swift in Sources */,
 				6ED51E742BE377F2005D7FBD /* TappableBaseViewController.swift in Sources */,
+				6E9090762BE77D60001B107A /* PostListViewController.swift in Sources */,
 				6E8C9E662BC8149D0086F913 /* Response.swift in Sources */,
 				6E0A4FED2BD4ECC4005A529F /* HTTPErrorTransformer.swift in Sources */,
 				6E8C9E892BC8B9F70086F913 /* LoginRequest.swift in Sources */,

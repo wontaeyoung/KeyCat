@@ -72,7 +72,7 @@ extension ShoppingCoordinator {
   func connectProfileFlow(user: User) {
     let coordinator = MyPageCoordinator(navigationController)
     coordinator.delegate = self
-    coordinator.showMyProfileView(userID: user.userID, myProfile: nil)
+    coordinator.showMyProfileView(userID: user.userID)
     addChild(coordinator)
   }
 }

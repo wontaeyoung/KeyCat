@@ -21,15 +21,15 @@ final class MyPageCoordinator: SubCoordinator {
   }
   
   func start() {
-    showMyProfileView(userID: UserInfoService.userID, myProfile: nil)
+    showMyProfileView(userID: UserInfoService.userID)
   }
 }
 
 extension MyPageCoordinator {
   
-  func showMyProfileView(userID: User.UserID, myProfile: BehaviorRelay<Profile>?) {
+  func showMyProfileView(userID: User.UserID) {
     
-    let vm = ProfileViewModel(userID: userID, myProfile: myProfile)
+    let vm = ProfileViewModel(userID: userID)
       .coordinator(self)
     
     let vc = ProfileViewController(viewModel: vm)
