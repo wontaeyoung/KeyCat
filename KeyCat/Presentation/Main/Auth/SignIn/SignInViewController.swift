@@ -18,25 +18,17 @@ final class SignInViewController: TappableBaseViewController, ViewModelControlle
     $0.contentMode = .scaleAspectFit
     $0.image = .keyCatOpacity
   }
-  
   private let appLogoLabel = KCLabel(
     title: Constant.Label.appName,
     font: .bold(size: 50),
     color: .brand,
     alignment: .center
   )
-  
-  private let emailField =
-  KCField(placeholder: InputInformation.email.title)
-  
+  private let emailField = KCField(placeholder: InputInformation.email.title, clearable: false)
   private let passwordField = KCField(placeholder: InputInformation.password.title, clearable: false)
-  
   private lazy var secureButton = SecureButton(field: passwordField)
-  
   private let signInButton = KCButton(style: .primary, title: Constant.Button.signIn)
-  
   private let signUpView = UIView()
-  
   private let signUpInfoLabel = KCLabel(
     title: Constant.Label.signUpInfo,
     font: .medium(size: 15),
@@ -44,7 +36,6 @@ final class SignInViewController: TappableBaseViewController, ViewModelControlle
     line: 2,
     alignment: .right
   )
-  
   private let signUpButton = KCButton(style: .plain, title: Constant.Button.signUp)
   
   
