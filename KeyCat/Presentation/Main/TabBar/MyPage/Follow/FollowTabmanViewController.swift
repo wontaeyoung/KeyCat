@@ -12,7 +12,7 @@ import RxCocoa
 import Tabman
 import Pageboy
 
-final class FollowTabmanViewController: TabmanViewController, ViewModelController {
+final class FollowTabmanViewController: TabmanRxBaseViewController, ViewModelController {
   
   // MARK: - UI
   private lazy var viewControllers: [UIViewController] = [
@@ -52,8 +52,9 @@ final class FollowTabmanViewController: TabmanViewController, ViewModelControlle
     self.viewModel = viewModel
     
     super.init()
-    self.dataSource = self
+    
     addBar(bar, dataSource: self, at: .top)
+    self.dataSource = self
     self.scrollToPage(.at(index: followTab.rawValue), animated: true)
   }
   
