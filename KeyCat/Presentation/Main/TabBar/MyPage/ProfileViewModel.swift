@@ -39,6 +39,7 @@ final class ProfileViewModel: ViewModel {
   
   private let userID: User.UserID
   private let myProfile: BehaviorRelay<Profile>
+  private let profile = BehaviorRelay<Profile>(value: .empty)
   
   // MARK: - Initializer
   init(
@@ -56,25 +57,28 @@ final class ProfileViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    let profile = BehaviorRelay<Profile>(value: .empty)
-    
-    profile
-      .filter { $0.profileType == .mine }
+    /// 화면 로드 > 내 프로필 갱신
+    input.viewDidLoadEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchProfileUsecase.fetchMyProfile()
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .never()
+          }
+      }
       .bind(to: myProfile)
       .disposed(by: disposeBag)
-  
-    /// 화면 진입 이벤트 > 프로필 조회 호출
+    
+    /// 내 프로필 화면이면 조회 결과 공유, 상대 프로필이면 신규 조회
     input.viewDidLoadEvent
       .map { UserInfoService.isMyUserID(with: self.userID) }
       .withUnretained(self)
       .flatMap { owner, isMine in
-        print("HERe", isMine)
         
-        let profile: Single<Profile> = isMine 
-        ? owner.fetchProfileUsecase.fetchMyProfile()
+        return isMine
+        ? .just(owner.myProfile.value)
         : owner.fetchProfileUsecase.fetchOtherProfile(userID: self.userID)
-        
-        return profile
           .catch {
             owner.coordinator?.showErrorAlert(error: $0)
             return .never()
@@ -86,7 +90,7 @@ final class ProfileViewModel: ViewModel {
     /// 프로필 셀 탭 이벤트 핸들링
     input.tableCellTapEvent
       .bind(with: self) { owner, row in
-        owner.handleProfileRowTapEvent(with: row, profile: profile)
+        owner.handleProfileRowTapEvent(with: row, profile: owner.profile)
       }
       .disposed(by: disposeBag)
     
@@ -106,7 +110,7 @@ final class ProfileViewModel: ViewModel {
           }
       }
       .bind(with: self) { owner, status in
-        owner.updateFollowInProfile(status: status, otherProfileRelay: profile)
+        owner.updateFollowInProfile(status: status)
       }
       .disposed(by: disposeBag)
     
@@ -115,17 +119,21 @@ final class ProfileViewModel: ViewModel {
     )
   }
   
-  private func updateFollowInProfile(status: Bool, otherProfileRelay: BehaviorRelay<Profile>) {
+  private func updateFollowInProfile(status: Bool) {
     
     var myProfile = myProfile.value
-    var otherProfile = otherProfileRelay.value
+    var otherProfile = profile.value
     
     if status {
       myProfile.following.append(makeUser(from: otherProfile))
       otherProfile.followers.append(makeUser(from: myProfile))
     } else {
+      
+      let myFollowing = myProfile.following.map({ $0.userID })
+      let othersFollowers = otherProfile.followers.map({ $0.userID })
+      
       guard
-        let myProfileIndex = otherProfile.followers.map({ $0.userID }).firstIndex(of: myProfile.userID),
+        let myProfileIndex = otherProfile.followers.map({ $0.userID }).firstIndex(of: UserInfoService.userID),
         let otherProfileIndex = myProfile.following.map({ $0.userID }).firstIndex(of: otherProfile.userID)
       else {
         return
@@ -136,7 +144,7 @@ final class ProfileViewModel: ViewModel {
     }
     
     self.myProfile.accept(myProfile)
-    otherProfileRelay.accept(otherProfile)
+    self.profile.accept(otherProfile)
   }
   
   private func makeUser(from profile: Profile) -> User {
