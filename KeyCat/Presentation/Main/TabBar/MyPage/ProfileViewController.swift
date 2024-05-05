@@ -1,5 +1,5 @@
 //
-//  MyProfileViewController.swift
+//  ProfileViewController.swift
 //  KeyCat
 //
 //  Created by 원태영 on 5/5/24.
@@ -10,20 +10,21 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class MyProfileViewController: RxBaseViewController, ViewModelController {
+final class ProfileViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
   private let profileView = ProfileView()
+  private let followButton = KCButton(style: .secondary)
   private let profileTableTitleLabel = KCLabel(font: .bold(size: 18), color: .darkGray)
   private let profileTableView = UITableView().configured {
     $0.register(MyProfileTableCell.self, forCellReuseIdentifier: MyProfileTableCell.identifier)
   }
   
   // MARK: - Property
-  let viewModel: MyProfileViewModel
+  let viewModel: ProfileViewModel
   
   // MARK: - Initializer
-  init(viewModel: MyProfileViewModel) {
+  init(viewModel: ProfileViewModel) {
     self.viewModel = viewModel
     
     super.init()
@@ -33,6 +34,7 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
   override func setHierarchy() {
     view.addSubviews(
       profileView,
+      followButton,
       profileTableTitleLabel,
       profileTableView
     )
@@ -44,8 +46,13 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
+    followButton.snp.makeConstraints { make in
+      make.top.equalTo(profileView.snp.bottom).offset(20)
+      make.horizontalEdges.equalToSuperview().inset(20)
+    }
+    
     profileTableTitleLabel.snp.makeConstraints { make in
-      make.top.equalTo(profileView.snp.bottom).offset(40)
+      make.top.equalTo(followButton.snp.bottom).offset(40)
       make.horizontalEdges.equalToSuperview().inset(20)
     }
     
@@ -58,7 +65,7 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
   
   override func bind() {
     
-    let input = MyProfileViewModel.Input()
+    let input = ProfileViewModel.Input()
     let output = viewModel.transform(input: input)
     
     profileTableView.rx.modelSelected(ProfileRow.self)
@@ -68,6 +75,19 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
     /// 프로필 데이터 표시
     output.profile
       .bind(to: profileView.rx.profile)
+      .disposed(by: disposeBag)
+    
+    /// 내 프로필이면 팔로우 버튼 숨김처리
+    output.profile
+      .map { $0.profileType == .mine }
+      .bind(to: followButton.rx.isHidden)
+      .disposed(by: disposeBag)
+    
+    /// 팔로워 포함 여부 > 팔로우 버튼 타이틀 반영
+    output.profile
+      .map { $0.isFollowing }
+      .map { $0 ? "팔로우 취소" : "팔로우" }
+      .bind(to: followButton.rx.title())
       .disposed(by: disposeBag)
     
     /// 정보 테이블 Row 설정
@@ -80,9 +100,9 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
           cellType: MyProfileTableCell.self)
       ) { row, item, cell in
         
-        cell.setData(rowType: item, profile: output.profile.value)
-        cell.selectionStyle = .none
         cell.accessoryType = item.accessory
+        cell.selectionStyle = .none
+        cell.setData(rowType: item, profile: output.profile.value)
       }
       .disposed(by: disposeBag)
     
@@ -92,11 +112,17 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
       .bind(to: profileTableTitleLabel.rx.text)
       .disposed(by: disposeBag)
     
+    /// 팔로우 버튼 탭 이벤트 전달
+    followButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.followTapEvent)
+      .disposed(by: disposeBag)
+    
     input.viewDidLoadEvent.accept(())
   }
 }
 
-extension MyProfileViewController {
+extension ProfileViewController {
   
   enum ProfileRow: Int, CaseIterable {
     

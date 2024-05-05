@@ -96,7 +96,7 @@ final class ProfileView: RxBaseView {
     
     profileImageView.load(with: profile.profileImageURL)
     nicknameLabel.text = profile.nickname
-    followingLabel.text = "팔로잉 \(profile.folllowing.count)"
+    followingLabel.text = "팔로잉 \(profile.following.count)"
     followerLabel.text = "팔로워 \(profile.followers.count)"
     
     if UserInfoService.hasSellerAuthority { sellerIcon.image = KCAsset.Symbol.seller }

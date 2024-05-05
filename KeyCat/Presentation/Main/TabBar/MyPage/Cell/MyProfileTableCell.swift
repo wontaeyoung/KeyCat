@@ -46,7 +46,7 @@ final class MyProfileTableCell: RxBaseTableViewCell {
     }
   }
   
-  func setData(rowType: MyProfileViewController.ProfileRow, profile: Profile) {
+  func setData(rowType: ProfileViewController.ProfileRow, profile: Profile) {
     titleLabel.text = rowType.title
     countLabel.text = .defaultValue
     
