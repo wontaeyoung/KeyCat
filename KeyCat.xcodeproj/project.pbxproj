@@ -181,7 +181,6 @@
 		6E90905A2BE6DA8C001B107A /* MyProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */; };
 		6E90905E2BE6E856001B107A /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 6E90905D2BE6E856001B107A /* Tabman */; };
 		6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90905F2BE6E871001B107A /* FollowTabmanViewController.swift */; };
-		6E9090622BE6E973001B107A /* TabmanRxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */; };
 		6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */; };
 		6E9090672BE6EA05001B107A /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9090662BE6EA05001B107A /* FollowListViewController.swift */; };
 		6E90906C2BE7446A001B107A /* FollowTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90906B2BE7446A001B107A /* FollowTableCell.swift */; };
@@ -400,7 +399,6 @@
 		6E9090532BE6CCD6001B107A /* FetchProfileUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E9090592BE6DA8C001B107A /* MyProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableCell.swift; sourceTree = "<group>"; };
 		6E90905F2BE6E871001B107A /* FollowTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTabmanViewController.swift; sourceTree = "<group>"; };
-		6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanRxBaseViewController.swift; sourceTree = "<group>"; };
 		6E9090632BE6E9B9001B107A /* FollowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewModel.swift; sourceTree = "<group>"; };
 		6E9090662BE6EA05001B107A /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListViewController.swift; sourceTree = "<group>"; };
 		6E90906B2BE7446A001B107A /* FollowTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableCell.swift; sourceTree = "<group>"; };
@@ -763,7 +761,6 @@
 				6E567E4E2BC67DFC00250C56 /* RxBaseViewController.swift */,
 				6E0A4FD52BD299F8005A529F /* SignUpBaseViewController.swift */,
 				6ED51E732BE377F2005D7FBD /* TappableBaseViewController.swift */,
-				6E9090612BE6E973001B107A /* TabmanRxBaseViewController.swift */,
 				6EC802052BDEB99D00FE2B69 /* RxBaseView.swift */,
 			);
 			path = Base;
@@ -1229,12 +1226,12 @@
 		6E9090442BE6C045001B107A /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				6E90905B2BE6E828001B107A /* Follow */,
 				6E9090452BE6C07F001B107A /* MyProfileViewController.swift */,
 				6E9090472BE6C085001B107A /* MyProfileViewModel.swift */,
 				6E9090582BE6DA82001B107A /* Cell */,
-				6E90904C2BE6C436001B107A /* View */,
 				6E9090492BE6C15F001B107A /* Coordinator */,
+				6E90904C2BE6C436001B107A /* View */,
+				6E90905B2BE6E828001B107A /* Follow */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1583,7 +1580,6 @@
 				6EFB921D2BDBFF7F00AA8D09 /* ShoppingViewModel.swift in Sources */,
 				6E8C9EA92BCA32050086F913 /* PostRequest.swift in Sources */,
 				6E77ED012BCE652600ACDA3B /* HTTPHeaders+.swift in Sources */,
-				6E9090622BE6E973001B107A /* TabmanRxBaseViewController.swift in Sources */,
 				6E77ED0C2BCE6A9500ACDA3B /* APIService.swift in Sources */,
 				6E8C9ECF2BCBFA260086F913 /* GroupBuyPost.swift in Sources */,
 				6E0A4FE72BD3ECFD005A529F /* AuthRepository.swift in Sources */,

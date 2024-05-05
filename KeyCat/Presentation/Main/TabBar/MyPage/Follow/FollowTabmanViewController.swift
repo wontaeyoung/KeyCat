@@ -12,7 +12,7 @@ import RxCocoa
 import Tabman
 import Pageboy
 
-final class FollowTabmanViewController: TabmanRxBaseViewController, ViewModelController {
+final class FollowTabmanViewController: TabmanViewController, ViewModelController {
   
   // MARK: - UI
   private lazy var viewControllers: [UIViewController] = [
@@ -57,25 +57,10 @@ final class FollowTabmanViewController: TabmanRxBaseViewController, ViewModelCon
     self.scrollToPage(.at(index: followTab.rawValue), animated: true)
   }
   
-  // MARK: - Life Cycle
-  override func setHierarchy() {
-    
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
-  
-  override func setConstraint() {
-    
-  }
-  
-  override func setAttribute() {
-    
-  }
-  
-  override func bind() {
-    
-  }
-  
-  // MARK: - Method
-  
 }
 
 extension FollowTabmanViewController: PageboyViewControllerDataSource, TMBarDataSource {
