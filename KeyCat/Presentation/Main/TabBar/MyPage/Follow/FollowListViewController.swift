@@ -9,61 +9,37 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import Tabman
-import Pageboy
 
-final class FollowListViewController: TabmanRxBaseViewController, ViewModelController {
+final class FollowListViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
-  private lazy var viewControllers: [UIViewController] = [
-    FollowingListViewController(viewModel: viewModel),
-    FollowerListViewController(viewModel: viewModel)
-  ]
-  
-  private lazy var bar = TMBar.ButtonBar().configured {
-    $0.layout.transitionStyle = .snap
-    $0.layout.alignment = .centerDistributed
-    $0.layout.contentMode = .fit
-    
-    $0.backgroundView.style = .clear
-    $0.backgroundColor = KCAsset.Color.white.color
-    
-    $0.buttons.customize {
-      $0.tintColor = KCAsset.Color.darkGray.color
-      $0.selectedTintColor = KCAsset.Color.black.color
-      $0.font = KCAsset.Font.bold(size: 14).font
-    }
-    
-    $0.indicator.configure {
-      $0.weight = .medium
-      $0.overscrollBehavior = .compress
-      $0.tintColor = KCAsset.Color.brand.color
-    }
+  private let tableView = UITableView().configured {
+    $0.register(FollowTableCell.self, forCellReuseIdentifier: FollowTableCell.identifier)
   }
   
   // MARK: - Property
   let viewModel: FollowListViewModel
+  private let followTab: FollowTabmanViewController.FollowTab
   
   // MARK: - Initializer
-  init(
-    viewModel: FollowListViewModel,
-    followTab: FollowTab
-  ) {
+  init(viewModel: FollowListViewModel, followTab: FollowTabmanViewController.FollowTab) {
     self.viewModel = viewModel
+    self.followTab = followTab
     
     super.init()
-    self.dataSource = self
-    addBar(bar, dataSource: self, at: .top)
-    self.scrollToPage(.at(index: followTab.rawValue), animated: true)
   }
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    
+    view.addSubviews(
+      tableView
+    )
   }
   
   override func setConstraint() {
-    
+    tableView.snp.makeConstraints { make in
+      make.edges.equalTo(view.safeAreaLayoutGuide)
+    }
   }
   
   override func setAttribute() {
@@ -71,50 +47,20 @@ final class FollowListViewController: TabmanRxBaseViewController, ViewModelContr
   }
   
   override func bind() {
+   
+    let input = FollowListViewModel.Input()
+    let output = viewModel.transform(input: input)
     
-  }
-  
-  // MARK: - Method
-  
-}
-
-extension FollowListViewController: PageboyViewControllerDataSource, TMBarDataSource {
-  
-  enum FollowTab: Int, CaseIterable {
-    
-    case following
-    case follower
-    
-    var title: String {
-      switch self {
-        case .following: "팔로잉"
-        case .follower: "팔로워"
+    /// 프로필 셀 연결
+    output.profile
+      .map { self.followTab == .following ? $0.folllowing : $0.followers }
+      .drive(tableView.rx.items(
+        cellIdentifier: FollowTableCell.identifier, 
+        cellType: FollowTableCell.self)
+      ) { row, user, cell in
+        cell.setData(follow: user)
+        cell.selectionStyle = .none
       }
-    }
-    
-    var barItem: TMBarItemable {
-      return TMBarItem(title: title)
-    }
-    
-    init(_ index: Int) {
-      self = Self(rawValue: index) ?? Self.following
-    }
-  }
-  
-  func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-    
-    return FollowTab(index).barItem
-  }
-  
-  func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
-    return viewControllers.count
-  }
-  
-  func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
-    return viewControllers[index]
-  }
-  
-  func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
-    return nil
+      .disposed(by: disposeBag)
   }
 }
