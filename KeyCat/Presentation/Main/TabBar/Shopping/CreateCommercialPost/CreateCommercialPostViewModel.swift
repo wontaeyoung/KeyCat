@@ -113,11 +113,15 @@ final class CreateCommercialPostViewModel: ViewModel {
   weak var coordinator: ShoppingCoordinator?
   private let createPostUsecase: CreatePostUsecase
   
+  private let posts: BehaviorRelay<[CommercialPost]>
+  
   // MARK: - Initializer
   init(
-    createPostUsecase: CreatePostUsecase = CreatePostUsecaseImpl()
+    createPostUsecase: CreatePostUsecase = CreatePostUsecaseImpl(),
+    posts: BehaviorRelay<[CommercialPost]>
   ) {
     self.createPostUsecase = createPostUsecase
+    self.posts = posts
   }
   
   // MARK: - Method
@@ -125,6 +129,15 @@ final class CreateCommercialPostViewModel: ViewModel {
     
     let postCreatable = BehaviorRelay<Bool>(value: false)
     let isSuccessCreatePost = BehaviorRelay<Bool>(value: false)
+    
+    let postCreatedEvent = PublishRelay<CommercialPost>()
+    
+    /// 작성된 게시물을 원본 배열에 반영
+    postCreatedEvent
+      .bind(with: self) { owner, post in
+        owner.addPostInList(updatedPost: post)
+      }
+      .disposed(by: disposeBag)
     
     /// 상품 판매 게시글 작성
     input.createPostTapEvent
@@ -135,10 +148,14 @@ final class CreateCommercialPostViewModel: ViewModel {
         return owner.createPostUsecase.execute(files: files, post: post)
           .catch {
             owner.coordinator?.showErrorAlert(error: $0)
-            return .just(false)
+            return .just(nil)
           }
       }
-      .bind(to: isSuccessCreatePost)
+      .compactMap { $0 }
+      .do(onNext: { _ in
+        isSuccessCreatePost.accept(true)
+      })
+      .bind(to: postCreatedEvent)
       .disposed(by: disposeBag)
       
     /// 나가기 이벤트 > 작성 중단 안내 팝업 표시
@@ -170,6 +187,13 @@ final class CreateCommercialPostViewModel: ViewModel {
       postCreatable: postCreatable.asDriver(),
       isSuccessCreatePost: isSuccessCreatePost.asDriver()
     )
+  }
+  
+  private func addPostInList(updatedPost: CommercialPost) {
+    var posts = posts.value
+    posts.insert(updatedPost, at: 0)
+    
+    self.posts.accept(posts)
   }
 }
 

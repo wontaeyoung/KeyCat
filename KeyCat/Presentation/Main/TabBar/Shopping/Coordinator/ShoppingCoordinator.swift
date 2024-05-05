@@ -39,8 +39,8 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
-  func showCreatePostView() {
-    let vm = CreateCommercialPostViewModel()
+  func showCreatePostView(posts: BehaviorRelay<[CommercialPost]>) {
+    let vm = CreateCommercialPostViewModel(posts: posts)
       .coordinator(self)
     
     let vc = CreateCommercialPostViewController(viewModel: vm)

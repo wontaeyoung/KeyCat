@@ -111,7 +111,7 @@ final class ShoppingViewModel: ViewModel {
     /// 상품 판매글 작성 화면 연결
     input.createPostTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.showCreatePostView()
+        owner.coordinator?.showCreatePostView(posts: owner.posts)
       }
       .disposed(by: disposeBag)
     
