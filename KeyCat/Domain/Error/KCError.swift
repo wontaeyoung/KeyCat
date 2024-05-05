@@ -69,6 +69,7 @@ extension KCError {
     case post = "게시물"
     case review = "리뷰"
     case comment = "댓글"
+    case follow = "팔로우"
     
     var name: String {
       return self.rawValue
@@ -97,6 +98,7 @@ extension KCError {
     
     case emailDuplicated
     case registeredUser
+    case follow
     
     var alertDescription: String {
       switch self {
@@ -105,6 +107,9 @@ extension KCError {
           
         case .registeredUser:
           return "이미 가입된 사용자입니다."
+          
+        case .follow:
+          return "이미 팔로우 중이에요."
       }
     }
   }
