@@ -36,20 +36,25 @@ final class ProfileViewModel: ViewModel {
   weak var coordinator: MyPageCoordinator?
   private let fetchProfileUsecase: any FetchProfileUsecase
   private let userInteractionUsecase: any UserInteractionUsecase
+  private let signUsecase: any SignUsecase
   
   private let userID: User.UserID
   private let myProfile = BehaviorRelay<Profile>(value: .empty)
   private let profile = BehaviorRelay<Profile>(value: .empty)
+  private let signOutTrigger = PublishRelay<Void>()
+  private let withdrawTrigger = PublishRelay<Void>()
   
   // MARK: - Initializer
   init(
     userID: User.UserID,
     fetchProfileUsecase: any FetchProfileUsecase = FetchProfileUsecaseImpl(),
-    userInteractionUsecase: any UserInteractionUsecase = UserInteractionUsecaseImpl()
+    userInteractionUsecase: any UserInteractionUsecase = UserInteractionUsecaseImpl(),
+    signUsecase: any SignUsecase = SignUsecaseImpl()
   ) {
     self.userID = userID
     self.fetchProfileUsecase = fetchProfileUsecase
     self.userInteractionUsecase = userInteractionUsecase
+    self.signUsecase = signUsecase
   }
   
   // MARK: - Method
@@ -57,19 +62,25 @@ final class ProfileViewModel: ViewModel {
     
     let myProfileFetchCompleteEvent = PublishRelay<Void>()
     
-    /// 화면 로드 > 내 프로필 갱신
-    input.viewDidLoadEvent
+    /// 로그아웃 > 로그인 화면 전환
+    signOutTrigger
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.signOut(nil)
+      }
+      .disposed(by: disposeBag)
+    
+    /// 회원탈퇴 호출 > 로그인 화면 전환
+    withdrawTrigger
       .withUnretained(self)
       .flatMap { owner, _ in
-        return owner.fetchProfileUsecase.fetchMyProfile()
+        return owner.signUsecase.withdraw()
           .catch {
             owner.coordinator?.showErrorAlert(error: $0)
             return .never()
           }
       }
-      .bind(with: self) { owner, myProfile in
-        owner.myProfile.accept(myProfile)
-        myProfileFetchCompleteEvent.accept(())
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.signOut(nil)
       }
       .disposed(by: disposeBag)
     
@@ -88,6 +99,22 @@ final class ProfileViewModel: ViewModel {
           }
       }
       .bind(to: profile)
+      .disposed(by: disposeBag)
+    
+    /// 화면 로드 > 내 프로필 갱신
+    input.viewDidLoadEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchProfileUsecase.fetchMyProfile()
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .never()
+          }
+      }
+      .bind(with: self) { owner, myProfile in
+        owner.myProfile.accept(myProfile)
+        myProfileFetchCompleteEvent.accept(())
+      }
       .disposed(by: disposeBag)
     
     /// 프로필 셀 탭 이벤트 핸들링
@@ -164,9 +191,33 @@ final class ProfileViewModel: ViewModel {
       case .updateProfile:
         break
       case .signOut:
-        break
+        showSignOutAlert()
       case .withdraw:
-        break
+        showWithdrawAlert()
+    }
+  }
+  
+  private func showSignOutAlert() {
+    
+    coordinator?.showAlert(
+      title: "로그아웃",
+      message: "로그아웃 하시겠어요?",
+      okStyle: .destructive,
+      isCancelable: true
+    ) {
+      self.signOutTrigger.accept(())
+    }
+  }
+  
+  private func showWithdrawAlert() {
+    
+    coordinator?.showAlert(
+      title: "회원 탈퇴 안내",
+      message: "회원 탈퇴 후에는 계정을 다시 복구할 수 없어요. 정말 탈퇴하시겠어요?",
+      okStyle: .destructive,
+      isCancelable: true
+    ) {
+      self.withdrawTrigger.accept(())
     }
   }
 }
