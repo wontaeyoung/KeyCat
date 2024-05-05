@@ -138,11 +138,11 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       .map { $0.like_status }
   }
   
-  func fetchCartPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
+  func fetchCartPosts() -> Single<[CommercialPost]> {
     
     let query = FetchLikePostsQuery(
-      next: nextCursor,
-      limit: Constant.Network.fetchCountForOnce
+      next: "",
+      limit: "1000"
     )
     let router = LikeRouter.like2PostsFetch(query: query)
     
@@ -152,6 +152,6 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
         
         return .error(domainError)
       }
-      .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
+      .map { self.postMapper.toEntity($0.data) }
   }
 }

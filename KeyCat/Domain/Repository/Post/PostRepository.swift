@@ -18,5 +18,5 @@ protocol PostRepository {
   func bookmark(postID: CommercialPost.PostID, isOn: Bool) -> Single<Bool>
   func fetchBookmarkPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
   func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<Bool>
-  func fetchCartPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
+  func fetchCartPosts() -> Single<[CommercialPost]>
 }

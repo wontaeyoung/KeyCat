@@ -32,7 +32,7 @@ final class FetchCommercialPostUsecaseImpl: FetchCommercialPostUsecase {
     return postRepository.fetchBookmarkPosts(nextCursor: nextCursor)
   }
   
-  func fetchCartPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])> {
-    return postRepository.fetchCartPosts(nextCursor: nextCursor)
+  func fetchCartPosts() -> Single<[CommercialPost]> {
+    return postRepository.fetchCartPosts()
   }
 }
