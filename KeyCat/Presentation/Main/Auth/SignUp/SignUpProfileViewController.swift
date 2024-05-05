@@ -17,7 +17,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     $0.sourceType = .photoLibrary
   }
   
-  private let tappableDefaultProfileImageView = TappableImageView(image: .catWithKeycap2).configured {
+  private let tappableDefaultProfileImageView = TappableImageView(image: .keycat).configured {
     $0.contentMode = .scaleAspectFit
     $0.clipsToBounds = true
     $0.layer.configure {
