@@ -10,5 +10,5 @@ import RxSwift
 
 protocol CreatePostUsecase {
   
-  func execute(files: [Data], post: CommercialPost) -> Single<Bool>
+  func execute(files: [Data], post: CommercialPost) -> Single<CommercialPost?>
 }

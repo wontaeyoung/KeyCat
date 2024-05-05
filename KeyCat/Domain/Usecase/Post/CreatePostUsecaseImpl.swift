@@ -16,7 +16,7 @@ final class CreatePostUsecaseImpl: CreatePostUsecase {
     self.postRepository = postRepository
   }
   
-  func execute(files: [Data], post: CommercialPost) -> Single<Bool> {
+  func execute(files: [Data], post: CommercialPost) -> Single<CommercialPost?> {
     return postRepository.uploadPostImages(files: files)
       .flatMap { files in
         let post = post.applied { $0.files = files }
@@ -26,6 +26,5 @@ final class CreatePostUsecaseImpl: CreatePostUsecase {
           isUpdateImages: files.isFilled
         )
       }
-      .map { $0 != nil }
   }
 }
