@@ -38,4 +38,17 @@ extension MyPageCoordinator {
     
     push(vc)
   }
+  
+  func showFollowListView(followTab: FollowListViewController.FollowTab) {
+    
+    let vm = FollowListViewModel()
+      .coordinator(self)
+    
+    let vc = FollowListViewController(viewModel: vm, followTab: followTab)
+      .hideBackTitle()
+      .hideTabBar()
+      .navigationTitle(with: "팔로우")
+    
+    push(vc)
+  }
 }

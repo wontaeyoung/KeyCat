@@ -13,11 +13,14 @@ final class MyProfileViewModel: ViewModel {
   // MARK: - I / O
   struct Input {
     let viewDidLoadEvent: PublishRelay<Void>
+    let tableCellTapEvent: PublishRelay<MyProfileViewController.ProfileRow>
     
     init(
-      viewDidLoadEvent: PublishRelay<Void> = .init()
+      viewDidLoadEvent: PublishRelay<Void> = .init(),
+      tableCellTapEvent: PublishRelay<MyProfileViewController.ProfileRow> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
+      self.tableCellTapEvent = tableCellTapEvent
     }
   }
   
@@ -51,8 +54,31 @@ final class MyProfileViewModel: ViewModel {
       .bind(to: profile)
       .disposed(by: disposeBag)
     
+    input.tableCellTapEvent
+      .bind(with: self) { owner, row in
+        owner.handleProfileRowTapEvent(with: row)
+      }
+      .disposed(by: disposeBag)
+    
     return Output(
       profile: profile
     )
+  }
+  
+  private func handleProfileRowTapEvent(with row: MyProfileViewController.ProfileRow) {
+    switch row {
+      case .myPosts:
+        break
+      case .following:
+        coordinator?.showFollowListView(followTab: .following)
+      case .follower:
+        coordinator?.showFollowListView(followTab: .follower)
+      case .bookmark:
+        break
+      case .updateProfile:
+        break
+      case .withdraw:
+        break
+    }
   }
 }

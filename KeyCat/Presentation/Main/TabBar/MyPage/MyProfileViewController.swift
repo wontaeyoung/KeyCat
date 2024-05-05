@@ -61,6 +61,10 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
     let input = MyProfileViewModel.Input()
     let output = viewModel.transform(input: input)
     
+    profileTableView.rx.modelSelected(ProfileRow.self)
+      .bind(to: input.tableCellTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 프로필 데이터 표시
     output.profile
       .bind(to: profileView.rx.profile)
@@ -82,6 +86,8 @@ final class MyProfileViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     input.viewDidLoadEvent.accept(())
+    
+    
   }
 }
 
