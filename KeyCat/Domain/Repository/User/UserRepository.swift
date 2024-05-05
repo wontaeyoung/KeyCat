@@ -12,5 +12,6 @@ protocol UserRepository {
   
   func fetchSellerAuthority() -> Single<Bool>
   func fetchMyProfile() -> Single<Profile>
+  func fetchOtherProfile(userID: User.UserID) -> Single<Profile>
   func updateProfileImage(with profileData: Data?) -> Single<Profile>
 }

@@ -20,5 +20,8 @@ final class FetchProfileUsecaseImpl: FetchProfileUsecase {
   func fetchMyProfile() -> Single<Profile> {
     return userRepository.fetchMyProfile()
   }
+  
+  func fetchOtherProfile(userID: User.UserID) -> Single<Profile> {
+    return userRepository.fetchOtherProfile(userID: userID)
+  }
 }
-
