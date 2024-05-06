@@ -24,8 +24,8 @@ final class SignInViewController: TappableBaseViewController, ViewModelControlle
     color: .brand,
     alignment: .center
   )
-  private let emailField = KCField(placeholder: InputInformation.email.title, clearable: false)
-  private let passwordField = KCField(placeholder: InputInformation.password.title, clearable: false)
+  private let emailField = KCField(placeholder: InputInformation.email.title)
+  private let passwordField = KCField(placeholder: InputInformation.password.title)
   private lazy var secureButton = SecureButton(field: passwordField)
   private let signInButton = KCButton(style: .primary, title: Constant.Button.signIn)
   private let signUpView = UIView()

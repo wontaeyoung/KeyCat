@@ -107,9 +107,9 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       discountExpiryDateView
     )
   }
-  private let regularPriceField = KCField(placeholder: InputInformation.regularPrice.title, clearable: false)
-  private let discountPriceField = KCField(placeholder: InputInformation.discountPrice.title, clearable: false)
-  private let couponPriceField = KCField(placeholder: InputInformation.coupon.title, clearable: false)
+  private let regularPriceField = KCField(placeholder: InputInformation.regularPrice.title)
+  private let discountPriceField = KCField(placeholder: InputInformation.discountPrice.title)
+  private let couponPriceField = KCField(placeholder: InputInformation.coupon.title)
   private lazy var discountExpiryDateView = UIView().configured { view in
     view.addSubviews(
       discountExpiryDateTitleLabel,
