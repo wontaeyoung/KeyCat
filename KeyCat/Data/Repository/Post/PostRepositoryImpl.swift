@@ -154,4 +154,16 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       }
       .map { self.postMapper.toEntity($0.data) }
   }
+  
+  func deleteCommercialPost(postID: CommercialPost.PostID) -> Single<Void> {
+    
+    let router = PostRouter.postDelete(id: postID)
+    
+    return service.callReqeust(with: router)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        
+        return .error(domainError)
+      }
+  }
 }
