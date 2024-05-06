@@ -50,7 +50,10 @@ extension HTTPErrorTransformer {
           case .signIn:
             return .accessFailed(detail: .login)
             
-          case .accessToken, .createPost, .fetchPosts, .likePost, .createReview, .deleteReview, .follow, .unfollow, .withdraw:
+          case .accessToken, .withdraw,
+              .createPost, .fetchPosts, .deletePost, .likePost,
+              .createReview, .deleteReview,
+              .follow, .unfollow:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -82,6 +85,9 @@ extension HTTPErrorTransformer {
         switch style {
           case .createPost:
             return .targetNotFound(detail: .create(model: .post))
+            
+          case .deletePost:
+            return .targetNotFound(detail: .delete(model: .post))
             
           case .likePost:
             return .targetNotFound(detail: .update(model: .post))
