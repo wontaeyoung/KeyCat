@@ -16,7 +16,7 @@ final class CreateCommercialReviewViewController: RxBaseViewController, ViewMode
   private let containerView = UIView()
   private let productImageView = UIImageView().configured {
     $0.contentMode = .scaleAspectFill
-    
+    $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 10
       $0.borderColor = KCAsset.Color.lightGrayForeground.color.cgColor
