@@ -53,12 +53,14 @@ final class ProductPriceView: RxBaseView {
   
   func setData(price: CommercialPrice?) {
     guard let price else { return }
+    discountPriceLabel.text = "\(price.discountPrice.formatted())원"
+    
+    guard price.discountRatio != 0 else { return }
     
     discountRatioLabel.text = "\(price.discountRatio)%"
     regularPriceLabel.attributedText = price.regularPrice
       .formatted()
       .strikethroughAttributedString(strikethroughColor: KCAsset.Color.lightGrayForeground.color)
-    discountPriceLabel.text = "\(price.discountPrice.formatted())원"
   }
   
   @available(*, unavailable)
