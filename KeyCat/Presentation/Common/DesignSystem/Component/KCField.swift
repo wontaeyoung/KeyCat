@@ -15,7 +15,7 @@ class KCField: HoshiTextField {
   
   let disposeBag = DisposeBag()
   
-  init(placeholder: String? = nil, clearable: Bool = true) {
+  init(placeholder: String? = nil, clearable: Bool = false) {
     super.init(frame: .zero)
     
     self.font = KCAsset.Font.medium(size: 19).font
