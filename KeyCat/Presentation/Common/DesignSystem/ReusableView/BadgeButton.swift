@@ -38,6 +38,7 @@ final class BadgeButton: RxBaseView {
     self.title = title
     
     super.init()
+    self.backgroundColor = .clear
   }
   
   @available(*, unavailable)
