@@ -503,54 +503,67 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
       .bind(to: input.inputMechanism)
       .disposed(by: disposeBag)
     
+    /// 연결방식 전달
     selectConnectionTypeView.selectedOption
       .bind(to: input.connectionType)
       .disposed(by: disposeBag)
     
+    /// 전원 공급방식 전달
     selectPowerSourceView.selectedOption
       .bind(to: input.powerSource)
       .disposed(by: disposeBag)
     
+    /// 백라이트 유무 전달
     selectBacklightView.selectedOption
       .bind(to: input.backlight)
       .disposed(by: disposeBag)
     
+    /// 기판 타입 전달
     selectPCBTypeView.selectedOption
       .bind(to: input.pcbType)
       .disposed(by: disposeBag)
     
+    /// 기계식 스위치 전달
     selectMechanicalSwitchView.selectedOption
       .bind(to: input.mechanicalSwitch)
       .disposed(by: disposeBag)
     
+    /// 무접점 스위치 전달
     selectCapacitiveSwitchView.selectedOption
       .bind(to: input.capacitiveSwitch)
       .disposed(by: disposeBag)
     
+    /// 키캡 프로파일 전달
     selectKeycapProfileView.selectedOption
       .bind(to: input.keycapProfile)
       .disposed(by: disposeBag)
     
+    /// 각인 방향 전달
     selectPrintingDirectionView.selectedOption
       .bind(to: input.printingDirection)
       .disposed(by: disposeBag)
     
+    /// 각인 공정 전달
     selectPrintingProcessView.selectedOption
       .bind(to: input.printingProcess)
       .disposed(by: disposeBag)
     
+    /// 각인 언어 전달
     selectPrintingLanguageView.selectedOption
       .bind(to: input.printingLanguage)
       .disposed(by: disposeBag)
     
+    /// 레이아웃 배열 전달
     selectLayoutRatioView.selectedOption
       .bind(to: input.layoutRatio)
       .disposed(by: disposeBag)
     
+    /// 키보드 디자인 전달
     selectKeyboardDesignView.selectedOption
       .bind(to: input.keyboardDesign)
       .disposed(by: disposeBag)
     
+    /// 하우징 재료 전달
     selectMaterialView.selectedOption
       .bind(to: input.material)
       .disposed(by: disposeBag)
@@ -617,8 +630,7 @@ final class CreateCommercialPostViewController: RxBaseViewController, ViewModelC
         $0.compactMap { $0.compressedJPEGData }
       }
       .bind(to: input.createPostTapEvent)
-      .disposed(by: disposeBag)
-    
+      .disposed(by: disposeBag) 
   }
   
   // MARK: - Method
