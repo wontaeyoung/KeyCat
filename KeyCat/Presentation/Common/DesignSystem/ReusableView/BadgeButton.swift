@@ -11,7 +11,12 @@ import SnapKit
 final class BadgeButton: RxBaseView {
   
   let button = KCButton(style: .icon, image: KCAsset.Symbol.cart)
-  let badgeLabel = TagLabel(title: "1", horizontalInset: 4, verticalInset: 2, color: .white, backgroundColor: .red)
+  let badgeLabel = TagLabel(title: nil,
+    horizontalInset: 4,
+    verticalInset: 2,
+    color: .white,
+    backgroundColor: .red
+  )
   
   var image: UIImage? {
     didSet {
