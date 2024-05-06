@@ -328,6 +328,7 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     output.post
       .map { $0.isCreatedByMe }
       .drive(with: self) { owner, isCreatedByMe in
+        owner.navigationItem.setRightBarButton(owner.menuBarItem, animated: true)
         if isCreatedByMe {
           owner.navigationItem.setRightBarButton(owner.menuBarItem, animated: true)
         }
@@ -357,6 +358,15 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     output.addCartResultToast
       .drive(with: self) { owner, message in
         owner.toast(message)
+      }
+      .disposed(by: disposeBag)
+    
+    /// 게시물 삭제 토스트 표시 > 완료 이벤트 전달
+    output.postDeletedToast
+      .drive(with: self) { owner, _ in
+        owner.toast("게시물이 삭제되었어요") {
+          input.toastCompleteEvent.accept(())
+        }
       }
       .disposed(by: disposeBag)
     

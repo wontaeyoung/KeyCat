@@ -18,6 +18,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let reviewTapEvent: PublishRelay<Void>
     let addCartTapEvent: PublishRelay<Void>
     let buyingTapEvent: PublishRelay<Void>
+    let toastCompleteEvent: PublishRelay<Void>
     
     init(
       handlePostAction: PublishRelay<HandleContentAction> = .init(),
@@ -25,7 +26,8 @@ final class CommercialPostDetailViewModel: ViewModel {
       bookmarkTapEvent: PublishRelay<Void> = .init(),
       reviewTapEvent: PublishRelay<Void> = .init(),
       addCartTapEvent: PublishRelay<Void> = .init(),
-      buyingTapEvent: PublishRelay<Void> = .init()
+      buyingTapEvent: PublishRelay<Void> = .init(),
+      toastCompleteEvent: PublishRelay<Void> = .init()
     ) {
       self.handlePostAction = handlePostAction
       self.sellerProfileTapEvent = sellerProfileTapEvent
@@ -33,18 +35,21 @@ final class CommercialPostDetailViewModel: ViewModel {
       self.reviewTapEvent = reviewTapEvent
       self.addCartTapEvent = addCartTapEvent
       self.buyingTapEvent = buyingTapEvent
+      self.toastCompleteEvent = toastCompleteEvent
     }
   }
   
   struct Output {
     let post: Driver<CommercialPost>
     let addCartResultToast: Driver<String>
+    let postDeletedToast: Driver<Void>
   }
   
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
   private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
+  private let handleCommercialPostUsecase: HandleCommercialPostUsecase
   
   private let post: BehaviorRelay<CommercialPost>
   private let originalPosts: BehaviorRelay<[CommercialPost]>
@@ -55,12 +60,14 @@ final class CommercialPostDetailViewModel: ViewModel {
     post: CommercialPost,
     originalPosts: BehaviorRelay<[CommercialPost]>,
     cartPosts: BehaviorRelay<[CommercialPost]>,
-    commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
+    commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl(),
+    handleCommercialPostUsecase: HandleCommercialPostUsecase = HandleCommercialPostUsecaseImpl()
   ) {
     self.post = BehaviorRelay<CommercialPost>(value: post)
     self.originalPosts = originalPosts
     self.cartPosts = cartPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
+    self.handleCommercialPostUsecase = handleCommercialPostUsecase
   }
   
   // MARK: - Method
@@ -69,9 +76,27 @@ final class CommercialPostDetailViewModel: ViewModel {
     let updatePostEvent = PublishRelay<Void>()
     let deletePostEvent = PublishRelay<Void>()
     let addCartResultToast = PublishRelay<String>()
+    let postDeletedToast = PublishRelay<Void>()
     
     let addCartActionTrigger = PublishRelay<Void>()
     let addedCartPost = PublishRelay<CommercialPost>()
+    
+    /// 게시물 삭제 > 원본 데이터 반영 > 삭제 완료 토스트 전달
+    deletePostEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.handleCommercialPostUsecase.deletePost(postID: owner.post.value.postID)
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .never()
+          }
+      }
+      .do(onNext: { [weak self] in
+        guard let self else { return }
+        removePostInList(removedPost: post.value)
+      })
+      .bind(to: postDeletedToast)
+      .disposed(by: disposeBag)
     
     /// 게시글 변경 이벤트 핸들링
     input.handlePostAction
@@ -123,6 +148,13 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 토스트 완료 이벤트 > 화면 뒤로가기
+    input.toastCompleteEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.pop()
+      }
+      .disposed(by: disposeBag)
+    
     /// 게시물의 변경사항을 외부 원본 배열에 반영
     post
       .bind(with: self) { owner, updatedPost in
@@ -154,7 +186,8 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     return Output(
       post: post.asDriver(),
-      addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: "")
+      addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: ""),
+      postDeletedToast: postDeletedToast.asDriver(onErrorJustReturn: ())
     )
   }
   
@@ -164,6 +197,15 @@ final class CommercialPostDetailViewModel: ViewModel {
     guard let index = currentPosts.firstIndex(where: { $0.postID == updatedPost.postID }) else { return }
     
     currentPosts[index] = updatedPost
+    originalPosts.accept(currentPosts)
+  }
+  
+  private func removePostInList(removedPost: CommercialPost) {
+    var currentPosts = originalPosts.value
+    
+    guard let index = currentPosts.firstIndex(where: { $0.postID == removedPost.postID }) else { return }
+    
+    currentPosts.remove(at: index)
     originalPosts.accept(currentPosts)
   }
   
