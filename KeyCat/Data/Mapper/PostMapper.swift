@@ -32,7 +32,7 @@ struct PostMapper: Mapper {
       delivery: deliveryInfo,
       createdAt: toDate(from: dto.createdAt),
       creator: userMapper.toEntity(dto.creator),
-      files: dto.files,
+      files: dto.files.map { APIKey.baseURL + "/" + $0 },
       bookmarks: dto.likes,
       shoppingCarts: dto.likes2,
       hashTags: dto.hashTags,

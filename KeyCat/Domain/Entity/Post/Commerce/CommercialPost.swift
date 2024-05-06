@@ -31,7 +31,7 @@ struct CommercialPost: Entity {
   }
   
   var productImagesURL: [URL?] {
-    return files.map { URL(string: APIKey.baseURL + "/" + $0) }
+    return files.map { URL(string: $0) }
   }
   
   var isBookmarked: Bool {

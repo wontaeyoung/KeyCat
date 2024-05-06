@@ -11,7 +11,7 @@ struct UserMapper {
     return User(
       userID: dto.user_id,
       nickname: dto.nick,
-      profileImageURLString: dto.profileImage
+      profileImageURLString: APIKey.baseURL + "/" + dto.profileImage
     )
   }
   
@@ -27,7 +27,7 @@ struct UserMapper {
     return User(
       userID: response.user_id,
       nickname: response.nick,
-      profileImageURLString: response.profileImage
+      profileImageURLString: APIKey.baseURL + "/" + response.profileImage
     )
   }
   
@@ -53,7 +53,7 @@ struct UserMapper {
       email: dto.email,
       nickname: dto.nick, 
       userType: getUsetType(userTypeID: dto.phoneNum),
-      profileImageURLString: dto.profileImage,
+      profileImageURLString: APIKey.baseURL + "/" + dto.profileImage,
       followers: toEntity(dto.followers),
       following: toEntity(dto.following),
       postIDs: dto.posts,
