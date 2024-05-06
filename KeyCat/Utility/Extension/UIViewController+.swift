@@ -55,7 +55,7 @@ extension UIViewController {
     _ message: String,
     position: ToastPosition = .center,
     completion: (() -> Void)? = nil,
-    duration: TimeInterval = 1.5
+    duration: TimeInterval = 1
   ) {
     view.makeToast(message, duration: duration, position: position) { _ in
       completion?()
