@@ -8,13 +8,13 @@
 /// Repository에 에러 핸들링 기능을 주입하기 위한 프로토콜
 protocol HTTPErrorTransformer {
   
-  func httpErrorToDomain(from error: any Error, style: HTTPRequestDomain) -> KCError
+  func httpErrorToDomain(from error: any Error, domain: HTTPRequestDomain) -> KCError
 }
 
 extension HTTPErrorTransformer {
   
   /// HTTPError -> HTTPStatusError -> Domain Error 변환
-  func httpErrorToDomain(from error: any Error, style: HTTPRequestDomain) -> KCError {
+  func httpErrorToDomain(from error: any Error, domain: HTTPRequestDomain) -> KCError {
     
     /// HTTPError로 캐스팅이 실패하면 unknown 리턴
     guard let httpError = error as? HTTPError else {
@@ -30,11 +30,11 @@ extension HTTPErrorTransformer {
         
         /// 상태코드가 있는 케이스
       case .unexceptedResponse(let status):
-        return handleStatusCode(status: status, style: style)
+        return handleStatusCode(status: status, domain: domain)
     }
   }
   
-  private func handleStatusCode(status: HTTPError.HTTPStatus, style: HTTPRequestDomain) -> KCError {
+  private func handleStatusCode(status: HTTPError.HTTPStatus, domain: HTTPRequestDomain) -> KCError {
     
     /// 상태 코드를 통해서 HTTPStatusError 초기화
     let httpStatusError = status.toHTTPStatusError
@@ -46,7 +46,7 @@ extension HTTPErrorTransformer {
       case .accessFailed:
         
         /// API 요청 도메인에 따라 다른 accessFailed 케이스로 리턴
-        switch style {
+        switch domain {
           case .signIn:
             return .accessFailed(detail: .login)
             
@@ -64,7 +64,7 @@ extension HTTPErrorTransformer {
       case .conflict:
         
         /// API 요청 도메인에 따라 다른 conflict 케이스로 리턴
-        switch style {
+        switch domain {
           case .emailValidation:
             return .conflict(detail: .emailDuplicated)
             
@@ -82,7 +82,7 @@ extension HTTPErrorTransformer {
       case .targetNotFound:
         
         /// API 요청 도메인에 따라 다른 targetNotFound 케이스로 리턴
-        switch style {
+        switch domain {
           case .createPost:
             return .targetNotFound(detail: .create(model: .post))
             

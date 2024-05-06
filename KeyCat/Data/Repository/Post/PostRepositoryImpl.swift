@@ -24,7 +24,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   func uploadPostImages(files: [Data]) -> Single<[CommercialPost.URLString]> {
     return service.callImageUploadRequest(data: files)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)
       }
       .map { $0.files }
@@ -39,7 +39,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: PostDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .createPost)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .createPost)
         return .error(domainError)
       }
       .map { self.postMapper.toEntity($0) }
@@ -55,7 +55,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
         
         return .error(domainError)
       }
@@ -67,7 +67,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: PostDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         
         return .error(domainError)
       }
@@ -88,7 +88,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
         
         return .error(domainError)
       }
@@ -101,7 +101,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: LikePostResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .likePost)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .likePost)
         
         return .error(domainError)
       }
@@ -118,7 +118,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
         
         return .error(domainError)
       }
@@ -131,7 +131,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: LikePostResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .likePost)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .likePost)
         
         return .error(domainError)
       }
@@ -148,7 +148,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
         
         return .error(domainError)
       }
@@ -161,7 +161,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
     
     return service.callReqeust(with: router)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .fetchPosts)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
         
         return .error(domainError)
       }

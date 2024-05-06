@@ -30,7 +30,7 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: ProfileDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)
       }
       .map { self.userMapper.toEntity($0) }
@@ -41,7 +41,7 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: ProfileDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)
       }
       .map { self.userMapper.toEntity($0) }
@@ -52,7 +52,7 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     
     return service.callUpdateProfileRequest(request: request)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .accessToken)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)
       }
       .map { self.userMapper.toEntity($0) }
@@ -63,7 +63,7 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FollowDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .follow)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .follow)
         return .error(domainError)
       }
       .map { $0.following_status }
@@ -74,7 +74,7 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: FollowDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .unfollow)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .unfollow)
         return .error(domainError)
       }
       .map { $0.following_status }

@@ -26,7 +26,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     
     return service.callReqeust(with: router)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .emailValidation)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .emailValidation)
         return .error(domainError)
       }
   }
@@ -37,7 +37,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: BusinessInfoResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .none)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .none)
         return .error(domainError)
       }
       .flatMap {
@@ -61,7 +61,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: AuthResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .signUp)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .signUp)
         return .error(domainError)
       }
       .map { self.userMapper.toEntity($0) }
@@ -73,7 +73,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: LoginResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .signIn)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .signIn)
         return .error(domainError)
       }
       .do { response in
@@ -91,7 +91,7 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: AuthResponse.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .withdraw)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .withdraw)
         return .error(domainError)
       }
       .map { _ in () }

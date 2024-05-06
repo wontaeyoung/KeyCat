@@ -31,7 +31,7 @@ final class ReviewRepositoryImpl: ReviewRepository, HTTPErrorTransformer {
     
     return service.callRequest(with: router, of: CommentDTO.self)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .createReview)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .createReview)
         return .error(domainError)
       }
       .map { self.commentMapper.toEntity($0) }
@@ -43,7 +43,7 @@ final class ReviewRepositoryImpl: ReviewRepository, HTTPErrorTransformer {
     
     return service.callReqeust(with: router)
       .catch {
-        let domainError = self.httpErrorToDomain(from: $0, style: .deleteReview)
+        let domainError = self.httpErrorToDomain(from: $0, domain: .deleteReview)
         return .error(domainError)
       }
   }
