@@ -25,7 +25,6 @@ final class CheckboxButton: UIButton {
     super.init(frame: .zero)
     
     rx.tap
-      .buttonThrottle(seconds: 1)
       .bind(with: self) { owner, _ in
         owner.isOnState.toggle()
       }
