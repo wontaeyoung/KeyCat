@@ -127,7 +127,6 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
     /// 프로필 이미지를 설정하지 않으면 기본 프로필 보여주기
     profileImage
       .map { $0 == nil }
-      .debug()
       .bind(to: tappableProfileImageView.rx.isHidden, clearProfileImageButton.rx.isHidden)
       .disposed(by: disposeBag)
     
