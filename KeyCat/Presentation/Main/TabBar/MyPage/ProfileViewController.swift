@@ -84,10 +84,9 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
       .disposed(by: disposeBag)
     
     /// 팔로워 포함 여부 > 팔로우 버튼 타이틀 반영
-    output.profile
-      .map { $0.isFollowing }
+    output.isFollowing
       .map { $0 ? "팔로우 취소" : "팔로우" }
-      .bind(to: followButton.rx.title())
+      .drive(followButton.rx.title())
       .disposed(by: disposeBag)
     
     /// 정보 테이블 Row 설정
@@ -112,9 +111,13 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
       .bind(to: profileTableTitleLabel.rx.text)
       .disposed(by: disposeBag)
     
+    /// 팔로워 카운트 전달
+    output.otherProfileFollowerCount
+      .drive(profileView.rx.followerCount)
+      .disposed(by: disposeBag)
+    
     /// 팔로우 버튼 탭 이벤트 전달
     followButton.rx.tap
-      .buttonThrottle()
       .bind(to: input.followTapEvent)
       .disposed(by: disposeBag)
     

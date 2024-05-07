@@ -37,6 +37,12 @@ final class ProfileView: RxBaseView {
     }
   }
   
+  var followerCount: Int? {
+    didSet {
+      setFollowerLabel(followerCount: followerCount)
+    }
+  }
+  
   private let profileImageSize: CGFloat = 80
   
   override init() {
@@ -97,9 +103,14 @@ final class ProfileView: RxBaseView {
     profileImageView.load(with: profile.profileImageURL)
     nicknameLabel.text = profile.nickname
     followingLabel.text = "팔로잉 \(profile.following.count)"
-    followerLabel.text = "팔로워 \(profile.followers.count)"
     
     if UserInfoService.hasSellerAuthority { sellerIcon.image = KCAsset.Symbol.seller }
+  }
+  
+  func setFollowerLabel(followerCount: Int?) {
+    guard let followerCount else { return }
+    
+    followerLabel.text = "팔로워 \(followerCount)"
   }
   
   @available(*, unavailable)

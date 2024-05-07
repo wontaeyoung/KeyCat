@@ -29,6 +29,8 @@ final class ProfileViewModel: ViewModel {
   
   struct Output {
     let profile: BehaviorRelay<Profile>
+    let isFollowing: Driver<Bool>
+    let otherProfileFollowerCount: Driver<Int>
   }
   
   // MARK: - Property
@@ -61,6 +63,20 @@ final class ProfileViewModel: ViewModel {
   func transform(input: Input) -> Output {
     
     let myProfileFetchCompleteEvent = PublishRelay<Void>()
+    let isFollowing = BehaviorRelay<Bool>(value: profile.value.isFollowing)
+    let otherProfileFollwerCount = BehaviorRelay<Int>(value: profile.value.followers.count)
+    
+    /// 프로필의 팔로우 변경사항 반영
+    profile
+      .map { $0.isFollowing }
+      .bind(to: isFollowing)
+      .disposed(by: disposeBag)
+    
+    /// 프로필의 팔로워 수 변경사항 반영
+    profile
+      .map { $0.followers.count }
+      .bind(to: otherProfileFollwerCount)
+      .disposed(by: disposeBag)
     
     /// 로그아웃 > 로그인 화면 전환
     signOutTrigger
@@ -126,6 +142,14 @@ final class ProfileViewModel: ViewModel {
     
     /// 팔로우 탭 이벤트 핸들링
     input.followTapEvent
+      .do(onNext: { _ in
+        // 옵티미스틱
+        let addingCount = isFollowing.value ? -1 : 1
+        
+        otherProfileFollwerCount.accept(otherProfileFollwerCount.value + addingCount)
+        isFollowing.accept(!isFollowing.value)
+      })
+      .debounce(.seconds(2), scheduler: MainScheduler.instance)
       .withLatestFrom(profile)
       .withUnretained(self)
       .flatMap { owner, profile in
@@ -145,7 +169,9 @@ final class ProfileViewModel: ViewModel {
       .disposed(by: disposeBag)
     
     return Output(
-      profile: profile
+      profile: profile,
+      isFollowing: isFollowing.asDriver(),
+      otherProfileFollowerCount: otherProfileFollwerCount.asDriver()
     )
   }
   
