@@ -72,9 +72,9 @@ final class PostListViewModel: ViewModel {
       .bind(to: fetchedPosts)
       .disposed(by: disposeBag)
       
-    /// 화면에 표시될 상품이 4개 남았을 때
+    /// 화면에 표시될 상품이 3개 남았을 때
     input.showProductCellEvent
-      .filter { $0.row >= self.posts.value.count - 4 }
+      .filter { $0.row >= self.posts.value.count - 3 }
       .withUnretained(self)
       .flatMap { owner, _ in
         return owner.fetchPosts()
