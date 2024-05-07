@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
 
 final class BadgeButton: RxBaseView {
   
@@ -17,6 +18,8 @@ final class BadgeButton: RxBaseView {
     color: .white,
     backgroundColor: .red
   )
+  
+  lazy var tap: ControlEvent<Void> = button.rx.tap
   
   var image: UIImage? {
     didSet {
