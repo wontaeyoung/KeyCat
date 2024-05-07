@@ -43,6 +43,7 @@ final class FollowTabmanViewController: TabmanRxBaseViewController, ViewModelCon
   
   // MARK: - Property
   let viewModel: FollowListViewModel
+  private let followTab: FollowTab
   
   // MARK: - Initializer
   init(
@@ -50,12 +51,12 @@ final class FollowTabmanViewController: TabmanRxBaseViewController, ViewModelCon
     followTab: FollowTab
   ) {
     self.viewModel = viewModel
+    self.followTab = followTab
     
     super.init()
     
     addBar(bar, dataSource: self, at: .top)
     self.dataSource = self
-    self.scrollToPage(.at(index: followTab.rawValue), animated: true)
   }
   
   @available(*, unavailable)
@@ -101,6 +102,6 @@ extension FollowTabmanViewController: PageboyViewControllerDataSource, TMBarData
   }
   
   func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
-    return nil
+    return .at(index: followTab.rawValue)
   }
 }
