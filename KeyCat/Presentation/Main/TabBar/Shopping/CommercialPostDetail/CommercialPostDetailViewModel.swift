@@ -41,6 +41,8 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   struct Output {
     let post: Driver<CommercialPost>
+    let isBookmark: Driver<Bool>
+    let bookmarkCount: Driver<Int>
     let addCartResultToast: Driver<String>
     let postDeletedToast: Driver<Void>
   }
@@ -73,10 +75,13 @@ final class CommercialPostDetailViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    let updatePostEvent = PublishRelay<Void>()
-    let deletePostEvent = PublishRelay<Void>()
     let addCartResultToast = PublishRelay<String>()
     let postDeletedToast = PublishRelay<Void>()
+    let isBookmark = BehaviorRelay<Bool>(value: post.value.isBookmarked)
+    let bookmarkCount = BehaviorRelay<Int>(value: post.value.bookmarks.count)
+    
+    let updatePostEvent = PublishRelay<Void>()
+    let deletePostEvent = PublishRelay<Void>()
     
     let addCartActionTrigger = PublishRelay<Void>()
     let addedCartPost = PublishRelay<CommercialPost>()
@@ -117,8 +122,18 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
-    /// 북마크 > 포스트 갱신
+    /// 북마크 요청 > 포스트 갱신
     input.bookmarkTapEvent
+      .do(onNext: { _ in
+        // 옵티미스틱
+        let addingCount = isBookmark.value ? -1 : 1
+        let updatedBookmark = !isBookmark.value
+        
+        bookmarkCount.accept(bookmarkCount.value + addingCount)
+        isBookmark.accept(updatedBookmark)
+        
+      })
+      .debounce(.seconds(2), scheduler: MainScheduler.instance)
       .withLatestFrom(post)
       .withUnretained(self)
       .flatMap { owner, post in
@@ -162,6 +177,18 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 게시물 원본의 북마크 변경사항 반영
+    post
+      .map { $0.isBookmarked }
+      .bind(to: isBookmark)
+      .disposed(by: disposeBag)
+    
+    /// 게시물 원본의 북마크 갯수 반영
+    post
+      .map { $0.bookmarks.count }
+      .bind(to: bookmarkCount)
+      .disposed(by: disposeBag)
+    
     /// 카트에 추가된 게시물을 외부 원본 배열에 반영
     addedCartPost
       .bind(with: self) { owner, post in
@@ -186,6 +213,8 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     return Output(
       post: post.asDriver(),
+      isBookmark: isBookmark.asDriver(),
+      bookmarkCount: bookmarkCount.asDriver(),
       addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: ""),
       postDeletedToast: postDeletedToast.asDriver(onErrorJustReturn: ())
     )

@@ -336,15 +336,14 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       .disposed(by: disposeBag)
     
     /// 북마크 이미지 표시
-    output.post
-      .map { $0.isBookmarked }
+    output.isBookmark
       .map { $0 ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff }
       .drive(bookmarkButton.rx.image())
       .disposed(by: disposeBag)
     
     /// 북마크 갯수 표시
-    output.post
-      .map { $0.bookmarks.count.description }
+    output.bookmarkCount
+      .map { $0.description }
       .drive(bookmarkButton.rx.title())
       .disposed(by: disposeBag)
       
@@ -382,7 +381,6 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     
     /// 북마크 탭 이벤트 전달
     bookmarkButton.rx.tap
-      .buttonThrottle()
       .bind(to: input.bookmarkTapEvent)
       .disposed(by: disposeBag)
     
