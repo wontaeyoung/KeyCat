@@ -17,17 +17,20 @@ final class ShoppingViewModel: ViewModel {
     let createPostTapEvent: PublishRelay<Void>
     let showProductCellEvent: PublishRelay<IndexPath>
     let postCollectionCellSelectedEvent: PublishRelay<CommercialPost>
+    let scrollRefeshEvent: PublishRelay<Void>
     
     init(
       viewDidLoadEvent: PublishRelay<Void> = .init(),
       createPostTapEvent: PublishRelay<Void> = .init(),
       showProductCellEvent: PublishRelay<IndexPath> = .init(),
-      postCollectionCellSelectedEvent: PublishRelay<CommercialPost> = .init()
+      postCollectionCellSelectedEvent: PublishRelay<CommercialPost> = .init(),
+      scrollRefeshEvent: PublishRelay<Void> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
       self.createPostTapEvent = createPostTapEvent
       self.showProductCellEvent = showProductCellEvent
       self.postCollectionCellSelectedEvent = postCollectionCellSelectedEvent
+      self.scrollRefeshEvent = scrollRefeshEvent
     }
   }
   
@@ -35,6 +38,7 @@ final class ShoppingViewModel: ViewModel {
     let hasSellerAuthority: Driver<Bool>
     let posts: Driver<[CommercialPost]>
     let cartPosts: Driver<[CommercialPost]>
+    let refreshCompleted: Driver<Void>
   }
   
   // MARK: - Property
@@ -57,11 +61,25 @@ final class ShoppingViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
+    let fetchNextPostsTrigger = PublishRelay<Void>()
     let hasSellerAuthority = PublishRelay<Bool>()
+    let refreshCompleted = PublishRelay<Void>()
     
-    /// 새로운 게시물 응답을 기존 게시물 배열에 추가
+    /// 다음 게시물 조회 호출
+    fetchNextPostsTrigger
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.fetchPosts()
+      }
+      .do(onNext: { self.nextCursor = $0.0 })
+      .map { $0.1 }
+      .bind(to: fetchedPosts)
+      .disposed(by: disposeBag)
+    
+    /// 새로운 게시물 응답을 기존 게시물 배열에 추가 + 새로고침 애니메이션이 있다면 중단
     fetchedPosts
       .bind(with: self) { owner, newPosts in
+        refreshCompleted.accept(())
         owner.appendPosts(newPosts)
       }
       .disposed(by: disposeBag)
@@ -72,15 +90,9 @@ final class ShoppingViewModel: ViewModel {
       .bind(to: hasSellerAuthority)
       .disposed(by: disposeBag)
     
-    /// 상품 조회 로직 호출
+    /// 화면이 로드되면 게시물 요청
     input.viewDidLoadEvent
-      .withUnretained(self)
-      .flatMap { owner, _ in
-        return owner.fetchPosts()
-      }
-      .do(onNext: { self.nextCursor = $0.0 })
-      .map { $0.1 }
-      .bind(to: fetchedPosts)
+      .bind(to: fetchNextPostsTrigger)
       .disposed(by: disposeBag)
     
     /// 장바구니 상품 조회 호출
@@ -98,14 +110,9 @@ final class ShoppingViewModel: ViewModel {
     
     /// 마지막 상품의 이전 줄이 표시될 때, 페이지네이션
     input.showProductCellEvent
-      .filter { $0.row >= self.posts.value.count - 4 }
-      .withUnretained(self)
-      .flatMap { owner, _ in
-        return owner.fetchPosts()
-      }
-      .do(onNext: { self.nextCursor = $0.0 })
-      .map { $0.1 }
-      .bind(to: fetchedPosts)
+      .filter { $0.row >= self.posts.value.count - 2 }
+      .map { _ in () }
+      .bind(to: fetchNextPostsTrigger)
       .disposed(by: disposeBag)
     
     /// 상품 판매글 작성 화면 연결
@@ -122,11 +129,26 @@ final class ShoppingViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 새로고침 > 커서, 게시물 리스트 초기화 > 게시물 요청
+    input.scrollRefeshEvent
+      .do(onNext: { _ in
+        self.refreshPosts()
+      })
+      .bind(to: fetchNextPostsTrigger)
+      .disposed(by: disposeBag)
+    
     return Output(
       hasSellerAuthority: hasSellerAuthority.asDriver(onErrorJustReturn: false),
-      posts: posts.asDriver(onErrorJustReturn: []),
-      cartPosts: cartPosts.asDriver()
+      posts: posts.asDriver(),
+      cartPosts: cartPosts.asDriver(),
+      refreshCompleted: refreshCompleted.asDriver(onErrorJustReturn: ())
     )
+  }
+  
+  private func refreshPosts() {
+    // 상태 초기화
+    nextCursor = ""
+    posts.accept([])
   }
   
   private func fetchPosts() -> Single<(CommercialPost.PostID, [CommercialPost])> {

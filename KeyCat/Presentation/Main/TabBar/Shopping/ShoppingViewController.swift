@@ -28,7 +28,7 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     }
   }
   
-  private let productCollectionView = UICollectionView(
+  private lazy var productCollectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout.gridLayout(cellCount: 2, cellSpacing: 20)
   ).configured {
@@ -36,8 +36,12 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       ProductCollectionCell.self,
       forCellWithReuseIdentifier: ProductCollectionCell.identifier
     )
+    
+    $0.refreshControl = refreshControl
   }
   
+  private let refreshControl = UIRefreshControl()
+
   // MARK: - Property
   let viewModel: ShoppingViewModel
   
@@ -98,6 +102,13 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .drive(cartButton.rx.title)
       .disposed(by: disposeBag)
     
+    /// 새로고침 로직 처리 후 애니메이션 종료
+    output.refreshCompleted
+      .drive(with: self) { owner, _ in
+        owner.refreshControl.endRefreshing()
+      }
+      .disposed(by: disposeBag)
+    
     /// 컬렉션 뷰 탭 이벤트 전달
     productCollectionView.rx.modelSelected(CommercialPost.self)
       .bind(to: input.postCollectionCellSelectedEvent)
@@ -115,6 +126,11 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
     createPostFloatingButton.rx.tap
       .buttonThrottle()
       .bind(to: input.createPostTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 새로고침 이벤트 전달
+    refreshControl.rx.controlEvent(.valueChanged)
+      .bind(to: input.scrollRefeshEvent)
       .disposed(by: disposeBag)
     
     input.viewDidLoadEvent.accept(())
