@@ -128,6 +128,11 @@ final class ShoppingViewController: RxBaseViewController, ViewModelController {
       .bind(to: input.createPostTapEvent)
       .disposed(by: disposeBag)
     
+    /// 장바구니 버튼 탭 이벤트 전달
+    cartButton.tap
+      .bind(to: input.cartTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 새로고침 이벤트 전달
     refreshControl.rx.controlEvent(.valueChanged)
       .bind(to: input.scrollRefeshEvent)

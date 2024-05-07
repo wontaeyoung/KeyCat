@@ -15,6 +15,7 @@ final class ShoppingViewModel: ViewModel {
   struct Input {
     let viewDidLoadEvent: PublishRelay<Void>
     let createPostTapEvent: PublishRelay<Void>
+    let cartTapEvent: PublishRelay<Void>
     let showProductCellEvent: PublishRelay<IndexPath>
     let postCollectionCellSelectedEvent: PublishRelay<CommercialPost>
     let scrollRefeshEvent: PublishRelay<Void>
@@ -22,12 +23,14 @@ final class ShoppingViewModel: ViewModel {
     init(
       viewDidLoadEvent: PublishRelay<Void> = .init(),
       createPostTapEvent: PublishRelay<Void> = .init(),
+      cartTapEvent: PublishRelay<Void> = .init(),
       showProductCellEvent: PublishRelay<IndexPath> = .init(),
       postCollectionCellSelectedEvent: PublishRelay<CommercialPost> = .init(),
       scrollRefeshEvent: PublishRelay<Void> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
       self.createPostTapEvent = createPostTapEvent
+      self.cartTapEvent = cartTapEvent
       self.showProductCellEvent = showProductCellEvent
       self.postCollectionCellSelectedEvent = postCollectionCellSelectedEvent
       self.scrollRefeshEvent = scrollRefeshEvent
@@ -119,6 +122,13 @@ final class ShoppingViewModel: ViewModel {
     input.createPostTapEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.showCreatePostView(posts: owner.posts)
+      }
+      .disposed(by: disposeBag)
+    
+    /// 장바구니 탭 이벤트 화면 연결
+    input.cartTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showCartPostListView(cartPosts: owner.cartPosts)
       }
       .disposed(by: disposeBag)
     
