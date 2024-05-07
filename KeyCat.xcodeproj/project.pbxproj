@@ -705,11 +705,11 @@
 		6E567E282BC5783D00250C56 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6EC801F22BDE613F00FE2B69 /* Local */,
-				6E567E372BC66DC100250C56 /* Repository */,
 				6E567E362BC66DBA00250C56 /* DTO */,
-				6E567E352BC66DB800250C56 /* Network */,
+				6EC801F22BDE613F00FE2B69 /* Local */,
 				6E8C9EDB2BCBFF580086F913 /* Mapper */,
+				6E567E352BC66DB800250C56 /* Network */,
+				6E567E372BC66DC100250C56 /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -717,10 +717,10 @@
 		6E567E292BC5783F00250C56 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6E567E742BC685A600250C56 /* Entity */,
+				6E0A4FD72BD3E94A005A529F /* Error */,
 				6E0A4FE42BD3ECF4005A529F /* Repository */,
 				6E0A4FDA2BD3EA0C005A529F /* Usecase */,
-				6E0A4FD72BD3E94A005A529F /* Error */,
-				6E567E742BC685A600250C56 /* Entity */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -738,10 +738,10 @@
 		6E567E2B2BC5784E00250C56 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				6E567E302BC5788700250C56 /* Constant */,
+				6E567E312BC5788B00250C56 /* Extension */,
 				6E567E6C2BC67F4F00250C56 /* Manager */,
 				6E567E5C2BC67E9D00250C56 /* Protocol */,
-				6E567E312BC5788B00250C56 /* Extension */,
-				6E567E302BC5788700250C56 /* Constant */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
