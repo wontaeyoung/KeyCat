@@ -31,6 +31,10 @@ final class KCButton: UIButton {
     self.configuration?.image = image
   }
   
+  func foregroundColor(_ color: UIColor) {
+    self.configuration?.baseForegroundColor = color
+  }
+  
   func showIndicator() {
     self.configuration?.showsActivityIndicator = true
   }
