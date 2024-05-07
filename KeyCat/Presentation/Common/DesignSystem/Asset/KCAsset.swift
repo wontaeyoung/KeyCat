@@ -102,6 +102,8 @@ enum KCAsset {
       case bookmarkFill = "bookmark.fill"
       case cartBadgePlus = "cart.badge.plus"
       case bubbleLeftAndTextBubbleRight = "bubble.left.and.text.bubble.right"
+      case square = "square"
+      case checkmarkSquareFill = "checkmark.square.fill"
       
       // MARK: TabBar
       case house = "house"
@@ -132,8 +134,8 @@ enum KCAsset {
     
     // MARK: Button
     static let closeButton: UIImage? = image(.xmarkCircleFill)
-    static let checkboxOff: UIImage? = image(.checkmarkCircle)
-    static let checkboxOn: UIImage? = image(.checkmarkCircleFill)
+    static let checkboxOff: UIImage? = image(.square)
+    static let checkboxOn: UIImage? = image(.checkmarkSquareFill)
     static let createFloatingButton: UIImage? = image(.plusCircleFill)
     static let addImageButton: UIImage? = image(.cameraFill)
     static let bookmarkOff: UIImage? = image(.bookmark)
