@@ -29,6 +29,7 @@ final class ShoppingCoordinator: SubCoordinator {
 extension ShoppingCoordinator {
   
   func showShoppoingView() {
+    
     let vm = ShoppingViewModel()
       .coordinator(self)
     
@@ -40,13 +41,26 @@ extension ShoppingCoordinator {
   }
   
   func showCreatePostView(posts: BehaviorRelay<[CommercialPost]>) {
+    
     let vm = CreateCommercialPostViewModel(posts: posts)
       .coordinator(self)
     
     let vc = CreateCommercialPostViewController(viewModel: vm)
       .hideBackButton()
       .hideTabBar()
-      .navigationTitle(with: "상품 판매", displayMode: .never)
+      .navigationTitle(with: "상품 판매")
+    
+    push(vc)
+  }
+  
+  func showCartPostListView(cartPosts: BehaviorRelay<[CommercialPost]>) {
+    
+    let vm = CartPostListViewModel(cartPosts: cartPosts)
+      .coordinator(self)
+    
+    let vc = CartPostListViewController(viewModel: vm)
+      .hideTabBar()
+      .navigationTitle(with: "장바구니")
     
     push(vc)
   }
@@ -56,6 +70,7 @@ extension ShoppingCoordinator {
     originalPosts: BehaviorRelay<[CommercialPost]>,
     cartPosts: BehaviorRelay<[CommercialPost]>
   ) {
+    
     let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts, cartPosts: cartPosts)
       .coordinator(self)
     
@@ -68,6 +83,7 @@ extension ShoppingCoordinator {
   }
   
   func connectReviewFlow(post: BehaviorRelay<CommercialPost>) {
+    
     let coordinator = ReviewCoordinator(navigationController)
     coordinator.delegate = self
     coordinator.signOutDelegate = self
@@ -76,6 +92,7 @@ extension ShoppingCoordinator {
   }
   
   func connectProfileFlow(user: User) {
+    
     let coordinator = MyPageCoordinator(navigationController)
     coordinator.delegate = self
     coordinator.signOutDelegate = self
@@ -87,6 +104,7 @@ extension ShoppingCoordinator {
 extension ShoppingCoordinator: CoordinatorDelegate {
   
   func coordinatorDidEnd(_ childCoordinator: Coordinator) {
+    
     emptyOut()
   }
 }
