@@ -16,7 +16,7 @@ final class CartPostListViewModel: ViewModel {
   }
   
   struct Output {
-    
+    let posts: Driver<[CommercialPost]>
   }
   
   // MARK: - Property
@@ -32,6 +32,6 @@ final class CartPostListViewModel: ViewModel {
   // MARK: - Method
   func transform(input: Input) -> Output {
     
-    return Output()
+    return Output(posts: cartPosts.asDriver())
   }
 }
