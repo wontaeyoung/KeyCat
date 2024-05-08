@@ -29,6 +29,8 @@ final class CartPostSheetTableCell: RxBaseTableViewCell {
   // MARK: - Life Cycle
   override func setHierarchy() {
     
+    selectionStyle = .none
+    
     contentView.addSubviews(containerView)
     
     containerView.addSubviews(
