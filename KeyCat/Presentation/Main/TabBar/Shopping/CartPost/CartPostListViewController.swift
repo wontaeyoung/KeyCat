@@ -119,7 +119,7 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
     )
     .do(onNext: {
       // 전체 상품이 선택 상태면 체크박스 업데이트
-      self.toggleAllCheckboxButton.isOn.accept($0.0.count == $0.1.count)
+      self.toggleAllCheckboxButton.isOn.accept($0.0.count == $0.1.count && $0.1.isFilled)
     })
     .map { posts, checkStateList in
       return posts.map { ($0, checkStateList) }
