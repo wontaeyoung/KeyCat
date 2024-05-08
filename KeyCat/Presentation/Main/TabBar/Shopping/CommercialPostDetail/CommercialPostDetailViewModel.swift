@@ -19,6 +19,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let addCartTapEvent: PublishRelay<Void>
     let buyingTapEvent: PublishRelay<Void>
     let toastCompleteEvent: PublishRelay<Void>
+    let cartShortCutTapEvent: PublishRelay<Void>
     
     init(
       handlePostAction: PublishRelay<HandleContentAction> = .init(),
@@ -27,7 +28,8 @@ final class CommercialPostDetailViewModel: ViewModel {
       reviewTapEvent: PublishRelay<Void> = .init(),
       addCartTapEvent: PublishRelay<Void> = .init(),
       buyingTapEvent: PublishRelay<Void> = .init(),
-      toastCompleteEvent: PublishRelay<Void> = .init()
+      toastCompleteEvent: PublishRelay<Void> = .init(),
+      cartShortCutTapEvent: PublishRelay<Void> = .init()
     ) {
       self.handlePostAction = handlePostAction
       self.sellerProfileTapEvent = sellerProfileTapEvent
@@ -36,6 +38,7 @@ final class CommercialPostDetailViewModel: ViewModel {
       self.addCartTapEvent = addCartTapEvent
       self.buyingTapEvent = buyingTapEvent
       self.toastCompleteEvent = toastCompleteEvent
+      self.cartShortCutTapEvent = cartShortCutTapEvent
     }
   }
   
@@ -170,6 +173,13 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    input.cartShortCutTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.dismiss()
+        owner.coordinator?.showCartPostListView(posts: owner.originalPosts, cartPosts: owner.cartPosts)
+      }
+      .disposed(by: disposeBag)
+    
     /// 게시물의 변경사항을 외부 원본 배열에 반영
     post
       .bind(with: self) { owner, updatedPost in
@@ -204,9 +214,12 @@ final class CommercialPostDetailViewModel: ViewModel {
         return owner.commercialPostInteractionUsecase.addPostInCart(postID: post.postID)
       }
       .compactMap { $0 }
-      .do(onNext: {
+      .do(onNext: { [weak self] in
+        guard let self else { return }
+        
         addCartResultToast.accept("상품이 장바구니에 추가되었어요!")
         addedCartPost.accept($0)
+        coordinator?.presentCartPostListSheet(cartPosts: cartPosts, viewModel: self)
       })
       .bind(to: post)
       .disposed(by: disposeBag)

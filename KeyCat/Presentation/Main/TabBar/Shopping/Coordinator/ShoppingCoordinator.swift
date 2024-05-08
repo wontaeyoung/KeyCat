@@ -82,6 +82,20 @@ extension ShoppingCoordinator {
     push(vc)
   }
   
+  func presentCartPostListSheet(
+    cartPosts: BehaviorRelay<[CommercialPost]>,
+    viewModel: CommercialPostDetailViewModel
+  ) {
+    
+    let vc = CartPostListSheetViewController(cartPosts: cartPosts, viewModel: viewModel)
+    vc.sheetPresentationController?.configure {
+      $0.detents = [.medium()]
+      $0.prefersGrabberVisible = true
+    }
+    
+    present(vc)
+  }
+  
   func connectReviewFlow(post: BehaviorRelay<CommercialPost>) {
     
     let coordinator = ReviewCoordinator(navigationController)

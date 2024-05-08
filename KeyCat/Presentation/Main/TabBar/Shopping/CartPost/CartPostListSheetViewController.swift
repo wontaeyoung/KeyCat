@@ -66,7 +66,7 @@ final class CartPostListSheetViewController: RxBaseViewController, ViewModelCont
   override func bind() {
     
     let input = CommercialPostDetailViewModel.Input()
-    let output = viewModel.transform(input: input)
+    let _ = viewModel.transform(input: input)
     
     shortCutButton.rx.tap
       .buttonThrottle()
