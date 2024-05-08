@@ -27,6 +27,7 @@ struct PostDTO: DTO {
   let likes2: [String] // 장바구니
   let hashTags: [String]
   let comments: [CommentDTO]
+  let buyers: [String]
   
   enum CodingKeys: CodingKey {
     case post_id
@@ -45,6 +46,7 @@ struct PostDTO: DTO {
     case likes2
     case hashTags
     case comments
+    case buyers
   }
   
   init(from decoder: any Decoder) throws {
@@ -65,6 +67,7 @@ struct PostDTO: DTO {
     self.likes2 = try container.decode([String].self, forKey: .likes2)
     self.hashTags = try container.decode([String].self, forKey: .hashTags)
     self.comments = try container.decode([CommentDTO].self, forKey: .comments)
+    self.buyers = try container.decode([String].self, forKey: .buyers)
   }
   
   init(
@@ -83,7 +86,8 @@ struct PostDTO: DTO {
     likes: [String],
     likes2: [String],
     hashTags: [String],
-    comments: [CommentDTO]
+    comments: [CommentDTO],
+    buyers: [String]
   ) {
     self.post_id = post_id
     self.product_id = product_id
@@ -101,5 +105,6 @@ struct PostDTO: DTO {
     self.likes2 = likes2
     self.hashTags = hashTags
     self.comments = comments
+    self.buyers = buyers
   }
 }

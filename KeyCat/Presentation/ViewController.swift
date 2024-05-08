@@ -255,7 +255,8 @@ final class ViewController: RxBaseViewController {
                 profileImageURLString: ""
               )
             )
-        }
+        },
+        buyers: []
       )
   }
   

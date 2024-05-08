@@ -23,6 +23,7 @@ struct CommercialPost: Entity {
   var shoppingCarts: [UserID]
   let hashTags: [Hashtag]
   var reviews: [CommercialReview]
+  var buyers: [UserID]
   
   var mainImageURL: URL? {
     return productImagesURL

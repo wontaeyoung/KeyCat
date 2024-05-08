@@ -36,7 +36,8 @@ struct PostMapper: Mapper {
       bookmarks: dto.likes,
       shoppingCarts: dto.likes2,
       hashTags: dto.hashTags,
-      reviews: commentMapper.toEntity(dto.comments)
+      reviews: commentMapper.toEntity(dto.comments),
+      buyers: dto.buyers
     )
   }
   
@@ -75,7 +76,8 @@ struct PostMapper: Mapper {
       likes: entity.bookmarks,
       likes2: [],
       hashTags: entity.hashTags,
-      comments: commentMapper.toDTO(entity.reviews)
+      comments: commentMapper.toDTO(entity.reviews),
+      buyers: entity.buyers
     )
   }
   

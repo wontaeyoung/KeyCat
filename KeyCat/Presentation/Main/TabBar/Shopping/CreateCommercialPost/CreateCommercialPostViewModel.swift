@@ -263,7 +263,8 @@ extension CreateCommercialPostViewModel {
       bookmarks: [],
       shoppingCarts: [],
       hashTags: [],
-      reviews: []
+      reviews: [],
+      buyers: []
     )
     
     return commercialPost
