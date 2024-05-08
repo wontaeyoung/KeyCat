@@ -13,6 +13,8 @@ import RxCocoa
 final class CheckboxButton: UIButton {
   
   private let disposeBag = DisposeBag()
+  private let innerToggle: Bool
+  
   private var isOnState: Bool = false {
     didSet {
       isOn.accept(isOnState)
@@ -21,14 +23,17 @@ final class CheckboxButton: UIButton {
   
   lazy var isOn = BehaviorRelay<Bool>(value: isOnState)
   
-  init() {
+  init(innerToggle: Bool = true) {
+    self.innerToggle = innerToggle
     super.init(frame: .zero)
     
-    rx.tap
-      .bind(with: self) { owner, _ in
-        owner.isOnState.toggle()
-      }
-      .disposed(by: disposeBag)
+    if innerToggle {
+      rx.tap
+        .bind(with: self) { owner, _ in
+          owner.isOnState.toggle()
+        }
+        .disposed(by: disposeBag)
+    }
     
     isOn
       .map { $0 ? KCAsset.Symbol.checkboxOn : KCAsset.Symbol.checkboxOff }
