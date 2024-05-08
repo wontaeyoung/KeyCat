@@ -70,7 +70,7 @@ extension KCButton {
     
     private static let secondaryConfig: UIButton.Configuration = .tinted().applied {
       
-      $0.baseForegroundColor = KCAsset.Color.brand.color
+      $0.baseForegroundColor = KCAsset.Color.darkGray.color
       $0.baseBackgroundColor = KCAsset.Color.secondary.color
       $0.buttonSize = .large
       $0.cornerStyle = .capsule
@@ -112,7 +112,7 @@ extension KCButton {
       $0.cornerStyle = .capsule
       
       $0.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
-        return $0.applied { $0.font = KCAsset.Font.bold(size: 36).font }
+        return $0.applied { $0.font = KCAsset.Font.medium(size: 30).font }
       }
     }
     
