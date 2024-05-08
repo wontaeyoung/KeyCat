@@ -111,7 +111,7 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
     
     /// 장바구니 게시물 리스트 + 체크박스 리스트를 조합해서 테이블 그리기
     Observable.combineLatest(
-      output.posts,
+      output.cartPosts,
       output.checkStateList
     )
     .do(onNext: {

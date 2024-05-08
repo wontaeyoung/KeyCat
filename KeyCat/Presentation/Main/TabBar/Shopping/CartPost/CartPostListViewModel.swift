@@ -31,7 +31,7 @@ final class CartPostListViewModel: ViewModel {
   }
   
   struct Output {
-    let posts: BehaviorRelay<[CommercialPost]>
+    let cartPosts: BehaviorRelay<[CommercialPost]>
     let checkStateList: BehaviorRelay<[CommercialPost.PostID]>
   }
   
@@ -40,14 +40,17 @@ final class CartPostListViewModel: ViewModel {
   weak var coordinator: ShoppingCoordinator?
   private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
   
+  private let posts: BehaviorRelay<[CommercialPost]>
   private let cartPosts: BehaviorRelay<[CommercialPost]>
   private let checkStateList = BehaviorRelay<[CommercialPost.PostID]>(value: [])
   
   // MARK: - Initializer
   init(
+    posts: BehaviorRelay<[CommercialPost]>,
     cartPosts: BehaviorRelay<[CommercialPost]>,
     commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
   ) {
+    self.posts = posts
     self.cartPosts = cartPosts
     self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
   }
@@ -85,8 +88,21 @@ final class CartPostListViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 체크박스 리스트 전체에 대해 장바구니 제거 요청 > 응답 후 로컬 배열에서 제거
+    input.deleteCheckPostsTapEvent
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.deleteCheckPostsInCart()
+      }
+      .bind(with: self) { owner, removedPosts in
+        removedPosts.forEach {
+          owner.deletePostInCart(postID: $0.postID)
+        }
+      }
+      .disposed(by: disposeBag)
+    
     return Output(
-      posts: cartPosts,
+      cartPosts: cartPosts,
       checkStateList: checkStateList
     )
   }
@@ -108,21 +124,43 @@ final class CartPostListViewModel: ViewModel {
   
   private func deletePostInCart(postID: CommercialPost.PostID) {
     
-    var posts = cartPosts.value
+    var cartPosts = cartPosts.value
     var checkStateList = checkStateList.value
     
     defer {
-      self.cartPosts.accept(posts)
+      self.cartPosts.accept(cartPosts)
       self.checkStateList.accept(checkStateList)
     }
     
-    guard let index = posts.firstIndex(where: { $0.postID == postID }) else { return }
+    // 장바구니 리스트에서 게시물 인덱스 찾기
+    guard let index = cartPosts.firstIndex(where: { $0.postID == postID }) else { return }
     
-    posts.remove(at: index)
+    // 장바구니 리스트에서 게시물 삭제
+    cartPosts.remove(at: index)
     
+    // 원본 배열의 장바구니 유저 리스트에서 사용자 본인 삭제
+    removeUserFromPostInOriginalPosts(postID: postID)
+    
+    // 체크 게시물 리스트에 포함되어있으면, 배열에서도 삭제
     if let index = checkStateList.firstIndex(of: postID) {
       checkStateList.remove(at: index)
     }
+  }
+  
+  private func removeUserFromPostInOriginalPosts(postID: CommercialPost.PostID) {
+    
+    var posts = posts.value
+    
+    defer { self.posts.accept(posts) }
+    
+    guard 
+      let index = posts.firstIndex(where: { $0.postID == postID }),
+      let userIndex = posts[index].shoppingCarts.firstIndex(of: UserInfoService.userID)
+    else {
+      return
+    }
+    
+    posts[index].shoppingCarts.remove(at: userIndex)
   }
   
   private func toggleAllCheckState() {
@@ -138,5 +176,20 @@ final class CartPostListViewModel: ViewModel {
     }
     
     checkStateList = cartPosts.value.map { $0.postID }
+  }
+  
+  private func deleteCheckPostsInCart() -> Single<[CommercialPost]> {
+    
+    let removePostFromCartResults = checkStateList.value.map {
+      return commercialPostInteractionUsecase.removePostFromCart(postID: $0)
+        .catch {
+          self.coordinator?.showErrorAlert(error: $0)
+          return .just(nil)
+        }
+    }
+    
+    return Single.zip(removePostFromCartResults) {
+      $0.compactMap { $0 }
+    }
   }
 }

@@ -20,7 +20,7 @@ struct CommercialPost: Entity {
   let creator: User
   var files: [URLString]
   let bookmarks: [UserID]
-  let shoppingCarts: [UserID]
+  var shoppingCarts: [UserID]
   let hashTags: [Hashtag]
   var reviews: [CommercialReview]
   

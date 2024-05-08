@@ -128,7 +128,7 @@ final class ShoppingViewModel: ViewModel {
     /// 장바구니 탭 이벤트 화면 연결
     input.cartTapEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.showCartPostListView(cartPosts: owner.cartPosts)
+        owner.coordinator?.showCartPostListView(posts: owner.posts, cartPosts: owner.cartPosts)
       }
       .disposed(by: disposeBag)
     
