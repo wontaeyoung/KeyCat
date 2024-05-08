@@ -30,6 +30,8 @@ final class CartPostTableCell: RxBaseTableViewCell {
   private let deleteButton = KCButton(style: .icon, image: KCAsset.Symbol.leaveButton)
   
   // MARK: - Property
+  var checkAction: (() -> Void)?
+  var deleteAction: (() -> Void)?
   
   // MARK: - Life Cycle
   override func setHierarchy() {
@@ -92,11 +94,28 @@ final class CartPostTableCell: RxBaseTableViewCell {
     }
   }
   
-  func setData(post: CommercialPost) {
+  override func bind() {
+    
+    checkboxButton.rx.tap
+      .bind(with: self) { owner, _ in
+        owner.checkAction?()
+      }
+      .disposed(by: disposeBag)
+    
+    deleteButton.rx.tap
+      .bind(with: self) { owner, _ in
+        owner.deleteAction?()
+      }
+      .disposed(by: disposeBag)
+  }
+  
+  func setData(post: CommercialPost, checkStateList: [CommercialPost.PostID]) {
     
     productImageView.load(with: post.mainImageURL)
     titleLabel.text = post.title
     priceView.productPrice = post.price
     deliveryInfoLabel.text = "\(post.delivery.price.name) | \(post.delivery.schedule.name)배송"
+    
+    checkboxButton.isOn.accept(checkStateList.contains(post.postID))
   }
 }
