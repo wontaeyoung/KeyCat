@@ -30,6 +30,7 @@ enum HTTPRequestDomain {
   
   // 401, 409, 410
   case follow
+  case paymentValidation
   
   case none
 }

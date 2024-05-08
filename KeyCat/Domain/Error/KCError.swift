@@ -19,6 +19,8 @@ enum KCError: AppError {
   case networkError // -
   case unknown // -
   
+  case invalidPaymentResponse
+  
   var logDescription: String {
     switch self {
       default:
@@ -57,6 +59,9 @@ enum KCError: AppError {
         
       case .unknown:
         return "알 수 없는 문제가 발생했어요. 문제가 지속되면 고객센터에 문의해주세요."
+        
+      case .invalidPaymentResponse:
+        return "결제가 실패했어요. 잠시 후에 다시 시도해주세요."
     }
   }
 }
@@ -99,6 +104,7 @@ extension KCError {
     case emailDuplicated
     case registeredUser
     case follow
+    case paymentValidation
     
     var alertDescription: String {
       switch self {
@@ -110,6 +116,9 @@ extension KCError {
           
         case .follow:
           return "이미 팔로우 중이에요."
+          
+        case .paymentValidation:
+          return "이미 결제된 상품이에요."
       }
     }
   }
@@ -120,6 +129,7 @@ extension KCError {
     case create(model: DomainModel)
     case update(model: DomainModel)
     case delete(model: DomainModel)
+    case pay
     
     var alertDescription: String {
       switch self {
@@ -129,6 +139,8 @@ extension KCError {
           return "수정할 \(model.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
         case .delete(let model):
           return "삭제할 \(model.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
+        case .pay:
+          return "결제할 상품을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
       }
     }
   }

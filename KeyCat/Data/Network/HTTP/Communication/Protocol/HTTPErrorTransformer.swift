@@ -53,7 +53,8 @@ extension HTTPErrorTransformer {
           case .accessToken, .withdraw,
               .createPost, .fetchPosts, .deletePost, .likePost,
               .createReview, .deleteReview,
-              .follow, .unfollow:
+              .follow, .unfollow,
+              .paymentValidation:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -104,6 +105,9 @@ extension HTTPErrorTransformer {
           case .unfollow:
             return .targetNotFound(detail: .delete(model: .follow))
           
+          case .paymentValidation:
+            return .targetNotFound(detail: .pay)
+            
           default:
             return httpStatusError.toDomain
         }
