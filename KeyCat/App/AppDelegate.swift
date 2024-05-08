@@ -7,11 +7,15 @@
 
 import UIKit
 import Toast
+import iamport_ios
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
     
     setGlobalToastStyle()
     
@@ -26,6 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     
+  }
+  
+  func application(
+    _ app: UIApplication,
+    open url: URL,
+    options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+  ) -> Bool {
+    
+    Iamport.shared.receivedURL(url)
+    
+    return true
   }
 }
 
