@@ -59,4 +59,12 @@ enum Constant {
     static let fetchCountForOnce: String = "10"
     static let lastCursorSign: String = "0"
   }
+  
+  enum Payment {
+    
+    static let pgID: String = "INIpayTest"
+    static let appScheme: String = "keycat"
+    static let buyerName: String = "원태영"
+    static let userCode: String = "imp57573124"
+  }
 }
