@@ -201,7 +201,7 @@ final class CommercialPostDetailViewModel: ViewModel {
       .withLatestFrom(post)
       .withUnretained(self)
       .flatMap { owner, post in
-        return owner.commercialPostInteractionUsecase.addCart(postID: post.postID, adding: true)
+        return owner.commercialPostInteractionUsecase.addPostInCart(postID: post.postID)
       }
       .compactMap { $0 }
       .do(onNext: {

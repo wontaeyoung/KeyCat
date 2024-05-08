@@ -13,9 +13,18 @@ import RxCocoa
 final class CartPostListViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
+  private let handleCheckboxView = UIView()
+  private let toggleAllCheckboxButton = CheckboxButton()
+  private let removeCheckedPostsButton = KCButton(style: .plain, title: "선택 상품 삭제")
+  private let checkboxViewDivider = Divider()
+  
   private let tableView = UITableView().configured {
     $0.register(CartPostTableCell.self, forCellReuseIdentifier: CartPostTableCell.identifier)
   }
+  
+  private let payBottomInfoView = UIView()
+  private let totalPriceLabel = KCLabel(title: "310,700원", font: .bold(size: 15))
+  private let payButton = KCButton(style: .primary, title: "구매하기")
   
   // MARK: - Property
   let viewModel: CartPostListViewModel
@@ -29,17 +38,70 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    view.addSubviews(tableView)
+    
+    view.addSubviews(
+      handleCheckboxView,
+      tableView,
+      payBottomInfoView
+    )
+    
+    handleCheckboxView.addSubviews(
+      toggleAllCheckboxButton,
+      removeCheckedPostsButton,
+      checkboxViewDivider
+    )
+    
+    payBottomInfoView.addSubviews(
+      totalPriceLabel,
+      payButton
+    )
   }
   
   override func setConstraint() {
-    tableView.snp.makeConstraints { make in
-      make.edges.equalTo(view.safeAreaLayoutGuide)
-    }
-  }
-  
-  override func setAttribute() {
     
+    handleCheckboxView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.horizontalEdges.equalToSuperview().inset(10)
+    }
+    
+    toggleAllCheckboxButton.snp.makeConstraints { make in
+      make.verticalEdges.equalToSuperview().inset(5)
+      make.leading.equalToSuperview()
+      make.size.equalTo(25)
+      make.trailing.lessThanOrEqualTo(removeCheckedPostsButton.snp.leading)
+    }
+    
+    removeCheckedPostsButton.snp.makeConstraints { make in
+      make.centerY.equalTo(toggleAllCheckboxButton)
+      make.trailing.equalToSuperview()
+    }
+    
+    checkboxViewDivider.snp.makeConstraints { make in
+      make.horizontalEdges.equalTo(view)
+      make.bottom.equalToSuperview()
+    }
+    
+    tableView.snp.makeConstraints { make in
+      make.top.equalTo(handleCheckboxView.snp.bottom)
+      make.horizontalEdges.equalToSuperview()
+      make.bottom.equalTo(payBottomInfoView.snp.top)
+    }
+    
+    payBottomInfoView.snp.makeConstraints { make in
+      make.horizontalEdges.equalToSuperview().inset(20)
+      make.bottom.equalTo(view.safeAreaLayoutGuide)
+    }
+    
+    totalPriceLabel.snp.makeConstraints { make in
+      make.leading.equalToSuperview()
+      make.centerY.equalTo(payButton)
+    }
+    
+    payButton.snp.makeConstraints { make in
+      make.leading.equalTo(totalPriceLabel.snp.trailing).offset(10)
+      make.verticalEdges.equalToSuperview().inset(5)
+      make.trailing.equalToSuperview()
+    }
   }
   
   override func bind() {
@@ -47,14 +109,45 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
     let input = CartPostListViewModel.Input()
     let output = viewModel.transform(input: input)
     
-    /// 장바구니 게시물 리스트로 테이블 그리기
-    output.posts
-      .drive(tableView.rx.items(
-        cellIdentifier: CartPostTableCell.identifier,
-        cellType: CartPostTableCell.self)
-      ) { row, post, cell in
-        cell.setData(post: post)
+    /// 장바구니 게시물 리스트 + 체크박스 리스트를 조합해서 테이블 그리기
+    Observable.combineLatest(
+      output.posts,
+      output.checkStateList
+    )
+    .do(onNext: {
+      // 전체 상품이 선택 상태면 체크박스 업데이트
+      self.toggleAllCheckboxButton.isOn.accept($0.0.count == $0.1.count)
+    })
+    .map { posts, checkStateList in
+      return posts.map { ($0, checkStateList) }
+    }
+    .bind(to: tableView.rx.items(
+      cellIdentifier: CartPostTableCell.identifier,
+      cellType: CartPostTableCell.self)
+    ) { row, item, cell in
+      
+      let (post, checkStateList) = item
+      
+      cell.setData(post: post, checkStateList: checkStateList)
+      
+      cell.checkAction = {
+        input.checkboxTapEvent.accept(post.postID)
       }
+      
+      cell.deleteAction = {
+        input.deleteTapEvent.accept(post.postID)
+      }
+    }
+    .disposed(by: disposeBag)
+    
+    /// 전체 체크 버튼 탭 이벤트 전달
+    toggleAllCheckboxButton.rx.tap
+      .bind(to: input.toggleAllCheckboxTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 선택 삭제 버튼 탭 이벤트 전달
+    removeCheckedPostsButton.rx.tap
+      .bind(to: input.deleteCheckPostsTapEvent)
       .disposed(by: disposeBag)
   }
 }
