@@ -23,7 +23,7 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
   }
   
   private let payBottomInfoView = UIView()
-  private let totalPriceLabel = KCLabel(title: "310,700원", font: .bold(size: 15))
+  private let totalPriceLabel = KCLabel(title: "0원", font: .bold(size: 15))
   private let payButton = KCButton(style: .primary, title: "구매하기")
   
   // MARK: - Property
@@ -139,6 +139,12 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
       }
     }
     .disposed(by: disposeBag)
+    
+    /// 체크된 상품 가격 총합을 라벨에 전달
+    output.totalPrice
+      .map { "\($0.formatted())원" }
+      .drive(totalPriceLabel.rx.text)
+      .disposed(by: disposeBag)
     
     /// 전체 체크 버튼 탭 이벤트 전달
     toggleAllCheckboxButton.rx.tap

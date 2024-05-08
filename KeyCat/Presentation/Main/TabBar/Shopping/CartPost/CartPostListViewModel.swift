@@ -33,6 +33,7 @@ final class CartPostListViewModel: ViewModel {
   struct Output {
     let cartPosts: BehaviorRelay<[CommercialPost]>
     let checkStateList: BehaviorRelay<[CommercialPost.PostID]>
+    let totalPrice: Driver<Int>
   }
   
   // MARK: - Property
@@ -57,6 +58,16 @@ final class CartPostListViewModel: ViewModel {
   
   // MARK: - Method
   func transform(input: Input) -> Output {
+    
+    let totalPrice = BehaviorRelay<Int>(value: 0)
+    
+    /// 체크박스 리스트의 현재 게시물들의 가격 총합을 전달
+    checkStateList
+      .map { _ in self.cartPosts.value }
+      .map { $0.filter { self.checkStateList.value.contains($0.postID) }}
+      .map { $0.map { $0.price.discountPrice }.reduce(0, +) }
+      .bind(to: totalPrice)
+      .disposed(by: disposeBag)
     
     /// 체크박스 탭 이벤트 > 체크박스 리스트에 반영
     input.checkboxTapEvent
@@ -103,7 +114,8 @@ final class CartPostListViewModel: ViewModel {
     
     return Output(
       cartPosts: cartPosts,
-      checkStateList: checkStateList
+      checkStateList: checkStateList,
+      totalPrice: totalPrice.asDriver()
     )
   }
   
