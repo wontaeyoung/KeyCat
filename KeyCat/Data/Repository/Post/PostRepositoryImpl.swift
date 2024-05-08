@@ -125,8 +125,21 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
       .map { ($0.next_cursor, self.postMapper.toEntity($0.data)) }
   }
   
-  func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<Bool> {
-    let request = LikePostRequest(like_status: adding)
+  func addPostInCart(postID: CommercialPost.PostID) -> Single<Bool> {
+    let request = LikePostRequest(like_status: true)
+    let router = LikeRouter.like2(postID: postID, request: request)
+    
+    return service.callRequest(with: router, of: LikePostResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .likePost)
+        
+        return .error(domainError)
+      }
+      .map { $0.like_status }
+  }
+  
+  func removePostFromCart(postID: CommercialPost.PostID) -> Single<Bool> {
+    let request = LikePostRequest(like_status: false)
     let router = LikeRouter.like2(postID: postID, request: request)
     
     return service.callRequest(with: router, of: LikePostResponse.self)

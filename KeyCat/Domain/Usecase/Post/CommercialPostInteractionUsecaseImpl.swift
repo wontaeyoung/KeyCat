@@ -23,8 +23,15 @@ final class CommercialPostInteractionUsecaseImpl: CommercialPostInteractionUseca
       }
   }
   
-  func addCart(postID: CommercialPost.PostID, adding: Bool) -> Single<CommercialPost?> {
-    return postRepository.addCart(postID: postID, adding: adding)
+  func addPostInCart(postID: CommercialPost.PostID) -> Single<CommercialPost?> {
+    return postRepository.addPostInCart(postID: postID)
+      .flatMap { _ in
+        return self.postRepository.fetchSpecificPost(postID: postID)
+      }
+  }
+  
+  func removePostFromCart(postID: CommercialPost.PostID) -> Single<CommercialPost?> {
+    return postRepository.removePostFromCart(postID: postID)
       .flatMap { _ in
         return self.postRepository.fetchSpecificPost(postID: postID)
       }
