@@ -41,6 +41,8 @@ extension AppDelegate {
       $0.titleAlignment = .center
       $0.activityBackgroundColor = .clear
       $0.activityIndicatorColor = KCAsset.Color.brand.color
+      $0.verticalPadding = 20
+      $0.horizontalPadding = 20
     }
   }
 }

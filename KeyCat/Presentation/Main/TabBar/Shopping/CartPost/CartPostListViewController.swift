@@ -23,7 +23,10 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
   }
   
   private let payBottomInfoView = UIView()
-  private let totalPriceLabel = KCLabel(title: "0원", font: .bold(size: 15))
+  private let totalPriceLabel = KCLabel(title: "0원", font: .bold(size: 15)).configured {
+    $0.setContentHuggingPriority(.required, for: .horizontal)
+    $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+  }
   private let payButton = KCButton(style: .primary, title: "구매하기")
   
   // MARK: - Property
@@ -140,6 +143,12 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
     }
     .disposed(by: disposeBag)
     
+    /// 체크된 상품이 없으면 구매 버튼 비활성화
+    output.checkStateList
+      .map { $0.isFilled }
+      .bind(to: payButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    
     /// 체크된 상품 가격 총합을 라벨에 전달
     output.totalPrice
       .map { "\($0.formatted())원" }
@@ -154,6 +163,14 @@ final class CartPostListViewController: RxBaseViewController, ViewModelControlle
     /// 선택 삭제 버튼 탭 이벤트 전달
     removeCheckedPostsButton.rx.tap
       .bind(to: input.deleteCheckPostsTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 장바구니 결제 사용 불가 안내 토스트
+    payButton.rx.tap
+      .buttonThrottle()
+      .bind(with: self) { owner, _ in
+        owner.toast("장바구니 결제는 현재 버전에서는 사용이 어려워요.")
+      }
       .disposed(by: disposeBag)
   }
 }
