@@ -48,6 +48,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     let bookmarkCount: Driver<Int>
     let addCartResultToast: Driver<String>
     let postDeletedToast: Driver<Void>
+    let postPaidToast: Driver<Void>
   }
   
   // MARK: - Property
@@ -59,6 +60,7 @@ final class CommercialPostDetailViewModel: ViewModel {
   private let post: BehaviorRelay<CommercialPost>
   private let originalPosts: BehaviorRelay<[CommercialPost]>
   private let cartPosts: BehaviorRelay<[CommercialPost]>
+  private let paidSuccessTrigger = PublishRelay<Void>()
   
   // MARK: - Initializer
   init(
@@ -80,6 +82,7 @@ final class CommercialPostDetailViewModel: ViewModel {
     
     let addCartResultToast = PublishRelay<String>()
     let postDeletedToast = PublishRelay<Void>()
+    let postPaidToast = PublishRelay<Void>()
     let isBookmark = BehaviorRelay<Bool>(value: post.value.isBookmarked)
     let bookmarkCount = BehaviorRelay<Int>(value: post.value.bookmarks.count)
     
@@ -152,7 +155,7 @@ final class CommercialPostDetailViewModel: ViewModel {
         owner.coordinator?.connectReviewFlow(post: owner.post)
       }
       .disposed(by: disposeBag)
-      
+    
     /// 장바구니 추가 이벤트 > 이미 추가되어있는지 체크 > 액션 분기 처리
     input.addCartTapEvent
       .withLatestFrom(post)
@@ -173,10 +176,17 @@ final class CommercialPostDetailViewModel: ViewModel {
       }
       .disposed(by: disposeBag)
     
+    /// 장바구니 바로가기 화면 연결
     input.cartShortCutTapEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.dismiss()
         owner.coordinator?.showCartPostListView(posts: owner.originalPosts, cartPosts: owner.cartPosts)
+      }
+      .disposed(by: disposeBag)
+    
+    input.buyingTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showPaymentView(post: owner.post.value, paidSuccessTrigger: owner.paidSuccessTrigger)
       }
       .disposed(by: disposeBag)
     
@@ -224,13 +234,37 @@ final class CommercialPostDetailViewModel: ViewModel {
       .bind(to: post)
       .disposed(by: disposeBag)
     
+    /// 결제 성공 > 게시물 구매자 리스트에 유저 본인 추가
+    paidSuccessTrigger
+      .bind(with: self) { owner, _ in
+        owner.processBuyingProduct()
+        postPaidToast.accept(())
+      }
+      .disposed(by: disposeBag)
+    
     return Output(
       post: post.asDriver(),
       isBookmark: isBookmark.asDriver(),
       bookmarkCount: bookmarkCount.asDriver(),
       addCartResultToast: addCartResultToast.asDriver(onErrorJustReturn: ""),
-      postDeletedToast: postDeletedToast.asDriver(onErrorJustReturn: ())
+      postDeletedToast: postDeletedToast.asDriver(onErrorJustReturn: ()),
+      postPaidToast: postPaidToast.asDriver(onErrorJustReturn: ())
     )
+  }
+  
+  private func processBuyingProduct() {
+    makeUserAsBuyer()
+    removePostFromCart()
+  }
+  
+  private func makeUserAsBuyer() {
+    guard post.value.buyers.contains(UserInfoService.userID) == false else { return }
+    
+    let post = post.value.applied {
+      $0.buyers.append(UserInfoService.userID)
+    }
+    
+    self.post.accept(post)
   }
   
   private func updatePostInList(updatedPost: CommercialPost) {
@@ -251,9 +285,23 @@ final class CommercialPostDetailViewModel: ViewModel {
     originalPosts.accept(currentPosts)
   }
   
+  /// 카트 추가하기
   private func addPostInCart(addedPost: CommercialPost) {
     var cartPosts = cartPosts.value
     cartPosts.insert(addedPost, at: 0)
+    
+    self.cartPosts.accept(cartPosts)
+  }
+  
+  /// 카트에서 삭제하기
+  private func removePostFromCart() {
+    var cartPosts = cartPosts.value
+    
+    guard let index = cartPosts.firstIndex(where: { $0.postID == post.value.postID }) else {
+      return
+    }
+    
+    cartPosts.remove(at: index)
     
     self.cartPosts.accept(cartPosts)
   }

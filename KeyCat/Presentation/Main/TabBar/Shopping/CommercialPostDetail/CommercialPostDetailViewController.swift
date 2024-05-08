@@ -335,6 +335,15 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 상품 구매 여부에 따라 장바구니 / 구매 버튼 상태 업데이트
+    output.post
+      .map { !$0.buyers.contains(UserInfoService.userID) }
+      .do (onNext: {
+        self.buyingButton.title($0 ? "구매하기" : "구매 완료")
+      })
+      .drive(addCartButton.rx.isEnabled, buyingButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    
     /// 북마크 이미지 표시
     output.isBookmark
       .map { $0 ? KCAsset.Symbol.bookmarkOn : KCAsset.Symbol.bookmarkOff }
@@ -369,6 +378,13 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
       }
       .disposed(by: disposeBag)
     
+    /// 결제 완료 토스트 표시
+    output.postPaidToast
+      .drive(with: self) { owner, _ in
+        owner.toast("상품이 결제되었어요!")
+      }
+      .disposed(by: disposeBag)
+    
     /// 판매자 프로필 탭 이벤트 전달
     sellerProfileView.profileTapEvent
       .bind(to: input.sellerProfileTapEvent)
@@ -394,6 +410,12 @@ final class CommercialPostDetailViewController: RxBaseViewController, ViewModelC
     addCartButton.rx.tap
       .buttonThrottle()
       .bind(to: input.addCartTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 구매 버튼 탭 이벤트 전달
+    buyingButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.buyingTapEvent)
       .disposed(by: disposeBag)
   }
 }

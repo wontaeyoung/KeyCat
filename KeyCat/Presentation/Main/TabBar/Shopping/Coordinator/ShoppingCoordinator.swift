@@ -77,7 +77,19 @@ extension ShoppingCoordinator {
     let vc = CommercialPostDetailViewController(viewModel: vm)
       .hideBackTitle()
       .hideTabBar()
-      .navigationTitle(with: "상품 상세", displayMode: .never)
+      .navigationTitle(with: "상품 상세")
+    
+    push(vc)
+  }
+  
+  func showPaymentView(post: CommercialPost, paidSuccessTrigger: PublishRelay<Void>) {
+    
+    let vm = PaymentViewModel(post: post, paidSuccessTrigger: paidSuccessTrigger)
+      .coordinator(self)
+    
+    let vc = PaymentViewController(viewModel: vm)
+      .hideBackTitle()
+      .navigationTitle(with: "결제하기")
     
     push(vc)
   }
