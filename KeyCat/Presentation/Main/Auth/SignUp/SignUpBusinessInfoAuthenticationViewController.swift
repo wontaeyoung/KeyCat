@@ -25,12 +25,18 @@ final class SignUpBusinessInfoAuthenticationViewController: SignUpBaseViewContro
   
   // MARK: - Property
   let viewModel: SignUpViewModel
+  private let authenticationCase: AuthenticationCase
   
   // MARK: - Initializer
-  init(viewModel: SignUpViewModel) {
+  init(viewModel: SignUpViewModel, authenticationCase: AuthenticationCase) {
     self.viewModel = viewModel
+    self.authenticationCase = authenticationCase
     
     super.init(inputInfoTitle: Constant.Label.inputBusinessInfo)
+    
+    if case .updateProfile = authenticationCase {
+      nextButton.title("인증 완료")
+    }
   }
   
   // MARK: - Life Cycle
@@ -74,6 +80,16 @@ final class SignUpBusinessInfoAuthenticationViewController: SignUpBaseViewContro
       .drive(with: self) { owner, message in owner.toast(message) }
       .disposed(by: disposeBag)
     
+    /// 사업자 업데이트 토스트 표시
+    output.updateSellerCompletedEvent
+      .map { "판매자 인증이 완료되었어요!" }
+      .drive(with: self) { owner, message in
+        owner.toast(message) {
+          input.updateSellerToastCompletedEvent.accept(())
+        }
+      }
+      .disposed(by: disposeBag)
+    
     /// 사업자 인증 버튼 탭 -> 현재 사업자 번호 입력값 전달
     authenticationButton.rx.tap
       .buttonThrottle()
@@ -84,6 +100,7 @@ final class SignUpBusinessInfoAuthenticationViewController: SignUpBaseViewContro
     /// 다음 버튼 탭 이벤트 전달
     nextButton.rx.tap
       .buttonThrottle()
+      .map { self.authenticationCase }
       .bind(to: input.businessInfoAuthenticationNextEvent)
       .disposed(by: disposeBag)
     
@@ -94,8 +111,11 @@ final class SignUpBusinessInfoAuthenticationViewController: SignUpBaseViewContro
   }
 }
 
-@available(iOS 17, *)
-#Preview {
-  UINavigationController(rootViewController: SignUpEmailViewController(viewModel: SignUpViewModel()))
+extension SignUpBusinessInfoAuthenticationViewController {
+  
+  enum AuthenticationCase {
+    
+    case onboarding
+    case updateProfile
+  }
 }
-

@@ -18,7 +18,7 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   }
   
   private let tappableDefaultProfileImageView = TappableImageView(image: .keyCat).configured {
-    $0.contentMode = .scaleAspectFit
+    $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     $0.layer.configure {
       $0.cornerRadius = 100 / 2
@@ -44,6 +44,8 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   
   private let nicknameField = ValidationField(inputInformation: .nickname)
   
+  private let updateSellerAuthorityButton = KCButton(style: .secondary)
+  
   private let updateProfileImageAvailableLabel = KCLabel(
     title: Constant.Label.updateProfileImageAvailable,
     font: .medium(size: 15),
@@ -54,16 +56,25 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   
   // MARK: - Property
   let viewModel: SignUpViewModel
+  private let writingProfileCase: WriteProfileCase
   private let profileImage = BehaviorRelay<UIImage?>(value: nil)
   
   // MARK: - Initializer
-  init(viewModel: SignUpViewModel) {
+  init(viewModel: SignUpViewModel, writingProfileCase: WriteProfileCase) {
     self.viewModel = viewModel
+    self.writingProfileCase = writingProfileCase
     
     super.init(inputInfoTitle: Constant.Label.inputProfileInfo)
   }
   
   // MARK: - Life Cycle
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    updateSellerAuthorityButton.title(UserInfoService.hasSellerAuthority ? "판매자 인증 완료" : "판매자 인증하기")
+    updateSellerAuthorityButton.isEnabled = !UserInfoService.hasSellerAuthority
+  }
+  
   override func setHierarchy() {
     super.setHierarchy()
     
@@ -77,7 +88,21 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
   }
   
   override func setAttribute() {
-    nextButton.title(Constant.Button.signingUp)
+    
+    switch writingProfileCase {
+      case .onboarding:
+        nextButton.title(Constant.Button.signingUp)
+      case .update(let profile):
+        nextButton.title("수정 완료")
+        nicknameField.text = profile.nickname
+        tappableDefaultProfileImageView.load(with: profile.profileImageURL)
+        
+        view.addSubview(updateSellerAuthorityButton)
+        updateSellerAuthorityButton.snp.makeConstraints { make in
+          make.horizontalEdges.equalToSuperview().inset(20)
+          make.bottom.equalTo(updateProfileImageAvailableLabel.snp.top).offset(-20)
+        }
+    }
   }
   
   override func setConstraint() {
@@ -152,6 +177,12 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
       .bind(to: nextButton.rx.isEnabled)
       .disposed(by: disposeBag)
     
+    /// 판매자 권한 업데이트 탭 이벤트 전달
+    updateSellerAuthorityButton.rx.tap
+      .buttonThrottle()
+      .bind(to: input.updateSellerAuthorityTapEvent)
+      .disposed(by: disposeBag)
+    
     /// 다음 버튼 탭 이벤트 + 현재 프로필 이미지 데이터 전달
     nextButton.rx.tap
       .buttonThrottle()
@@ -160,14 +191,14 @@ final class SignUpProfileViewController: SignUpBaseViewController, ViewModelCont
         owner.nextButton.showIndicator()
       }
       .withLatestFrom(profileImage)
-      .map { $0?.compressedJPEGData }
+      .map { ($0?.compressedJPEGData, self.writingProfileCase) }
       .bind(to: input.profileNextEvent)
       .disposed(by: disposeBag)
     
     /// 회원가입 완료 토스트 표시 -> 토스트 종료 이벤트 전달
     output.signUpCompleted
-      .drive(with: self) { owner, _ in
-        owner.toast("회원가입이 완료되었어요!") { 
+      .drive(with: self) { owner, message in
+        owner.toast(message) {
           input.signUpToastCompletedEvent.accept(())
         }
       }
@@ -197,5 +228,14 @@ extension SignUpProfileViewController: UIImagePickerControllerDelegate, UINaviga
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true)
+  }
+}
+
+extension SignUpProfileViewController {
+  
+  enum WriteProfileCase {
+    
+    case onboarding
+    case update(profile: Profile)
   }
 }

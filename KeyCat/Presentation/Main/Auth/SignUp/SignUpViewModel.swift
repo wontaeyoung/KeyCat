@@ -17,7 +17,7 @@ final class SignUpViewModel: ViewModel {
     let onlyCustomerAuthorityNextEvent: PublishRelay<Void>
     
     let businessInfoAuthenticationEvent: PublishRelay<String>
-    let businessInfoAuthenticationNextEvent: PublishRelay<Void>
+    let businessInfoAuthenticationNextEvent: PublishRelay<SignUpBusinessInfoAuthenticationViewController.AuthenticationCase>
     
     let email: PublishRelay<String>
     let duplicateCheckEvent: PublishRelay<Void>
@@ -28,14 +28,17 @@ final class SignUpViewModel: ViewModel {
     let passwordNextEvent: PublishRelay<Void>
     
     let nickname: PublishRelay<String>
-    let profileNextEvent: PublishRelay<Data?>
+    let profileNextEvent: PublishRelay<(Data?, SignUpProfileViewController.WriteProfileCase)>
     let signUpToastCompletedEvent: PublishRelay<Void>
+    
+    let updateSellerAuthorityTapEvent: PublishRelay<Void>
+    let updateSellerToastCompletedEvent: PublishRelay<Void>
     
     init(
       sellerAuthorityNextEvent: PublishRelay<Void> = .init(),
       onlyCustomerAuthorityNextEvent: PublishRelay<Void> = .init(),
       businessInfoAuthenticationEvent: PublishRelay<String> = .init(),
-      businessInfoAuthenticationNextEvent: PublishRelay<Void> = .init(),
+      businessInfoAuthenticationNextEvent: PublishRelay<SignUpBusinessInfoAuthenticationViewController.AuthenticationCase> = .init(),
       email: PublishRelay<String> = .init(),
       duplicateCheckEvent: PublishRelay<Void> = .init(),
       emailNextEvent: PublishRelay<Void> = .init(),
@@ -43,8 +46,10 @@ final class SignUpViewModel: ViewModel {
       passwordCheck: PublishRelay<String> = .init(),
       passwordNextEvent: PublishRelay<Void> = .init(),
       nickname: PublishRelay<String> = .init(),
-      profileNextEvent: PublishRelay<Data?> = .init(),
-      signUpToastCompletedEvent: PublishRelay<Void> = .init()
+      profileNextEvent: PublishRelay<(Data?, SignUpProfileViewController.WriteProfileCase)> = .init(),
+      signUpToastCompletedEvent: PublishRelay<Void> = .init(),
+      updateSellerAuthorityTapEvent: PublishRelay<Void> = .init(),
+      updateSellerToastCompletedEvent: PublishRelay<Void> = .init()
     ) {
       self.sellerAuthorityNextEvent = sellerAuthorityNextEvent
       self.onlyCustomerAuthorityNextEvent = onlyCustomerAuthorityNextEvent
@@ -59,6 +64,8 @@ final class SignUpViewModel: ViewModel {
       self.nickname = nickname
       self.profileNextEvent = profileNextEvent
       self.signUpToastCompletedEvent = signUpToastCompletedEvent
+      self.updateSellerAuthorityTapEvent = updateSellerAuthorityTapEvent
+      self.updateSellerToastCompletedEvent = updateSellerToastCompletedEvent
     }
   }
   
@@ -71,8 +78,10 @@ final class SignUpViewModel: ViewModel {
     
     let passwordEqualValidationResult: Driver<Bool>
     
-    let signUpCompleted: Driver<Void>
+    let signUpCompleted: Driver<String>
     let signUpFailed: Driver<Void>
+    
+    let updateSellerCompletedEvent: Driver<Void>
   }
   
   // MARK: - Property
@@ -81,6 +90,7 @@ final class SignUpViewModel: ViewModel {
   private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase
   private let authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase
   private let signUsecase: SignUsecase
+  private let profileUsecase: ProfileUsecase
   
   private let email = BehaviorRelay<String>(value: "")
   private let password = BehaviorRelay<String>(value: "")
@@ -91,11 +101,13 @@ final class SignUpViewModel: ViewModel {
   init(
     checkEmailValidationUsecase: any CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
     authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl(),
-    signUsecase: any SignUsecase = SignUsecaseImpl()
+    signUsecase: any SignUsecase = SignUsecaseImpl(),
+    profileUsecase: any ProfileUsecase = ProfileUsecaseImpl()
   ) {
     self.checkEmailValidationUsecase = checkEmailValidationUsecase
     self.authenticateBusinessInfoUsecase = authenticateBusinessInfoUsecase
     self.signUsecase = signUsecase
+    self.profileUsecase = profileUsecase
   }
   
   // MARK: - Method
@@ -108,8 +120,15 @@ final class SignUpViewModel: ViewModel {
     let showDuplicationCheckResultToast = PublishRelay<Void>()
     
     let passwordEqualValidationResult = BehaviorRelay<Bool>(value: false)
-    let signUpCompleted = PublishRelay<Void>()
+    let signUpCompleted = PublishRelay<String>()
     let signUpFailed = PublishRelay<Void>()
+    
+    let onboardingSellerAuthorityTrigger = PublishRelay<Void>()
+    let updateSellerAuthorityTrigger = PublishRelay<Void>()
+    let updateSellerCompletedEvent = PublishRelay<Void>()
+    
+    let onboardingProfileTrigger = PublishRelay<Data?>()
+    let updateProfileTrigger = PublishRelay<Data?>()
     
     /// 사업자 번호 등록여부 응답 결과
     let businessInfoAuthentication = input.businessInfoAuthenticationEvent
@@ -137,7 +156,7 @@ final class SignUpViewModel: ViewModel {
     /// 판매자 권한이 필요하면 사업자 인증 화면으로 전환
     input.sellerAuthorityNextEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.showSignUpBusinessInfoAuthenticationView()
+        owner.coordinator?.showSignUpBusinessInfoAuthenticationView(authenticationCase: .onboarding)
       }
       .disposed(by: disposeBag)
     
@@ -152,8 +171,42 @@ final class SignUpViewModel: ViewModel {
     
     /// 사업자 정보 다음 버튼 이벤트 화면 연결
     input.businessInfoAuthenticationNextEvent
+      .bind {
+        switch $0 {
+          case .onboarding:
+            onboardingSellerAuthorityTrigger.accept(())
+          case .updateProfile:
+            updateSellerAuthorityTrigger.accept(())
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 회원가입 과정에서 메인 버튼 탭
+    onboardingSellerAuthorityTrigger
       .bind(with: self) { owner, _ in
         owner.coordinator?.showSignUpEmailView()
+      }
+      .disposed(by: disposeBag)
+    
+    /// 사업자 정보 업데이트 요청
+    updateSellerAuthorityTrigger
+      .withUnretained(self)
+      .flatMap { owner, _ in
+        return owner.profileUsecase.updateSellerAuthority()
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .never()
+          }
+      }
+      .map { _ in () }
+      .bind(to: updateSellerCompletedEvent)
+      .disposed(by: disposeBag)
+    
+    /// 토스트 완료 후 화면 pop
+    input.updateSellerToastCompletedEvent
+      .bind(with: self) { owner, _ in
+        UserInfoService.hasSellerAuthority = true
+        owner.coordinator?.pop()
       }
       .disposed(by: disposeBag)
     
@@ -208,7 +261,7 @@ final class SignUpViewModel: ViewModel {
     /// 비밀번호 다음 버튼 이벤트 화면 연결
     input.passwordNextEvent
       .bind(with: self) { owner, _ in
-        owner.coordinator?.showSignUpProfileView()
+        owner.coordinator?.showSignUpProfileView(writingProfileCase: .onboarding)
       }
       .disposed(by: disposeBag)
     
@@ -217,11 +270,33 @@ final class SignUpViewModel: ViewModel {
       .bind(to: nickname)
       .disposed(by: disposeBag)
     
+    /// 회원가입 프로필 설정 / 업데이트 프로필 분기 처리
+    input.profileNextEvent
+      .bind {
+        let (imageData, writingCase) = $0
+        
+        switch writingCase {
+          case .onboarding:
+            onboardingProfileTrigger.accept(imageData)
+          case .update:
+            updateProfileTrigger.accept(imageData)
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 프로필 > 판매자 인증 이벤트 화면 연결
+    input.updateSellerAuthorityTapEvent
+      .bind(with: self) { owner, _ in
+        owner.coordinator?.showSignUpBusinessInfoAuthenticationView(authenticationCase: .updateProfile)
+      }
+      .disposed(by: disposeBag)
+    
     /// 회원가입 -> 로그인 -> 프로필 이미지 적용
     /// 성공하면 토스트 안내 후 coordinator end, 실패하면 인디케이터 중지 output
-    input.profileNextEvent
+    onboardingProfileTrigger
       .withUnretained(self)
       .flatMap { owner, imageData in
+        
         return owner.signUsecase.signUp(
           email: owner.email.value,
           password: owner.password.value,
@@ -236,7 +311,27 @@ final class SignUpViewModel: ViewModel {
       }
       .bind { success in
         if success {
-          signUpCompleted.accept(())
+          signUpCompleted.accept("회원가입이 완료되었어요!")
+        } else {
+          signUpFailed.accept(())
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    /// 프로필 업데이트 요청 > 완료 토스트 표시
+    updateProfileTrigger
+      .withUnretained(self)
+      .flatMap { owner, imageData in
+        return owner.profileUsecase.updateProfile(nick: owner.nickname.value, profile: imageData)
+          .map { _ in true }
+          .catch {
+            owner.coordinator?.showErrorAlert(error: $0)
+            return .just(false)
+          }
+      }
+      .bind { success in
+        if success {
+          signUpCompleted.accept("프로필 수정이 완료되었어요!")
         } else {
           signUpFailed.accept(())
         }
@@ -247,6 +342,7 @@ final class SignUpViewModel: ViewModel {
     input.signUpToastCompletedEvent
       .bind(with: self) { owner, _ in
         owner.coordinator?.end()
+        owner.coordinator?.pop()
       }
       .disposed(by: disposeBag)
     
@@ -256,8 +352,9 @@ final class SignUpViewModel: ViewModel {
       duplicateCheckResult: duplicateCheckResult.asDriver(),
       showDuplicationCheckResultToast: showDuplicationCheckResultToast.asDriver(onErrorJustReturn: ()),
       passwordEqualValidationResult: passwordEqualValidationResult.asDriver(),
-      signUpCompleted: signUpCompleted.asDriver(onErrorJustReturn: ()),
-      signUpFailed: signUpFailed.asDriver(onErrorJustReturn: ())
+      signUpCompleted: signUpCompleted.asDriver(onErrorJustReturn: "-"),
+      signUpFailed: signUpFailed.asDriver(onErrorJustReturn: ()),
+      updateSellerCompletedEvent: updateSellerCompletedEvent.asDriver(onErrorJustReturn: ())
     )
   }
 }
