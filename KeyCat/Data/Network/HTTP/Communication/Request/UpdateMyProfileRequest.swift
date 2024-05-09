@@ -26,4 +26,11 @@ struct UpdateMyProfileRequest: HTTPRequestBody {
     self.birthDay = nil
     self.profile = profile
   }
+  
+  init(phoneNum: String) {
+    self.nick = nil
+    self.phoneNum = phoneNum
+    self.birthDay = nil
+    self.profile = nil
+  }
 }
