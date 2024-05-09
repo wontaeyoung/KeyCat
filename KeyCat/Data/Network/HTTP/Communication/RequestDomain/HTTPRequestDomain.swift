@@ -27,6 +27,7 @@ enum HTTPRequestDomain {
   // 401, 410, 445
   case deleteReview
   case deletePost
+  case updateProfile
   
   // 401, 409, 410
   case follow

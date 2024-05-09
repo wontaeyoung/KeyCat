@@ -48,7 +48,31 @@ final class UserRepositoryImpl: UserRepository, HTTPErrorTransformer {
   }
   
   func updateProfileImage(with imageData: Data?) -> Single<Profile> {
+    guard let imageData else { return .just(.empty) }
+    
     let request = UpdateMyProfileRequest(profile: imageData)
+    
+    return service.callUpdateProfileRequest(request: request)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
+        return .error(domainError)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
+  
+  func updateSellerAuthority() -> Single<Profile> {
+    let request = UpdateMyProfileRequest(phoneNum: Profile.UserType.seller.rawValue.description)
+    
+    return service.callUpdateProfileRequest(request: request)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
+        return .error(domainError)
+      }
+      .map { self.userMapper.toEntity($0) }
+  }
+  
+  func updateProfile(nick: String?, profile: Data?) -> Single<Profile> {
+    let request = UpdateMyProfileRequest(nick: nick, phoneNum: nil, birthDay: nil, profile: profile)
     
     return service.callUpdateProfileRequest(request: request)
       .catch {
