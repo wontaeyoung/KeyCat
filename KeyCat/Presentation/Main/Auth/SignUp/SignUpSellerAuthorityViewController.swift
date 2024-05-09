@@ -78,8 +78,3 @@ final class SignUpSellerAuthorityViewController: SignUpBaseViewController, ViewM
       .disposed(by: disposeBag)
   }
 }
-
-@available(iOS 17, *)
-#Preview {
-  UINavigationController(rootViewController: SignUpEmailViewController(viewModel: SignUpViewModel()))
-}
