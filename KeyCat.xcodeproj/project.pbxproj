@@ -78,7 +78,6 @@
 		6E1B4C242BEB8B5D00098106 /* PaymentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B4C232BEB8B5D00098106 /* PaymentRepository.swift */; };
 		6E1B4C262BEB8B8B00098106 /* PaymentUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B4C252BEB8B8B00098106 /* PaymentUsecaseImpl.swift */; };
 		6E1B4C282BEB8C2F00098106 /* PaymentUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B4C272BEB8C2F00098106 /* PaymentUsecase.swift */; };
-		6E1B4C2B2BEB9E6700098106 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1B4C2A2BEB9E6700098106 /* UpdateProfileViewController.swift */; };
 		6E3460D42BE272A300840E21 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3460D32BE272A300840E21 /* Array+.swift */; };
 		6E3460D62BE2745600840E21 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3460D52BE2745600840E21 /* Double+.swift */; };
 		6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */; };
@@ -323,7 +322,6 @@
 		6E1B4C232BEB8B5D00098106 /* PaymentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRepository.swift; sourceTree = "<group>"; };
 		6E1B4C252BEB8B8B00098106 /* PaymentUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUsecaseImpl.swift; sourceTree = "<group>"; };
 		6E1B4C272BEB8C2F00098106 /* PaymentUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUsecase.swift; sourceTree = "<group>"; };
-		6E1B4C2A2BEB9E6700098106 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		6E3460D32BE272A300840E21 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		6E3460D52BE2745600840E21 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventMonitor.swift; sourceTree = "<group>"; };
@@ -709,14 +707,6 @@
 				6E1B4C0E2BEB72C700098106 /* PaymentViewModel.swift */,
 			);
 			path = Payment;
-			sourceTree = "<group>";
-		};
-		6E1B4C292BEB9E5300098106 /* UpdateProfile */ = {
-			isa = PBXGroup;
-			children = (
-				6E1B4C2A2BEB9E6700098106 /* UpdateProfileViewController.swift */,
-			);
-			path = UpdateProfile;
 			sourceTree = "<group>";
 		};
 		6E5471C32BCDE6DE00776811 /* Service */ = {
@@ -1326,7 +1316,6 @@
 			children = (
 				6E9090452BE6C07F001B107A /* ProfileViewController.swift */,
 				6E9090472BE6C085001B107A /* ProfileViewModel.swift */,
-				6E1B4C292BEB9E5300098106 /* UpdateProfile */,
 				6E9090742BE77D4A001B107A /* Post */,
 				6E9090582BE6DA82001B107A /* Cell */,
 				6E9090492BE6C15F001B107A /* Coordinator */,
@@ -1677,7 +1666,6 @@
 				6EAEACDA2BDFC30600993089 /* Divider.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
-				6E1B4C2B2BEB9E6700098106 /* UpdateProfileViewController.swift in Sources */,
 				6E1B4C202BEB884B00098106 /* PaymentMapper.swift in Sources */,
 				6E0778522BDBEF6A00B3A6EC /* MainTabBarPage.swift in Sources */,
 				6E3460D62BE2745600840E21 /* Double+.swift in Sources */,
