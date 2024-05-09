@@ -55,11 +55,14 @@ extension AuthCoordinator {
     push(vc)
   }
   
-  func showSignUpBusinessInfoAuthenticationView() {
+  func showSignUpBusinessInfoAuthenticationView(authenticationCase: SignUpBusinessInfoAuthenticationViewController.AuthenticationCase) {
     
-    let vc = SignUpBusinessInfoAuthenticationViewController(viewModel: signUpVM)
+    let vc = SignUpBusinessInfoAuthenticationViewController(viewModel: signUpVM, authenticationCase: authenticationCase)
       .hideBackTitle()
-      .barItemAdded(at: .right, item: stopSignUpBarItem)
+    
+    if case .onboarding = authenticationCase {
+      vc.setBarItem(at: .right, item: stopSignUpBarItem)
+    }
     
     push(vc)
   }
@@ -80,10 +83,14 @@ extension AuthCoordinator {
     push(vc)
   }
   
-  func showSignUpProfileView() {
-    let vc = SignUpProfileViewController(viewModel: signUpVM)
+  func showSignUpProfileView(writingProfileCase: SignUpProfileViewController.WriteProfileCase) {
+    
+    let vc = SignUpProfileViewController(viewModel: signUpVM, writingProfileCase: writingProfileCase)
       .hideBackTitle()
-      .barItemAdded(at: .right, item: stopSignUpBarItem)
+    
+    if case .onboarding = writingProfileCase {
+      vc.setBarItem(at: .right, item: stopSignUpBarItem)
+    }
     
     push(vc)
   }

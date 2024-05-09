@@ -22,6 +22,7 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - Property
   let viewModel: ProfileViewModel
+  private let viewWillAppearEvent = PublishRelay<Void>()
   
   // MARK: - Initializer
   init(viewModel: ProfileViewModel) {
@@ -31,6 +32,12 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
   }
   
   // MARK: - Life Cycle
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    viewWillAppearEvent.accept(())
+  }
+  
   override func setHierarchy() {
     view.addSubviews(
       profileView,
@@ -70,6 +77,11 @@ final class ProfileViewController: RxBaseViewController, ViewModelController {
     
     profileTableView.rx.modelSelected(ProfileRow.self)
       .bind(to: input.tableCellTapEvent)
+      .disposed(by: disposeBag)
+    
+    /// 프로필 갱신
+    viewWillAppearEvent
+      .bind(to: input.viewWillAppearEvent)
       .disposed(by: disposeBag)
     
     /// 프로필 데이터 표시

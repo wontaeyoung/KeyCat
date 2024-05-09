@@ -13,15 +13,18 @@ final class ProfileViewModel: ViewModel {
   // MARK: - I / O
   struct Input {
     let viewDidLoadEvent: PublishRelay<Void>
+    let viewWillAppearEvent: PublishRelay<Void>
     let tableCellTapEvent: PublishRelay<ProfileViewController.ProfileRow>
     let followTapEvent: PublishRelay<Void>
     
     init(
       viewDidLoadEvent: PublishRelay<Void> = .init(),
+      viewWillAppearEvent: PublishRelay<Void> = .init(),
       tableCellTapEvent: PublishRelay<ProfileViewController.ProfileRow> = .init(),
       followTapEvent: PublishRelay<Void> = .init()
     ) {
       self.viewDidLoadEvent = viewDidLoadEvent
+      self.viewWillAppearEvent = viewWillAppearEvent
       self.tableCellTapEvent = tableCellTapEvent
       self.followTapEvent = followTapEvent
     }
@@ -36,7 +39,7 @@ final class ProfileViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: MyPageCoordinator?
-  private let fetchProfileUsecase: any FetchProfileUsecase
+  private let fetchProfileUsecase: any ProfileUsecase
   private let userInteractionUsecase: any UserInteractionUsecase
   private let signUsecase: any SignUsecase
   
@@ -49,7 +52,7 @@ final class ProfileViewModel: ViewModel {
   // MARK: - Initializer
   init(
     userID: User.UserID,
-    fetchProfileUsecase: any FetchProfileUsecase = FetchProfileUsecaseImpl(),
+    fetchProfileUsecase: any ProfileUsecase = ProfileUsecaseImpl(),
     userInteractionUsecase: any UserInteractionUsecase = UserInteractionUsecaseImpl(),
     signUsecase: any SignUsecase = SignUsecaseImpl()
   ) {
@@ -118,7 +121,7 @@ final class ProfileViewModel: ViewModel {
       .disposed(by: disposeBag)
     
     /// 화면 로드 > 내 프로필 갱신
-    input.viewDidLoadEvent
+    input.viewWillAppearEvent
       .withUnretained(self)
       .flatMap { owner, _ in
         return owner.fetchProfileUsecase.fetchMyProfile()
@@ -215,7 +218,7 @@ final class ProfileViewModel: ViewModel {
       case .bookmark:
         coordinator?.showPostListView(userID: profile.value.userID, postCase: .bookmark)
       case .updateProfile:
-        break
+        coordinator?.connectUpdateProfileFlow(profile: profile.value)
       case .signOut:
         showSignOutAlert()
       case .withdraw:

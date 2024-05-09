@@ -35,10 +35,9 @@ extension MyPageCoordinator {
     
     let vc = ProfileViewController(viewModel: vm)
       .hideBackTitle()
+      .navigationTitle(with: UserInfoService.isMyUserID(with: userID) ? "마이 페이지" : "다른 사람의 프로필")
     
-    if UserInfoService.isMyUserID(with: userID) {
-      vc.setKCNavigationTitle(with: "마이 페이지")
-    } else {
+    if !UserInfoService.isMyUserID(with: userID) {
       vc.setTabBarHidden()
     }
     
@@ -69,6 +68,13 @@ extension MyPageCoordinator {
       .navigationTitle(with: postCase.title)
     
     push(vc)
+  }
+  
+  func connectUpdateProfileFlow(profile: Profile) {
+    
+    let coordinator = AuthCoordinator(navigationController)
+    coordinator.showSignUpProfileView(writingProfileCase: .update(profile: profile))
+    addChild(coordinator)
   }
 }
 
