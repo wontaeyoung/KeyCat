@@ -6,22 +6,27 @@
 //
 
 import Network
-import RxRelay
 
 final class NetworkMonitor {
   
   static let shared = NetworkMonitor()
-  private init() { 
+  private init() { }
+  
+  private let monitor = NWPathMonitor()
+  private let monitoringQueue = DispatchQueue(label: "NetworkMonitor", qos: .utility)
+  
+  func start(handler: @escaping (NWPath) -> Void) {
     
     monitor.pathUpdateHandler = { path in
-      self.networkStateSatisfied.accept(path.status == .satisfied)
+      GCD.main {
+        handler(path)
+      }
     }
     
     monitor.start(queue: monitoringQueue)
   }
   
-  private let monitor = NWPathMonitor()
-  private let monitoringQueue = DispatchQueue(label: "NetworkMonitor", qos: .utility)
-  
-  let networkStateSatisfied = PublishRelay<Bool>()
+  func stop() {
+    monitor.cancel()
+  }
 }
