@@ -9,6 +9,7 @@ import UIKit
 
 enum MainTabBarPage: Int, CaseIterable {
   
+  case home
   case shopping
   case profile
   
@@ -18,6 +19,9 @@ enum MainTabBarPage: Int, CaseIterable {
   
   var title: String {
     switch self {
+      case .home:
+        return "홈"
+        
       case .shopping:
         return "쇼핑"
         
@@ -28,6 +32,9 @@ enum MainTabBarPage: Int, CaseIterable {
   
   var icon: UIImage? {
     switch self {
+      case .home:
+        return KCAsset.Symbol.homeTab
+        
       case .shopping:
         return KCAsset.Symbol.shoppingTab
         
@@ -38,6 +45,9 @@ enum MainTabBarPage: Int, CaseIterable {
   
   var selectedIcon: UIImage? {
     switch self {
+      case .home:
+        return KCAsset.Symbol.homeSelectedTab
+        
       case .shopping:
         return KCAsset.Symbol.shoppingSelectedTab
         
