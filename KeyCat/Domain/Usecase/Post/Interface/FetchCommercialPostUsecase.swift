@@ -15,4 +15,5 @@ protocol FetchCommercialPostUsecase {
   func fetchCommercialPostsFromUser(userID: User.UserID, nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
   func fetchBookmarkPosts(nextCursor: CommercialPost.PostID) -> Single<(CommercialPost.PostID, [CommercialPost])>
   func fetchCartPosts() -> Single<[CommercialPost]>
+  func fetchFilteredPosts(filter: @escaping (CommercialPost) -> Bool) -> Single<[CommercialPost]>
 }

@@ -35,4 +35,9 @@ final class FetchCommercialPostUsecaseImpl: FetchCommercialPostUsecase {
   func fetchCartPosts() -> Single<[CommercialPost]> {
     return postRepository.fetchCartPosts()
   }
+  
+  func fetchFilteredPosts(filter: @escaping (CommercialPost) -> Bool) -> RxSwift.Single<[CommercialPost]> {
+    return postRepository.fetchAllCommercialPosts()
+      .map { $0.filter(filter) }
+  }
 }

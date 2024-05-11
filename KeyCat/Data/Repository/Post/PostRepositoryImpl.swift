@@ -153,11 +153,22 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   
   func fetchCartPosts() -> Single<[CommercialPost]> {
     
-    let query = FetchLikePostsQuery(
-      next: "",
-      limit: "1000"
-    )
+    let query = FetchLikePostsQuery(next: "", limit: "10000")
     let router = LikeRouter.like2PostsFetch(query: query)
+    
+    return service.callRequest(with: router, of: FetchPostsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchPosts)
+        
+        return .error(domainError)
+      }
+      .map { self.postMapper.toEntity($0.data) }
+  }
+  
+  func fetchAllCommercialPosts() -> Single<[CommercialPost]> {
+    
+    let query = FetchPostsQuery(next: "", limit: "10000", postType: .keycat_commercialProduct)
+    let router = PostRouter.postsFetch(query: query)
     
     return service.callRequest(with: router, of: FetchPostsResponse.self)
       .catch {

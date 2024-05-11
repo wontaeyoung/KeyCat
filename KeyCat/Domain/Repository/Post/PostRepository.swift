@@ -20,5 +20,6 @@ protocol PostRepository {
   func addPostInCart(postID: CommercialPost.PostID) -> Single<Bool>
   func removePostFromCart(postID: CommercialPost.PostID) -> Single<Bool>
   func fetchCartPosts() -> Single<[CommercialPost]>
+  func fetchAllCommercialPosts() -> Single<[CommercialPost]>
   func deleteCommercialPost(postID: CommercialPost.PostID) -> Single<Void>
 }
