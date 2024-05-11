@@ -57,6 +57,13 @@ final class MainTabBarCoordinator: SubCoordinator {
   
   private func connectTabFlow(page: MainTabBarPage, tabPageController: UINavigationController) {
     switch page {
+      case .home:
+        let coordinator = HomeCoordinator(tabPageController)
+        addChild(coordinator)
+        coordinator.start()
+        coordinator.tabBarDelegate = self
+        coordinator.signOutDelegate = self
+        
       case .shopping:
         let coordinator = ShoppingCoordinator(tabPageController)
         addChild(coordinator)
