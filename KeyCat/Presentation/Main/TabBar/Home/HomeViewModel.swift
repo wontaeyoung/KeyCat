@@ -13,6 +13,8 @@ final class HomeViewModel: ObservableViewModel {
   struct State {
     
     var capacitivePosts: [CommercialPost] = []
+    var ergonomicPosts: [CommercialPost] = []
+    var scissorSwitchPosts: [CommercialPost] = []
   }
   
   enum Action {
@@ -38,6 +40,8 @@ final class HomeViewModel: ObservableViewModel {
     switch action {
       case .viewOnAppear:
         fetchCapacitivePosts()
+        fetchErgonomicPosts()
+        fetchscissorSwitchPosts()
         
       case let .showErrorAlert(error, handler):
         showErrorAlert(error: error, handler: handler)
@@ -55,12 +59,48 @@ extension HomeViewModel {
     .asPublisher()
     .with(self)
     .sink { completion in
-      if case .failure(let error) = completion {
-        self.act(.showErrorAlert(error, nil))
-      }
+      self.handleError(completion)
     } receiveValue: { owner, output in
       owner.state.capacitivePosts = output
     }
     .store(in: &cancellables)
+  }
+  
+  private func fetchErgonomicPosts() {
+    
+    fetchCommercialPostUsecase.fetchFilteredPosts {
+      let ergonomics: [KeyboardAppearanceInfo.KeyboardDesign] = [.alice, .split]
+      return ergonomics.contains($0.keyboard.keyboardAppearanceInfo.design)
+    }
+    .asPublisher()
+    .with(self)
+    .sink { completion in
+      self.handleError(completion)
+    } receiveValue: { owner, output in
+      owner.state.ergonomicPosts = output
+    }
+    .store(in: &cancellables)
+  }
+  
+  private func fetchscissorSwitchPosts() {
+    
+    fetchCommercialPostUsecase.fetchFilteredPosts {
+      $0.keyboard.keyboardInfo.inputMechanism == .scissorSwitch
+    }
+    .map { Array($0.prefix(4)) }
+    .asPublisher()
+    .with(self)
+    .sink { completion in
+      self.handleError(completion)
+    } receiveValue: { owner, output in
+      owner.state.scissorSwitchPosts = output
+    }
+    .store(in: &cancellables)
+  }
+  
+  private func handleError(_ completion: Subscribers.Completion<any Error>) {
+    if case .failure(let error) = completion {
+      act(.showErrorAlert(error, nil))
+    }
   }
 }
