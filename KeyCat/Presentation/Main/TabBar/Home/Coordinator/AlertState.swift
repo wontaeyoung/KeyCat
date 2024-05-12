@@ -1,5 +1,5 @@
 //
-//  Alert.swift
+//  AlertState.swift
 //  KeyCat
 //
 //  Created by 원태영 on 5/10/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Alert {
+struct AlertState {
   var title: String
   var description: String
   var showing: Bool
@@ -34,8 +34,8 @@ struct Alert {
     self.action = action
   }
   
-  static var empty: Alert {
-    return Alert(
+  static var empty: AlertState {
+    return AlertState(
       title: "",
       description: "",
       showing: false,

@@ -25,7 +25,7 @@ final class HomeViewModel: ObservableViewModel {
   
   var cancellables = Set<AnyCancellable>()
   @Published private(set) var state = State()
-  @Published var alert: Alert = .empty
+  @Published var alert: AlertState = .empty
   
   private let fetchCommercialPostUsecase: FetchCommercialPostUsecase
   

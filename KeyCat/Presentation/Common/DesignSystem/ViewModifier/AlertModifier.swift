@@ -9,7 +9,7 @@ import SwiftUI
 
 private struct AlertModifier: ViewModifier {
   
-  @Binding var alert: Alert
+  @Binding var alert: AlertState
   
   func body(content: Content) -> some View {
     content
@@ -32,7 +32,7 @@ private struct AlertModifier: ViewModifier {
 
 extension View {
   
-  func alert(_ alert: Binding<Alert>) -> some View {
+  func alert(_ alert: Binding<AlertState>) -> some View {
     modifier(AlertModifier(alert: alert))
   }
 }
