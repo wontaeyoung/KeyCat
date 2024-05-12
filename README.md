@@ -1,6 +1,7 @@
 # 스크린샷
 
-![Keycat_ReadME_4000](https://github.com/wontaeyoung/KeyCat/assets/45925685/29536871-4f7a-4084-bf4b-51eeaa852be6)
+![Keycat_ReadME](https://github.com/wontaeyoung/KeyCat/assets/45925685/eedd303a-7e18-4a68-bd8c-cd4b1b1795c5)
+
 
 <br><br>
 
@@ -14,6 +15,7 @@
 
 - 로그인 / 회원가입 / 판매자 사업 권한 인증
 - 상품 판매글 작성 / 조회 / 삭제 기능
+- 상품 결제 기능
 - 상품 리뷰 작성 / 조회 / 삭제 기능
 - 북마크 / 장바구니
 - 프로필 수정 기능
