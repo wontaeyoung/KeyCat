@@ -22,7 +22,7 @@ final class ProductCollectionCell: RxBaseCollectionViewCell {
     }
   }
   
-  private let titleLabel = KCLabel(font: .medium(size: 15), line: 2)
+  private let titleLabel = KCLabel(font: .medium(size: 15), line: 2, isUpdatingLineSpacing: true)
   private let productPriceView = ProductPriceView()
   private let cardDiscountTag = TagLabel(title: nil, color: .black, backgroundColor: .white).configured {
     $0.isHidden = true
