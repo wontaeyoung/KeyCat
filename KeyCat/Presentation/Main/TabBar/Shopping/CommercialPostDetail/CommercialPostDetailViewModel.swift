@@ -227,7 +227,6 @@ final class CommercialPostDetailViewModel: ViewModel {
       .do(onNext: { [weak self] in
         guard let self else { return }
         
-        addCartResultToast.accept("상품이 장바구니에 추가되었어요!")
         addedCartPost.accept($0)
         coordinator?.presentCartPostListSheet(cartPosts: cartPosts, viewModel: self)
       })
