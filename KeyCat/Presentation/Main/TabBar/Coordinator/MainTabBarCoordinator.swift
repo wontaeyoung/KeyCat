@@ -44,7 +44,7 @@ final class MainTabBarCoordinator: SubCoordinator {
   private func configureTabBarController(with controllers: [UINavigationController]) {
     tabBarController.configure {
       $0.setViewControllers(controllers, animated: false)
-      $0.selectedIndex = MainTabBarPage.shopping.index
+      $0.selectedIndex = MainTabBarPage.home.index
     }
   }
   
