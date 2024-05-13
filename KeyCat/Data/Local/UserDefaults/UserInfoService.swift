@@ -5,10 +5,15 @@
 //  Created by 원태영 on 4/18/24.
 //
 
+import Foundation
+import Kingfisher
+
 struct UserInfoService {
   
   @UserDefault(key: UserInfoKey.accessToken, defaultValue: .defaultValue)
-  static var accessToken: String
+  static var accessToken: String {
+    didSet { updateKingfisherHeader() }
+  }
   
   @UserDefault(key: UserInfoKey.refreshToken, defaultValue: .defaultValue)
   static var refreshToken: String
@@ -41,6 +46,17 @@ struct UserInfoService {
   
   static func isMyUserID(with userID: User.UserID) -> Bool {
     return userID == self.userID
+  }
+  
+  static func updateKingfisherHeader() {
+    KingfisherManager.shared.downloader.sessionConfiguration = URLSessionConfiguration.default.applied {
+      $0.httpAdditionalHeaders = [
+        KCHeader.Key.sesacKey: APIKey.sesacKey,
+        KCHeader.Key.authorization: UserInfoService.accessToken
+      ]
+      
+      $0.timeoutIntervalForRequest = 30
+    }
   }
 }
 

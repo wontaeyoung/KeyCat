@@ -53,19 +53,6 @@ extension AppCoordinator {
     
     window?.rootViewController = rootTabBarController
     window?.makeKeyAndVisible()
-    
-    updateKingfisherHeader()
-  }
-  
-  private func updateKingfisherHeader() {
-    KingfisherManager.shared.downloader.sessionConfiguration = URLSessionConfiguration.default.applied {
-      $0.httpAdditionalHeaders = [
-        KCHeader.Key.sesacKey: APIKey.sesacKey,
-        KCHeader.Key.authorization: UserInfoService.accessToken
-      ]
-      
-      $0.timeoutIntervalForRequest = 30
-    }
   }
 }
 
@@ -86,6 +73,7 @@ extension AppCoordinator: SignOutDelegate {
   private func connectFlow() {
     if UserInfoService.hasSignInLog {
       connectMainTabBarFlow()
+      UserInfoService.updateKingfisherHeader()
     } else {
       connectSignFlow()
     }
