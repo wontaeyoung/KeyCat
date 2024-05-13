@@ -69,28 +69,38 @@
 
 <br><br>
 
-## 기술 사용 설명
+## 기술 활용
 
 **RxSwift**
 
 - 뷰 계층간 동일한 Subject 참조를 전달해서 변경에 대해 서버에 재요청하지 않고 UI 업데이트 동기화 처리
 
+<br>
+
 **UserDefaults**
 
 - Property Wrapper를 활용해서 UserDefaults 접근에 대한 보일러 플레이트 코드 감소
+
+<br>
 
 **EventMonitor**
 
 - HTTP 요청 / 응답 이벤트 생명주기에 대한 템플릿 로그를 작성하여 디버깅 및 유효성 검사에 활용
 
+<br>
+
 **RequestInterceptor**
 
 - 액세스 토큰 만료 예외처리 로직을 Session에 주입하여 모든 HTTP 요청의 전처리 로직으로 적용되도록 구성
+
+<br>
 
 **Kingfisher**
 
 - DownsamplingImageProcessor로 이미지 다운샘플링을 적용하여 상품 리스트 조회 화면의 메모리 사용량 33% 개선
 - Downloader Configuration에 서버 이미지 요청에 필요한 액세스 토큰을 로그인 시점에 동기화하도록 설정
+
+<br>
 
 **UIHostingController**
 
