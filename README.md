@@ -2,8 +2,9 @@
 
 ### 스크린샷
 
-![Keycat_ReadME](https://github.com/wontaeyoung/KeyCat/assets/45925685/eedd303a-7e18-4a68-bd8c-cd4b1b1795c5)
+![Keycat_리드미 스크린샷1](https://github.com/wontaeyoung/KeyCat/assets/45925685/03e22cad-7fe6-408f-bb34-6a78dccc75d6)
 
+![Keycat_리드미 스크린샷2](https://github.com/wontaeyoung/KeyCat/assets/45925685/bc4f3ec7-c9ca-49e3-9c57-355e87266a87)
 
 <br><br>
 
@@ -13,7 +14,7 @@
 
 <br><br>
 
-### 핵심 기능
+### 사용자 기능
 
 - 로그인 / 회원가입 / 판매자 사업 권한 인증
 - 상품 판매글 작성 / 조회 / 삭제 기능
