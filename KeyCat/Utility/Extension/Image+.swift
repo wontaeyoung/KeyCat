@@ -16,7 +16,6 @@ extension Image {
       .resizable()
       .placeholder { Image(.catWithKeycap1) }
       .downsampling(size: CGSize(width: width * 2, height: height * 2))
-      .cacheMemoryOnly()
       .aspectRatio(contentMode: .fill)
       .frame(width: CGFloat(width), height: CGFloat(height))
   }
