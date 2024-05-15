@@ -7,17 +7,17 @@
 
 enum KCError: AppError {
   
-  case missingRequired // 400
-  case accessFailed(detail: AccessCase) // 401
-  case conflict(detail: ConflictCase) // 409
-  case targetNotFound(detail: RequestCase) // 410
-  case retrySignIn // 418
-  case overcall // 429
-  case noAuthority // 445
-  case serverError // 500
+  case missingRequired
+  case accessFailed(detail: AccessCase)
+  case conflict(detail: ConflictCase)
+  case targetNotFound(detail: RequestCase)
+  case retrySignIn
+  case overcall
+  case noAuthority
+  case serverError
   
-  case networkError // -
-  case unknown // -
+  case networkError
+  case unknown
   
   case invalidPaymentResponse
   
