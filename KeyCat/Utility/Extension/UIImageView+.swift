@@ -11,8 +11,9 @@ import Kingfisher
 extension UIImageView {
   func load(with url: URL?) {
     
-    let size = self.bounds.size
-    let processor = DownsamplingImageProcessor(size: size)
+    let size = UIScreen.main.bounds.width
+    let cgSize = CGSize(width: size, height: size)
+    let processor = DownsamplingImageProcessor(size: cgSize)
     
     self.kf.setImage(
       with: url,
