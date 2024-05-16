@@ -75,7 +75,7 @@
 
 - 커머스 플랫폼 상품은 데이터 추가가 빈번하게 발생하고, 페이지 번호 기반 탐색이 필요하지 않다고 판단하여 **커서 기반 페이지네이션**을 채택했습니다.
 
-- 스크롤 동작으로 API 중복 호출 트리거를 방지하기 위해, 1초의 **쓰로틀링**을 적용하였습니다.
+- 스크롤 동작으로 인한 API 중복 호출 트리거를 방지하기 위해, 1초의 **쓰로틀링**을 적용하였습니다.
 
 <br><br><br><br>
 
@@ -97,7 +97,7 @@
 
 <br>
 
-<details>
+<details open>
 
   <summary>레포지토리 주입 예시</summary>
 
@@ -245,6 +245,8 @@ final class APIRequestInterceptor: RequestInterceptor {
 </details>
 
 
+<br><br><br><br>
+
 ## 트러블슈팅
 
 ### 상품 이미지 메모리 최적화
@@ -262,7 +264,7 @@ final class APIRequestInterceptor: RequestInterceptor {
 
 - 네트워크 연결 상태 변동 시 UI에 상태 안내를 표시하기 위하여, **`NWPathMonitor`** 를 활용해 네트워크 상태를 모니터링하고 모든 VC가 상속받는 Base VC 내에 상태 표시 로직을 구현하였습니다.
 
-- **`addSubview`** 를 사용하여 현재 뷰 계층의 가장 하위에 안내 UI를 추가하려 했으나, 의도와 달리 UI가 화면을 완전히 가리지 못하고, Base VC를 상속받은 모든 뷰 인스턴스에 중복으로 추가되는 문제가 발생하였습니다.
+- **`addSubview`** 를 사용하여 현재 뷰 계층의 가장 하위에 안내 UI를 추가하려 했으나 의도와 달리 UI가 화면을 완전히 가리지 못하고, Base VC를 상속받은 모든 뷰 인스턴스에 중복으로 추가되는 문제가 발생하였습니다.
 
 <img src="https://github.com/wontaeyoung/KeyCat/assets/45925685/83a24b64-4049-42ad-89b6-b04aa91165b0" width="500">
 
@@ -330,3 +332,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 ```
 </details>
+
+<br><br>
