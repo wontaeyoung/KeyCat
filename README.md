@@ -54,7 +54,6 @@
 
 <img width="2976" alt="Keycat_ReadME" src="https://github.com/wontaeyoung/KeyCat/assets/45925685/d547808e-b380-47da-8c05-3606ca069045">
 
-
 <br><br>
 
 ## 기술 스택
@@ -66,6 +65,14 @@
 - **`RxAlamofire`** **`RequestInterceptor`** **`EventMonitor`**
 
 - **`UserDefaults`** **`Kingfisher`** **`TabMan`** **`Toast`**
+
+<br><br><br><br>
+
+## 구현 고려사항
+- 상속이 필요하지 않은 클래스는 final 키워드로 **static dispatch** 유도
+- 디자인 시스템으로 **UI 일관성** 유지
+- 공통 로직 재사용을 위한 **프로토콜**과 **상속** 활용
+- Rx 옵저버블의 참조성과 바인딩을 활용하여 뷰 계층간 데이터 **동기화**
 
 <br><br><br><br>
 
@@ -252,7 +259,7 @@ final class APIRequestInterceptor: RequestInterceptor {
 ### 상품 이미지 메모리 최적화
 
 - 상품 목록을 조회하는 UI에서 고해상도의 원본 이미지를 로딩함에 따라 메모리 사용량이 증가하는 문제를 경험했습니다.
-- Kingfisher 라이브러리의 **`DownsamplingImageProcessor`** 기능을 활용하여, 디스플레이 해상도 기반으로 다운샘플링을 적용하여 메모리 사용량을 약 61.3% 개선했습니다.
+- Kingfisher 라이브러리의 **`DownsamplingImageProcessor`** 기능을 활용하여, 디스플레이 해상도 기반으로 다운샘플링을 적용하여 메모리 사용량을 **약 61.3%** 개선했습니다.
 
 <br>
 
