@@ -131,6 +131,12 @@
 		6E77ED0C2BCE6A9500ACDA3B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E77ED0B2BCE6A9500ACDA3B /* APIService.swift */; };
 		6E7BC0002BFA397000DE8769 /* ChatRoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BBFFF2BFA397000DE8769 /* ChatRoomDTO.swift */; };
 		6E7BC0022BFA3E4100DE8769 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0012BFA3E4100DE8769 /* ChatDTO.swift */; };
+		6E7BC0042BFA407800DE8769 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0032BFA407800DE8769 /* ChatRouter.swift */; };
+		6E7BC0062BFA410200DE8769 /* CreateChatRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */; };
+		6E7BC0082BFA422000DE8769 /* FetchChatRoomsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */; };
+		6E7BC00A2BFA44D900DE8769 /* FetchChatsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */; };
+		6E7BC00C2BFA486600DE8769 /* FetchChatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */; };
+		6E7BC00E2BFA506F00DE8769 /* SendChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */; };
 		6E8C9E662BC8149D0086F913 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E652BC8149D0086F913 /* Response.swift */; };
 		6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */; };
 		6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E692BC820C30086F913 /* HTTPQuery.swift */; };
@@ -148,7 +154,7 @@
 		6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E842BC8B9950086F913 /* JoinRequest.swift */; };
 		6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */; };
 		6E8C9E892BC8B9F70086F913 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */; };
-		6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */; };
+		6E8C9E8B2BC8BA100086F913 /* UploadImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */; };
 		6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */; };
 		6E8C9E972BC8BB560086F913 /* UpdateMyProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */; };
 		6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */; };
@@ -223,7 +229,7 @@
 		6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907A2BE7889D001B107A /* ProductTableCell.swift */; };
 		6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907C2BE7B2A7001B107A /* BadgeButton.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
-		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
+		6E9829002BCE9E7000105910 /* UploadImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
 		6E9829092BCF42D000105910 /* KCParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829082BCF42D000105910 /* KCParameter.swift */; };
 		6E9829192BCFDFD200105910 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829182BCFDFD200105910 /* CommentRouter.swift */; };
@@ -395,6 +401,12 @@
 		6E77ED0B2BCE6A9500ACDA3B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		6E7BBFFF2BFA397000DE8769 /* ChatRoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDTO.swift; sourceTree = "<group>"; };
 		6E7BC0012BFA3E4100DE8769 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
+		6E7BC0032BFA407800DE8769 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatRoomRequest.swift; sourceTree = "<group>"; };
+		6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatRoomsResponse.swift; sourceTree = "<group>"; };
+		6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatsQuery.swift; sourceTree = "<group>"; };
+		6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatsResponse.swift; sourceTree = "<group>"; };
+		6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChatRequest.swift; sourceTree = "<group>"; };
 		6E8C9E652BC8149D0086F913 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestBody.swift; sourceTree = "<group>"; };
 		6E8C9E692BC820C30086F913 /* HTTPQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPQuery.swift; sourceTree = "<group>"; };
@@ -412,7 +424,7 @@
 		6E8C9E842BC8B9950086F913 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequest.swift; sourceTree = "<group>"; };
 		6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageRequest.swift; sourceTree = "<group>"; };
+		6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageRequest.swift; sourceTree = "<group>"; };
 		6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostRequest.swift; sourceTree = "<group>"; };
 		6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyProfileRequest.swift; sourceTree = "<group>"; };
 		6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsQuery.swift; sourceTree = "<group>"; };
@@ -486,7 +498,7 @@
 		6E90907A2BE7889D001B107A /* ProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableCell.swift; sourceTree = "<group>"; };
 		6E90907C2BE7B2A7001B107A /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
-		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
+		6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
 		6E9829082BCF42D000105910 /* KCParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCParameter.swift; sourceTree = "<group>"; };
 		6E9829182BCFDFD200105910 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
@@ -1118,12 +1130,13 @@
 			isa = PBXGroup;
 			children = (
 				6E77ED092BCE65F900ACDA3B /* AuthRouter.swift */,
-				6E9828FD2BCE967800105910 /* PostRouter.swift */,
-				6E9829182BCFDFD200105910 /* CommentRouter.swift */,
-				6E98291A2BCFF0C900105910 /* LikeRouter.swift */,
-				6E98291C2BD0915000105910 /* UserRouter.swift */,
 				6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */,
+				6E9829182BCFDFD200105910 /* CommentRouter.swift */,
+				6E7BC0032BFA407800DE8769 /* ChatRouter.swift */,
+				6E98291A2BCFF0C900105910 /* LikeRouter.swift */,
 				6E1B4C152BEB855A00098106 /* PaymentRouter.swift */,
+				6E9828FD2BCE967800105910 /* PostRouter.swift */,
+				6E98291C2BD0915000105910 /* UserRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1131,16 +1144,18 @@
 		6E8C9E6E2BC8B47D0086F913 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E652BC8149D0086F913 /* Response.swift */,
 				6E8C9E782BC8B7EB0086F913 /* AuthResponse.swift */,
-				6E8C9E7A2BC8B8090086F913 /* MessageResponse.swift */,
-				6E8C9E7C2BC8B8A10086F913 /* LoginResponse.swift */,
-				6E8C9E7E2BC8B8AF0086F913 /* RefeshTokenResponse.swift */,
-				6E8C9E802BC8B9290086F913 /* LikePostResonse.swift */,
-				6E8C9E822BC8B9410086F913 /* FetchPostsResponse.swift */,
-				6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */,
 				6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */,
+				6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */,
+				6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */,
 				6E1B4C1B2BEB87EE00098106 /* FetchPaymentResponse.swift */,
+				6E8C9E822BC8B9410086F913 /* FetchPostsResponse.swift */,
+				6E8C9E802BC8B9290086F913 /* LikePostResonse.swift */,
+				6E8C9E7C2BC8B8A10086F913 /* LoginResponse.swift */,
+				6E8C9E7A2BC8B8090086F913 /* MessageResponse.swift */,
+				6E8C9E7E2BC8B8AF0086F913 /* RefeshTokenResponse.swift */,
+				6E8C9E652BC8149D0086F913 /* Response.swift */,
+				6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1148,16 +1163,18 @@
 		6E8C9E6F2BC8B47F0086F913 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E842BC8B9950086F913 /* JoinRequest.swift */,
-				6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */,
-				6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */,
-				6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */,
-				6E8C9EA82BCA32050086F913 /* PostRequest.swift */,
-				6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */,
-				6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */,
-				6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */,
 				6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */,
+				6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */,
+				6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */,
+				6E8C9E842BC8B9950086F913 /* JoinRequest.swift */,
+				6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */,
+				6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */,
 				6E1B4C172BEB85A700098106 /* PaymentValidationRequest.swift */,
+				6E8C9EA82BCA32050086F913 /* PostRequest.swift */,
+				6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */,
+				6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */,
+				6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */,
+				6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1165,9 +1182,10 @@
 		6E8C9E982BC8BBA30086F913 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */,
 				6E8C9E9B2BC8BD0A0086F913 /* FetchLikePostsQuery.swift */,
+				6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */,
 				6E8C9E9D2BC8BD310086F913 /* FetchSearchHashtagQuery.swift */,
+				6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1202,11 +1220,11 @@
 		6E8C9EA12BC91BEF0086F913 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */,
+				6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */,
 				6E8C9E692BC820C30086F913 /* HTTPQuery.swift */,
 				6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */,
+				6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */,
 				6E77ED072BCE65BB00ACDA3B /* Router.swift */,
-				6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1733,6 +1751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7BC0062BFA410200DE8769 /* CreateChatRoomRequest.swift in Sources */,
 				6E77ED082BCE65BB00ACDA3B /* Router.swift in Sources */,
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
 				6E8C9F2A2BCD21790086F913 /* KeyboardDTO.swift in Sources */,
@@ -1755,6 +1774,7 @@
 				6EAEAD002BE2411600993089 /* CreatePostUsecase.swift in Sources */,
 				6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */,
 				6E8C9E772BC8B6A80086F913 /* FollowDTO.swift in Sources */,
+				6E7BC00C2BFA486600DE8769 /* FetchChatsResponse.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */,
 				6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */,
@@ -1768,6 +1788,7 @@
 				6EAEACF72BE2289C00993089 /* PostRepositoryImpl.swift in Sources */,
 				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
 				6E1DDEC02BF1077400DA4263 /* Image+.swift in Sources */,
+				6E7BC0082BFA422000DE8769 /* FetchChatRoomsResponse.swift in Sources */,
 				6E9090232BE63912001B107A /* ReviewListViewModel.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
 				6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */,
@@ -1792,7 +1813,7 @@
 				6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */,
 				6E8C9EB22BCA9EA40086F913 /* KeyboardInfo.swift in Sources */,
 				6E9090312BE68EF3001B107A /* ReviewRepositoryImpl.swift in Sources */,
-				6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */,
+				6E9829002BCE9E7000105910 /* UploadImageResponse.swift in Sources */,
 				6E1B4C182BEB85A700098106 /* PaymentValidationRequest.swift in Sources */,
 				6E9090512BE6CCBF001B107A /* ProfileUsecase.swift in Sources */,
 				6E1B4BC52BEA49C300098106 /* CartPostListViewModel.swift in Sources */,
@@ -1830,6 +1851,7 @@
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6ED51E662BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift in Sources */,
 				6E1B4C1A2BEB874000098106 /* PaymentDTO.swift in Sources */,
+				6E7BC00A2BFA44D900DE8769 /* FetchChatsQuery.swift in Sources */,
 				6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
@@ -1848,6 +1870,7 @@
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
 				6E90901E2BE57E56001B107A /* CommercialPostInteractionUsecaseImpl.swift in Sources */,
+				6E7BC00E2BFA506F00DE8769 /* SendChatRequest.swift in Sources */,
 				6E0A4FCE2BD286B8005A529F /* Constant.swift in Sources */,
 				6E90902E2BE6648C001B107A /* CreateCommercialReviewViewModel.swift in Sources */,
 				6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */,
@@ -1857,6 +1880,7 @@
 				6E1B4C242BEB8B5D00098106 /* PaymentRepository.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6EAEAD052BE2695E00993089 /* ProductCollectionCell.swift in Sources */,
+				6E7BC0042BFA407800DE8769 /* ChatRouter.swift in Sources */,
 				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
 				6E90905A2BE6DA8C001B107A /* ProfileTableCell.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
@@ -1898,7 +1922,7 @@
 				6E8C9EBC2BCA9FCF0086F913 /* SelectionExpressible.swift in Sources */,
 				6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */,
 				6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */,
-				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
+				6E8C9E8B2BC8BA100086F913 /* UploadImageRequest.swift in Sources */,
 				6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */,
 				6E1B4C142BEB785C00098106 /* IamportPayment+.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
