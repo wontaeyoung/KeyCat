@@ -37,7 +37,7 @@ struct MessageResponse: HTTPResponse {
 }
 
 // MARK: - Post
-struct UploadPostImageResponse: HTTPResponse {
+struct UploadImageResponse: HTTPResponse {
   let files: [String]
 }
 

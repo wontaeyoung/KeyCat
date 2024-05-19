@@ -28,9 +28,9 @@ struct APIService {
       .call()
   }
   
-  func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
+  func callImageUploadRequest(data: [Data]) -> Single<UploadImageResponse> {
     guard data.isFilled else {
-      return .just(UploadPostImageResponse(files: []))
+      return .just(UploadImageResponse(files: []))
     }
     
     let router = PostRouter.postImageUpload
@@ -47,7 +47,7 @@ struct APIService {
         }
       }, to: router, headers: router.headers)
       .rx
-      .call(of: UploadPostImageResponse.self)
+      .call(of: UploadImageResponse.self)
   }
   
   func callUpdateProfileRequest(request: UpdateMyProfileRequest) -> Single<ProfileDTO> {
