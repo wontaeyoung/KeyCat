@@ -12,5 +12,6 @@ enum KCParameter {
     static let productID: String = "product_id"
     static let hashtag: String = "hashTag"
     static let serviceKey: String = "serviceKey"
+    static let cursorDate: String = "cursor_date"
   }
 }
