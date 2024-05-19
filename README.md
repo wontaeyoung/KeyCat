@@ -6,32 +6,32 @@
 
 ![Keycat_리드미 스크린샷2](https://github.com/wontaeyoung/KeyCat/assets/45925685/bc4f3ec7-c9ca-49e3-9c57-355e87266a87)
 
-<br><br>
+<br>
 
 ### 한 줄 소개
 
 키보드 상품 특화 커머스 플랫폼 앱
 
-<br><br>
+<br>
 
-### 사용자 기능
+### 서비스 기능
 
 - 로그인 / 회원가입 / 판매자 사업 권한 인증
 - 상품 판매글 작성 / 조회 / 삭제 기능
-- 상품 결제 기능
+- 상품 이미지 업로드 기능
+- PG사 연동 상품 결제 기능
 - 상품 리뷰 작성 / 조회 / 삭제 기능
 - 북마크 / 장바구니
 - 프로필 수정 기능
 - 팔로우 기능
 
-<br><br>
+<br>
 
 ## 프로젝트 환경
 
 **개발 인원**  
-1인
-
-<br>
+iOS/기획/디자인 1인(본인)  
+Backend 1인
 
 **개발 기간**  
 2024.04.10 ~ 2024.05.06 (3.5주)
@@ -43,30 +43,29 @@
 **iOS 최소 버전**  
 16.0+
 
-<br>
-
 **Xcode**  
 15.3
 
-<br><br>
+<br>
 
 ## 아키텍처
 
 <img width="2976" alt="Keycat_ReadME" src="https://github.com/wontaeyoung/KeyCat/assets/45925685/d547808e-b380-47da-8c05-3606ca069045">
 
-<br><br>
+<br>
+<br>
 
 ## 기술 스택
 
 - **`UIKit`** **`SnapKit`** **`UIHostingController`**
 
-- **`RxSwift`** **`MVVM`** **`Coordinator`** **`Clean-Architecture`**
+- **`RxSwift`** **`Input&Output`** **`MVVM`** **`Coordinator`** **`Clean-Architecture`**
 
 - **`RxAlamofire`** **`RequestInterceptor`** **`EventMonitor`**
 
 - **`UserDefaults`** **`Kingfisher`** **`TabMan`** **`Toast`**
 
-<br><br><br><br>
+<br>
 
 ## 구현 고려사항
 - 상속이 필요하지 않은 클래스는 final 키워드로 **static dispatch** 유도
@@ -74,8 +73,11 @@
 - 디자인 시스템으로 **UI 일관성** 유지
 - 공통 로직 재사용을 위한 **프로토콜**과 **상속** 활용
 - Rx 옵저버블의 참조성과 바인딩을 활용하여 뷰 계층간 데이터 **동기화**
+- Input&Output 패턴으로 **단방향 데이터 흐름** 구성
+- 네트워크 단절 및 에러 상황에 대한 **사용자 안내** UI 표시 처리
+- 디바이스 사이즈 기반 이미지 리사이징으로 **메모리 최적화**
 
-<br><br><br><br>
+<br>
 
 ## 기술 활용
 
@@ -85,7 +87,7 @@
 
 - 스크롤 동작으로 인한 API 중복 호출 트리거를 방지하기 위해, 1초의 **쓰로틀링**을 적용하였습니다.
 
-<br><br><br><br>
+<br>
 
 ### HTTP Error -> 도메인 Error 매핑 과정
 
@@ -113,7 +115,7 @@
 
 </details>
 
-<br><br><br><br>
+<br>
 
 ### Router 관리
 
@@ -129,7 +131,8 @@
 
 <img src="https://github.com/wontaeyoung/KeyCat/assets/45925685/c5710792-f55e-487e-8c8d-f3828aff745c" width = 500>
 
-<br><br><br><br>
+<br>
+<br>
 
 ### 액세스 토큰 자동 갱신을 위한 Request Interceptor 구현
 
@@ -206,7 +209,7 @@ final class APIRequestInterceptor: RequestInterceptor {
 ```
 </details>
 
-<br><br><br><br>
+<br>
 
 ### HTTP 이벤트 모니터링 로직 구현
   
@@ -236,7 +239,7 @@ final class APIRequestInterceptor: RequestInterceptor {
 
 </details>
 
-<br><br><br><br>
+<br>
 
 ### 커스텀 UI 컴포넌트 설계
   
@@ -252,8 +255,7 @@ final class APIRequestInterceptor: RequestInterceptor {
 
 </details>
 
-
-<br><br><br><br>
+<br>
 
 ## 트러블슈팅
 
@@ -266,7 +268,8 @@ final class APIRequestInterceptor: RequestInterceptor {
 
 <img src="https://github.com/wontaeyoung/KeyCat/assets/45925685/07c59e89-3b8e-431e-a1d2-99b2a64a95ad" width="500">
 
-<br><br><br><br>
+<br>
+<br>
 
 ### 네트워크 상태 인터페이스 처리 문제
 
