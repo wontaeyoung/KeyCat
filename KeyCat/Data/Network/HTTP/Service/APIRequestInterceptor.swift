@@ -16,7 +16,7 @@ final class APIRequestInterceptor: RequestInterceptor {
     completion: @escaping (Result<URLRequest, any Error>) -> Void
   ) {
     
-    /// 최초 로그인 시 토큰이 없기 때문에 종료
+    /// 로그인 요청은 Intercept 하지 않고 바로 실행
     guard
       let urlString = urlRequest.url?.absoluteString,
       urlString.hasPrefix(APIKey.baseURL),
@@ -26,6 +26,7 @@ final class APIRequestInterceptor: RequestInterceptor {
       return
     }
     
+    /// 갱신된 토큰으로 Header 재설정
     let urlRequest = urlRequest.applied {
       $0.setValue(UserInfoService.accessToken, forHTTPHeaderField: KCHeader.Key.authorization)
     }
@@ -48,15 +49,18 @@ final class APIRequestInterceptor: RequestInterceptor {
       return completion(.doNotRetry)
     }
       
+    /// 토큰 리프레시 요청
     AF.request(AuthRouter.tokenRefresh)
       .validate()
       .responseDecodable(of: RefreshTokenResponse.self) { response in
         
         switch response.result {
+            /// 응답 토큰으로 갱신 후 기존 API 재요청
           case .success(let tokenResponse):
             UserInfoService.renewAccessToken(with: tokenResponse.accessToken)
             completion(.retry)
             
+            /// 리프레시 토큰이 만료되면 로그인 화면으로 돌아가도록 에러 방출
           case .failure:
             completion(.doNotRetryWithError(HTTPStatusError.refreshTokenExpired))
         }
