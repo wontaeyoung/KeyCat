@@ -40,7 +40,7 @@ struct APIService {
         data.forEach {
           multipartFormData.append(
             $0,
-            withName: KCBody.Key.postImageFiles,
+            withName: KCBody.Key.imageFiles,
             fileName: KCBody.Value.fileName,
             mimeType: KCBody.Value.mimeTypeJPEG
           )

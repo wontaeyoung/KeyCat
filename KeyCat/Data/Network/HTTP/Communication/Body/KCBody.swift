@@ -7,7 +7,7 @@
 
 enum KCBody {
   enum Key {
-    static let postImageFiles: String = "files"
+    static let imageFiles: String = "files"
     static let profileImageFile: String = "profile"
   }
   
