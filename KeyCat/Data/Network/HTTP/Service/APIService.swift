@@ -28,12 +28,34 @@ struct APIService {
       .call()
   }
   
-  func callImageUploadRequest(data: [Data]) -> Single<UploadImageResponse> {
+  func callPostImageUploadRequest(data: [Data]) -> Single<UploadImageResponse> {
     guard data.isFilled else {
       return .just(UploadImageResponse(files: []))
     }
     
     let router = PostRouter.postImageUpload
+    
+    return session
+      .upload(multipartFormData: { multipartFormData in
+        data.forEach {
+          multipartFormData.append(
+            $0,
+            withName: KCBody.Key.imageFiles,
+            fileName: KCBody.Value.fileName,
+            mimeType: KCBody.Value.mimeTypeJPEG
+          )
+        }
+      }, to: router, headers: router.headers)
+      .rx
+      .call(of: UploadImageResponse.self)
+  }
+  
+  func callChatImageUploadRequest(roomID: Entity.RoomID, data: [Data]) -> Single<UploadImageResponse> {
+    guard data.isFilled else {
+      return .just(UploadImageResponse(files: []))
+    }
+    
+    let router = ChatRouter.chatImageUpload(roomID: roomID)
     
     return session
       .upload(multipartFormData: { multipartFormData in
