@@ -668,7 +668,7 @@ final class ViewController: RxBaseViewController {
     
     let images: [UIImage] = []
     let data: [Data] = images.compactMap { $0.pngData() }
-    
+    /*
     service.callImageUploadRequest(data: data)
       .map { $0.files }
       .flatMap {
@@ -686,13 +686,13 @@ final class ViewController: RxBaseViewController {
         owner.내용라벨.text = error.localizedDescription
       }
       .disposed(by: disposeBag)
-      
+     */
   }
   
   private func createPost2() {
     
     let usecase = CreatePostUsecaseImpl()
-    
+    /*
     usecase.execute(files: [], post: posts[postIndex])
       .subscribe(with: self) { owner, success in
         print(success)
@@ -700,6 +700,7 @@ final class ViewController: RxBaseViewController {
         print(error.localizedDescription)
       }
       .disposed(by: disposeBag)
+     */
 
     postIndex += 1
   }

@@ -22,7 +22,7 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   }
   
   func uploadPostImages(files: [Data]) -> Single<[CommercialPost.URLString]> {
-    return service.callImageUploadRequest(data: files)
+    return service.callPostImageUploadRequest(data: files)
       .catch {
         let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)
