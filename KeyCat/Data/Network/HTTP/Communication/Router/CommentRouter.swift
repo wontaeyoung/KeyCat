@@ -11,8 +11,8 @@ import Alamofire
 enum CommentRouter: Router {
   
   case commentCreate(postID: Entity.PostID, request: CommentRequest)
-  case commentUpdate(postID: Entity.PostID, commentID: Entity.CommentID, request: CommentRequest)
-  case commentDelete(postID: Entity.PostID, commentID: Entity.CommentID)
+  case commentUpdate(postID: Entity.PostID, commentID: Entity.ReviewID, request: CommentRequest)
+  case commentDelete(postID: Entity.PostID, commentID: Entity.ReviewID)
   
   var method: HTTPMethod {
     switch self {

@@ -15,7 +15,7 @@ final class HandleReviewUsecaseImpl: HandleReviewUsecase {
     self.reviewRepository = reviewRepository
   }
   
-  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.CommentID) -> Single<Void> {
+  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.ReviewID) -> Single<Void> {
     return reviewRepository.deleteCommercialReview(postID: postID, reviewID: reviewID)
   }
 }
