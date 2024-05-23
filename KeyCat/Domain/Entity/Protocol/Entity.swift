@@ -12,4 +12,5 @@ protocol Entity {
   typealias PostID = String
   typealias CommentID = String
   typealias RoomID = String
+  typealias ChatID = String
 }
