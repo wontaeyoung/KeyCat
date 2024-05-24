@@ -30,6 +30,7 @@ enum HTTPRequestDomain {
   case deleteReview
   case deletePost
   case updateProfile
+  case fetchChats
   
   // 401, 409, 410
   case follow

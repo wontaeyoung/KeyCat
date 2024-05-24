@@ -55,7 +55,7 @@ extension HTTPErrorTransformer {
               .createReview, .deleteReview,
               .follow, .unfollow,
               .paymentValidation,
-              .createChatRoom, .fetchMyChatRooms:
+              .createChatRoom, .fetchMyChatRooms, .fetchChats:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -111,6 +111,9 @@ extension HTTPErrorTransformer {
             
           case .createChatRoom:
             return .targetNotFound(detail: .create(model: .chatRoom))
+            
+          case .fetchChats:
+            return .targetNotFound(detail: .fetch(model: .chatRoom))
             
           default:
             return httpStatusError.toDomain
