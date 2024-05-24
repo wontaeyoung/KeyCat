@@ -277,6 +277,11 @@
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
 		6EFB921D2BDBFF7F00AA8D09 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */; };
+		6EFC5B042BFF7BBD00D15E0F /* ChatRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */; };
+		6EFC5B062BFF7D9800D15E0F /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */; };
+		6EFC5B092BFF7DDC00D15E0F /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */; };
+		6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */; };
+		6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -545,6 +550,11 @@
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
+		6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepositoryImpl.swift; sourceTree = "<group>"; };
+		6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
+		6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -710,6 +720,7 @@
 		6E0A4FE42BD3ECF4005A529F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				6EFC5B0C2C00C58200D15E0F /* Chat */,
 				6E9090322BE6902D001B107A /* Review */,
 				6EAEACF82BE2352A00993089 /* Post */,
 				6E07783B2BD9E2B200B3A6EC /* User */,
@@ -1025,10 +1036,11 @@
 		6E567E372BC66DC100250C56 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				6E90902F2BE68EDC001B107A /* Review */,
-				6EAEACF52BE2289400993089 /* Post */,
-				6E07783E2BDA363200B3A6EC /* User */,
 				6E0A4FE12BD3EB13005A529F /* Authentication */,
+				6EFC5B022BFF7BA800D15E0F /* Chat */,
+				6EAEACF52BE2289400993089 /* Post */,
+				6E90902F2BE68EDC001B107A /* Review */,
+				6E07783E2BDA363200B3A6EC /* User */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1085,6 +1097,7 @@
 		6E567E742BC685A600250C56 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				6EFC5B072BFF7DC100D15E0F /* Chat */,
 				6E8C9EB42BCA9EB90086F913 /* Post */,
 				6E8C9EB32BCA9EB70086F913 /* User */,
 				6E567E752BC685AA00250C56 /* Protocol */,
@@ -1290,6 +1303,7 @@
 				6E8C9EDA2BCBFF580086F913 /* PostMapper.swift */,
 				6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */,
 				6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */,
+				6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */,
 				6E1B4C1F2BEB884B00098106 /* PaymentMapper.swift */,
 			);
 			path = Mapper;
@@ -1660,6 +1674,31 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		6EFC5B022BFF7BA800D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B072BFF7DC100D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */,
+				6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B0C2C00C58200D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1778,6 +1817,7 @@
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */,
 				6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */,
+				6EFC5B092BFF7DDC00D15E0F /* ChatRoom.swift in Sources */,
 				6EAEACDA2BDFC30600993089 /* Divider.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
@@ -1787,6 +1827,7 @@
 				6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift in Sources */,
 				6EAEACF72BE2289C00993089 /* PostRepositoryImpl.swift in Sources */,
 				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
+				6EFC5B062BFF7D9800D15E0F /* ChatMapper.swift in Sources */,
 				6E1DDEC02BF1077400DA4263 /* Image+.swift in Sources */,
 				6E7BC0082BFA422000DE8769 /* FetchChatRoomsResponse.swift in Sources */,
 				6E9090232BE63912001B107A /* ReviewListViewModel.swift in Sources */,
@@ -1898,6 +1939,7 @@
 				6E1DDEC32BF1426200DA4263 /* ProductCell.swift in Sources */,
 				6E7BC0022BFA3E4100DE8769 /* ChatDTO.swift in Sources */,
 				6E8C9E792BC8B7EB0086F913 /* AuthResponse.swift in Sources */,
+				6EFC5B042BFF7BBD00D15E0F /* ChatRepositoryImpl.swift in Sources */,
 				6E9829192BCFDFD200105910 /* CommentRouter.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
 				6E567E5B2BC67E8900250C56 /* ViewModelController.swift in Sources */,
@@ -1974,9 +2016,11 @@
 				6E9090732BE76B58001B107A /* UserInteractionUsecaseImpl.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E1DDEB12BEF5A8300DA4263 /* Publisher+.swift in Sources */,
+				6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */,
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
 				6E1B4C082BEB674600098106 /* CartPostListSheetViewController.swift in Sources */,
+				6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */,
 				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
 				6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
