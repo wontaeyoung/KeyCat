@@ -32,6 +32,7 @@ enum HTTPRequestDomain {
   case updateProfile
   case fetchChats
   case sendChat
+  case uploadChatImages
   
   // 401, 409, 410
   case follow
