@@ -75,6 +75,7 @@ extension KCError {
     case review = "리뷰"
     case comment = "댓글"
     case follow = "팔로우"
+    case chatRoom = "채팅방"
     
     var name: String {
       return self.rawValue
@@ -134,7 +135,7 @@ extension KCError {
     var alertDescription: String {
       switch self {
         case .create(let model):
-          return "\(model.name)을 작성하는데 실패했어요. 잠시 후에 다시 시도해주세요."
+          return "\(model.name)을 생성하는데 실패했어요. 잠시 후에 다시 시도해주세요."
         case .update(let model):
           return "수정할 \(model.name)을 찾지 못했어요. 잠시 후에 다시 시도해주세요."
         case .delete(let model):

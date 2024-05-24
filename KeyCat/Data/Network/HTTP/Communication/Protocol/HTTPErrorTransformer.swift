@@ -54,7 +54,8 @@ extension HTTPErrorTransformer {
               .createPost, .fetchPosts, .deletePost, .likePost,
               .createReview, .deleteReview,
               .follow, .unfollow,
-              .paymentValidation:
+              .paymentValidation,
+              .createChatRoom:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -107,6 +108,9 @@ extension HTTPErrorTransformer {
           
           case .paymentValidation:
             return .targetNotFound(detail: .pay)
+            
+          case .createChatRoom:
+            return .targetNotFound(detail: .create(model: .chatRoom))
             
           default:
             return httpStatusError.toDomain
