@@ -284,6 +284,8 @@
 		6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */; };
 		6EFC5B122C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */; };
 		6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */; };
+		6EFC5B162C00FB4500D15E0F /* ChatUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */; };
+		6EFC5B182C00FC6B00D15E0F /* ChatUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -559,6 +561,8 @@
 		6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 		6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecaseImpl.swift; sourceTree = "<group>"; };
 		6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecase.swift; sourceTree = "<group>"; };
+		6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecaseImpl.swift; sourceTree = "<group>"; };
+		6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1709,6 +1713,7 @@
 			children = (
 				6EFC5B102C00C86A00D15E0F /* Interface */,
 				6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */,
+				6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1717,6 +1722,7 @@
 			isa = PBXGroup;
 			children = (
 				6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */,
+				6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -2045,11 +2051,13 @@
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
 				6E1B4C082BEB674600098106 /* CartPostListSheetViewController.swift in Sources */,
 				6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */,
+				6EFC5B162C00FB4500D15E0F /* ChatUsecaseImpl.swift in Sources */,
 				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
 				6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E1B4BC82BEA4AFB00098106 /* CartPostTableCell.swift in Sources */,
+				6EFC5B182C00FC6B00D15E0F /* ChatUsecase.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
