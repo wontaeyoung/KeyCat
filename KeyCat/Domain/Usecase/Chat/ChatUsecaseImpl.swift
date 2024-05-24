@@ -22,4 +22,14 @@ final class ChatUsecaseImpl: ChatUsecase {
     let date1970 = Date(timeIntervalSince1970: .zero)
     return chatRepository.fetchChats(roomID: roomID, cursor: date1970)
   }
+  
+  func sendChat(chat: Chat, files: [Data]) -> Single<Chat> {
+    
+    return chatRepository.uploadChatImages(roomID: chat.roomID, files: files)
+      .flatMap { files in
+        let chat = chat.applied { $0.images = files }
+        
+        return self.chatRepository.sendChat(chat: chat)
+      }
+  }
 }

@@ -10,4 +10,5 @@ import RxSwift
 protocol ChatUsecase {
   
   func fetchChats(roomID: ChatRoom.RoomID) -> Single<[Chat]>
+  func sendChat(chat: Chat, files: [Data]) -> Single<Chat>
 }
