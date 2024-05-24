@@ -665,10 +665,10 @@ final class ViewController: RxBaseViewController {
   }
   
   private func uploadImageAndCreatePost() {
-    
+    /*
     let images: [UIImage] = []
     let data: [Data] = images.compactMap { $0.pngData() }
-    /*
+    
     service.callImageUploadRequest(data: data)
       .map { $0.files }
       .flatMap {
@@ -691,8 +691,9 @@ final class ViewController: RxBaseViewController {
   
   private func createPost2() {
     
-    let usecase = CreatePostUsecaseImpl()
     /*
+    let usecase = CreatePostUsecaseImpl()
+    
     usecase.execute(files: [], post: posts[postIndex])
       .subscribe(with: self) { owner, success in
         print(success)
