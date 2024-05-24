@@ -71,4 +71,14 @@ final class ChatRepositoryImpl: ChatRepository, HTTPErrorTransformer {
       }
       .map { self.chatMapper.toEntity($0) }
   }
+  
+  func uploadChatImages(roomID: ChatRoom.RoomID, files: [Data]) -> Single<[Chat.URLString]> {
+    
+    return service.callChatImageUploadRequest(roomID: roomID, data: files)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .uploadChatImages)
+        return .error(domainError)
+      }
+      .map { $0.files }
+  }
 }

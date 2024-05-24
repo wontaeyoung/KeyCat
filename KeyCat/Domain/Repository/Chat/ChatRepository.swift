@@ -14,4 +14,5 @@ protocol ChatRepository {
   func fetchMyChatRooms() -> Single<[ChatRoom]>
   func fetchChats(roomID: ChatRoom.RoomID, cursor date: Date) -> Single<[Chat]>
   func sendChat(chat: Chat) -> Single<Chat>
+  func uploadChatImages(roomID: ChatRoom.RoomID, files: [Data]) -> Single<[Chat.URLString]>
 }
