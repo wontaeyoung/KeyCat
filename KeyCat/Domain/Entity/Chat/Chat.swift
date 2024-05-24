@@ -14,7 +14,7 @@ struct Chat: Entity {
   let content: String
   let createdAt: Date
   let sender: User
-  let images: [URLString]
+  var images: [URLString]
   let senderType: SenderType
   
   var mainImageURL: URL? {
