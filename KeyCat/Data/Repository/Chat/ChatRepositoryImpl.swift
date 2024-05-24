@@ -33,4 +33,16 @@ final class ChatRepositoryImpl: ChatRepository, HTTPErrorTransformer {
       }
       .map { self.chatMapper.toEntity($0) }
   }
+  
+  func fetchMyChatRooms() -> Single<[ChatRoom]> {
+    
+    let router = ChatRouter.myChatRoomsFetch
+    
+    return service.callRequest(with: router, of: FetchChatRoomsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchMyChatRooms)
+        return .error(domainError)
+      }
+      .map { self.chatMapper.toEntity($0.data) }
+  }
 }
