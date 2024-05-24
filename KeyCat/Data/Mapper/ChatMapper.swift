@@ -57,4 +57,12 @@ struct ChatMapper: Mapper {
     
     return dtos.map { toEntity($0) }
   }
+  
+  func toRequest(_ entity: Chat) -> SendChatRequest {
+    
+    return SendChatRequest(
+      content: entity.content,
+      files: entity.images
+    )
+  }
 }
