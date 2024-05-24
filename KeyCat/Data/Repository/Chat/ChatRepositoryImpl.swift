@@ -45,4 +45,17 @@ final class ChatRepositoryImpl: ChatRepository, HTTPErrorTransformer {
       }
       .map { self.chatMapper.toEntity($0.data) }
   }
+  
+  func fetchChats(roomID: ChatRoom.RoomID, cursor date: Date) -> Single<[Chat]> {
+    
+    let query = FetchChatsQuery(cursor_date: date.toISOString)
+    let router = ChatRouter.chatsFetch(roomID: roomID, query: query)
+    
+    return service.callRequest(with: router, of: FetchChatsResponse.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .fetchChats)
+        return .error(domainError)
+      }
+      .map { self.chatMapper.toEntity($0.data) }
+  }
 }
