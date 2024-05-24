@@ -58,4 +58,17 @@ final class ChatRepositoryImpl: ChatRepository, HTTPErrorTransformer {
       }
       .map { self.chatMapper.toEntity($0.data) }
   }
+  
+  func sendChat(chat: Chat) -> Single<Chat> {
+    
+    let request = chatMapper.toRequest(chat)
+    let router = ChatRouter.chatSend(roomID: chat.roomID, request: request)
+    
+    return service.callRequest(with: router, of: ChatDTO.self)
+      .catch {
+        let domainError = self.httpErrorToDomain(from: $0, domain: .sendChat)
+        return .error(domainError)
+      }
+      .map { self.chatMapper.toEntity($0) }
+  }
 }

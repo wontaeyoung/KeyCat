@@ -13,4 +13,5 @@ protocol ChatRepository {
   func createChatRoom(otherUserID: ChatRoom.UserID) -> Single<ChatRoom>
   func fetchMyChatRooms() -> Single<[ChatRoom]>
   func fetchChats(roomID: ChatRoom.RoomID, cursor date: Date) -> Single<[Chat]>
+  func sendChat(chat: Chat) -> Single<Chat>
 }
