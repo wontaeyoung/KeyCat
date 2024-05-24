@@ -9,6 +9,21 @@ struct ChatMapper: Mapper {
   
   private let userMapper = UserMapper()
   
+  func toEntity(_ dto: ChatDTO?) -> Chat? {
+    
+    guard let dto else { return nil }
+    
+    return Chat(
+      chatID: dto.chat_id,
+      roomID: dto.room_id,
+      content: dto.content,
+      createdAt: toDate(from: dto.createdAt),
+      sender: userMapper.toEntity(dto.sender),
+      images: dto.files,
+      senderType: dto.sender.user_id == UserInfoService.userID ? .me : .other
+    )
+  }
+  
   func toEntity(_ dto: ChatDTO) -> Chat {
     
     return Chat(
