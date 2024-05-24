@@ -19,4 +19,9 @@ final class ChatRoomUsecaseImpl: ChatRoomUsecase {
     
     return chatRepository.createChatRoom(otherUserID: otherUserID)
   }
+  
+  func fetchMyChatRooms() -> Single<[ChatRoom]> {
+    
+    return chatRepository.fetchMyChatRooms()
+  }
 }

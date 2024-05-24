@@ -10,4 +10,5 @@ import RxSwift
 protocol ChatRoomUsecase {
   
   func createChatRoom(otherUserID: ChatRoom.UserID) -> Single<ChatRoom>
+  func fetchMyChatRooms() -> Single<[ChatRoom]>
 }
