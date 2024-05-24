@@ -13,5 +13,5 @@ struct ChatRoom: Entity {
   let createdAt: Date
   let updatedAt: Date
   let joins: [User]
-  let lastChat: Chat
+  let lastChat: Chat?
 }

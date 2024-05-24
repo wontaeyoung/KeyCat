@@ -11,7 +11,7 @@ struct ChatRoomDTO: DTO {
   let createdAt: String
   let updatedAt: String
   let participants: [UserDTO]
-  let lastChat: ChatDTO
+  let lastChat: ChatDTO?
   
   enum CodingKeys: CodingKey {
     case room_id
@@ -27,7 +27,7 @@ struct ChatRoomDTO: DTO {
     self.createdAt = try container.decode(String.self, forKey: .createdAt)
     self.updatedAt = try container.decode(String.self, forKey: .updatedAt)
     self.participants = try container.decode([UserDTO].self, forKey: .participants)
-    self.lastChat = try container.decodeWithDefaultValue(ChatDTO.self, forKey: .lastChat)
+    self.lastChat = try container.decodeIfPresent(ChatDTO.self, forKey: .lastChat)
   }
   
   init(
@@ -35,7 +35,7 @@ struct ChatRoomDTO: DTO {
     createdAt: String,
     updatedAt: String,
     participants: [UserDTO],
-    lastChat: ChatDTO
+    lastChat: ChatDTO?
   ) {
     self.room_id = room_id
     self.createdAt = createdAt
