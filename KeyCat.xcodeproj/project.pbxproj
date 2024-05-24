@@ -282,6 +282,8 @@
 		6EFC5B092BFF7DDC00D15E0F /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */; };
 		6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */; };
 		6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */; };
+		6EFC5B122C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */; };
+		6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -555,6 +557,8 @@
 		6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
+		6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecaseImpl.swift; sourceTree = "<group>"; };
+		6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -680,10 +684,11 @@
 		6E0A4FDA2BD3EA0C005A529F /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				6E90904F2BE6CCB1001B107A /* User */,
-				6E9090352BE69257001B107A /* Review */,
-				6EAEACFB2BE2355200993089 /* Post */,
 				6E0A4FDD2BD3EAE8005A529F /* Authentication */,
+				6EFC5B0F2C00C85E00D15E0F /* Chat */,
+				6EAEACFB2BE2355200993089 /* Post */,
+				6E9090352BE69257001B107A /* Review */,
+				6E90904F2BE6CCB1001B107A /* User */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -720,11 +725,11 @@
 		6E0A4FE42BD3ECF4005A529F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				6EFC5B0C2C00C58200D15E0F /* Chat */,
-				6E9090322BE6902D001B107A /* Review */,
-				6EAEACF82BE2352A00993089 /* Post */,
-				6E07783B2BD9E2B200B3A6EC /* User */,
 				6E0A4FE52BD3ECF7005A529F /* Authentication */,
+				6EFC5B0C2C00C58200D15E0F /* Chat */,
+				6EAEACF82BE2352A00993089 /* Post */,
+				6E9090322BE6902D001B107A /* Review */,
+				6E07783B2BD9E2B200B3A6EC /* User */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1699,6 +1704,23 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		6EFC5B0F2C00C85E00D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B102C00C86A00D15E0F /* Interface */,
+				6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B102C00C86A00D15E0F /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1898,8 +1920,10 @@
 				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
 				6E07783A2BD9D70D00B3A6EC /* SignUsecaseImpl.swift in Sources */,
 				6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */,
+				6EFC5B122C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
+				6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E9090462BE6C07F001B107A /* ProfileViewController.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
