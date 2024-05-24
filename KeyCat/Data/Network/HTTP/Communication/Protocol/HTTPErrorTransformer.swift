@@ -55,7 +55,7 @@ extension HTTPErrorTransformer {
               .createReview, .deleteReview,
               .follow, .unfollow,
               .paymentValidation,
-              .createChatRoom:
+              .createChatRoom, .fetchMyChatRooms:
             return .accessFailed(detail: .accessToken)
             
           default:
