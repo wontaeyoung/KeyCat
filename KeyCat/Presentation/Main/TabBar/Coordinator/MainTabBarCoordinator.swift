@@ -17,7 +17,7 @@ extension MainTabBarCoordinator: TabBarDelegate {
   }
 }
 
-final class MainTabBarCoordinator: SubCoordinator {
+final class MainTabBarCoordinator: Coordinator {
   
   // MARK: - Property
   var navigationController: UINavigationController
@@ -49,35 +49,36 @@ final class MainTabBarCoordinator: SubCoordinator {
   }
   
   private func makeNavigationController(with page: MainTabBarPage) -> UINavigationController {
-    return UINavigationController().configured {
-      $0.tabBarItem = page.tabBarItem
-      connectTabFlow(page: page, tabPageController: $0)
-    }
+    return UINavigationController().configured { connectTabFlow(page: page, tabPageController: $0) }
   }
   
   private func connectTabFlow(page: MainTabBarPage, tabPageController: UINavigationController) {
+    tabPageController.tabBarItem = page.tabBarItem
+    let coordinator = makeCoordinator(page: page, tabPageController: tabPageController)
+    connectCoordinator(coordinator)
+  }
+  
+  private func makeCoordinator(page: MainTabBarPage, tabPageController: UINavigationController) -> any SubCoordinator {
     switch page {
       case .home:
-        let coordinator = HomeCoordinator(tabPageController)
-        addChild(coordinator)
-        coordinator.start()
-        coordinator.tabBarDelegate = self
-        coordinator.signOutDelegate = self
+        return HomeCoordinator(tabPageController)
         
       case .shopping:
-        let coordinator = ShoppingCoordinator(tabPageController)
-        addChild(coordinator)
-        coordinator.start()
-        coordinator.tabBarDelegate = self
-        coordinator.signOutDelegate = self
+        return ShoppingCoordinator(tabPageController)
+        
+      case .chat:
+        return ChatCoordinator(tabPageController)
         
       case .profile:
-        let coordinator = MyPageCoordinator(tabPageController)
-        addChild(coordinator)
-        coordinator.start()
-        coordinator.tabBarDelegate = self
-        coordinator.signOutDelegate = self
+        return MyPageCoordinator(tabPageController)
     }
+  }
+  
+  private func connectCoordinator(_ coordinator: any SubCoordinator) {
+    addChild(coordinator)
+    coordinator.start()
+    coordinator.tabBarDelegate = self
+    coordinator.signOutDelegate = self
   }
 }
 
