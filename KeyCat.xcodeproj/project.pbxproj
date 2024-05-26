@@ -286,6 +286,10 @@
 		6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */; };
 		6EFC5B162C00FB4500D15E0F /* ChatUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */; };
 		6EFC5B182C00FC6B00D15E0F /* ChatUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */; };
+		6EFC5B1B2C022C2900D15E0F /* KazRealm in Frameworks */ = {isa = PBXBuildFile; productRef = 6EFC5B1A2C022C2900D15E0F /* KazRealm */; };
+		6EFC5B1E2C037F8F00D15E0F /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */; };
+		6EFC5B212C037F9C00D15E0F /* ChatRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */; };
+		6EFC5B232C03802A00D15E0F /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -563,6 +567,9 @@
 		6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecase.swift; sourceTree = "<group>"; };
 		6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecaseImpl.swift; sourceTree = "<group>"; };
 		6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecase.swift; sourceTree = "<group>"; };
+		6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
+		6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewModel.swift; sourceTree = "<group>"; };
+		6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +584,7 @@
 				6E0A4FA62BD1F2A0005A529F /* TextFieldEffects in Frameworks */,
 				6E9CAED42BEDF6B000772F4B /* iamport-ios in Frameworks */,
 				6E90905E2BE6E856001B107A /* Tabman in Frameworks */,
+				6EFC5B1B2C022C2900D15E0F /* KazRealm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +613,7 @@
 				6E0778502BDBEF3900B3A6EC /* Coordinator */,
 				6E9CAEC42BEDDDF900772F4B /* Home */,
 				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
+				6EFC5B1C2C037F6700D15E0F /* Chat */,
 				6E9090442BE6C045001B107A /* MyPage */,
 			);
 			path = TabBar;
@@ -1727,6 +1736,24 @@
 			path = Interface;
 			sourceTree = "<group>";
 		};
+		6EFC5B1C2C037F6700D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B1F2C037F9200D15E0F /* Coordinator */,
+				6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */,
+				6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B1F2C037F9200D15E0F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1751,6 +1778,7 @@
 				6E0A4FA52BD1F2A0005A529F /* TextFieldEffects */,
 				6E90905D2BE6E856001B107A /* Tabman */,
 				6E9CAED32BEDF6B000772F4B /* iamport-ios */,
+				6EFC5B1A2C022C2900D15E0F /* KazRealm */,
 			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
@@ -1788,6 +1816,7 @@
 				6E0A4FA42BD1F29F005A529F /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */,
 				6E9CAED22BEDF6B000772F4B /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */,
 			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
@@ -1932,6 +1961,7 @@
 				6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E9090462BE6C07F001B107A /* ProfileViewController.swift in Sources */,
+				6EFC5B1E2C037F8F00D15E0F /* ChatRoomListViewController.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
@@ -2023,6 +2053,7 @@
 				6E8C9EBA2BCA9F9B0086F913 /* KeycapInfo.swift in Sources */,
 				6E1DDEAB2BEF566B00DA4263 /* ButtonWrapper.swift in Sources */,
 				6E0A4F9C2BD14F98005A529F /* SignInViewController.swift in Sources */,
+				6EFC5B232C03802A00D15E0F /* ChatCoordinator.swift in Sources */,
 				6E9090292BE63C3A001B107A /* ReviewTableCell.swift in Sources */,
 				6E0A4FC82BD24164005A529F /* String+.swift in Sources */,
 				6E1B4C262BEB8B8B00098106 /* PaymentUsecaseImpl.swift in Sources */,
@@ -2061,6 +2092,7 @@
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
+				6EFC5B212C037F9C00D15E0F /* ChatRoomListViewModel.swift in Sources */,
 				6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */,
 				6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */,
 				6ED51E722BE35F7D005D7FBD /* ProductPriceView.swift in Sources */,
@@ -2367,6 +2399,14 @@
 				minimumVersion = 1.4.1;
 			};
 		};
+		6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wontaeyoung/KazRealm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2404,6 +2444,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E9CAED22BEDF6B000772F4B /* XCRemoteSwiftPackageReference "iamport-ios" */;
 			productName = "iamport-ios";
+		};
+		6EFC5B1A2C022C2900D15E0F /* KazRealm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */;
+			productName = KazRealm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
