@@ -29,6 +29,7 @@ protocol SubCoordinator: Coordinator {
   
   // MARK: - Property
   var navigationController: UINavigationController { get set }
+  var tabBarDelegate: TabBarDelegate? { get set }
   
   // MARK: - Method
   func signOut(_ childCoordinator: Coordinator?)
@@ -54,15 +55,19 @@ extension Coordinator {
   func addChild(_ childCoordinator: Coordinator) {
     self.childCoordinators.append(childCoordinator)
   }
-}
-
-// MARK: - View Navigation
-extension SubCoordinator {
+  
+  func emptyOut() {
+    self.childCoordinators.removeAll()
+  }
   
   func signOut(_ childCoordinator: Coordinator?) {
     self.emptyOut()
     self.signOutDelegate?.signOut(self)
   }
+}
+
+// MARK: - View Navigation
+extension SubCoordinator {
   
   func end() {
     self.emptyOut()
@@ -98,10 +103,6 @@ extension SubCoordinator {
     GCD.main {
       self.navigationController.dismiss(animated: animation)
     }
-  }
-  
-  func emptyOut() {
-    self.childCoordinators.removeAll()
   }
   
   func showErrorAlert(error: Error, completion: (() -> Void)? = nil) {

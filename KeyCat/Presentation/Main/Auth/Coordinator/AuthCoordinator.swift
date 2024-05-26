@@ -11,6 +11,7 @@ final class AuthCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
   weak var signOutDelegate: SignOutDelegate?
+  weak var tabBarDelegate: TabBarDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
   
