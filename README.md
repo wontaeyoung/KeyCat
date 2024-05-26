@@ -6,8 +6,6 @@
 
 ![Keycat_리드미 스크린샷2](https://github.com/wontaeyoung/KeyCat/assets/45925685/bc4f3ec7-c9ca-49e3-9c57-355e87266a87)
 
-<br>
-
 ### 한 줄 소개
 
 키보드 상품 특화 커머스 플랫폼 앱
@@ -48,13 +46,6 @@ Backend 1인
 
 <br>
 
-## 아키텍처
-
-<img width="2976" alt="Keycat_ReadME" src="https://github.com/wontaeyoung/KeyCat/assets/45925685/d547808e-b380-47da-8c05-3606ca069045">
-
-<br>
-<br>
-
 ## 기술 스택
 
 - **`UIKit`** **`SnapKit`** **`UIHostingController`**
@@ -74,6 +65,12 @@ Backend 1인
 - Input&Output 패턴으로 **단방향 데이터 흐름** 구성
 - 네트워크 단절 및 에러 상황에 대한 **사용자 안내** UI 표시 처리
 - 디바이스 사이즈 기반 이미지 리사이징으로 **메모리 최적화**
+
+<br>
+
+## 아키텍처
+
+![image](https://github.com/wontaeyoung/KeyCat/assets/45925685/78211eae-bea7-42c6-bbd8-5eb3aa4d5ab4)
 
 <br>
 
