@@ -5,6 +5,7 @@
 //  Created by 원태영 on 5/25/24.
 //
 
+import Foundation
 import RxSwift
 
 protocol ChatUsecase {
