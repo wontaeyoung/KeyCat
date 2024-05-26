@@ -110,6 +110,8 @@ enum KCAsset {
       case houseFill = "house.fill"
       case bag = "bag"
       case bagFill = "bag.fill"
+      case textBubble = "text.bubble"
+      case textBubbleFill = "text.bubble.fill"
       case person = "person"
       case personFill = "person.fill"
     }
@@ -150,6 +152,8 @@ enum KCAsset {
     static let homeSelectedTab: UIImage? = image(.houseFill)
     static let shoppingTab: UIImage? = image(.bag)
     static let shoppingSelectedTab: UIImage? = image(.bagFill)
+    static let chatTab: UIImage? = image(.textBubble)
+    static let chatSelectedTab: UIImage? = image(.textBubbleFill)
     static let profileTab: UIImage? = image(.person)
     static let profileSelectedTab: UIImage? = image(.personFill)
   }
