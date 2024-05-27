@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class TappableImageView: UIImageView {
+class TappableImageView: UIImageView {
   
   private let disposeBag = DisposeBag()
   let tap = PublishRelay<Void>()

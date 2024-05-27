@@ -14,14 +14,7 @@ final class ReviewTableCell: RxBaseTableViewCell {
   
   // MARK: - UI
   private let containerView = UIView()
-  private lazy var profileImageView = TappableImageView(image: nil).configured {
-    $0.clipsToBounds = true
-    $0.layer.configure {
-      $0.cornerRadius = profileImageSize / 2
-      $0.borderWidth = 1
-      $0.borderColor = KCAsset.Color.lightGrayForeground.color.cgColor
-    }
-  }
+  private lazy var profileImageView = ProfileImageView(size: profileImageSize)
   private let nicknameLabel = KCLabel(font: .medium(size: 13))
   private let dateLabel = KCLabel(font: .medium(size: 13), color: .darkGray, alignment: .right)
   private lazy var reviewStarStack = UIStackView().configured {
