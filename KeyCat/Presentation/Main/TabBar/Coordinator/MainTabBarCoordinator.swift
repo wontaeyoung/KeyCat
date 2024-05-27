@@ -34,10 +34,7 @@ final class MainTabBarCoordinator: Coordinator {
   
   // MARK: - Method
   func start() {
-    let rootNavigationControllers = MainTabBarPage.allCases.map { page in
-      makeNavigationController(with: page)
-    }
-    
+    let rootNavigationControllers = MainTabBarPage.allCases.map { makeNavigationController(with: $0) }
     configureTabBarController(with: rootNavigationControllers)
   }
   
