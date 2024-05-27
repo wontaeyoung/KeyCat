@@ -49,7 +49,8 @@ struct ChatMapper: Mapper {
       createdAt: toDate(from: dto.createdAt),
       updatedAt: toDate(from: dto.updatedAt),
       joins: userMapper.toEntity(dto.participants),
-      lastChat: toEntity(dto.lastChat)
+      lastChat: toEntity(dto.lastChat),
+      images: dto.files
     )
   }
   

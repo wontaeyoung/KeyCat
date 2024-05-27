@@ -12,6 +12,7 @@ struct ChatRoomDTO: DTO {
   let updatedAt: String
   let participants: [UserDTO]
   let lastChat: ChatDTO?
+  let files: [String]
   
   enum CodingKeys: CodingKey {
     case room_id
@@ -19,6 +20,7 @@ struct ChatRoomDTO: DTO {
     case updatedAt
     case participants
     case lastChat
+    case files
   }
   
   init(from decoder: any Decoder) throws {
@@ -28,6 +30,7 @@ struct ChatRoomDTO: DTO {
     self.updatedAt = try container.decode(String.self, forKey: .updatedAt)
     self.participants = try container.decode([UserDTO].self, forKey: .participants)
     self.lastChat = try container.decodeIfPresent(ChatDTO.self, forKey: .lastChat)
+    self.files = try container.decodeWithDefaultValue([String].self, forKey: .files)
   }
   
   init(
@@ -35,12 +38,14 @@ struct ChatRoomDTO: DTO {
     createdAt: String,
     updatedAt: String,
     participants: [UserDTO],
-    lastChat: ChatDTO?
+    lastChat: ChatDTO?,
+    files: [String]
   ) {
     self.room_id = room_id
     self.createdAt = createdAt
     self.updatedAt = updatedAt
     self.participants = participants
     self.lastChat = lastChat
+    self.files = files
   }
 }

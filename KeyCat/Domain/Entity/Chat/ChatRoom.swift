@@ -14,4 +14,5 @@ struct ChatRoom: Entity {
   let updatedAt: Date
   let joins: [User]
   let lastChat: Chat?
+  let images: [URLString]
 }
