@@ -15,4 +15,10 @@ struct ChatRoom: Entity {
   let joins: [User]
   let lastChat: Chat?
   let images: [URLString]
+  
+  var otherUser: User {
+    return joins
+      .filter { $0.userID != UserInfoService.userID }
+      .first ?? .empty
+  }
 }
