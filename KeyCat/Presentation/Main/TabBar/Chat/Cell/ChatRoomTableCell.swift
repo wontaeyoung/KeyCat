@@ -67,4 +67,11 @@ final class ChatRoomTableCell: RxBaseTableViewCell {
       make.trailing.equalToSuperview()
     }
   }
+  
+  func setData(chatRoom: ChatRoom) {
+    profileImageView.load(with: chatRoom.otherUser.profileImageURL)
+    nicknameLabel.text = chatRoom.otherUser.nickname
+    contentLabel.text = chatRoom.lastChat?.content
+    timestampLabel.text = DateManager.shared.timestamp(when: chatRoom.updatedAt)
+  }
 }
