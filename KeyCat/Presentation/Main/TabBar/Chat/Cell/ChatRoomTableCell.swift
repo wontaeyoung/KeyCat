@@ -21,7 +21,7 @@ final class ChatRoomTableCell: RxBaseTableViewCell {
   private let newCountLabel = TagLabel(title: nil, horizontalInset: 4, backgroundColor: .brand)
   
   // MARK: - Property
-  private let profileImageSize: CGFloat = 40
+  private let profileImageSize: CGFloat = 50
   
   // MARK: - Life Cycle
   override func setHierarchy() {
@@ -47,7 +47,7 @@ final class ChatRoomTableCell: RxBaseTableViewCell {
     }
     
     nicknameLabel.snp.makeConstraints { make in
-      make.leading.equalTo(profileImageView).offset(10)
+      make.leading.equalTo(profileImageView.snp.trailing).offset(10)
       make.bottom.equalTo(profileImageView.snp.centerY).offset(-5)
       make.trailing.lessThanOrEqualTo(timestampLabel.snp.leading).offset(-10)
     }
