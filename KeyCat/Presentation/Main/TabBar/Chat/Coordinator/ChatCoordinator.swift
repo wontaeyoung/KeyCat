@@ -21,7 +21,20 @@ final class ChatCoordinator: SubCoordinator {
   }
   
   func start() {
+    showChatRoomListView()
+  }
+}
+
+extension ChatCoordinator {
+  
+  private func showChatRoomListView() {
     
+    let vm = ChatRoomListViewModel()
+      .coordinator(self)
+    
+    let vc = ChatRoomListViewController(viewModel: vm)
+    
+    push(vc)
   }
 }
 
