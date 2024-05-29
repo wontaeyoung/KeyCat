@@ -22,13 +22,13 @@ final class ShoppingCoordinator: SubCoordinator {
   }
   
   func start() {
-    showShoppoingView()
+    showShoppingView()
   }
 }
 
 extension ShoppingCoordinator {
   
-  func showShoppoingView() {
+  func showShoppingView() {
     
     let vm = ShoppingViewModel()
       .coordinator(self)
