@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatRoom: Entity {
+struct ChatRoom: Entity, Hashable {
   
   let roomID: RoomID
   let createdAt: Date
