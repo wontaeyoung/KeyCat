@@ -12,10 +12,13 @@ import RxCocoa
 
 final class ChatRoomListViewController: RxBaseViewController, ViewModelController {
   
+  private let cellType = ChatRoomTableCell.self
+  private let cellIdentifier = ChatRoomTableCell.identifier
+  
   // MARK: - UI
   private let searchField = KCField(placeholder: "검색")
   private lazy var chatRoomTableView = UITableView().configured {
-    $0.register(ChatRoomTableCell.self, forCellReuseIdentifier: ChatRoomTableCell.identifier)
+    $0.register(cellType, forCellReuseIdentifier: cellIdentifier)
     $0.keyboardDismissMode = .onDrag
   }
   
@@ -32,9 +35,16 @@ final class ChatRoomListViewController: RxBaseViewController, ViewModelControlle
   // MARK: - Life Cycle
   override func setHierarchy() {
     navigationItem.titleView = searchField
+    
+    view.addSubviews(chatRoomTableView)
   }
   
   override func setConstraint() {
+    searchField.snp.makeConstraints { make in
+      make.width.equalTo(200)
+      make.height.equalTo(40)
+    }
+    
     chatRoomTableView.snp.makeConstraints { make in
       make.edges.equalTo(view.safeAreaLayoutGuide)
     }
@@ -42,5 +52,18 @@ final class ChatRoomListViewController: RxBaseViewController, ViewModelControlle
   
   override func bind() {
     
+    let input = ChatRoomListViewModel.Input()
+    let output = viewModel.transform(input: input)
+    
+    output.chatRooms
+      .drive(chatRoomTableView.rx.items(
+        cellIdentifier: cellIdentifier,
+        cellType: cellType)
+      ) { row, chatRoom, cell in
+        cell.setData(chatRoom: chatRoom)
+      }
+      .disposed(by: disposeBag)
+    
+    input.viewDidLoadEvent.accept(())
   }
 }
