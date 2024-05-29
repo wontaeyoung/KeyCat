@@ -13,7 +13,11 @@ import RxCocoa
 final class ChatRoomListViewController: RxBaseViewController, ViewModelController {
   
   // MARK: - UI
-  
+  private let searchField = KCField(placeholder: "검색")
+  private lazy var chatRoomTableView = UITableView().configured {
+    $0.register(ChatRoomTableCell.self, forCellReuseIdentifier: ChatRoomTableCell.identifier)
+    $0.keyboardDismissMode = .onDrag
+  }
   
   // MARK: - Property
   let viewModel: ChatRoomListViewModel
@@ -27,15 +31,13 @@ final class ChatRoomListViewController: RxBaseViewController, ViewModelControlle
   
   // MARK: - Life Cycle
   override func setHierarchy() {
-    
+    navigationItem.titleView = searchField
   }
   
   override func setConstraint() {
-    
-  }
-  
-  override func setAttribute() {
-    
+    chatRoomTableView.snp.makeConstraints { make in
+      make.edges.equalTo(view.safeAreaLayoutGuide)
+    }
   }
   
   override func bind() {
