@@ -8,7 +8,7 @@
 import KazRealm
 import RealmSwift
 
-final class RealmUser: Object, RealmModel {
+final class RealmUser: EmbeddedObject, EmbeddedRealmModel {
   
   enum Column: String {
     
