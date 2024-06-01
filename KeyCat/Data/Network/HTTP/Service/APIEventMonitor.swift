@@ -10,9 +10,6 @@ import Foundation
 
 final class APIEventMonitor: EventMonitor {
   
-  static let shared = APIEventMonitor()
-  private init() { }
-  
   // 요청이 시작될 때
   func requestDidResume(_ request: Request) {
     guard let request = request.request?.urlRequest else { return }
