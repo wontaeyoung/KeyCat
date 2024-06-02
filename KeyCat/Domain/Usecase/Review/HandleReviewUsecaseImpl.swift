@@ -9,13 +9,13 @@ import RxSwift
 
 final class HandleReviewUsecaseImpl: HandleReviewUsecase {
   
-  private let reviewRepository: ReviewRepository
+  private let reviewRepository: any ReviewRepository
   
-  init(reviewRepository: ReviewRepository = ReviewRepositoryImpl()) {
+  init(reviewRepository: any ReviewRepository) {
     self.reviewRepository = reviewRepository
   }
   
-  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.CommentID) -> Single<Void> {
+  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.ReviewID) -> Single<Void> {
     return reviewRepository.deleteCommercialReview(postID: postID, reviewID: reviewID)
   }
 }

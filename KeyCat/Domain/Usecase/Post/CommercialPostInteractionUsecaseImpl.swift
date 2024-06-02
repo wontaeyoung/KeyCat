@@ -10,9 +10,9 @@ import RxSwift
 
 final class CommercialPostInteractionUsecaseImpl: CommercialPostInteractionUsecase {
   
-  private let postRepository: PostRepository
+  private let postRepository: any PostRepository
   
-  init(postRepository: PostRepository = PostRepositoryImpl()) {
+  init(postRepository: any PostRepository) {
     self.postRepository = postRepository
   }
   

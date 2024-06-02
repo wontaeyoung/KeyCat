@@ -9,7 +9,7 @@ import Foundation
 
 struct CommercialPost: Entity {
   
-  let postID: String
+  let postID: PostID
   let postType: PostType
   let title: String
   let content: String

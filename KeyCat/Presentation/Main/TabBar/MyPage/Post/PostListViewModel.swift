@@ -32,9 +32,9 @@ final class PostListViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: MyPageCoordinator?
+  private let fetchCommercialPostUsecase: any FetchCommercialPostUsecase
   private let userID: CommercialPost.UserID
   private let postCase: PostCase
-  private let fetchCommercialPostUsecase: any FetchCommercialPostUsecase
   
   private var nextCursor: CommercialPost.PostID = ""
   private let posts = BehaviorRelay<[CommercialPost]>(value: [])
@@ -42,13 +42,13 @@ final class PostListViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
+    fetchCommercialPostUsecase: any FetchCommercialPostUsecase,
     userID: CommercialPost.UserID,
-    postCase: PostCase,
-    fetchCommercialPostUsecase: any FetchCommercialPostUsecase = FetchCommercialPostUsecaseImpl()
+    postCase: PostCase
   ) {
+    self.fetchCommercialPostUsecase = fetchCommercialPostUsecase
     self.userID = userID
     self.postCase = postCase
-    self.fetchCommercialPostUsecase = fetchCommercialPostUsecase
   }
   
   // MARK: - Method

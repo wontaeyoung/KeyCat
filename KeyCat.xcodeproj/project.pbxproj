@@ -90,6 +90,7 @@
 		6E1DDEC32BF1426200DA4263 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1DDEC22BF1426200DA4263 /* ProductCell.swift */; };
 		6E3460D42BE272A300840E21 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3460D32BE272A300840E21 /* Array+.swift */; };
 		6E3460D62BE2745600840E21 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3460D52BE2745600840E21 /* Double+.swift */; };
+		6E3ADD702C0B5C4D00831E70 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3ADD6F2C0B5C4D00831E70 /* DIContainer.swift */; };
 		6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */; };
 		6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E122BC56D2800250C56 /* AppDelegate.swift */; };
 		6E567E152BC56D2800250C56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E567E142BC56D2800250C56 /* SceneDelegate.swift */; };
@@ -129,6 +130,14 @@
 		6E77ED082BCE65BB00ACDA3B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E77ED072BCE65BB00ACDA3B /* Router.swift */; };
 		6E77ED0A2BCE65F900ACDA3B /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E77ED092BCE65F900ACDA3B /* AuthRouter.swift */; };
 		6E77ED0C2BCE6A9500ACDA3B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E77ED0B2BCE6A9500ACDA3B /* APIService.swift */; };
+		6E7BC0002BFA397000DE8769 /* ChatRoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BBFFF2BFA397000DE8769 /* ChatRoomDTO.swift */; };
+		6E7BC0022BFA3E4100DE8769 /* ChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0012BFA3E4100DE8769 /* ChatDTO.swift */; };
+		6E7BC0042BFA407800DE8769 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0032BFA407800DE8769 /* ChatRouter.swift */; };
+		6E7BC0062BFA410200DE8769 /* CreateChatRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */; };
+		6E7BC0082BFA422000DE8769 /* FetchChatRoomsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */; };
+		6E7BC00A2BFA44D900DE8769 /* FetchChatsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */; };
+		6E7BC00C2BFA486600DE8769 /* FetchChatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */; };
+		6E7BC00E2BFA506F00DE8769 /* SendChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */; };
 		6E8C9E662BC8149D0086F913 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E652BC8149D0086F913 /* Response.swift */; };
 		6E8C9E682BC820B30086F913 /* HTTPRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */; };
 		6E8C9E6A2BC820C30086F913 /* HTTPQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E692BC820C30086F913 /* HTTPQuery.swift */; };
@@ -146,7 +155,7 @@
 		6E8C9E852BC8B9950086F913 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E842BC8B9950086F913 /* JoinRequest.swift */; };
 		6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */; };
 		6E8C9E892BC8B9F70086F913 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */; };
-		6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */; };
+		6E8C9E8B2BC8BA100086F913 /* UploadImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */; };
 		6E8C9E952BC8BAFC0086F913 /* LikePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */; };
 		6E8C9E972BC8BB560086F913 /* UpdateMyProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */; };
 		6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */; };
@@ -221,7 +230,7 @@
 		6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907A2BE7889D001B107A /* ProductTableCell.swift */; };
 		6E90907D2BE7B2A7001B107A /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E90907C2BE7B2A7001B107A /* BadgeButton.swift */; };
 		6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FD2BCE967800105910 /* PostRouter.swift */; };
-		6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */; };
+		6E9829002BCE9E7000105910 /* UploadImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */; };
 		6E9829022BCEA78F00105910 /* KCBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829012BCEA78F00105910 /* KCBody.swift */; };
 		6E9829092BCF42D000105910 /* KCParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829082BCF42D000105910 /* KCParameter.swift */; };
 		6E9829192BCFDFD200105910 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9829182BCFDFD200105910 /* CommentRouter.swift */; };
@@ -269,6 +278,24 @@
 		6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */; };
 		6EFB921B2BDBFD1D00AA8D09 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */; };
 		6EFB921D2BDBFF7F00AA8D09 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */; };
+		6EFC5B042BFF7BBD00D15E0F /* ChatRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */; };
+		6EFC5B062BFF7D9800D15E0F /* ChatMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */; };
+		6EFC5B092BFF7DDC00D15E0F /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */; };
+		6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */; };
+		6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */; };
+		6EFC5B122C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */; };
+		6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */; };
+		6EFC5B162C00FB4500D15E0F /* ChatUsecaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */; };
+		6EFC5B182C00FC6B00D15E0F /* ChatUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */; };
+		6EFC5B1B2C022C2900D15E0F /* KazRealm in Frameworks */ = {isa = PBXBuildFile; productRef = 6EFC5B1A2C022C2900D15E0F /* KazRealm */; };
+		6EFC5B1E2C037F8F00D15E0F /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */; };
+		6EFC5B212C037F9C00D15E0F /* ChatRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */; };
+		6EFC5B232C03802A00D15E0F /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */; };
+		6EFC5B262C04D0AA00D15E0F /* ChatRoomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B252C04D0AA00D15E0F /* ChatRoomTableCell.swift */; };
+		6EFC5B282C04D1FB00D15E0F /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5B272C04D1FB00D15E0F /* ProfileImageView.swift */; };
+		6EFC5BA42C08C33D00D15E0F /* RealmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5BA32C08C33D00D15E0F /* RealmChat.swift */; };
+		6EFC5BA62C08C4F600D15E0F /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5BA52C08C4F600D15E0F /* RealmUser.swift */; };
+		6EFC5BA92C08C5A600D15E0F /* EmbeddedRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5BA82C08C5A600D15E0F /* EmbeddedRealmModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -352,6 +379,7 @@
 		6E1DDEC22BF1426200DA4263 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		6E3460D32BE272A300840E21 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		6E3460D52BE2745600840E21 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		6E3ADD6F2C0B5C4D00831E70 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		6E5471C62BCDE94F00776811 /* APIEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventMonitor.swift; sourceTree = "<group>"; };
 		6E567E0F2BC56D2800250C56 /* KeyCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E567E122BC56D2800250C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -391,6 +419,14 @@
 		6E77ED072BCE65BB00ACDA3B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		6E77ED092BCE65F900ACDA3B /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		6E77ED0B2BCE6A9500ACDA3B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		6E7BBFFF2BFA397000DE8769 /* ChatRoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDTO.swift; sourceTree = "<group>"; };
+		6E7BC0012BFA3E4100DE8769 /* ChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDTO.swift; sourceTree = "<group>"; };
+		6E7BC0032BFA407800DE8769 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatRoomRequest.swift; sourceTree = "<group>"; };
+		6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatRoomsResponse.swift; sourceTree = "<group>"; };
+		6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatsQuery.swift; sourceTree = "<group>"; };
+		6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatsResponse.swift; sourceTree = "<group>"; };
+		6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChatRequest.swift; sourceTree = "<group>"; };
 		6E8C9E652BC8149D0086F913 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestBody.swift; sourceTree = "<group>"; };
 		6E8C9E692BC820C30086F913 /* HTTPQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPQuery.swift; sourceTree = "<group>"; };
@@ -408,7 +444,7 @@
 		6E8C9E842BC8B9950086F913 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequest.swift; sourceTree = "<group>"; };
 		6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageRequest.swift; sourceTree = "<group>"; };
+		6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageRequest.swift; sourceTree = "<group>"; };
 		6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostRequest.swift; sourceTree = "<group>"; };
 		6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyProfileRequest.swift; sourceTree = "<group>"; };
 		6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsQuery.swift; sourceTree = "<group>"; };
@@ -482,7 +518,7 @@
 		6E90907A2BE7889D001B107A /* ProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableCell.swift; sourceTree = "<group>"; };
 		6E90907C2BE7B2A7001B107A /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		6E9828FD2BCE967800105910 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
-		6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostImageResponse.swift; sourceTree = "<group>"; };
+		6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageResponse.swift; sourceTree = "<group>"; };
 		6E9829012BCEA78F00105910 /* KCBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBody.swift; sourceTree = "<group>"; };
 		6E9829082BCF42D000105910 /* KCParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCParameter.swift; sourceTree = "<group>"; };
 		6E9829182BCFDFD200105910 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
@@ -529,6 +565,23 @@
 		6EFB92182BDBFC7400AA8D09 /* ShoppingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCoordinator.swift; sourceTree = "<group>"; };
 		6EFB921A2BDBFD1D00AA8D09 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		6EFB921C2BDBFF7F00AA8D09 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
+		6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepositoryImpl.swift; sourceTree = "<group>"; };
+		6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMapper.swift; sourceTree = "<group>"; };
+		6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
+		6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecaseImpl.swift; sourceTree = "<group>"; };
+		6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUsecase.swift; sourceTree = "<group>"; };
+		6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecaseImpl.swift; sourceTree = "<group>"; };
+		6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecase.swift; sourceTree = "<group>"; };
+		6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
+		6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewModel.swift; sourceTree = "<group>"; };
+		6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		6EFC5B252C04D0AA00D15E0F /* ChatRoomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTableCell.swift; sourceTree = "<group>"; };
+		6EFC5B272C04D1FB00D15E0F /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		6EFC5BA32C08C33D00D15E0F /* RealmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChat.swift; sourceTree = "<group>"; };
+		6EFC5BA52C08C4F600D15E0F /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		6EFC5BA82C08C5A600D15E0F /* EmbeddedRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedRealmModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,6 +596,7 @@
 				6E0A4FA62BD1F2A0005A529F /* TextFieldEffects in Frameworks */,
 				6E9CAED42BEDF6B000772F4B /* iamport-ios in Frameworks */,
 				6E90905E2BE6E856001B107A /* Tabman in Frameworks */,
+				6EFC5B1B2C022C2900D15E0F /* KazRealm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +625,7 @@
 				6E0778502BDBEF3900B3A6EC /* Coordinator */,
 				6E9CAEC42BEDDDF900772F4B /* Home */,
 				6EFB92162BDBFB5A00AA8D09 /* Shopping */,
+				6EFC5B1C2C037F6700D15E0F /* Chat */,
 				6E9090442BE6C045001B107A /* MyPage */,
 			);
 			path = TabBar;
@@ -639,6 +694,7 @@
 				6E90900D2BE48C97001B107A /* IconLabel.swift */,
 				6E90907C2BE7B2A7001B107A /* BadgeButton.swift */,
 				6E9CAECA2BEDEDC100772F4B /* NetworkUnsatisfiedView.swift */,
+				6EFC5B272C04D1FB00D15E0F /* ProfileImageView.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -654,10 +710,11 @@
 		6E0A4FDA2BD3EA0C005A529F /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				6E90904F2BE6CCB1001B107A /* User */,
-				6E9090352BE69257001B107A /* Review */,
-				6EAEACFB2BE2355200993089 /* Post */,
 				6E0A4FDD2BD3EAE8005A529F /* Authentication */,
+				6EFC5B0F2C00C85E00D15E0F /* Chat */,
+				6EAEACFB2BE2355200993089 /* Post */,
+				6E9090352BE69257001B107A /* Review */,
+				6E90904F2BE6CCB1001B107A /* User */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -694,10 +751,11 @@
 		6E0A4FE42BD3ECF4005A529F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				6E9090322BE6902D001B107A /* Review */,
-				6EAEACF82BE2352A00993089 /* Post */,
-				6E07783B2BD9E2B200B3A6EC /* User */,
 				6E0A4FE52BD3ECF7005A529F /* Authentication */,
+				6EFC5B0C2C00C58200D15E0F /* Chat */,
+				6EAEACF82BE2352A00993089 /* Post */,
+				6E9090322BE6902D001B107A /* Review */,
+				6E07783B2BD9E2B200B3A6EC /* User */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -827,6 +885,7 @@
 		6E567E282BC5783D00250C56 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6EFC5BA22C08C32600D15E0F /* RealmModel */,
 				6E567E362BC66DBA00250C56 /* DTO */,
 				6EC801F22BDE613F00FE2B69 /* Local */,
 				6E8C9EDB2BCBFF580086F913 /* Mapper */,
@@ -990,16 +1049,18 @@
 			isa = PBXGroup;
 			children = (
 				6E567E712BC684BC00250C56 /* Protocol */,
-				6E567E782BC6894500250C56 /* UserDTO.swift */,
-				6E8C9E702BC8B60B0086F913 /* PostDTO.swift */,
+				6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */,
+				6E7BC0012BFA3E4100DE8769 /* ChatDTO.swift */,
+				6E7BBFFF2BFA397000DE8769 /* ChatRoomDTO.swift */,
 				6E8C9E722BC8B6460086F913 /* CommentDTO.swift */,
-				6E8C9E742BC8B67C0086F913 /* ProfileDTO.swift */,
-				6E8C9E762BC8B6A80086F913 /* FollowDTO.swift */,
-				6E8C9F292BCD21790086F913 /* KeyboardDTO.swift */,
 				6E8C9F2B2BCD21930086F913 /* CommercialPriceDTO.swift */,
 				6E0A4F882BD108FD005A529F /* DeliveryInfoDTO.swift */,
-				6E07780D2BD7DCF000B3A6EC /* BusinessInfoDTO.swift */,
+				6E8C9E762BC8B6A80086F913 /* FollowDTO.swift */,
+				6E8C9F292BCD21790086F913 /* KeyboardDTO.swift */,
 				6E1B4C192BEB874000098106 /* PaymentDTO.swift */,
+				6E8C9E702BC8B60B0086F913 /* PostDTO.swift */,
+				6E8C9E742BC8B67C0086F913 /* ProfileDTO.swift */,
+				6E567E782BC6894500250C56 /* UserDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1007,10 +1068,11 @@
 		6E567E372BC66DC100250C56 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				6E90902F2BE68EDC001B107A /* Review */,
-				6EAEACF52BE2289400993089 /* Post */,
-				6E07783E2BDA363200B3A6EC /* User */,
 				6E0A4FE12BD3EB13005A529F /* Authentication */,
+				6EFC5B022BFF7BA800D15E0F /* Chat */,
+				6EAEACF52BE2289400993089 /* Post */,
+				6E90902F2BE68EDC001B107A /* Review */,
+				6E07783E2BDA363200B3A6EC /* User */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1052,6 +1114,7 @@
 				6E567E6D2BC67F5700250C56 /* LogManager.swift */,
 				6E0778352BD9237200B3A6EC /* NumberFormatManager.swift */,
 				6E0A4F8E2BD13314005A529F /* UserDefaultManager.swift */,
+				6E3ADD6F2C0B5C4D00831E70 /* DIContainer.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1067,6 +1130,7 @@
 		6E567E742BC685A600250C56 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				6EFC5B072BFF7DC100D15E0F /* Chat */,
 				6E8C9EB42BCA9EB90086F913 /* Post */,
 				6E8C9EB32BCA9EB70086F913 /* User */,
 				6E567E752BC685AA00250C56 /* Protocol */,
@@ -1112,12 +1176,13 @@
 			isa = PBXGroup;
 			children = (
 				6E77ED092BCE65F900ACDA3B /* AuthRouter.swift */,
-				6E9828FD2BCE967800105910 /* PostRouter.swift */,
-				6E9829182BCFDFD200105910 /* CommentRouter.swift */,
-				6E98291A2BCFF0C900105910 /* LikeRouter.swift */,
-				6E98291C2BD0915000105910 /* UserRouter.swift */,
 				6E0778112BD7DEC900B3A6EC /* BusinessInfoRouter.swift */,
+				6E9829182BCFDFD200105910 /* CommentRouter.swift */,
+				6E7BC0032BFA407800DE8769 /* ChatRouter.swift */,
+				6E98291A2BCFF0C900105910 /* LikeRouter.swift */,
 				6E1B4C152BEB855A00098106 /* PaymentRouter.swift */,
+				6E9828FD2BCE967800105910 /* PostRouter.swift */,
+				6E98291C2BD0915000105910 /* UserRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1125,16 +1190,18 @@
 		6E8C9E6E2BC8B47D0086F913 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E652BC8149D0086F913 /* Response.swift */,
 				6E8C9E782BC8B7EB0086F913 /* AuthResponse.swift */,
-				6E8C9E7A2BC8B8090086F913 /* MessageResponse.swift */,
-				6E8C9E7C2BC8B8A10086F913 /* LoginResponse.swift */,
-				6E8C9E7E2BC8B8AF0086F913 /* RefeshTokenResponse.swift */,
-				6E8C9E802BC8B9290086F913 /* LikePostResonse.swift */,
-				6E8C9E822BC8B9410086F913 /* FetchPostsResponse.swift */,
-				6E9828FF2BCE9E7000105910 /* UploadPostImageResponse.swift */,
 				6E07780B2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift */,
+				6E7BC0072BFA422000DE8769 /* FetchChatRoomsResponse.swift */,
+				6E7BC00B2BFA486600DE8769 /* FetchChatsResponse.swift */,
 				6E1B4C1B2BEB87EE00098106 /* FetchPaymentResponse.swift */,
+				6E8C9E822BC8B9410086F913 /* FetchPostsResponse.swift */,
+				6E8C9E802BC8B9290086F913 /* LikePostResonse.swift */,
+				6E8C9E7C2BC8B8A10086F913 /* LoginResponse.swift */,
+				6E8C9E7A2BC8B8090086F913 /* MessageResponse.swift */,
+				6E8C9E7E2BC8B8AF0086F913 /* RefeshTokenResponse.swift */,
+				6E8C9E652BC8149D0086F913 /* Response.swift */,
+				6E9828FF2BCE9E7000105910 /* UploadImageResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1142,16 +1209,18 @@
 		6E8C9E6F2BC8B47F0086F913 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E842BC8B9950086F913 /* JoinRequest.swift */,
-				6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */,
-				6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */,
-				6E8C9E8A2BC8BA100086F913 /* UploadPostImageRequest.swift */,
-				6E8C9EA82BCA32050086F913 /* PostRequest.swift */,
-				6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */,
-				6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */,
-				6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */,
 				6E0778092BD7DB2D00B3A6EC /* BusinessInfoRequest.swift */,
+				6E8C9EAA2BCA32210086F913 /* CommentRequest.swift */,
+				6E8C9E862BC8B9EC0086F913 /* EmailValidationRequest.swift */,
+				6E8C9E842BC8B9950086F913 /* JoinRequest.swift */,
+				6E8C9E942BC8BAFC0086F913 /* LikePostRequest.swift */,
+				6E8C9E882BC8B9F70086F913 /* LoginRequest.swift */,
 				6E1B4C172BEB85A700098106 /* PaymentValidationRequest.swift */,
+				6E8C9EA82BCA32050086F913 /* PostRequest.swift */,
+				6E8C9E962BC8BB560086F913 /* UpdateMyProfileRequest.swift */,
+				6E8C9E8A2BC8BA100086F913 /* UploadImageRequest.swift */,
+				6E7BC0052BFA410200DE8769 /* CreateChatRoomRequest.swift */,
+				6E7BC00D2BFA506F00DE8769 /* SendChatRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1159,9 +1228,10 @@
 		6E8C9E982BC8BBA30086F913 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */,
 				6E8C9E9B2BC8BD0A0086F913 /* FetchLikePostsQuery.swift */,
+				6E8C9E992BC8BC320086F913 /* FetchPostsQuery.swift */,
 				6E8C9E9D2BC8BD310086F913 /* FetchSearchHashtagQuery.swift */,
+				6E7BC0092BFA44D900DE8769 /* FetchChatsQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1196,11 +1266,11 @@
 		6E8C9EA12BC91BEF0086F913 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */,
+				6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */,
 				6E8C9E692BC820C30086F913 /* HTTPQuery.swift */,
 				6E8C9E672BC820B30086F913 /* HTTPRequestBody.swift */,
+				6E8C9E6B2BC820D00086F913 /* HTTPResponse.swift */,
 				6E77ED072BCE65BB00ACDA3B /* Router.swift */,
-				6E0A4FEC2BD4ECC4005A529F /* HTTPErrorTransformer.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1266,6 +1336,7 @@
 				6E8C9EDA2BCBFF580086F913 /* PostMapper.swift */,
 				6E8C9F2D2BCD21B60086F913 /* UserMapper.swift */,
 				6E8C9F2F2BCD21DF0086F913 /* CommentMapper.swift */,
+				6EFC5B052BFF7D9800D15E0F /* ChatMapper.swift */,
 				6E1B4C1F2BEB884B00098106 /* PaymentMapper.swift */,
 			);
 			path = Mapper;
@@ -1636,6 +1707,95 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		6EFC5B022BFF7BA800D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B032BFF7BBD00D15E0F /* ChatRepositoryImpl.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B072BFF7DC100D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B082BFF7DDC00D15E0F /* ChatRoom.swift */,
+				6EFC5B0A2BFF7DE400D15E0F /* Chat.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B0C2C00C58200D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B0D2C00C58C00D15E0F /* ChatRepository.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B0F2C00C85E00D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B102C00C86A00D15E0F /* Interface */,
+				6EFC5B112C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift */,
+				6EFC5B152C00FB4500D15E0F /* ChatUsecaseImpl.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B102C00C86A00D15E0F /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B132C00CA2000D15E0F /* ChatRoomUsecase.swift */,
+				6EFC5B172C00FC6B00D15E0F /* ChatUsecase.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		6EFC5B1C2C037F6700D15E0F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B1F2C037F9200D15E0F /* Coordinator */,
+				6EFC5B1D2C037F8F00D15E0F /* ChatRoomListViewController.swift */,
+				6EFC5B202C037F9C00D15E0F /* ChatRoomListViewModel.swift */,
+				6EFC5B242C04D09E00D15E0F /* Cell */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		6EFC5B1F2C037F9200D15E0F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B222C03802A00D15E0F /* ChatCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6EFC5B242C04D09E00D15E0F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5B252C04D0AA00D15E0F /* ChatRoomTableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6EFC5BA22C08C32600D15E0F /* RealmModel */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5BA72C08C59700D15E0F /* Protocol */,
+				6EFC5BA32C08C33D00D15E0F /* RealmChat.swift */,
+				6EFC5BA52C08C4F600D15E0F /* RealmUser.swift */,
+			);
+			path = RealmModel;
+			sourceTree = "<group>";
+		};
+		6EFC5BA72C08C59700D15E0F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6EFC5BA82C08C5A600D15E0F /* EmbeddedRealmModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1660,6 +1820,7 @@
 				6E0A4FA52BD1F2A0005A529F /* TextFieldEffects */,
 				6E90905D2BE6E856001B107A /* Tabman */,
 				6E9CAED32BEDF6B000772F4B /* iamport-ios */,
+				6EFC5B1A2C022C2900D15E0F /* KazRealm */,
 			);
 			productName = KeyCat;
 			productReference = 6E567E0F2BC56D2800250C56 /* KeyCat.app */;
@@ -1697,6 +1858,7 @@
 				6E0A4FA42BD1F29F005A529F /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				6E90905C2BE6E856001B107A /* XCRemoteSwiftPackageReference "Tabman" */,
 				6E9CAED22BEDF6B000772F4B /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */,
 			);
 			productRefGroup = 6E567E102BC56D2800250C56 /* Products */;
 			projectDirPath = "";
@@ -1727,9 +1889,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7BC0062BFA410200DE8769 /* CreateChatRoomRequest.swift in Sources */,
 				6E77ED082BCE65BB00ACDA3B /* Router.swift in Sources */,
 				6E567E172BC56D2800250C56 /* ViewController.swift in Sources */,
 				6E8C9F2A2BCD21790086F913 /* KeyboardDTO.swift in Sources */,
+				6EFC5BA62C08C4F600D15E0F /* RealmUser.swift in Sources */,
 				6E9829022BCEA78F00105910 /* KCBody.swift in Sources */,
 				6E1B4C0F2BEB72C700098106 /* PaymentViewModel.swift in Sources */,
 				6E9CAED82BEDF92600772F4B /* ObservableViewModel.swift in Sources */,
@@ -1749,9 +1913,11 @@
 				6EAEAD002BE2411600993089 /* CreatePostUsecase.swift in Sources */,
 				6E07780C2BD7DB7C00B3A6EC /* BuniessInfoResponse.swift in Sources */,
 				6E8C9E772BC8B6A80086F913 /* FollowDTO.swift in Sources */,
+				6E7BC00C2BFA486600DE8769 /* FetchChatsResponse.swift in Sources */,
 				6E567E132BC56D2800250C56 /* AppDelegate.swift in Sources */,
 				6E5471C72BCDE94F00776811 /* APIEventMonitor.swift in Sources */,
 				6E90906F2BE75C8D001B107A /* TabmanRxBaseViewController.swift in Sources */,
+				6EFC5B092BFF7DDC00D15E0F /* ChatRoom.swift in Sources */,
 				6EAEACDA2BDFC30600993089 /* Divider.swift in Sources */,
 				6E567E592BC67E8900250C56 /* Coordinator.swift in Sources */,
 				6E0A4F8F2BD13314005A529F /* UserDefaultManager.swift in Sources */,
@@ -1761,7 +1927,9 @@
 				6ED51E682BE2C1DF005D7FBD /* FetchCommercialPostUsecase.swift in Sources */,
 				6EAEACF72BE2289C00993089 /* PostRepositoryImpl.swift in Sources */,
 				6EC801FE2BDE78A100FE2B69 /* CreateCommercialPostViewController.swift in Sources */,
+				6EFC5B062BFF7D9800D15E0F /* ChatMapper.swift in Sources */,
 				6E1DDEC02BF1077400DA4263 /* Image+.swift in Sources */,
+				6E7BC0082BFA422000DE8769 /* FetchChatRoomsResponse.swift in Sources */,
 				6E9090232BE63912001B107A /* ReviewListViewModel.swift in Sources */,
 				6E9829092BCF42D000105910 /* KCParameter.swift in Sources */,
 				6ED51E6D2BE34BE4005D7FBD /* CommercialPostDetailViewModel.swift in Sources */,
@@ -1772,6 +1940,7 @@
 				6E77ECFF2BCE63FF00ACDA3B /* HTTPError.swift in Sources */,
 				6E77ECFA2BCE585100ACDA3B /* Data+.swift in Sources */,
 				6E3460D42BE272A300840E21 /* Array+.swift in Sources */,
+				6EFC5B262C04D0AA00D15E0F /* ChatRoomTableCell.swift in Sources */,
 				6E90903F2BE6A925001B107A /* CommercialReviewDetailViewModel.swift in Sources */,
 				6E8C9EC52BCB8FBA0086F913 /* CommercialPrice.swift in Sources */,
 				6E9090712BE76AE0001B107A /* UserInteractionUsecase.swift in Sources */,
@@ -1786,7 +1955,7 @@
 				6E8C9E9A2BC8BC320086F913 /* FetchPostsQuery.swift in Sources */,
 				6E8C9EB22BCA9EA40086F913 /* KeyboardInfo.swift in Sources */,
 				6E9090312BE68EF3001B107A /* ReviewRepositoryImpl.swift in Sources */,
-				6E9829002BCE9E7000105910 /* UploadPostImageResponse.swift in Sources */,
+				6E9829002BCE9E7000105910 /* UploadImageResponse.swift in Sources */,
 				6E1B4C182BEB85A700098106 /* PaymentValidationRequest.swift in Sources */,
 				6E9090512BE6CCBF001B107A /* ProfileUsecase.swift in Sources */,
 				6E1B4BC52BEA49C300098106 /* CartPostListViewModel.swift in Sources */,
@@ -1810,6 +1979,7 @@
 				6E90904E2BE6C440001B107A /* ProfileView.swift in Sources */,
 				6E8C9ED32BCBFD070086F913 /* CommercialReview.swift in Sources */,
 				6E90903D2BE6A919001B107A /* CommercialReviewDetailViewController.swift in Sources */,
+				6E7BC0002BFA397000DE8769 /* ChatRoomDTO.swift in Sources */,
 				6E0A4FD42BD28DB7005A529F /* SignUpEmailViewController.swift in Sources */,
 				6E0778062BD7995A00B3A6EC /* SecureButton.swift in Sources */,
 				6E8C9EE22BCBFFA20086F913 /* Profile.swift in Sources */,
@@ -1823,15 +1993,19 @@
 				6E567E682BC67F2800250C56 /* UINavigationController+.swift in Sources */,
 				6ED51E662BE2C08F005D7FBD /* FetchCommercialPostUsecaseImpl.swift in Sources */,
 				6E1B4C1A2BEB874000098106 /* PaymentDTO.swift in Sources */,
+				6E7BC00A2BFA44D900DE8769 /* FetchChatsQuery.swift in Sources */,
 				6E0778362BD9237200B3A6EC /* NumberFormatManager.swift in Sources */,
 				6E9828FE2BCE967800105910 /* PostRouter.swift in Sources */,
 				6EC802022BDE7F3B00FE2B69 /* KeyboardInfoSegmentView.swift in Sources */,
 				6E07783A2BD9D70D00B3A6EC /* SignUsecaseImpl.swift in Sources */,
 				6E90907B2BE7889D001B107A /* ProductTableCell.swift in Sources */,
+				6EFC5B122C00C8D400D15E0F /* ChatRoomUsecaseImpl.swift in Sources */,
 				6E0A4F8B2BD11416005A529F /* Date+.swift in Sources */,
 				6E0778102BD7DD1800B3A6EC /* BusinessInfo.swift in Sources */,
+				6EFC5B142C00CA2000D15E0F /* ChatRoomUsecase.swift in Sources */,
 				6E0A4FD22BD28DAC005A529F /* SignUpViewModel.swift in Sources */,
 				6E9090462BE6C07F001B107A /* ProfileViewController.swift in Sources */,
+				6EFC5B1E2C037F8F00D15E0F /* ChatRoomListViewController.swift in Sources */,
 				6E567E792BC6894500250C56 /* UserDTO.swift in Sources */,
 				6E9090142BE5388E001B107A /* SellerProfileView.swift in Sources */,
 				6E567E392BC66DCC00250C56 /* APIKey.swift in Sources */,
@@ -1839,8 +2013,10 @@
 				6E0A4FA02BD150E0005A529F /* ValidationField.swift in Sources */,
 				6E8C9ECD2BCBFA190086F913 /* SecondhandPost.swift in Sources */,
 				6E567E632BC67F1C00250C56 /* ObservableType+.swift in Sources */,
+				6EFC5BA42C08C33D00D15E0F /* RealmChat.swift in Sources */,
 				6E567E6A2BC67F2800250C56 /* UIAlertController+.swift in Sources */,
 				6E90901E2BE57E56001B107A /* CommercialPostInteractionUsecaseImpl.swift in Sources */,
+				6E7BC00E2BFA506F00DE8769 /* SendChatRequest.swift in Sources */,
 				6E0A4FCE2BD286B8005A529F /* Constant.swift in Sources */,
 				6E90902E2BE6648C001B107A /* CreateCommercialReviewViewModel.swift in Sources */,
 				6E8C9EAB2BCA32210086F913 /* CommentRequest.swift in Sources */,
@@ -1850,6 +2026,7 @@
 				6E1B4C242BEB8B5D00098106 /* PaymentRepository.swift in Sources */,
 				6E8C9EA72BC9558F0086F913 /* KeyedDecodingContainer+.swift in Sources */,
 				6EAEAD052BE2695E00993089 /* ProductCollectionCell.swift in Sources */,
+				6E7BC0042BFA407800DE8769 /* ChatRouter.swift in Sources */,
 				6EC802002BDE78BB00FE2B69 /* CreateCommercialPostViewModel.swift in Sources */,
 				6E90905A2BE6DA8C001B107A /* ProfileTableCell.swift in Sources */,
 				6E567E772BC685AF00250C56 /* Entity.swift in Sources */,
@@ -1865,7 +2042,9 @@
 				6E90902C2BE66484001B107A /* CreateCommercialReviewViewController.swift in Sources */,
 				6EC802042BDEB6F300FE2B69 /* KeyboardInfoSelectView.swift in Sources */,
 				6E1DDEC32BF1426200DA4263 /* ProductCell.swift in Sources */,
+				6E7BC0022BFA3E4100DE8769 /* ChatDTO.swift in Sources */,
 				6E8C9E792BC8B7EB0086F913 /* AuthResponse.swift in Sources */,
+				6EFC5B042BFF7BBD00D15E0F /* ChatRepositoryImpl.swift in Sources */,
 				6E9829192BCFDFD200105910 /* CommentRouter.swift in Sources */,
 				6E567E3F2BC6750200250C56 /* KCAsset.swift in Sources */,
 				6E567E5B2BC67E8900250C56 /* ViewModelController.swift in Sources */,
@@ -1890,7 +2069,7 @@
 				6E8C9EBC2BCA9FCF0086F913 /* SelectionExpressible.swift in Sources */,
 				6EFB92192BDBFC7400AA8D09 /* ShoppingCoordinator.swift in Sources */,
 				6E07780A2BD7DB2D00B3A6EC /* BusinessInfoRequest.swift in Sources */,
-				6E8C9E8B2BC8BA100086F913 /* UploadPostImageRequest.swift in Sources */,
+				6E8C9E8B2BC8BA100086F913 /* UploadImageRequest.swift in Sources */,
 				6E9090412BE6B792001B107A /* HandleReviewUsecase.swift in Sources */,
 				6E1B4C142BEB785C00098106 /* IamportPayment+.swift in Sources */,
 				6E8C9E832BC8B9410086F913 /* FetchPostsResponse.swift in Sources */,
@@ -1909,6 +2088,7 @@
 				6E8C9F2C2BCD21930086F913 /* CommercialPriceDTO.swift in Sources */,
 				6E567E522BC67DFC00250C56 /* RxBaseViewController.swift in Sources */,
 				6E8C9EB02BCA9E820086F913 /* Keyboard.swift in Sources */,
+				6EFC5BA92C08C5A600D15E0F /* EmbeddedRealmModel.swift in Sources */,
 				6EAEACF42BE11FC300993089 /* NetworkMonitor.swift in Sources */,
 				6EAEACF22BE104A500993089 /* PostImageDetailSheetViewController.swift in Sources */,
 				6E8C9E752BC8B67C0086F913 /* ProfileDTO.swift in Sources */,
@@ -1917,8 +2097,10 @@
 				6E567E6E2BC67F5700250C56 /* LogManager.swift in Sources */,
 				6E0A4FC62BD24153005A529F /* InputInformation.swift in Sources */,
 				6E8C9EBA2BCA9F9B0086F913 /* KeycapInfo.swift in Sources */,
+				6E3ADD702C0B5C4D00831E70 /* DIContainer.swift in Sources */,
 				6E1DDEAB2BEF566B00DA4263 /* ButtonWrapper.swift in Sources */,
 				6E0A4F9C2BD14F98005A529F /* SignInViewController.swift in Sources */,
+				6EFC5B232C03802A00D15E0F /* ChatCoordinator.swift in Sources */,
 				6E9090292BE63C3A001B107A /* ReviewTableCell.swift in Sources */,
 				6E0A4FC82BD24164005A529F /* String+.swift in Sources */,
 				6E1B4C262BEB8B8B00098106 /* PaymentUsecaseImpl.swift in Sources */,
@@ -1942,17 +2124,22 @@
 				6E9090732BE76B58001B107A /* UserInteractionUsecaseImpl.swift in Sources */,
 				6E567E412BC6752800250C56 /* UIColor+.swift in Sources */,
 				6E1DDEB12BEF5A8300DA4263 /* Publisher+.swift in Sources */,
+				6EFC5B0E2C00C58C00D15E0F /* ChatRepository.swift in Sources */,
 				6E8C9F302BCD21DF0086F913 /* CommentMapper.swift in Sources */,
 				6EAEACFE2BE2356A00993089 /* CreatePostUsecaseImpl.swift in Sources */,
 				6E1B4C082BEB674600098106 /* CartPostListSheetViewController.swift in Sources */,
+				6EFC5B0B2BFF7DE400D15E0F /* Chat.swift in Sources */,
+				6EFC5B162C00FB4500D15E0F /* ChatUsecaseImpl.swift in Sources */,
 				6E9090182BE550DB001B107A /* KeyboardInfoRowView.swift in Sources */,
 				6E9090602BE6E871001B107A /* FollowTabmanViewController.swift in Sources */,
 				6E0A4F9A2BD14F79005A529F /* AuthCoordinator.swift in Sources */,
 				6E567E702BC67F7900250C56 /* AppError.swift in Sources */,
 				6E1B4BC82BEA4AFB00098106 /* CartPostTableCell.swift in Sources */,
+				6EFC5B182C00FC6B00D15E0F /* ChatUsecase.swift in Sources */,
 				6E8C9E872BC8B9EC0086F913 /* EmailValidationRequest.swift in Sources */,
 				6E8C9E712BC8B60B0086F913 /* PostDTO.swift in Sources */,
 				6E8C9EE42BCC04430086F913 /* Follow.swift in Sources */,
+				6EFC5B212C037F9C00D15E0F /* ChatRoomListViewModel.swift in Sources */,
 				6EC802062BDEB99D00FE2B69 /* RxBaseView.swift in Sources */,
 				6E9090642BE6E9B9001B107A /* FollowListViewModel.swift in Sources */,
 				6ED51E722BE35F7D005D7FBD /* ProductPriceView.swift in Sources */,
@@ -1962,6 +2149,7 @@
 				6E9090672BE6EA05001B107A /* FollowListViewController.swift in Sources */,
 				6E8C9EC92BCBF8E40086F913 /* CommercialPost.swift in Sources */,
 				6E1DDEAD2BEF567500DA4263 /* AlertModifier.swift in Sources */,
+				6EFC5B282C04D1FB00D15E0F /* ProfileImageView.swift in Sources */,
 				6E8C9E7B2BC8B8090086F913 /* MessageResponse.swift in Sources */,
 				6E0778342BD922A900B3A6EC /* UIImage+.swift in Sources */,
 				6E0A4FCC2BD26A3D005A529F /* KCLabel.swift in Sources */,
@@ -2259,6 +2447,14 @@
 				minimumVersion = 1.4.1;
 			};
 		};
+		6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wontaeyoung/KazRealm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2296,6 +2492,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E9CAED22BEDF6B000772F4B /* XCRemoteSwiftPackageReference "iamport-ios" */;
 			productName = "iamport-ios";
+		};
+		6EFC5B1A2C022C2900D15E0F /* KazRealm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EFC5B192C022C2900D15E0F /* XCRemoteSwiftPackageReference "KazRealm" */;
+			productName = KazRealm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

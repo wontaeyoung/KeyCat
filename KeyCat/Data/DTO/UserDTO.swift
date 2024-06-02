@@ -6,7 +6,7 @@
 //
 
 /// 포스트, 코멘트 유저 프로퍼티
-struct UserDTO: DTO {
+struct UserDTO: DTO, DefaultValueProvidable {
   
   let user_id: String
   let nick: String
@@ -33,5 +33,13 @@ struct UserDTO: DTO {
     self.user_id = user_id
     self.nick = nick
     self.profileImage = profileImage
+  }
+  
+  static var defaultValue: UserDTO {
+    return UserDTO(
+      user_id: .defaultValue,
+      nick: .defaultValue,
+      profileImage: .defaultValue
+    )
   }
 }

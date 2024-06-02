@@ -51,15 +51,15 @@ final class ProfileViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
-    userID: User.UserID,
-    fetchProfileUsecase: any ProfileUsecase = ProfileUsecaseImpl(),
-    userInteractionUsecase: any UserInteractionUsecase = UserInteractionUsecaseImpl(),
-    signUsecase: any SignUsecase = SignUsecaseImpl()
+    fetchProfileUsecase: any ProfileUsecase,
+    userInteractionUsecase: any UserInteractionUsecase,
+    signUsecase: any SignUsecase,
+    userID: User.UserID
   ) {
-    self.userID = userID
     self.fetchProfileUsecase = fetchProfileUsecase
     self.userInteractionUsecase = userInteractionUsecase
     self.signUsecase = signUsecase
+    self.userID = userID
   }
   
   // MARK: - Method

@@ -54,7 +54,8 @@ extension HTTPErrorTransformer {
               .createPost, .fetchPosts, .deletePost, .likePost,
               .createReview, .deleteReview,
               .follow, .unfollow,
-              .paymentValidation:
+              .paymentValidation,
+              .createChatRoom, .fetchMyChatRooms, .fetchChats, .sendChat, .uploadChatImages:
             return .accessFailed(detail: .accessToken)
             
           default:
@@ -107,6 +108,12 @@ extension HTTPErrorTransformer {
           
           case .paymentValidation:
             return .targetNotFound(detail: .pay)
+            
+          case .createChatRoom:
+            return .targetNotFound(detail: .create(model: .chatRoom))
+            
+          case .fetchChats, .sendChat, .uploadChatImages:
+            return .targetNotFound(detail: .fetch(model: .chatRoom))
             
           default:
             return httpStatusError.toDomain

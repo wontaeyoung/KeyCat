@@ -13,6 +13,7 @@ enum HTTPRequestDomain {
   case accessToken
   case fetchPosts
   case withdraw
+  case fetchMyChatRooms
   
   // 409
   case emailValidation
@@ -23,11 +24,15 @@ enum HTTPRequestDomain {
   case likePost
   case createReview
   case unfollow
+  case createChatRoom
   
   // 401, 410, 445
   case deleteReview
   case deletePost
   case updateProfile
+  case fetchChats
+  case sendChat
+  case uploadChatImages
   
   // 401, 409, 410
   case follow

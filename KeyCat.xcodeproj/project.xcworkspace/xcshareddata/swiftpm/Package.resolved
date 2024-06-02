@@ -1,5 +1,5 @@
 {
-  "originHash" : "21fe50dd578b42f8a6385deaa5fc82249661c641cd1ed889278f3f9d11b3a49a",
+  "originHash" : "a5bb19f3eeb36c4e6b8b4cec281871196516a5434058ec7381191824e899f9ef",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "133390ff3debd85a10160b9041f9c8147cea1e32",
         "version" : "1.4.1"
+      }
+    },
+    {
+      "identity" : "kazrealm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wontaeyoung/KazRealm",
+      "state" : {
+        "revision" : "14c951a6b1cbee8fb8957742e817f061ff57913c",
+        "version" : "1.0.2"
       }
     },
     {
@@ -44,6 +53,24 @@
       "state" : {
         "revision" : "be0c1f6f1964cfb07f9d819b0863f2c3f255f612",
         "version" : "4.2.0"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "9cf7ef4ad8e2f4c7a519c9a395ca3d253bb87aa8",
+        "version" : "14.6.2"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift",
+      "state" : {
+        "revision" : "6e0772315809ff0a11cd265126350039a6aac59d",
+        "version" : "10.50.1"
       }
     },
     {

@@ -39,7 +39,7 @@ final class CartPostListViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
+  private let commercialPostInteractionUsecase: any CommercialPostInteractionUsecase
   
   private let posts: BehaviorRelay<[CommercialPost]>
   private let cartPosts: BehaviorRelay<[CommercialPost]>
@@ -47,13 +47,13 @@ final class CartPostListViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
+    commercialPostInteractionUsecase: any CommercialPostInteractionUsecase,
     posts: BehaviorRelay<[CommercialPost]>,
-    cartPosts: BehaviorRelay<[CommercialPost]>,
-    commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl()
+    cartPosts: BehaviorRelay<[CommercialPost]>
   ) {
+    self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
     self.posts = posts
     self.cartPosts = cartPosts
-    self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
   }
   
   // MARK: - Method

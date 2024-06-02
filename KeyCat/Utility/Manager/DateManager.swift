@@ -48,6 +48,7 @@ extension DateManager {
     case yyyyMMdd = "yyyyMMdd"
     case yyyyMMddKR = "yyyy년 MM월 dd일"
     case yyyyMMddEEEEKR = "yyyy년 MM월 dd일 EEEE"
+    case MMddKR = "MM월 dd일"
     case MMddEEEEKR = "M/d(EE)"
     case yyyyMMddEEDot = "yyyy.MM.dd(EE)"
     
@@ -197,6 +198,10 @@ extension DateManager {
     return date >= yesterdayStart && date < yesterdayEnd
   }
   
+  func isThisYear(_ date: Date) -> Bool {
+    return calendar.component(.year, from: date) == calendar.component(.year, from: .now)
+  }
+  
   func isDate(with interval: TimeInterval, by component: Calendar.Component, equalTo: Int) -> Bool {
     return calendar.component(component, from: Date(timeIntervalSince1970: interval)) == equalTo
   }
@@ -211,5 +216,26 @@ extension DateManager {
     return !(0..<min)
       .map { calendar.component(component[$0], from: date) == equalTo[$0] }
       .contains(false)
+  }
+}
+
+// MARK: - Date UI
+extension DateManager {
+  
+  func timestamp(when date: Date) -> String {
+    
+    if isToday(date) {
+      return toString(with: date, format: .HHmm)
+    }
+    
+    if isYesterday(date) {
+      return "어제"
+    }
+    
+    if isThisYear(date) {
+      return toString(with: date, format: .MMddKR)
+    }
+    
+    return toString(with: date, format: .yyyyMMddEEDot)
   }
 }

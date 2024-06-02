@@ -44,6 +44,7 @@ extension Set: Configurator { }
 
 extension CommercialPost: Configurator { }
 extension Profile: Configurator { }
+extension Chat: Configurator { }
 
 extension PHPickerConfiguration: Configurator { }
 extension UIButton.Configuration: Configurator { }

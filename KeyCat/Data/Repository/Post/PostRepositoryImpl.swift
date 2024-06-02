@@ -14,15 +14,15 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   private let postMapper: PostMapper
   
   init(
-    service: APIService = APIService(),
-    postMapper: PostMapper = PostMapper()
+    service: APIService,
+    postMapper: PostMapper
   ) {
     self.service = service
     self.postMapper = postMapper
   }
   
   func uploadPostImages(files: [Data]) -> Single<[CommercialPost.URLString]> {
-    return service.callImageUploadRequest(data: files)
+    return service.callPostImageUploadRequest(data: files)
       .catch {
         let domainError = self.httpErrorToDomain(from: $0, domain: .accessToken)
         return .error(domainError)

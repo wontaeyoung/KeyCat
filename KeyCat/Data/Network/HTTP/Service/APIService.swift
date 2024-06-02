@@ -10,9 +10,13 @@ import Alamofire
 import RxAlamofire
 import RxSwift
 
-struct APIService {
+final class APIService {
   
-  private let session = Session(interceptor: APIRequestInterceptor(), eventMonitors: [APIEventMonitor.shared])
+  private let session: Session
+  
+  init(session: Session = DIContainer.session) {
+    self.session = session
+  }
   
   func callRequest<T: Decodable>(with router: Router, of type: T.Type) -> Single<T> {
     return session
@@ -28,9 +32,9 @@ struct APIService {
       .call()
   }
   
-  func callImageUploadRequest(data: [Data]) -> Single<UploadPostImageResponse> {
+  func callPostImageUploadRequest(data: [Data]) -> Single<UploadImageResponse> {
     guard data.isFilled else {
-      return .just(UploadPostImageResponse(files: []))
+      return .just(UploadImageResponse(files: []))
     }
     
     let router = PostRouter.postImageUpload
@@ -40,14 +44,36 @@ struct APIService {
         data.forEach {
           multipartFormData.append(
             $0,
-            withName: KCBody.Key.postImageFiles,
+            withName: KCBody.Key.imageFiles,
             fileName: KCBody.Value.fileName,
             mimeType: KCBody.Value.mimeTypeJPEG
           )
         }
       }, to: router, headers: router.headers)
       .rx
-      .call(of: UploadPostImageResponse.self)
+      .call(of: UploadImageResponse.self)
+  }
+  
+  func callChatImageUploadRequest(roomID: Entity.RoomID, data: [Data]) -> Single<UploadImageResponse> {
+    guard data.isFilled else {
+      return .just(UploadImageResponse(files: []))
+    }
+    
+    let router = ChatRouter.chatImageUpload(roomID: roomID)
+    
+    return session
+      .upload(multipartFormData: { multipartFormData in
+        data.forEach {
+          multipartFormData.append(
+            $0,
+            withName: KCBody.Key.imageFiles,
+            fileName: KCBody.Value.fileName,
+            mimeType: KCBody.Value.mimeTypeJPEG
+          )
+        }
+      }, to: router, headers: router.headers)
+      .rx
+      .call(of: UploadImageResponse.self)
   }
   
   func callUpdateProfileRequest(request: UpdateMyProfileRequest) -> Single<ProfileDTO> {

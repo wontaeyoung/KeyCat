@@ -14,8 +14,8 @@ final class PaymentRepositoryImpl: PaymentRepository, HTTPErrorTransformer {
   private let paymentMapper: PaymentMapper
   
   init(
-    service: APIService = APIService(),
-    paymentMapper: PaymentMapper = PaymentMapper()
+    service: APIService,
+    paymentMapper: PaymentMapper
   ) {
     self.service = service
     self.paymentMapper = paymentMapper

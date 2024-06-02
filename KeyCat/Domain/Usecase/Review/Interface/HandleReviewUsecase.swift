@@ -9,5 +9,5 @@ import RxSwift
 
 protocol HandleReviewUsecase {
   
-  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.CommentID) -> Single<Void>
+  func deleteReview(postID: CommercialPost.PostID, reviewID: CommercialReview.ReviewID) -> Single<Void>
 }

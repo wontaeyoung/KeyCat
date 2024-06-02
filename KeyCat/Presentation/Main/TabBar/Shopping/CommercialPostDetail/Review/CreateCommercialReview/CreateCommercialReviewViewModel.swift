@@ -40,21 +40,21 @@ final class CreateCommercialReviewViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ReviewCoordinator?
-  private let createReviewUsecase: CreateReviewUsecase
+  private let createReviewUsecase: any CreateReviewUsecase
   
   private var post: CommercialPost
-  private let review = PublishRelay<CommercialReview>()
   private let reviews: BehaviorRelay<[CommercialReview]>
+  private let review = PublishRelay<CommercialReview>()
   
   // MARK: - Initializer
   init(
+    createReviewUsecase: any CreateReviewUsecase,
     post: CommercialPost,
-    reviews: BehaviorRelay<[CommercialReview]>,
-    createReviewUsecase: CreateReviewUsecase = CreateReviewUsecaseImpl()
+    reviews: BehaviorRelay<[CommercialReview]>
   ) {
+    self.createReviewUsecase = createReviewUsecase
     self.post = post
     self.reviews = reviews
-    self.createReviewUsecase = createReviewUsecase
   }
   
   // MARK: - Method

@@ -35,7 +35,7 @@ final class CommercialReviewDetailViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ReviewCoordinator?
-  private let handleReviewUsecase: HandleReviewUsecase
+  private let handleReviewUsecase: any HandleReviewUsecase
   
   private let postID: CommercialPost.PostID
   private let review: BehaviorRelay<CommercialReview>
@@ -43,10 +43,10 @@ final class CommercialReviewDetailViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
+    handleReviewUsecase: any HandleReviewUsecase,
     postID: CommercialPost.PostID,
     review: CommercialReview,
-    reviews: BehaviorRelay<[CommercialReview]>,
-    handleReviewUsecase: HandleReviewUsecase = HandleReviewUsecaseImpl()
+    reviews: BehaviorRelay<[CommercialReview]>
   ) {
     self.postID = postID
     self.review = BehaviorRelay(value: review)

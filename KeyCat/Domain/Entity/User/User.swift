@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Entity {
+struct User: Entity, Hashable {
   
   let userID: UserID
   let nickname: String

@@ -213,8 +213,3 @@ final class SignInViewController: TappableBaseViewController, ViewModelControlle
     }
   }
 }
-
-@available(iOS 17, *)
-#Preview {
-  return SignInViewController(viewModel: SignInViewModel())
-}

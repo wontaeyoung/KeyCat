@@ -9,8 +9,13 @@ import Foundation
 
 struct PostMapper: Mapper {
   
-  private let userMapper = UserMapper()
-  private let commentMapper = CommentMapper()
+  private let userMapper: UserMapper
+  private let commentMapper: CommentMapper
+  
+  init(userMapper: UserMapper, commentMapper: CommentMapper) {
+    self.userMapper = userMapper
+    self.commentMapper = commentMapper
+  }
   
   func toEntity(_ dto: PostDTO) -> CommercialPost? {
     

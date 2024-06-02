@@ -14,15 +14,7 @@ final class FollowTableCell: RxBaseTableViewCell {
   
   // MARK: - UI
   private let containerView = UIView()
-  private lazy var profileImageView = TappableImageView(image: nil).configured {
-    $0.contentMode = .scaleAspectFill
-    $0.clipsToBounds = true
-    $0.layer.configure {
-      $0.cornerRadius = profileImageSize / 2
-      $0.borderWidth = 1
-      $0.borderColor = KCAsset.Color.lightGrayForeground.color.cgColor
-    }
-  }
+  private lazy var profileImageView = ProfileImageView(size: profileImageSize)
   private let nicknameLabel = KCLabel(font: .medium(size: 15))
   
   // MARK: - Property

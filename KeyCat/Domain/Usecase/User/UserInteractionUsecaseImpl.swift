@@ -9,11 +9,9 @@ import RxSwift
 
 final class UserInteractionUsecaseImpl: UserInteractionUsecase {
   
-  private let userRepository: UserRepository
+  private let userRepository: any UserRepository
   
-  init(
-    userRepository: UserRepository = UserRepositoryImpl()
-  ) {
+  init(userRepository: any UserRepository) {
     self.userRepository = userRepository
   }
   

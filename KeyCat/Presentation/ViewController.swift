@@ -297,7 +297,7 @@ final class ViewController: RxBaseViewController {
   }
   
   private func login() {
-    SignUsecaseImpl().signIn(email: "q@keycat.com", password: "123@")
+    SignUsecaseImpl(authRepository: DIContainer.authRepository, userRepository: DIContainer.userRepository).signIn(email: "q@keycat.com", password: "123@")
       .subscribe(with: self) { owner, response in
         owner.결과라벨.text = "요청 성공"
       } onFailure: { owner, error in
@@ -643,7 +643,7 @@ final class ViewController: RxBaseViewController {
       .disposed(by: disposeBag)
   }
   
-  let mapper = PostMapper()
+  let mapper = PostMapper(userMapper: DIContainer.userMapper, commentMapper: DIContainer.commentMapper)
   
   var fetchedPostID: String = ""
   
@@ -665,7 +665,7 @@ final class ViewController: RxBaseViewController {
   }
   
   private func uploadImageAndCreatePost() {
-    
+    /*
     let images: [UIImage] = []
     let data: [Data] = images.compactMap { $0.pngData() }
     
@@ -686,11 +686,12 @@ final class ViewController: RxBaseViewController {
         owner.내용라벨.text = error.localizedDescription
       }
       .disposed(by: disposeBag)
-      
+     */
   }
   
   private func createPost2() {
     
+    /*
     let usecase = CreatePostUsecaseImpl()
     
     usecase.execute(files: [], post: posts[postIndex])
@@ -700,6 +701,7 @@ final class ViewController: RxBaseViewController {
         print(error.localizedDescription)
       }
       .disposed(by: disposeBag)
+     */
 
     postIndex += 1
   }

@@ -11,10 +11,16 @@ final class AuthCoordinator: SubCoordinator {
   
   weak var delegate: CoordinatorDelegate?
   weak var signOutDelegate: SignOutDelegate?
+  weak var tabBarDelegate: TabBarDelegate?
   var navigationController: UINavigationController
   var childCoordinators: [Coordinator]
   
-  private lazy var signUpVM = SignUpViewModel()
+  private lazy var signUpVM = SignUpViewModel(
+    checkEmailValidationUsecase: DIContainer.checkEmailValidationUsecase,
+    authenticateBusinessInfoUsecase: DIContainer.authenticateBusinessInfoUsecase,
+    signUsecase: DIContainer.signUsecase,
+    profileUsecase: DIContainer.profileUsecase
+  )
     .coordinator(self)
   
   private lazy var stopSignUpBarItem = UIBarButtonItem(
@@ -37,7 +43,7 @@ final class AuthCoordinator: SubCoordinator {
 extension AuthCoordinator {
   
   func showSignInView() {
-    let vm = SignInViewModel()
+    let vm = SignInViewModel(signUsecase: DIContainer.signUsecase)
       .coordinator(self)
     
     let vc = SignInViewController(viewModel: vm)
