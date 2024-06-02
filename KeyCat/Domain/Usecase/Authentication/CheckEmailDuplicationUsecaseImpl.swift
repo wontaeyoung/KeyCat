@@ -9,9 +9,9 @@ import RxSwift
 
 final class CheckEmailDuplicationUsecaseImpl: CheckEmailDuplicationUsecase {
   
-  private let authRepository: AuthRepository
+  private let authRepository: any AuthRepository
   
-  init(authRepository: AuthRepository = AuthRepositoryImpl()) {
+  init(authRepository: any AuthRepository) {
     self.authRepository = authRepository
   }
   

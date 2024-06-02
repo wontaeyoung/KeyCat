@@ -10,12 +10,12 @@ import RxSwift
 
 final class SignUsecaseImpl: SignUsecase {
   
-  private let authRepository: AuthRepository
-  private let userRepository: UserRepository
+  private let authRepository: any AuthRepository
+  private let userRepository: any UserRepository
   
   init(
-    authRepository: AuthRepository = AuthRepositoryImpl(),
-    userRepository: UserRepository = UserRepositoryImpl()
+    authRepository: any AuthRepository,
+    userRepository: any UserRepository
   ) {
     self.authRepository = authRepository
     self.userRepository = userRepository

@@ -9,9 +9,9 @@ import RxSwift
 
 final class ChatRoomUsecaseImpl: ChatRoomUsecase {
   
-  private let chatRepository: ChatRepository
+  private let chatRepository: any ChatRepository
   
-  init(chatRepository: ChatRepository = ChatRepositoryImpl()) {
+  init(chatRepository: any ChatRepository) {
     self.chatRepository = chatRepository
   }
   

@@ -9,9 +9,9 @@ import RxSwift
 
 final class PaymentUsecaseImpl: PaymentUsecase {
   
-  private let paymentRepository: PaymentRepository
+  private let paymentRepository: any PaymentRepository
   
-  init(paymentRepository: PaymentRepository = PaymentRepositoryImpl()) {
+  init(paymentRepository: any PaymentRepository) {
     self.paymentRepository = paymentRepository
   }
   
