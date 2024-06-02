@@ -27,4 +27,5 @@ final class DIContainer {
   static let createPostUsecase: some CreatePostUsecase = CreatePostUsecaseImpl()
   static let createReviewUsecase: some CreateReviewUsecase = CreateReviewUsecaseImpl()
   static let handleReviewUsecase: some HandleReviewUsecase = HandleReviewUsecaseImpl()
+  static let chatRoomUsecase: some ChatRoomUsecase = ChatRoomUsecaseImpl()
 }
