@@ -70,7 +70,7 @@ Backend 1인
 
 ## 아키텍처
 
-![image](https://github.com/wontaeyoung/KeyCat/assets/45925685/78211eae-bea7-42c6-bbd8-5eb3aa4d5ab4)
+![image](https://github.com/wontaeyoung/KeyCat/assets/45925685/ded0d561-550d-43cc-9a8d-e96b26c782e3)
 
 <br>
 
