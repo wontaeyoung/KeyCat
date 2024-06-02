@@ -28,4 +28,6 @@ final class DIContainer {
   static let createReviewUsecase: some CreateReviewUsecase = CreateReviewUsecaseImpl()
   static let handleReviewUsecase: some HandleReviewUsecase = HandleReviewUsecaseImpl()
   static let chatRoomUsecase: some ChatRoomUsecase = ChatRoomUsecaseImpl()
+  static let fetchProfileUsecase: some ProfileUsecase = ProfileUsecaseImpl()
+  static let userInteractionUsecase: some UserInteractionUsecase = UserInteractionUsecaseImpl()
 }
