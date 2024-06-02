@@ -25,12 +25,4 @@ final class HomeViewController: RxBaseViewController {
       make.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
-  
-  override func setAttribute() {
-    
-  }
-  
-  override func bind() {
-    
-  }
 }

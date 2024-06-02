@@ -27,11 +27,9 @@ final class HomeViewModel: ObservableViewModel {
   @Published private(set) var state = State()
   @Published var alert: AlertState = .empty
   
-  private let fetchCommercialPostUsecase: FetchCommercialPostUsecase
+  private let fetchCommercialPostUsecase: any FetchCommercialPostUsecase
   
-  init(
-    fetchCommercialPostUsecase: FetchCommercialPostUsecase = FetchCommercialPostUsecaseImpl()
-  ) {
+  init(fetchCommercialPostUsecase: any FetchCommercialPostUsecase) {
     self.fetchCommercialPostUsecase = fetchCommercialPostUsecase
   }
   
