@@ -28,10 +28,10 @@ final class ChatRoomListViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ChatCoordinator?
-  private let chatRoomUsecase: ChatRoomUsecase
+  private let chatRoomUsecase: any ChatRoomUsecase
   
   // MARK: - Initializer
-  init(chatRoomUsecase: ChatRoomUsecase = ChatRoomUsecaseImpl()) {
+  init(chatRoomUsecase: any ChatRoomUsecase) {
     self.chatRoomUsecase = chatRoomUsecase
   }
   

@@ -47,7 +47,7 @@ final class ShoppingViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let fetchCommercialPostsUsecase: FetchCommercialPostUsecase
+  private let fetchCommercialPostsUsecase: any FetchCommercialPostUsecase
   
   private var nextCursor: CommercialPost.PostID = ""
   private let fetchedPosts = PublishRelay<[CommercialPost]>()
@@ -55,9 +55,7 @@ final class ShoppingViewModel: ViewModel {
   private let cartPosts = BehaviorRelay<[CommercialPost]>(value: [])
   
   // MARK: - Initializer
-  init(
-    fetchCommercialPostsUsecase: FetchCommercialPostUsecase = FetchCommercialPostUsecaseImpl()
-  ) {
+  init(fetchCommercialPostsUsecase: any FetchCommercialPostUsecase) {
     self.fetchCommercialPostsUsecase = fetchCommercialPostsUsecase
   }
   

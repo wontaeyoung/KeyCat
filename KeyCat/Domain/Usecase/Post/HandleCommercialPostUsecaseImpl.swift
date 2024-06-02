@@ -9,9 +9,9 @@ import RxSwift
 
 final class HandleCommercialPostUsecaseImpl: HandleCommercialPostUsecase {
   
-  private let postRepository: PostRepository
+  private let postRepository: any PostRepository
   
-  init(postRepository: PostRepository = PostRepositoryImpl()) {
+  init(postRepository: any PostRepository) {
     self.postRepository = postRepository
   }
   

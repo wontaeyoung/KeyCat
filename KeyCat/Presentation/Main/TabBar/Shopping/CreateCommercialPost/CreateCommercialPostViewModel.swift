@@ -111,13 +111,13 @@ final class CreateCommercialPostViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let createPostUsecase: CreatePostUsecase
+  private let createPostUsecase: any CreatePostUsecase
   
   private let posts: BehaviorRelay<[CommercialPost]>
   
   // MARK: - Initializer
   init(
-    createPostUsecase: CreatePostUsecase = CreatePostUsecaseImpl(),
+    createPostUsecase: any CreatePostUsecase,
     posts: BehaviorRelay<[CommercialPost]>
   ) {
     self.createPostUsecase = createPostUsecase

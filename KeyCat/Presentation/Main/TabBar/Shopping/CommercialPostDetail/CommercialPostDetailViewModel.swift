@@ -54,8 +54,8 @@ final class CommercialPostDetailViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let commercialPostInteractionUsecase: CommercialPostInteractionUsecase
-  private let handleCommercialPostUsecase: HandleCommercialPostUsecase
+  private let commercialPostInteractionUsecase: any CommercialPostInteractionUsecase
+  private let handleCommercialPostUsecase: any HandleCommercialPostUsecase
   
   private let post: BehaviorRelay<CommercialPost>
   private let originalPosts: BehaviorRelay<[CommercialPost]>
@@ -64,17 +64,17 @@ final class CommercialPostDetailViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
+    commercialPostInteractionUsecase: any CommercialPostInteractionUsecase,
+    handleCommercialPostUsecase: any HandleCommercialPostUsecase,
     post: CommercialPost,
     originalPosts: BehaviorRelay<[CommercialPost]>,
-    cartPosts: BehaviorRelay<[CommercialPost]>,
-    commercialPostInteractionUsecase: CommercialPostInteractionUsecase = CommercialPostInteractionUsecaseImpl(),
-    handleCommercialPostUsecase: HandleCommercialPostUsecase = HandleCommercialPostUsecaseImpl()
+    cartPosts: BehaviorRelay<[CommercialPost]>
   ) {
+    self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
+    self.handleCommercialPostUsecase = handleCommercialPostUsecase
     self.post = BehaviorRelay<CommercialPost>(value: post)
     self.originalPosts = originalPosts
     self.cartPosts = cartPosts
-    self.commercialPostInteractionUsecase = commercialPostInteractionUsecase
-    self.handleCommercialPostUsecase = handleCommercialPostUsecase
   }
   
   // MARK: - Method

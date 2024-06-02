@@ -30,7 +30,12 @@ extension MyPageCoordinator {
   
   func showMyProfileView(userID: User.UserID) {
     
-    let vm = ProfileViewModel(userID: userID)
+    let vm = ProfileViewModel(
+      fetchProfileUsecase: DIContainer.fetchProfileUsecase,
+      userInteractionUsecase: DIContainer.userInteractionUsecase,
+      signUsecase: DIContainer.signUsecase,
+      userID: userID
+    )
       .coordinator(self)
     
     let vc = ProfileViewController(viewModel: vm)
@@ -59,7 +64,11 @@ extension MyPageCoordinator {
   
   func showPostListView(userID: CommercialPost.UserID, postCase: PostListViewModel.PostCase) {
     
-    let vm = PostListViewModel(userID: userID, postCase: postCase)
+    let vm = PostListViewModel(
+      fetchCommercialPostUsecase: DIContainer.fetchCommercialPostUsecase,
+      userID: userID,
+      postCase: postCase
+    )
       .coordinator(self)
     
     let vc = PostListViewController(viewModel: vm)

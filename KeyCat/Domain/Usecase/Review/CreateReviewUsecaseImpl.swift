@@ -9,9 +9,9 @@ import RxSwift
 
 final class CreateReviewUsecaseImpl: CreateReviewUsecase {
   
-  private let reviewRepository: ReviewRepository
+  private let reviewRepository: any ReviewRepository
   
-  init(reviewRepository: ReviewRepository = ReviewRepositoryImpl()) {
+  init(reviewRepository: any ReviewRepository) {
     self.reviewRepository = reviewRepository
   }
   

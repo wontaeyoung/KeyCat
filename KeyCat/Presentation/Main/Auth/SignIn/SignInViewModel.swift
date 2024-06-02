@@ -28,10 +28,10 @@ final class SignInViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: AuthCoordinator?
-  private let signUsecase: SignUsecase
+  private let signUsecase: any SignUsecase
   
   // MARK: - Initializer
-  init(signUsecase: SignUsecase = SignUsecaseImpl()) {
+  init(signUsecase: any SignUsecase) {
     self.signUsecase = signUsecase
   }
   

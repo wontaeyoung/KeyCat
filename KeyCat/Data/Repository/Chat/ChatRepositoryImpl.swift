@@ -14,8 +14,8 @@ final class ChatRepositoryImpl: ChatRepository, HTTPErrorTransformer {
   private let chatMapper: ChatMapper
   
   init(
-    service: APIService = APIService(),
-    chatMapper: ChatMapper = ChatMapper()
+    service: APIService,
+    chatMapper: ChatMapper
   ) {
     self.apiService = service
     self.chatMapper = chatMapper

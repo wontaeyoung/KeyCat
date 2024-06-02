@@ -13,8 +13,8 @@ final class AuthRepositoryImpl: AuthRepository, HTTPErrorTransformer {
   private let userMapper: UserMapper
   
   init(
-    service: APIService = APIService(),
-    userMapper: UserMapper = UserMapper()
+    service: APIService,
+    userMapper: UserMapper
   ) {
     self.service = service
     self.userMapper = userMapper

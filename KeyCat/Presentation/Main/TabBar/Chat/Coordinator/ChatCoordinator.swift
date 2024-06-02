@@ -29,7 +29,7 @@ extension ChatCoordinator {
   
   private func showChatRoomListView() {
     
-    let vm = ChatRoomListViewModel()
+    let vm = ChatRoomListViewModel(chatRoomUsecase: DIContainer.chatRoomUsecase)
       .coordinator(self)
     
     let vc = ChatRoomListViewController(viewModel: vm)

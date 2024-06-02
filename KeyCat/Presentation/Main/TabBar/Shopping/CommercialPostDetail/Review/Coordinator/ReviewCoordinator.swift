@@ -42,7 +42,11 @@ extension ReviewCoordinator {
   
   func showCreateCommercialReviewView(post: CommercialPost, reviews: BehaviorRelay<[CommercialReview]>) {
     
-    let vm = CreateCommercialReviewViewModel(post: post, reviews: reviews)
+    let vm = CreateCommercialReviewViewModel(
+      createReviewUsecase: DIContainer.createReviewUsecase,
+      post: post,
+      reviews: reviews
+    )
       .coordinator(self)
     
     let vc = CreateCommercialReviewViewController(viewModel: vm)
@@ -58,7 +62,12 @@ extension ReviewCoordinator {
     reviews: BehaviorRelay<[CommercialReview]>
   ) {
     
-    let vm = CommercialReviewDetailViewModel(postID: postID, review: review, reviews: reviews)
+    let vm = CommercialReviewDetailViewModel(
+      handleReviewUsecase: DIContainer.handleReviewUsecase,
+      postID: postID,
+      review: review,
+      reviews: reviews
+    )
       .coordinator(self)
     
     let vc = CommercialReviewDetailViewController(viewModel: vm)

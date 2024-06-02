@@ -32,7 +32,10 @@ final class FollowListViewModel: ViewModel {
   private let myProfile: BehaviorRelay<Profile>
   
   // MARK: - Initializer
-  init(profile: BehaviorRelay<Profile>, myProfile: BehaviorRelay<Profile>) {
+  init(
+    profile: BehaviorRelay<Profile>,
+    myProfile: BehaviorRelay<Profile>
+  ) {
     self.profile = profile
     self.myProfile = myProfile
   }

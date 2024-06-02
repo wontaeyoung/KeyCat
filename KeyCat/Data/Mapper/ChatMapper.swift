@@ -7,7 +7,11 @@
 
 struct ChatMapper: Mapper {
   
-  private let userMapper = UserMapper()
+  private let userMapper: UserMapper
+  
+  init(userMapper: UserMapper) {
+    self.userMapper = userMapper
+  }
   
   func toEntity(_ dto: ChatDTO?) -> Chat? {
     

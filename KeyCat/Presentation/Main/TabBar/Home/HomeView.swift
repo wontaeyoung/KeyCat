@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
   
-  @StateObject private var viewModel = HomeViewModel()
+  @StateObject private var viewModel = HomeViewModel(fetchCommercialPostUsecase: DIContainer.fetchCommercialPostUsecase)
   
   var body: some View {
     
