@@ -643,7 +643,7 @@ final class ViewController: RxBaseViewController {
       .disposed(by: disposeBag)
   }
   
-  let mapper = PostMapper()
+  let mapper = PostMapper(userMapper: DIContainer.userMapper, commentMapper: DIContainer.commentMapper)
   
   var fetchedPostID: String = ""
   

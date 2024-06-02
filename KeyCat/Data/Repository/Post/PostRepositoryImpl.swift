@@ -14,8 +14,8 @@ final class PostRepositoryImpl: PostRepository, HTTPErrorTransformer {
   private let postMapper: PostMapper
   
   init(
-    service: APIService = APIService(),
-    postMapper: PostMapper = PostMapper()
+    service: APIService,
+    postMapper: PostMapper
   ) {
     self.service = service
     self.postMapper = postMapper

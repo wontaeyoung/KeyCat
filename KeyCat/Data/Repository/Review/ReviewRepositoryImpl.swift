@@ -14,8 +14,8 @@ final class ReviewRepositoryImpl: ReviewRepository, HTTPErrorTransformer {
   private let commentMapper: CommentMapper
   
   init(
-    service: APIService = APIService(),
-    commentMapper: CommentMapper = CommentMapper()
+    service: APIService,
+    commentMapper: CommentMapper
   ) {
     self.service = service
     self.commentMapper = commentMapper

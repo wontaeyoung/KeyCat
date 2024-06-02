@@ -17,13 +17,41 @@ final class DIContainer {
   static let session = Session(interceptor: apiRequestInterceptor, eventMonitors: [apiEventMonitor])
   static let apiService: APIService = APIService(session: session)
   
+  // MARK: - Mapper
+  static let postMapper: PostMapper = PostMapper(
+    userMapper: userMapper,
+    commentMapper: commentMapper
+  )
+  static let commentMapper: CommentMapper = CommentMapper(userMapper: userMapper)
+  static let userMapper: UserMapper = UserMapper()
+  static let chatMapper: ChatMapper = ChatMapper(userMapper: userMapper)
+  static let paymentMapper: PaymentMapper = PaymentMapper()
+  
   // MARK: - Repository
-  static let authRepository: some AuthRepository = AuthRepositoryImpl()
-  static let userRepository: some UserRepository = UserRepositoryImpl()
-  static let chatRepository: some ChatRepository = ChatRepositoryImpl()
-  static let postRepository: some PostRepository = PostRepositoryImpl()
-  static let paymentRepository: some PaymentRepository = PaymentRepositoryImpl()
-  static let reviewRepository: some ReviewRepository = ReviewRepositoryImpl()
+  static let authRepository: some AuthRepository = AuthRepositoryImpl(
+    service: apiService,
+    userMapper: userMapper
+  )
+  static let userRepository: some UserRepository = UserRepositoryImpl(
+    service: apiService,
+    userMapper: userMapper
+  )
+  static let chatRepository: some ChatRepository = ChatRepositoryImpl(
+    service: apiService,
+    chatMapper: chatMapper
+  )
+  static let postRepository: some PostRepository = PostRepositoryImpl(
+    service: apiService,
+    postMapper: postMapper
+  )
+  static let paymentRepository: some PaymentRepository = PaymentRepositoryImpl(
+    service: apiService,
+    paymentMapper: paymentMapper
+  )
+  static let reviewRepository: some ReviewRepository = ReviewRepositoryImpl(
+    service: apiService,
+    commentMapper: commentMapper
+  )
   
   // MARK: - Usecase
   static let checkEmailValidationUsecase: some CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(authRepository: authRepository)
