@@ -99,10 +99,10 @@ final class SignUpViewModel: ViewModel {
   
   // MARK: - Initializer
   init(
-    checkEmailValidationUsecase: any CheckEmailDuplicationUsecase = CheckEmailDuplicationUsecaseImpl(),
-    authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase = AuthenticateBusinessInfoUsecaseImpl(),
-    signUsecase: any SignUsecase = SignUsecaseImpl(),
-    profileUsecase: any ProfileUsecase = ProfileUsecaseImpl()
+    checkEmailValidationUsecase: any CheckEmailDuplicationUsecase,
+    authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase,
+    signUsecase: any SignUsecase,
+    profileUsecase: any ProfileUsecase
   ) {
     self.checkEmailValidationUsecase = checkEmailValidationUsecase
     self.authenticateBusinessInfoUsecase = authenticateBusinessInfoUsecase

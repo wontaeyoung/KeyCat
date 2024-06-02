@@ -31,7 +31,7 @@ final class SignInViewModel: ViewModel {
   private let signUsecase: SignUsecase
   
   // MARK: - Initializer
-  init(signUsecase: SignUsecase = SignUsecaseImpl()) {
+  init(signUsecase: SignUsecase) {
     self.signUsecase = signUsecase
   }
   
