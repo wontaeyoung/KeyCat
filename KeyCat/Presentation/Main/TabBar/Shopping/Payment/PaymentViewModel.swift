@@ -32,15 +32,15 @@ final class PaymentViewModel: ViewModel {
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: ShoppingCoordinator?
-  private let paymentUsecase: PaymentUsecase
+  private let paymentUsecase: any PaymentUsecase
   private let post: CommercialPost
   
   private let paidSuccessTrigger: PublishRelay<Void>
   
   // MARK: - Initializer
   init(
+    paymentUsecase: any PaymentUsecase,
     post: CommercialPost,
-    paymentUsecase: PaymentUsecase = PaymentUsecaseImpl(),
     paidSuccessTrigger: PublishRelay<Void>
   ) {
     self.post = post

@@ -30,7 +30,7 @@ extension ShoppingCoordinator {
   
   func showShoppingView() {
     
-    let vm = ShoppingViewModel()
+    let vm = ShoppingViewModel(fetchCommercialPostsUsecase: DIContainer.fetchCommercialPostUsecase)
       .coordinator(self)
     
     let vc = ShoppingViewController(viewModel: vm)
@@ -42,7 +42,10 @@ extension ShoppingCoordinator {
   
   func showCreatePostView(posts: BehaviorRelay<[CommercialPost]>) {
     
-    let vm = CreateCommercialPostViewModel(posts: posts)
+    let vm = CreateCommercialPostViewModel(
+      createPostUsecase: DIContainer.createPostUsecase,
+      posts: posts
+    )
       .coordinator(self)
     
     let vc = CreateCommercialPostViewController(viewModel: vm)
@@ -55,7 +58,11 @@ extension ShoppingCoordinator {
   
   func showCartPostListView(posts: BehaviorRelay<[CommercialPost]>, cartPosts: BehaviorRelay<[CommercialPost]>) {
     
-    let vm = CartPostListViewModel(posts: posts, cartPosts: cartPosts)
+    let vm = CartPostListViewModel(
+      commercialPostInteractionUsecase: DIContainer.commercialPostInteractionUsecase,
+      posts: posts,
+      cartPosts: cartPosts
+    )
       .coordinator(self)
     
     let vc = CartPostListViewController(viewModel: vm)
@@ -71,7 +78,13 @@ extension ShoppingCoordinator {
     cartPosts: BehaviorRelay<[CommercialPost]>
   ) {
     
-    let vm = CommercialPostDetailViewModel(post: post, originalPosts: originalPosts, cartPosts: cartPosts)
+    let vm = CommercialPostDetailViewModel(
+      commercialPostInteractionUsecase: DIContainer.commercialPostInteractionUsecase,
+      handleCommercialPostUsecase: DIContainer.handleCommercialPostUsecase,
+      post: post,
+      originalPosts: originalPosts,
+      cartPosts: cartPosts
+    )
       .coordinator(self)
     
     let vc = CommercialPostDetailViewController(viewModel: vm)
@@ -84,7 +97,11 @@ extension ShoppingCoordinator {
   
   func showPaymentView(post: CommercialPost, paidSuccessTrigger: PublishRelay<Void>) {
     
-    let vm = PaymentViewModel(post: post, paidSuccessTrigger: paidSuccessTrigger)
+    let vm = PaymentViewModel(
+      paymentUsecase: DIContainer.paymentUsecase,
+      post: post,
+      paidSuccessTrigger: paidSuccessTrigger
+    )
       .coordinator(self)
     
     let vc = PaymentViewController(viewModel: vm)
