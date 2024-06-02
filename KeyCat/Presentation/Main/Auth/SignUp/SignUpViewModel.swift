@@ -15,22 +15,17 @@ final class SignUpViewModel: ViewModel {
   struct Input {
     let sellerAuthorityNextEvent: PublishRelay<Void>
     let onlyCustomerAuthorityNextEvent: PublishRelay<Void>
-    
     let businessInfoAuthenticationEvent: PublishRelay<String>
     let businessInfoAuthenticationNextEvent: PublishRelay<SignUpBusinessInfoAuthenticationViewController.AuthenticationCase>
-    
     let email: PublishRelay<String>
     let duplicateCheckEvent: PublishRelay<Void>
     let emailNextEvent: PublishRelay<Void>
-    
     let password: PublishRelay<String>
     let passwordCheck: PublishRelay<String>
     let passwordNextEvent: PublishRelay<Void>
-    
     let nickname: PublishRelay<String>
     let profileNextEvent: PublishRelay<(Data?, SignUpProfileViewController.WriteProfileCase)>
     let signUpToastCompletedEvent: PublishRelay<Void>
-    
     let updateSellerAuthorityTapEvent: PublishRelay<Void>
     let updateSellerToastCompletedEvent: PublishRelay<Void>
     
@@ -72,25 +67,21 @@ final class SignUpViewModel: ViewModel {
   struct Output {
     let businessInfoAuthenticationResult: Driver<Bool>
     let showAuthenticationResultToast: Driver<String>
-    
     let duplicateCheckResult: Driver<Bool>
     let showDuplicationCheckResultToast: Driver<Void>
-    
     let passwordEqualValidationResult: Driver<Bool>
-    
     let signUpCompleted: Driver<String>
     let signUpFailed: Driver<Void>
-    
     let updateSellerCompletedEvent: Driver<Void>
   }
   
   // MARK: - Property
   let disposeBag = DisposeBag()
   weak var coordinator: AuthCoordinator?
-  private let checkEmailValidationUsecase: CheckEmailDuplicationUsecase
-  private let authenticateBusinessInfoUsecase: AuthenticateBusinessInfoUsecase
-  private let signUsecase: SignUsecase
-  private let profileUsecase: ProfileUsecase
+  private let checkEmailValidationUsecase: any CheckEmailDuplicationUsecase
+  private let authenticateBusinessInfoUsecase: any AuthenticateBusinessInfoUsecase
+  private let signUsecase: any SignUsecase
+  private let profileUsecase: any ProfileUsecase
   
   private let email = BehaviorRelay<String>(value: "")
   private let password = BehaviorRelay<String>(value: "")
