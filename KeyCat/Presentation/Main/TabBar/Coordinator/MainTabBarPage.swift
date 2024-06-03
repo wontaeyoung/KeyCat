@@ -11,7 +11,6 @@ enum MainTabBarPage: Int, CaseIterable {
   
   case home
   case shopping
-  case chat
   case profile
   
   var index: Int {
@@ -26,9 +25,6 @@ enum MainTabBarPage: Int, CaseIterable {
       case .shopping:
         return "쇼핑"
         
-      case .chat:
-        return "1:1 문의"
-        
       case .profile:
         return "마이페이지"
     }
@@ -42,9 +38,6 @@ enum MainTabBarPage: Int, CaseIterable {
       case .shopping:
         return KCAsset.Symbol.shoppingTab
         
-      case .chat:
-        return KCAsset.Symbol.chatTab
-        
       case .profile:
         return KCAsset.Symbol.profileTab
     }
@@ -57,9 +50,6 @@ enum MainTabBarPage: Int, CaseIterable {
         
       case .shopping:
         return KCAsset.Symbol.shoppingSelectedTab
-        
-      case .chat:
-        return KCAsset.Symbol.chatSelectedTab
         
       case .profile:
         return KCAsset.Symbol.profileSelectedTab

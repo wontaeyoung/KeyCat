@@ -63,9 +63,6 @@ final class MainTabBarCoordinator: Coordinator {
       case .shopping:
         return ShoppingCoordinator(tabPageController)
         
-      case .chat:
-        return ChatCoordinator(tabPageController)
-        
       case .profile:
         return MyPageCoordinator(tabPageController)
     }

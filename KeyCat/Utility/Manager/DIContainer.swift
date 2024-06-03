@@ -24,7 +24,6 @@ final class DIContainer {
   )
   static let commentMapper: CommentMapper = CommentMapper(userMapper: userMapper)
   static let userMapper: UserMapper = UserMapper()
-  static let chatMapper: ChatMapper = ChatMapper(userMapper: userMapper)
   static let paymentMapper: PaymentMapper = PaymentMapper()
   
   // MARK: - Repository
@@ -35,10 +34,6 @@ final class DIContainer {
   static let userRepository: some UserRepository = UserRepositoryImpl(
     service: apiService,
     userMapper: userMapper
-  )
-  static let chatRepository: some ChatRepository = ChatRepositoryImpl(
-    service: apiService,
-    chatMapper: chatMapper
   )
   static let postRepository: some PostRepository = PostRepositoryImpl(
     service: apiService,
@@ -68,7 +63,6 @@ final class DIContainer {
   static let createPostUsecase: some CreatePostUsecase = CreatePostUsecaseImpl(postRepository: postRepository)
   static let createReviewUsecase: some CreateReviewUsecase = CreateReviewUsecaseImpl(reviewRepository: reviewRepository)
   static let handleReviewUsecase: some HandleReviewUsecase = HandleReviewUsecaseImpl(reviewRepository: reviewRepository)
-  static let chatRoomUsecase: some ChatRoomUsecase = ChatRoomUsecaseImpl(chatRepository: chatRepository)
   static let fetchProfileUsecase: some ProfileUsecase = ProfileUsecaseImpl(userRepository: userRepository)
   static let userInteractionUsecase: some UserInteractionUsecase = UserInteractionUsecaseImpl(userRepository: userRepository)
 }
